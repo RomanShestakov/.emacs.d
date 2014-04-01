@@ -1,0 +1,10 @@
+EMACS setup
+
+I reused lots of ideas from https://github.com/jhamrick/emacs
+
+* Emacs plug-ins
+Extra packages are installed with el-get
+
+* Extra dependencies
+
+El-get depends on git, bzr
