@@ -43,7 +43,7 @@
                ace-jump-mode
                multiple-cursors
                dired-details
-               ;;distel
+               distel
                ))   
 
 ; first enable shallow clone, so we don't need to clone the entire

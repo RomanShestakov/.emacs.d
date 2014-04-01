@@ -22,6 +22,9 @@
   (add-path  "exec-path-from-shell") ;; allows setting PATH, PYTHONPATH from .profile 
   )
 
+;; load a path to elang list as distel install in el-get distel package depends on it
+(setq load-path  (cons "/usr/local/lib/erlang/lib/tools-2.6.13/emacs" load-path))
+
 ;; now load various configs
 ;; set PATH, because we don't load .bashrc
 (require 'exec-path-from-shell)

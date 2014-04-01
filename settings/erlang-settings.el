@@ -3,16 +3,18 @@
 ;; https://github.com/massemanet/distel.git
 
 (setq erlang-root-dir "/usr/local/lib/erlang/lib")
-(setq load-path  (cons "/usr/local/lib/erlang/lib/tools-2.6.13/emacs" load-path))
+;; moved this to init as el-get distel package depends on this
+;;(setq load-path  (cons "/usr/local/lib/erlang/lib/tools-2.6.13/emacs" load-path))
 (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 (require 'erlang-start)
 (require 'erlang-flymake)
 
-(let ((distel-dir (concat emacs-root "distel/elisp")))
+(include-plugin "distel")
+
+(let ((distel-dir (concat emacs-root "el-get/distel/elisp")))
   (unless (member distel-dir load-path)
     (setq load-path (append load-path (list distel-dir)))))
 
-;;(include-plugin "distel")
 (require 'distel)
 (distel-setup)
 
