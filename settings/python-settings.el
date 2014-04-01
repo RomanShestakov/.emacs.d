@@ -8,7 +8,8 @@
 ;; http://stackoverflow.com/questions/1259873/how-can-i-use-emacs-flymake-mode-for-python-with-pyflakes-and-pylint-checking-co
 
 ;; Set PYTHONPATH, because we don't load .bashrc
-(setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:")
+;;(setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:")
+(exec-path-from-shell-copy-env "PYTHONPATH")
 
 (include-plugin "python-mode")
 (require 'python-mode)
