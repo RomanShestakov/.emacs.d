@@ -34,17 +34,10 @@
 (require 'custom-functions)
 (require 'el-get-settings) ;; load plugins with el-get 
 (require 'general-settings)
-(require 'color-theme-settings)
 
 ;; tramp-mode
 (include-plugin "tramp")
 (require 'tramp)
-
-(require 'scala_mode_config)
-(require 'erlang-settings) ;; add settings for erlang mode
-(require 'python-settings) ;; add settings for python mode
-
-(require 'flymake)
 
 ;; git 
 (include-plugin "magit")
@@ -63,14 +56,15 @@
 (require 'move-text)
 (move-text-default-bindings)
 
-;; puppet-mode to edit puppet definitions
-(include-plugin "puppet-mode")
-(require 'puppet-mode)
-
+;; add modes with customized settings
+(require 'scala_mode_config)
+(require 'erlang-settings) ;; add settings for erlang mode
+(require 'python-settings) ;; add settings for python mode
 (require 'drag-and-drop-settings)
 (require 'key-binding-settings)
 (require 'auto-complete-settings)
 (require 'fill-column-indicator-settings)
+(require 'puppet-mode-settings)
+(require 'color-theme-settings)
+(require 'flymake)
 
-;; assosiate .pp file extension with puppet-mode
-(add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
