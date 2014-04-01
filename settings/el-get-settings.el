@@ -14,7 +14,7 @@
     (goto-char (point-max))
     (eval-print-last-sexp)))
 
-; packages to install
+;; packages to install
 (setq 
  my-packages '(
                ;;auctex
@@ -26,7 +26,7 @@
                ;;markdown-mode
                ;;matlab-mode
                ;;nxhtml
-               ;;pydoc-info
+               pydoc-info
                ;;scss-mode
                ;;popup
                ;;jedi
@@ -46,11 +46,11 @@
                distel
                ))   
 
-; first enable shallow clone, so we don't need to clone the entire
-; history of every project
+;; first enable shallow clone, so we don't need to clone the entire
+;; history of every project
 (setq el-get-git-shallow-clone t)
 
-; then intsall!
+;; then intsall!
 (el-get 'sync my-packages)
 
 (provide 'el-get-settings)

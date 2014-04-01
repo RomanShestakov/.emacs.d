@@ -31,8 +31,13 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
+;; some custom helper funcs
 (require 'custom-functions)
-(require 'el-get-settings) ;; load plugins with el-get 
+
+;; load plugins with el-get 
+(require 'el-get-settings) 
+
+;; apply general customisation settings
 (require 'general-settings)
 
 ;; tramp-mode
@@ -57,14 +62,17 @@
 (move-text-default-bindings)
 
 ;; add modes with customized settings
+;; add settings for scala mode
 (require 'scala_mode_config)
-(require 'erlang-settings) ;; add settings for erlang mode
-(require 'python-settings) ;; add settings for python mode
+;; add settings for erlang mode
+(require 'erlang-settings) 
+;; add settings for python mode
+(require 'python-settings) 
+(require 'flymake)
 (require 'drag-and-drop-settings)
 (require 'key-binding-settings)
 (require 'auto-complete-settings)
 (require 'fill-column-indicator-settings)
 (require 'puppet-mode-settings)
 (require 'color-theme-settings)
-(require 'flymake)
 
