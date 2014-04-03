@@ -22,7 +22,4 @@
 ;; (global-unset-key [right])
 ;; (global-unset-key [down])
 
-;; bind DEL to delete-region
-(global-set-key (kbd "<DEL>") 'delete-region)
-
 (provide 'key-binding-settings)

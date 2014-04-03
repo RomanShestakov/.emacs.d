@@ -15,6 +15,9 @@
 ;; enable line numbering
 (global-linum-mode 1)
 
+;; allow delete region by <DEL>
+(delete-selection-mode 1)
+
 ;; show the current line and column numbers in the stats bar as well
 (line-number-mode 1)
 (column-number-mode 1)
