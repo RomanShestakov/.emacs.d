@@ -109,6 +109,13 @@
 ;; make sure that dired is not trying to find alternative file
 (put 'dired-find-alternate-file 'disabled nil)
 
+;; eval list buffer with F9
+(add-hook 'emacs-lisp-mode-hook 'my-lisp-mode-hook)
+(defun my-lisp-mode-hook ()
+  (define-key emacs-lisp-mode-map [f9]
+    (lambda()
+      (interactive)
+      (progn
+        (eval-buffer)))))
+
 (provide 'general-settings)
-
-
