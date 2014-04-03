@@ -22,9 +22,6 @@
 (add-to-list 'load-path (concat emacs-root "el-get/python-mode"))
 (setq py-install-directory (concat emacs-root "el-get/python-mode"))
 
-;; (include-plugin "python-mode")
-;; (require 'python-mode)
-
 ;; use python-mode for .py files 
 (add-to-list 'auto-mode-alist '("\.py\'" . python-mode))
 
@@ -78,6 +75,16 @@
 (add-hook 'python-mode-hook
 	  (lambda ()
 	    (unless (eq buffer-file-name nil) (flymake-mode 1))))
+
+;; eval buffer by F9
+(add-hook 'python-mode-hook 'my-python-mode-hook)
+(defun my-python-mode-hook ()
+  ;; compile file with F9
+  (define-key python-mode-map [f9]
+    (lambda()
+      (interactive)
+      (progn
+        (py-execute-buffer)))))
 
 (provide 'python-settings)
 
