@@ -76,7 +76,16 @@
 	  (lambda ()
 	    (unless (eq buffer-file-name nil) (flymake-mode 1))))
 
-;; eval buffer by F9
+;; add F9 and S-F9 keybindings
+(add-hook 'python-mode-hook 'my-python-mode-hook)
+;; (defun my-python-mode-hook ()
+;;   ;; compile file with F9
+;;   (define-key python-mode-map (kbd "f9") 'py-execute-buffer)
+;;   ;; compile file with S-F9
+;;   (define-key python-mode-map (kbd "S-<f9>") 'py-execute-region)
+;;   )
+
+;; add F9 and S-F9 keybindings
 (add-hook 'python-mode-hook 'my-python-mode-hook)
 (defun my-python-mode-hook ()
   ;; compile file with F9
