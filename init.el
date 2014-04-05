@@ -70,3 +70,4 @@
 (require 'helm-settings)
 (require 'ctag-settings)
 (require 'dirtree-settings)
+(require 'yasnippet-settings)

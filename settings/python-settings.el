@@ -17,10 +17,6 @@
 (include-plugin "pymacs")
 (require 'pymacs)
 
-(include-plugin "yasnippet")
-(require 'yasnippet)
-(yas-global-mode 1)
-
 ;; add path to python-mode and pymacs
 (add-to-list 'load-path (concat emacs-root "el-get/pymacs"))
 (add-to-list 'load-path (concat emacs-root "el-get/python-mode"))
