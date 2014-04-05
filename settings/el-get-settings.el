@@ -49,6 +49,7 @@
                helm-descbinds
                eproject
                etags-select
+               yasnippet
                ))   
 
 ;; first enable shallow clone, so we don't need to clone the entire
