@@ -44,6 +44,10 @@
                multiple-cursors
                dired-details
                distel
+               helm
+               helm-descbinds
+               eproject
+               etags-select
                ))   
 
 ;; first enable shallow clone, so we don't need to clone the entire

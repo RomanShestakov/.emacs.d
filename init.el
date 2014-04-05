@@ -75,4 +75,5 @@
 (require 'fill-column-indicator-settings)
 (require 'puppet-mode-settings)
 (require 'color-theme-settings)
-
+(require 'helm-settings)
+(require 'ctag-settings)

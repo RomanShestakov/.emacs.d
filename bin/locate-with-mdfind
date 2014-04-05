@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#http://amitp.blogspot.co.uk/2012/10/emacs-helm-for-finding-files.html
+
+suffix=$(basename "$@")
+
+pattern="${suffix}*"
+
+if [ "$@" = "$suffix" ]; then
+    #if there is no folder then if should be a substring
+    pattern="*${suffix}*"
+fi
+
+mdfind -onlyin $HOME "kMDItemFSName = '$pattern'cd" \
+    | fgrep -i "$@" \
+    | grep -v "$HOME/Library/" \
+    | grep -v "$HOME/Pictures/" \
+    | grep -v "$HOME/Music/" \
+    | sed -e "s|^$HOME|~|"

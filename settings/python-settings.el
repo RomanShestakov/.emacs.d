@@ -28,12 +28,12 @@
 (setq-default py-shell-name "/usr/local/bin/ipython")
 (setq-default py-which-bufname "IPython")
 
-;; (setq-default py-python-command-args
-;;               (if (system-is-mac)
-;;                   '("--gui=osx" "--pylab=osx" "--colors" "Linux")
-;;                 (if (system-is-linux)
-;;                     '("--gui=wx" "--pylab=wx" "--colors" "Linux")
-;;                   '())))
+(setq-default py-python-command-args
+              (if (system-is-mac)
+                  '("--gui=osx" "--pylab=osx" "--colors" "Linux")
+                (if (system-is-linux)
+                    '("--gui=wx" "--pylab=wx" "--colors" "Linux")
+                  '())))
 
 (setq py-force-py-shell-name-p 1)
 
