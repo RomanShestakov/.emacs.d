@@ -34,7 +34,8 @@
                window-number
                tramp
                tree-mode
-               dirtree
+               windata
+               emacs-dirtree
                move-text
                puppet-mode
                fill-column-indicator

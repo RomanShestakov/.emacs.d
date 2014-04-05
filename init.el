@@ -48,14 +48,6 @@
 (include-plugin "magit")
 (require 'magit)
 
-;; tree - required for dirtree
-(include-plugin "tree-mode")
-(require 'tree-mode)
-
-;; dirtree
-(include-plugin "dirtree")
-(require 'dirtree)
-
 ;; move-text
 (include-plugin "move-text")
 (require 'move-text)
@@ -77,3 +69,4 @@
 (require 'color-theme-settings)
 (require 'helm-settings)
 (require 'ctag-settings)
+(require 'dirtree-settings)
