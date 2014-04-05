@@ -14,8 +14,8 @@
 (include-plugin "python-mode")
 (require 'python-mode)
 
-(include-plugin "pymacs")
-(require 'pymacs)
+;;(include-plugin "pymacs")
+;;(require 'pymacs)
 
 ;; add path to python-mode and pymacs
 (add-to-list 'load-path (concat emacs-root "el-get/pymacs"))
@@ -39,26 +39,27 @@
 
 ;; ;; switch to the interpreter after executing code
 ;; (setq py-shell-switch-buffers-on-execute-p t)
-;; (setq py-switch-buffers-on-execute-p t)
+(setq py-switch-buffers-on-execute-p nil)
+
 ;; ;; don't split windows
 ;; (setq py-split-windows-on-execute-p nil)
 
 ;; ;; try to automagically figure out indentantion
 ;; (setq py-smart-indentation t)
 
-;; pymacs
-(autoload 'pymacs-apply "pymacs")
-(autoload 'pymacs-call "pymacs")
-(autoload 'pymacs-eval "pymacs" -1 t)
-(autoload 'pymacs-exec "pymacs" -1 t)
-(autoload 'pymacs-load "pymacs" -1 t)
-(autoload 'pymacs-autoload "pymacs")
-(setq py-load-pymacs-p 1)
-(setq py-complete-set-keymap-p 1)
+;; ;; pymacs
+;; (autoload 'pymacs-apply "pymacs")
+;; (autoload 'pymacs-call "pymacs")
+;; (autoload 'pymacs-eval "pymacs" -1 t)
+;; (autoload 'pymacs-exec "pymacs" -1 t)
+;; (autoload 'pymacs-load "pymacs" -1 t)
+;; (autoload 'pymacs-autoload "pymacs")
+;; (setq py-load-pymacs-p 1)
+;; (setq py-complete-set-keymap-p 1)
 
-;; ropemacs
-(require 'pymacs)
-(pymacs-load "ropemacs" "rope-")
+;; ;; ropemacs
+;; (require 'pymacs)
+;; (pymacs-load "ropemacs" "rope-")
 
 ;; pyflakes flymake integration
 ;; http://stackoverflow.com/a/1257306/347942
@@ -85,6 +86,29 @@
       (interactive)
       (progn
         (py-execute-buffer)))))
+
+
+;; pydoc info
+;(include-plugin "pydoc-info-0.2")
+;(require 'pydoc-info)
+
+;; jedi python completion
+;; (include-elget-plugin "ctable")   ; required for epc
+;; (include-elget-plugin "deferred") ; required for epc
+;; (include-elget-plugin "epc")      ; required for jedi
+
+;; ;; http://tkf.github.io/emacs-jedi/latest/
+;; (include-plugin "epc")
+;; (require 'epc)
+
+;; M-x jedi:install-server
+(include-plugin "jedi")
+(require 'jedi)
+
+;; ;(setq jedi:setup-keys t)
+;; ;(autoload 'jedi:setup "jedi" nil t)
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
 
 (provide 'python-settings)
 

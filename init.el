@@ -55,7 +55,7 @@
 
 ;; add modes with customized settings
 ;; add settings for scala mode
-(require 'scala_mode_config)
+;; (require 'scala_mode_config)
 ;; add settings for erlang mode
 (require 'erlang-settings) 
 ;; add settings for python mode
@@ -63,7 +63,6 @@
 (require 'flymake)
 (require 'drag-and-drop-settings)
 (require 'key-binding-settings)
-(require 'auto-complete-settings)
 (require 'fill-column-indicator-settings)
 (require 'puppet-mode-settings)
 (require 'color-theme-settings)

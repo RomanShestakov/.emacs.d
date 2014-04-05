@@ -19,18 +19,15 @@
  my-packages '(
                ;;auctex
                ;;exec-path-from-shell
-               auto-complete
                ;;color-theme-solarized
                ;;ein
                magit
                ;;markdown-mode
                ;;matlab-mode
                ;;nxhtml
-               pydoc-info
+               ;;pydoc-info
                ;;scss-mode
-               ;;popup
-               ;;jedi
-               ;;nyan-mode
+               jedi
                window-number
                tramp
                tree-mode
@@ -39,7 +36,7 @@
                move-text
                puppet-mode
                fill-column-indicator
-               pymacs
+               ;;pymacs
                python-mode
                ace-jump-mode
                multiple-cursors

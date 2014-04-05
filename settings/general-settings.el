@@ -22,6 +22,9 @@
 (line-number-mode 1)
 (column-number-mode 1)
 
+;; disable beep
+(setq visible-bell 1)
+
 ;; make frequently used commands short
 ;; http://ergoemacs.org/emacs/emacs_alias.html
 (defalias 'qrr 'query-replace-regexp)
