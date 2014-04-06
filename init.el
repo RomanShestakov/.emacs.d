@@ -62,11 +62,8 @@
 (move-text-default-bindings)
 
 ;; add modes with customized settings
-;; add settings for scala mode
 ;; (require 'scala_mode_config)
-;; add settings for erlang mode
 (require 'erlang-settings)
-;; add settings for python mode
 (require 'python-settings)
 (require 'drag-and-drop-settings)
 (require 'key-binding-settings)
