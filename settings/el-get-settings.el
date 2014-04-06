@@ -28,15 +28,15 @@
                ;;pydoc-info
                ;;scss-mode
                jedi
+               flycheck
                window-number
                tramp
-               tree-mode
-               windata
+               ;; tree-mode
+               ;; windata
                emacs-dirtree
                move-text
                puppet-mode
                fill-column-indicator
-               ;;pymacs
                python-mode
                ace-jump-mode
                multiple-cursors

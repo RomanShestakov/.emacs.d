@@ -60,7 +60,7 @@
 (require 'erlang-settings) 
 ;; add settings for python mode
 (require 'python-settings) 
-(require 'flymake)
+;;(require 'flymake)
 (require 'drag-and-drop-settings)
 (require 'key-binding-settings)
 (require 'fill-column-indicator-settings)
@@ -70,3 +70,4 @@
 (require 'ctag-settings)
 (require 'dirtree-settings)
 (require 'yasnippet-settings)
+(require 'flycheck-mode-settings)

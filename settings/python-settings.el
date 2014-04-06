@@ -14,9 +14,6 @@
 (include-plugin "python-mode")
 (require 'python-mode)
 
-;;(include-plugin "pymacs")
-;;(require 'pymacs)
-
 ;; add path to python-mode and pymacs
 (add-to-list 'load-path (concat emacs-root "el-get/pymacs"))
 (add-to-list 'load-path (concat emacs-root "el-get/python-mode"))
@@ -31,13 +28,13 @@
 (setq-default py-python-command-args
               (if (system-is-mac)
                   '("--gui=osx" "--pylab=osx" "--colors" "Linux")
-                (if (system-is-linux)
-                    '("--gui=wx" "--pylab=wx" "--colors" "Linux")
-                  '())))
+                ((insert )f (system-is-linux)
+                 '("--gui=wx" "--pylab=wx" "--colors" "Linux")
+                 '())))
 
 (setq py-force-py-shell-name-p 1)
 
-;; ;; switch to the interpreter after executing code
+;; switch to the interpreter after executing code
 ;; (setq py-shell-switch-buffers-on-execute-p t)
 (setq py-switch-buffers-on-execute-p nil)
 
@@ -46,36 +43,6 @@
 
 ;; ;; try to automagically figure out indentantion
 ;; (setq py-smart-indentation t)
-
-;; ;; pymacs
-;; (autoload 'pymacs-apply "pymacs")
-;; (autoload 'pymacs-call "pymacs")
-;; (autoload 'pymacs-eval "pymacs" -1 t)
-;; (autoload 'pymacs-exec "pymacs" -1 t)
-;; (autoload 'pymacs-load "pymacs" -1 t)
-;; (autoload 'pymacs-autoload "pymacs")
-;; (setq py-load-pymacs-p 1)
-;; (setq py-complete-set-keymap-p 1)
-
-;; ;; ropemacs
-;; (require 'pymacs)
-;; (pymacs-load "ropemacs" "rope-")
-
-;; pyflakes flymake integration
-;; http://stackoverflow.com/a/1257306/347942
-(when (load "flymake" t)
-  (defun flymake-pyflakes-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-           (local-file (file-relative-name
-                        temp-file
-                        (file-name-directory buffer-file-name))))
-      (list (concat emacs-root "bin/pycheckers") (list local-file))))
-  (add-to-list 'flymake-allowed-file-name-masks
-               '("\\.py\\'" flymake-pyflakes-init)))
-(add-hook 'python-mode-hook
-	  (lambda ()
-	    (unless (eq buffer-file-name nil) (flymake-mode 1))))
 
 ;; add F9 and S-F9 keybindings
 (add-hook 'python-mode-hook 'my-python-mode-hook)
@@ -87,21 +54,12 @@
       (progn
         (py-execute-buffer)))))
 
-
 ;; pydoc info
 ;(include-plugin "pydoc-info-0.2")
 ;(require 'pydoc-info)
 
-;; jedi python completion
-;; (include-elget-plugin "ctable")   ; required for epc
-;; (include-elget-plugin "deferred") ; required for epc
-;; (include-elget-plugin "epc")      ; required for jedi
-
-;; ;; http://tkf.github.io/emacs-jedi/latest/
-;; (include-plugin "epc")
-;; (require 'epc)
-
-;; M-x jedi:install-server
+;; http://tkf.github.io/emacs-jedi/latest/
+;; run : M-x jedi:install-server for first time to setup virtualenv
 (include-plugin "jedi")
 (require 'jedi)
 
@@ -110,6 +68,21 @@
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
 
+;; add flyckeck - need to install flake8 and pylint
+;; sudo pip install flake8
+;; sudo pip install pylint
+;; http://stackoverflow.com/questions/19803033/emacs-flycheck-configured-syntax-checker-python-flake8-cannot-be-used
+;; https://github.com/flycheck/flycheck
+
 (provide 'python-settings)
+
+
+
+
+
+
+
+
+
 
 
