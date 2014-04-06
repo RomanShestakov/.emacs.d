@@ -37,8 +37,8 @@
 ;; now load various configs
 ;; set PATH, because we don't load .bashrc
 (require 'exec-path-from-shell)
-
-;;(require 'custom-functions)
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 ;; load plugins with el-get
 (require 'el-get-settings)
