@@ -1,4 +1,10 @@
-;; Global settings
+;;; general-settings.el --- Global settings
+
+;;; Commentary:
+
+;;; Code:
+
+(require 'custom-functions)
 
 ;; language
 (setq current-language-environment "English")
@@ -30,7 +36,7 @@
 (defalias 'qrr 'query-replace-regexp)
 
 ;; set project dir
-(setq project-dir (getenv "PWD"))
+;;(setq project-dir (getenv "PWD"))
 
 ;; cua-mode is conflicting with org-mode and with python-mode
 ;; (cua-mode t)
@@ -40,7 +46,7 @@
 
 ;; show matching paren without delay
 (show-paren-mode 1)
-(setq show-paren-delay 0)
+(show-paren-delay 0)
 
 ;; set left alt key with META and the right alt key with ALT,
 ;; use command as Meta as well as left Alt
@@ -59,7 +65,6 @@
   (add-to-list 'default-frame-alist '(width . 130)))
 (custom-set-frame-size)
 (add-hook 'before-make-frame-hook 'custom-set-frame-size)
-
 
 ;; switch off tabs, use spaces instead
 (setq-default indent-tabs-mode nil)
@@ -94,7 +99,7 @@
 ;; disable auto save
 (setq auto-save-dafault nil)
 
-;; display windows numbers  
+;; display windows numbers
 (include-plugin "window-number")
 (autoload 'window-number-mode "window-number"
   "A global minor mode that enables selection of windows according to
@@ -115,6 +120,7 @@
 ;; eval list buffer with F9
 (add-hook 'emacs-lisp-mode-hook 'my-lisp-mode-hook)
 (defun my-lisp-mode-hook ()
+  "* Make f9 to eval erlang buffer."
   (define-key emacs-lisp-mode-map [f9]
     (lambda()
       (interactive)
@@ -122,3 +128,5 @@
         (eval-buffer)))))
 
 (provide 'general-settings)
+
+;;; general-settings.el ends here

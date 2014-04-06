@@ -1,7 +1,13 @@
-;; el-get-settings.el
+;;; el-get-settings.el --- define el-get packages
+
+;;; Commentary:
+
+;;; Code:
+
+(require 'el-get)
 
 ;; set the el-get path, and create it if it doesn't exist
-(setq elget-path plugin-path)
+(defvar elget-path plugin-path)
 (unless (file-exists-p elget-path)
   (make-directory elget-path))
 
@@ -15,7 +21,7 @@
     (eval-print-last-sexp)))
 
 ;; packages to install
-(setq 
+(setq
  my-packages '(
                ;;auctex
                ;;exec-path-from-shell
@@ -47,7 +53,7 @@
                eproject
                etags-select
                yasnippet
-               ))   
+               ))
 
 ;; first enable shallow clone, so we don't need to clone the entire
 ;; history of every project
@@ -57,3 +63,5 @@
 (el-get 'sync my-packages)
 
 (provide 'el-get-settings)
+
+;;; el-get-settings.el ends here

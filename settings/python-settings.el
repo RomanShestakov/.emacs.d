@@ -1,11 +1,26 @@
-;; python-settings.el
+;;; python-settings.el --- customization for python-mode
 
+;;; Commentary:
 ;; http://pedrokroger.net/configuring-emacs-python-ide/
 ;; https://github.com/jhamrick/emacs/blob/macs-and-emacs-post/.emacs.d/settings/python-settings.el
 ;; https://github.com/jhamrick/emacs/blob/master/.emacs.d/settings/python-settings.el
 ;; http://stackoverflow.com/questions/17255940/clear-steps-to-install-pymacs-with-emacs-24
 ;; http://www.idryman.org/blog/2013/03/13/python-setup-on-mac-osx/
 ;; http://stackoverflow.com/questions/1259873/how-can-i-use-emacs-flymake-mode-for-python-with-pyflakes-and-pylint-checking-co
+
+;; to add flycheck - need to install flake8 and pylint
+;; http://stackoverflow.com/questions/19803033/emacs-flycheck-configured-syntax-checker-python-flake8-cannot-be-used
+;; https://github.com/flycheck/flycheck
+;; sudo pip install flake8
+;; sudo pip install pylint
+
+;; for first run Jedi need to setup virtualenv
+;; http://tkf.github.io/emacs-jedi/latest/
+;; run : M-x jedi:install-server for first time to setup virtualenv
+
+;;; Code:
+
+(require 'custom-functions)
 
 ;; Set PYTHONPATH, because we don't load .bashrc
 ;;(setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:")
@@ -19,7 +34,7 @@
 (add-to-list 'load-path (concat emacs-root "el-get/python-mode"))
 (setq py-install-directory (concat emacs-root "el-get/python-mode"))
 
-;; use python-mode for .py files 
+;; use python-mode for .py files
 (add-to-list 'auto-mode-alist '("\.py\'" . python-mode))
 
 (setq-default py-shell-name "/usr/local/bin/ipython")
@@ -38,16 +53,13 @@
 ;; (setq py-shell-switch-buffers-on-execute-p t)
 (setq py-switch-buffers-on-execute-p nil)
 
-;; ;; don't split windows
-;; (setq py-split-windows-on-execute-p nil)
-
-;; ;; try to automagically figure out indentantion
-;; (setq py-smart-indentation t)
+;; try to automagically figure out indentantion
+(setq py-smart-indentation t)
 
 ;; add F9 and S-F9 keybindings
 (add-hook 'python-mode-hook 'my-python-mode-hook)
 (defun my-python-mode-hook ()
-  ;; compile file with F9
+  "*Compile file with F9."
   (define-key python-mode-map [f9]
     (lambda()
       (interactive)
@@ -58,31 +70,12 @@
 ;(include-plugin "pydoc-info-0.2")
 ;(require 'pydoc-info)
 
-;; http://tkf.github.io/emacs-jedi/latest/
-;; run : M-x jedi:install-server for first time to setup virtualenv
 (include-plugin "jedi")
 (require 'jedi)
 
-;; ;(setq jedi:setup-keys t)
-;; ;(autoload 'jedi:setup "jedi" nil t)
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
 
-;; add flyckeck - need to install flake8 and pylint
-;; sudo pip install flake8
-;; sudo pip install pylint
-;; http://stackoverflow.com/questions/19803033/emacs-flycheck-configured-syntax-checker-python-flake8-cannot-be-used
-;; https://github.com/flycheck/flycheck
-
 (provide 'python-settings)
 
-
-
-
-
-
-
-
-
-
-
+;;; python-settings.el ends here

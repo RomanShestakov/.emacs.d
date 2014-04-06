@@ -1,10 +1,13 @@
-;; key-binding-settings.el
-;; key-bindings
+;;; key-binding-settings.el --- custom key-bindings
+
+;;; Commentary:
+
+;;; Code:
 
 ;; setup global key bindings
 (global-set-key (kbd "\C-x g") 'magit-status )
 
-;; resize vertically split window with M-S-+/_ 
+;; resize vertically split window with 'M-S- +/-'
 ;; because UP/DOWN arrow combination don't work on Putty
 (require 'window-resizing)
 (global-set-key (kbd "M-+") 'move-border-up)
@@ -23,3 +26,5 @@
 ;; (global-unset-key [down])
 
 (provide 'key-binding-settings)
+
+;;; key-binding-settings ends here

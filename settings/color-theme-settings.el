@@ -1,4 +1,9 @@
-;; color-theme-settings.el
+;;; color-theme-settings.el --- custom color scheme
+
+;;; Commentary:
+;;; Code:
+
+(require 'custom-functions)
 
 ;; load paths to favorite themes
 (add-to-list 'custom-theme-load-path (concat emacs-root "emacs-color-theme-solarized"))
@@ -24,3 +29,5 @@
 ;;(set-default-font "Monaco-13")
 
 (provide 'color-theme-settings)
+
+;;; color-theme-settings.el ends here

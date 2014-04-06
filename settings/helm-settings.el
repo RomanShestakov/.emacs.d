@@ -1,6 +1,9 @@
-;; helm-settings.el
+;;; helm-settings.el --- wrapper for helm settings
+
+;;; Commentary:
 ;; https://github.com/emacs-helm/helm/wiki
 
+;;; Code:
 (require 'helm)
 (require 'helm-descbinds)
 (require 'helm-files)
@@ -11,8 +14,7 @@
 (global-set-key (kbd "C-c h") 'helm-mini)
 
 ;; http://amitp.blogspot.co.uk/2012/10/emacs-helm-for-finding-files.html
-;; find files 
-
+;; find files
 (setq helm-idle-delay 0.1)
 (setq helm-input-idle-delay 0.1)
 
@@ -23,3 +25,5 @@
 (global-set-key (kbd "M-t") 'helm-for-files)
 
 (provide 'helm-settings)
+
+;;; helm-settings.el ends here

@@ -1,10 +1,14 @@
-;; erlang-settings.el
+;;; erlang-settings.el --- provide settings for erlang mode.
 
+;;; Commentary:
 ;; https://github.com/massemanet/distel.git
 
-(setq erlang-root-dir "/usr/local/lib/erlang/lib")
+;;; Code:
+
+(defvar erlang-root-dir "/usr/local/lib/erlang/lib")
 ;; moved this to init as el-get distel package depends on this
 ;;(setq load-path  (cons "/usr/local/lib/erlang/lib/tools-2.6.13/emacs" load-path))
+
 (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 (require 'erlang-start)
 
@@ -18,7 +22,7 @@
 
 ;; https://groups.google.com/forum/#!topic/erlang-russian/Y1PlEMyJ-P0
 (defun directory-sub-dirs (dir suffix)
-  "Find all sub-directories of DIR, append SUFFIX to them, return as a list"
+  "*Find all sub-directories of DIR, append SUFFIX to them, return as a list."
   (if (file-accessible-directory-p dir)
       (let ((dir (directory-file-name dir))
             (dirs '())
@@ -80,7 +84,7 @@
 
 (add-hook 'erlang-mode-hook 'my-erlang-mode-hook)
 (defun my-erlang-mode-hook ()
-  ;; when starting an Erlang shell in Emacs, default in the node name
+  "*When starting an Erlang shell in Emacs, default in the node name."
   (setq inferior-erlang-machine-options '("-sname" "emacs"))
   ;; compile file with F9
   (define-key erlang-mode-map [f9]
@@ -89,6 +93,6 @@
       (progn
         (erlang-compile)))))
 
-
 (provide 'erlang-settings)
 
+;;; erlang-settings.el ends here

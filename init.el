@@ -36,8 +36,6 @@
 ;; now load various configs
 ;; set PATH, because we don't load .bashrc
 (require 'exec-path-from-shell)
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
 
 ;; some custom helper funcs
 (require 'custom-functions)

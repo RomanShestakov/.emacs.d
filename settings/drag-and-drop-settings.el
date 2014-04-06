@@ -1,11 +1,12 @@
-;; drad-and-drop-settings.el
-;; drap and drop files
+;;; drad-and-drop-settings.el --- drap and drop files
 
+;;; Commentary:
 ;; open drag and droped files in the same window
 ;; from http://stackoverflow.com/questions/3805658/how-to-configure-emacs-drag-and-drop-to-open-instead-of-append-on-osx
 ;; Upon drag-and-drop: Find the file, w/shift insert filename; w/meta insert file contents
-;; note that the emacs window must be selected (CMD-TAB) for the modifiers to register
+;; note that the EMACS window must be selected (CMD-TAB) for the modifiers to register.
 
+;;; Code:
 (defun ns-insert-filename ()
   "Insert contents of first element of `ns-input-file' at point."
   (interactive)
@@ -27,3 +28,5 @@
 (define-key global-map [ns-drag-file] 'ns-find-file-in-frame)
 
 (provide 'drag-and-drop-settings)
+
+;;; drag-and-drop-settings.el ends here
