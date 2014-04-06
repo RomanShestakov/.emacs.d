@@ -9,12 +9,13 @@
   (require 'cl))
 
 ;; root of all emacs-related stuff
-(defvar emacs-root (if (or (eq system-type 'cygwin)
-                           (eq system-type 'gnu/linux)
-                           (eq system-type 'linux)
-                           (eq system-type 'darwin))
-                       "~/.emacs.d/"    "z:/.emacs.d/")
-  "*Path to EMACS root.")
+(defvar emacs-root
+  (if (or (eq system-type 'cygwin)
+          (eq system-type 'gnu/linux)
+          (eq system-type 'linux)
+          (eq system-type 'darwin))
+      "~/.emacs.d/"    "z:/.emacs.d/"
+      "Path to where EMACS configuration root is."))
 
 ;; path to where plugins are kept
 (defvar plugin-path (concat emacs-root "el-get")
@@ -37,8 +38,7 @@
 ;; set PATH, because we don't load .bashrc
 (require 'exec-path-from-shell)
 
-;; some custom helper funcs
-(require 'custom-functions)
+;;(require 'custom-functions)
 
 ;; load plugins with el-get
 (require 'el-get-settings)
@@ -73,5 +73,6 @@
 (require 'dirtree-settings)
 (require 'yasnippet-settings)
 (require 'flycheck-mode-settings)
+(require 'org-mode-settings)
 
 ;;; init.el ends here

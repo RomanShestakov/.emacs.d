@@ -4,9 +4,7 @@
 
 ;;; Code:
 
-(require 'el-get)
-
-;; set the el-get path, and create it if it doesn't exist
+;; "Set the el-get path, and create it if it doesn't exist."
 (defvar elget-path plugin-path)
 (unless (file-exists-p elget-path)
   (make-directory elget-path))
@@ -21,39 +19,39 @@
     (eval-print-last-sexp)))
 
 ;; packages to install
-(setq
- my-packages '(
-               ;;auctex
-               ;;exec-path-from-shell
-               ;;color-theme-solarized
-               ;;ein
-               magit
-               ;;markdown-mode
-               ;;matlab-mode
-               ;;nxhtml
-               ;;pydoc-info
-               ;;scss-mode
-               jedi
-               flycheck
-               window-number
-               tramp
-               ;; tree-mode
-               ;; windata
-               emacs-dirtree
-               move-text
-               puppet-mode
-               fill-column-indicator
-               python-mode
-               ace-jump-mode
-               multiple-cursors
-               dired-details
-               distel
-               helm
-               helm-descbinds
-               eproject
-               etags-select
-               yasnippet
-               ))
+(defvar
+  my-packages '(
+                ;;auctex
+                ;;exec-path-from-shell
+                ;;color-theme-solarized
+                ;;ein
+                magit
+                ;;markdown-mode
+                ;;matlab-mode
+                ;;nxhtml
+                ;;pydoc-info
+                ;;scss-mode
+                jedi
+                flycheck
+                window-number
+                tramp
+                ;; tree-mode
+                ;; windata
+                emacs-dirtree
+                move-text
+                puppet-mode
+                fill-column-indicator
+                python-mode
+                ace-jump-mode
+                multiple-cursors
+                dired-details
+                distel
+                helm
+                helm-descbinds
+                eproject
+                etags-select
+                yasnippet
+                ))
 
 ;; first enable shallow clone, so we don't need to clone the entire
 ;; history of every project
