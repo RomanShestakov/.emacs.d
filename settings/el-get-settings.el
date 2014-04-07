@@ -9,7 +9,17 @@
 (unless (file-exists-p elget-path)
   (make-directory elget-path))
 
+(defun make-elget-path (plugin)
+  "*Make a path to PLUGIN."
+  (expand-file-name
+   (concat elget-path plugin)))
+
+(defun include-elget-plugin (plugin)
+  "*Include PLUGIN."
+  (add-to-list 'load-path (make-elget-path plugin)))
+
 ;; add el-get to the load path, and install it if it doesn't exist
+(eval-when-compile (defvar emacs-root))
 (add-to-list 'load-path (concat emacs-root "el-get/el-get"))
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
@@ -53,11 +63,13 @@
                 yasnippet
                 ))
 
+(require 'el-get-git)
+
 ;; first enable shallow clone, so we don't need to clone the entire
 ;; history of every project
 (setq el-get-git-shallow-clone t)
 
-;; then intsall!
+;; then install!
 (el-get 'sync my-packages)
 
 (provide 'el-get-settings)

@@ -9,17 +9,20 @@
   (require 'cl))
 
 ;; root of all emacs-related stuff
-(defvar emacs-root
+(eval-when-compile (defvar emacs-root
   (if (or (eq system-type 'cygwin)
           (eq system-type 'gnu/linux)
           (eq system-type 'linux)
           (eq system-type 'darwin))
-      "~/.emacs.d/"    "z:/.emacs.d/"
-      "Path to where EMACS configuration root is."))
+      "~/.emacs.d/"    "z:/.emacs.d/")
+  "Path to where EMACS configuration root is."))
 
 ;; path to where plugins are kept
 (defvar plugin-path (concat emacs-root "el-get")
   "*Path to el-get plugins.")
+
+;; for portability with < 24.3 EMACS
+(unless (fboundp 'cl-labels) (fset 'cl-labels 'labels))
 
 ;; add paths to various configuration modes
 (cl-labels ((add-path (p) (add-to-list 'load-path (concat emacs-root p))))
