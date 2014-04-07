@@ -5,8 +5,7 @@
 
 ;;; Code:
 
-(with-no-warnings
-  (require 'cl))
+(eval-when-compile (require 'cl))
 
 ;; root of all emacs-related stuff
 (eval-when-compile (defvar emacs-root
@@ -25,7 +24,10 @@
 (unless (fboundp 'cl-labels) (fset 'cl-labels 'labels))
 
 ;; add paths to various configuration modes
-(cl-labels ((add-path (p) (add-to-list 'load-path (concat emacs-root p))))
+(cl-labels
+    ((add-path (p)
+               (add-to-list 'load-path
+                            (concat emacs-root p))))
   (add-path  ".")
   (add-path  "settings")
   (add-path  "site-lisp")
