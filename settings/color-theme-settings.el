@@ -6,7 +6,6 @@
 (require 'custom-functions)
 
 ;; load paths to favorite themes
-(add-to-list 'custom-theme-load-path (concat emacs-root "emacs-color-theme-solarized"))
 (add-to-list 'custom-theme-load-path (concat emacs-root "gruber-darker-theme"))
 
 ;; ;; at home use solarized (on mac), for anything else use gruber-dark
