@@ -8,13 +8,13 @@
 (eval-when-compile (require 'cl))
 
 ;; root of all emacs-related stuff
-(eval-when-compile (defvar emacs-root
+(defvar emacs-root
   (if (or (eq system-type 'cygwin)
           (eq system-type 'gnu/linux)
           (eq system-type 'linux)
           (eq system-type 'darwin))
       "~/.emacs.d/"    "z:/.emacs.d/")
-  "Path to where EMACS configuration root is."))
+  "Path to where EMACS configuration root is.")
 
 ;; path to where plugins are kept
 (defvar plugin-path (concat emacs-root "el-get")
@@ -42,8 +42,10 @@
 ;; now load various configs
 ;; set PATH, because we don't load .bashrc
 (require 'exec-path-from-shell)
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
+;; (when (memq window-system '(mac ns))
+;;   (exec-path-from-shell-initialize))
+(exec-path-from-shell-copy-env "PATH")
+(exec-path-from-shell-copy-env "PYTHONPATH")
 
 ;; load plugins with el-get
 (require 'el-get-settings)

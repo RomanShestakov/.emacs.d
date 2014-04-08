@@ -23,8 +23,8 @@
 (require 'custom-functions)
 
 ;; Set PYTHONPATH, because we don't load .bashrc
-;;(setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:")
-(exec-path-from-shell-copy-env "PYTHONPATH")
+;; (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:")
+;; (exec-path-from-shell-copy-env "PYTHONPATH")
 
 (include-plugin "python-mode")
 (require 'python-mode)
