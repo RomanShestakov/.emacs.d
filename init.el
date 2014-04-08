@@ -5,8 +5,6 @@
 
 ;;; Code:
 
-(eval-when-compile (require 'cl))
-
 ;; root of all emacs-related stuff
 (defvar emacs-root
   (if (or (eq system-type 'cygwin)
@@ -20,30 +18,16 @@
 (defvar plugin-path (concat emacs-root "el-get")
   "*Path to el-get plugins.")
 
-;; for portability with < 24.3 EMACS
-(unless (fboundp 'cl-labels) (fset 'cl-labels 'labels))
-
-;; add paths to various configuration modes
-(cl-labels
-    ((add-path (p)
-               (add-to-list 'load-path
-                            (concat emacs-root p))))
-  (add-path  ".")
-  (add-path  "settings")
-  (add-path  "site-lisp")
-  (add-path  "erlang") ;; Configuration for Erlang mode
-  (add-path  "exec-path-from-shell") ;; allows setting PATH, PYTHONPATH from .profile
-  ;; (add-path  "scala") ;; scala mode related code
-  )
-
 ;; load a path to elang list as distel install in el-get distel package depends on it
 (add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.13/emacs")
+(add-to-list 'load-path (concat emacs-root "exec-path-from-shell"))
+(add-to-list 'load-path (concat emacs-root "settings"))
+(add-to-list 'load-path (concat emacs-root "site-lisp"))
+(add-to-list 'load-path (concat emacs-root "erlang"))
 
 ;; now load various configs
 ;; set PATH, because we don't load .bashrc
 (require 'exec-path-from-shell)
-;; (when (memq window-system '(mac ns))
-;;   (exec-path-from-shell-initialize))
 (exec-path-from-shell-copy-env "PATH")
 (exec-path-from-shell-copy-env "PYTHONPATH")
 
