@@ -15,7 +15,7 @@
   "Path to where EMACS configuration root is.")
 
 ;; path to where plugins are kept
-(defvar plugin-path (concat emacs-root "el-get")
+(defvar plugin-path (concat emacs-root "el-get/")
   "*Path to el-get plugins.")
 
 ;; load a path to elang list as distel install in el-get distel package depends on it
@@ -23,7 +23,13 @@
 
 ;; add subdirectories of root into load path
 (let ((default-directory emacs-root))
+  (normal-top-level-add-to-load-path '("."))
   (normal-top-level-add-subdirs-to-load-path))
+
+(add-to-list 'load-path (concat emacs-root "settings"))
+(add-to-list 'load-path (concat emacs-root "site-lisp"))
+(add-to-list 'load-path (concat emacs-root "erlang"))
+(add-to-list 'load-path (concat emacs-root "exec-path-from-shell"))
 
 ;; set PATH and PYTHONPATH from env
 (require 'exec-path-from-shell)
