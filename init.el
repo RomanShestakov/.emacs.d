@@ -20,13 +20,12 @@
 
 ;; load a path to elang list as distel install in el-get distel package depends on it
 (add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.13/emacs")
-(add-to-list 'load-path (concat emacs-root "exec-path-from-shell"))
-(add-to-list 'load-path (concat emacs-root "settings"))
-(add-to-list 'load-path (concat emacs-root "site-lisp"))
-(add-to-list 'load-path (concat emacs-root "erlang"))
 
-;; now load various configs
-;; set PATH, because we don't load .bashrc
+;; add subdirectories of root into load path
+(let ((default-directory emacs-root))
+  (normal-top-level-add-subdirs-to-load-path))
+
+;; set PATH and PYTHONPATH from env
 (require 'exec-path-from-shell)
 (exec-path-from-shell-copy-env "PATH")
 (exec-path-from-shell-copy-env "PYTHONPATH")
