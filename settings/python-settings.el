@@ -43,7 +43,7 @@
 (setq-default py-python-command-args
               (if (system-is-mac)
                   '("--gui=osx" "--pylab=osx" "--colors" "Linux")
-                ((insert )f (system-is-linux)
+                (if (system-is-linux)
                  '("--gui=wx" "--pylab=wx" "--colors" "Linux")
                  '())))
 
