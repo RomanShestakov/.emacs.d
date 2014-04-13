@@ -47,6 +47,7 @@
                 tramp
                 ;; tree-mode
                 ;; windata
+                dired-details
                 emacs-dirtree
                 move-text
                 puppet-mode
