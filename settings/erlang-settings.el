@@ -5,11 +5,12 @@
 
 ;;; Code:
 
+;; set paths to erlang libs
 (defvar erlang-root-dir "/usr/local/lib/erlang/lib")
+(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 ;; moved this to init as el-get distel package depends on this
 ;;(setq load-path  (cons "/usr/local/lib/erlang/lib/tools-2.6.13/emacs" load-path))
 
-(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 (require 'erlang-start)
 
 (include-plugin "distel")
@@ -49,7 +50,7 @@
 (add-hook 'erlang-mode-hook
       (lambda ()
         ;; when starting an Erlang shell in Emacs, default in the node name
-        (setq inferior-erlang-machine-options '("-name" "emacs@127.0.0.1"))
+        (setq inferior-erlang-machine-options '("-sname" "emacs"))
         ;; add Erlang functions to an imenu menu
         (imenu-add-to-menubar "imenu")
         ;;(define-key erlang-mode-map [f5] 'compile)
@@ -59,7 +60,7 @@
 (setq erl-nodename-cache
       (make-symbol
        (concat
-        "emacs@rs")))
+        "emacs")))
         ;; Mac OS X uses "name.local" instead of "name", this should work
         ;; pretty much anywhere without having to muck with NetInfo
         ;; ... but I only tested it on Mac OS X.

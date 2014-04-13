@@ -2,6 +2,9 @@
 
 ;;; Commentary:
 
+;; https://www.youtube.com/watch?v=qpv9i_I4jYU
+;; https://github.com/bbatsov/projectile
+
 ;;; Code:
 
 (require 'custom-functions)
