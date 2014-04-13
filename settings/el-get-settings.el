@@ -54,7 +54,6 @@
                 python-mode
                 ace-jump-mode
                 multiple-cursors
-                dired-details
                 distel
                 helm
                 helm-descbinds
