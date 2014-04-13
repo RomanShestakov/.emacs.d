@@ -16,7 +16,7 @@
 (tool-bar-mode 0)
 
 ;; switch off menu-bar
-(menu-bar-mode 1)
+(menu-bar-mode -1)
 
 ;; enable line numbering
 (global-linum-mode 1)
