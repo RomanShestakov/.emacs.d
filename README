@@ -1,10 +1,24 @@
 EMACS setup
 
-I reused lots of ideas from https://github.com/jhamrick/emacs
+I re-used lots of ideas from the following emacs project
+https://github.com/jhamrick/emacs
 
 * Emacs plug-ins
+
 Extra packages are installed with el-get
 
-* Extra dependencies
+* Extra dependencies:
+el-get needs bzr to checkout python-mode. Some plug-ins need tex to compile.
 
-El-get depends on git, bzr
+apt-get install texinfo
+apt-get install texlive
+apt-get install bzr
+apt-get install git
+
+Distel mode depends on Erlang mode, so need to correct a path to the version of 
+tools/emacs (why erlang install doesn't make symlink to it?)
+
+;; load a path to elang list as distel install in el-get distel package depends on it
+(add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.13/emacs")
+
+
