@@ -16,7 +16,7 @@
 (tool-bar-mode 0)
 
 ;; switch off menu-bar
-(menu-bar-mode 0)
+(menu-bar-mode 1)
 
 ;; enable line numbering
 (global-linum-mode 1)
@@ -79,16 +79,6 @@
 
 ;; add a new line when going to the next line
 (setq next-line-add-newlines t)
-
-;; setup ido mode
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
-(setq ido-use-filename-at-point 'guess)
-(setq ido-create-new-buffer 'always)
-(setq ido-file-extensions-order '(".scala" ".org" ".txt" ".py" ".emacs" ".xml" ".el" ".ini" ".cfg" ".cnf"))
-;; You can disable the merging (the "looking in other directories" in ido vulgo) with
-(setq ido-auto-merge-work-directories-length -1)
 
 ;; don't blink the curson
 ;;(blink-cursor-mode 0)

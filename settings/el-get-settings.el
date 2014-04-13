@@ -61,6 +61,8 @@
                 eproject
                 etags-select
                 yasnippet
+                projectile
+                flx
                 ))
 
 (require 'el-get-git)

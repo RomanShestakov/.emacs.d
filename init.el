@@ -69,6 +69,8 @@
 (require 'yasnippet-settings)
 (require 'flycheck-mode-settings)
 (require 'org-mode-settings)
+(require 'projectile-settings)
+(require 'ido-settings)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
