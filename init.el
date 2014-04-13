@@ -19,7 +19,7 @@
   "*Path to el-get plugins.")
 
 ;; load a path to elang list as distel install in el-get distel package depends on it
-(add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.13/emacs")
+(add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.14/emacs")
 
 ;; add subdirectories of root into load path
 (let ((default-directory emacs-root))
