@@ -38,12 +38,30 @@
 
 ;; setup flymake as flyckeck does not include dirs
 ;; https://github.com/flycheck/flycheck/pull/178
-(require 'erlang-flymake)
-(setq erlang-flymake-get-include-dirs-function
-      (lambda ()
-        (append
-         (directory-sub-dirs (erlang-flymake-get-app-dir) "")
-         (directory-sub-dirs (concat (erlang-flymake-get-app-dir) "deps") "include"))))
+;; (require 'erlang-flymake)
+;; (setq erlang-flymake-get-include-dirs-function
+;;       (lambda ()
+;;         (append
+;;          (directory-sub-dirs (erlang-flymake-get-app-dir) "")
+;;          (directory-sub-dirs (concat (erlang-flymake-get-app-dir) "deps") "include"))))
+
+;; https://github.com/legoscia/dotemacs/blob/master/dotemacs.org
+(defvar mh-erlang-flymake-code-path-dirs (list "../../*/ebin")
+  "List of directories to add to code path for Erlang Flymake.
+Wildcards are expanded.")
+
+(defun mh-simple-get-deps-code-path-dirs ()
+  "*Why complicate things?"
+  (and (buffer-file-name)
+       (let ((default-directory (file-name-directory (buffer-file-name))))
+         (apply 'append (mapcar 'file-expand-wildcards mh-erlang-flymake-code-path-dirs)))))
+
+(defun mh-simple-get-deps-include-dirs ()
+  "*Add include."
+  (list "../include" "../src"))
+
+(setq erlang-flymake-get-code-path-dirs-function 'mh-simple-get-deps-code-path-dirs
+      erlang-flymake-get-include-dirs-function 'mh-simple-get-deps-include-dirs)
 
 
 ;; Some Erlang customizations
@@ -83,16 +101,23 @@
             (dolist (spec distel-shell-keys)
               (define-key erlang-shell-mode-map (car spec) (cadr spec)))))
 
+(defun my-erlang-shell-display()
+  "*Override existing erlang-shell-display to make sure that
+erlang shell is always started from the root of the project. Root
+project should have .erlang in it."
+  (interactive)
+  (erlang-shell-display)
+  )
+
+;; add hooks to erlang-mode
 (add-hook 'erlang-mode-hook 'my-erlang-mode-hook)
 (defun my-erlang-mode-hook ()
   "*When starting an Erlang shell in Emacs, default in the node name."
   (setq inferior-erlang-machine-options '("-sname" "emacs"))
   ;; compile file with F9
-  (define-key erlang-mode-map [f9]
-    (lambda()
-      (interactive)
-      (progn
-        (erlang-compile)))))
+  (define-key erlang-mode-map [f9] 'erlang-compile)
+  (define-key erlang-mode-map (kbd "C-c C-z") 'my-erlang-shell-display)
+  )
 
 (provide 'erlang-settings)
 
