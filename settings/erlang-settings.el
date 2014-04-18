@@ -101,13 +101,27 @@ Wildcards are expanded.")
             (dolist (spec distel-shell-keys)
               (define-key erlang-shell-mode-map (car spec) (cadr spec)))))
 
+;; http://stackoverflow.com/questions/4356472/emacs-per-file-customization
+(defmacro* when-let ((var value) &rest body)
+  `(let ((,var ,value))
+     (when ,var ,@body)))
+
+;; http://stackoverflow.com/questions/6367743/emacs-find-file-without-changing-working-directory
 (defun my-erlang-shell-display()
   "*Override existing erlang-shell-display to make sure that
 erlang shell is always started from the root of the project. Root
 project should have .erlang in it."
   (interactive)
-  (erlang-shell-display)
-  )
+  (when-let (default-directory (locate-dominating-file default-directory ".erlang"))
+            (erlang-shell-display)))
+
+(defun my-erlang-compile()
+  "*Override existing erlang-compile to make sure that
+erlang shell is always started from the root of the project. Root
+project should have .erlang in it."
+  (interactive)
+  (when-let (default-directory (locate-dominating-file default-directory ".erlang"))
+            (erlang-compile)))
 
 ;; add hooks to erlang-mode
 (add-hook 'erlang-mode-hook 'my-erlang-mode-hook)
@@ -115,7 +129,7 @@ project should have .erlang in it."
   "*When starting an Erlang shell in Emacs, default in the node name."
   (setq inferior-erlang-machine-options '("-sname" "emacs"))
   ;; compile file with F9
-  (define-key erlang-mode-map [f9] 'erlang-compile)
+  (define-key erlang-mode-map [f9] 'my-erlang-compile)
   (define-key erlang-mode-map (kbd "C-c C-z") 'my-erlang-shell-display)
   )
 
