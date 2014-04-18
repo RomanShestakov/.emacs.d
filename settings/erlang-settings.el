@@ -13,6 +13,7 @@
 
 (require 'erlang-start)
 
+;; set path to distel root
 (include-plugin "distel")
 (let ((distel-dir (concat emacs-root "el-get/distel/elisp")))
   (unless (member distel-dir load-path)
@@ -21,48 +22,13 @@
 (require 'distel)
 (distel-setup)
 
-;; https://groups.google.com/forum/#!topic/erlang-russian/Y1PlEMyJ-P0
-(defun directory-sub-dirs (dir suffix)
-  "*Find all sub-directories of DIR, append SUFFIX to them, return as a list."
-  (if (file-accessible-directory-p dir)
-      (let ((dir (directory-file-name dir))
-            (dirs '())
-            (files (directory-files dir nil nil t)))
-        (dolist (file files)
-          (unless (member file '("." ".."))
-            (let ((file (concat dir "/" file "/" suffix)))
-              (when (file-directory-p file)
-                (setq dirs (cons file dirs))))))
-        dirs)
-    ()))
-
-;; setup flymake as flyckeck does not include dirs
-;; https://github.com/flycheck/flycheck/pull/178
-;; (require 'erlang-flymake)
-;; (setq erlang-flymake-get-include-dirs-function
-;;       (lambda ()
-;;         (append
-;;          (directory-sub-dirs (erlang-flymake-get-app-dir) "")
-;;          (directory-sub-dirs (concat (erlang-flymake-get-app-dir) "deps") "include"))))
-
-;; https://github.com/legoscia/dotemacs/blob/master/dotemacs.org
-(defvar mh-erlang-flymake-code-path-dirs (list "../../*/ebin")
-  "List of directories to add to code path for Erlang Flymake.
-Wildcards are expanded.")
-
-(defun mh-simple-get-deps-code-path-dirs ()
-  "*Why complicate things?"
-  (and (buffer-file-name)
-       (let ((default-directory (file-name-directory (buffer-file-name))))
-         (apply 'append (mapcar 'file-expand-wildcards mh-erlang-flymake-code-path-dirs)))))
-
-(defun mh-simple-get-deps-include-dirs ()
-  "*Add include."
-  (list "../include" "../src"))
-
-(setq erlang-flymake-get-code-path-dirs-function 'mh-simple-get-deps-code-path-dirs
-      erlang-flymake-get-include-dirs-function 'mh-simple-get-deps-include-dirs)
-
+;; define auto erlang mode for these files/extensions.
+(add-to-list 'auto-mode-alist '(".*\\.app\\'" . erlang-mode))
+(add-to-list 'auto-mode-alist '(".*app\\.src\\'" . erlang-mode))
+(add-to-list 'auto-mode-alist '(".*\\.config\\'" . erlang-mode))
+(add-to-list 'auto-mode-alist '(".*\\.rel\\'" . erlang-mode))
+(add-to-list 'auto-mode-alist '(".*\\.script\\'" . erlang-mode))
+(add-to-list 'auto-mode-alist '(".*\\.escript\\'" . erlang-mode))
 
 ;; Some Erlang customizations
 (add-hook 'erlang-mode-hook
@@ -71,8 +37,6 @@ Wildcards are expanded.")
         (setq inferior-erlang-machine-options '("-sname" "emacs"))
         ;; add Erlang functions to an imenu menu
         (imenu-add-to-menubar "imenu")
-        ;;(define-key erlang-mode-map [f5] 'compile)
-        ;;(define-key erlang-mode-map (kbd "\C-c\C-dH") 'erlang-man-function)
 ))
 
 (setq erl-nodename-cache
@@ -83,7 +47,6 @@ Wildcards are expanded.")
         ;; pretty much anywhere without having to muck with NetInfo
         ;; ... but I only tested it on Mac OS X.
        ;(car (split-string (shell-command-to-string "hostname"))))))
-
 
 ;; A number of the erlang-extended-mode key bindings are useful in the shell too
 (defconst distel-shell-keys
@@ -132,6 +95,49 @@ project should have .erlang in it."
   (define-key erlang-mode-map [f9] 'my-erlang-compile)
   (define-key erlang-mode-map (kbd "C-c C-z") 'my-erlang-shell-display)
   )
+   
+;; disable flycheck mode for erlang as flycheck doesnt' recognise includes
+(setq flycheck-disabled-checkers '(erlang))
+
+;; add include directory to default compile path.
+(defvar erlang-compile-extra-opts
+  '(bin_opt_info debug_info (i . "../include") (i . "../deps") (i . "../../") (i . "../../../deps")))
+
+;; define where put beam files.
+(setq erlang-compile-outdir "../ebin")
+
+;; flymake syntax checking.
+;; setup syntaxerl to do error checking
+;; https://github.com/ten0s/syntaxerl
+(require 'flymake)
+;;(setq flymake-log-level 3)
+
+(defun flymake-compile-script-path (path)
+  "*PATH to compile script."
+  (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                     'flymake-create-temp-inplace))
+         (local-file (file-relative-name
+                      temp-file
+                      (file-name-directory buffer-file-name))))
+    (list path (list local-file))))
+
+(defun flymake-syntaxerl ()
+  "*Script used to compile."
+  (flymake-compile-script-path (concat emacs-root "bin/syntaxerl")))
+
+(add-hook 'erlang-mode-hook
+  '(lambda()
+     (add-to-list 'flymake-allowed-file-name-masks '("\\.erl\\'" flymake-syntaxerl))
+     (add-to-list 'flymake-allowed-file-name-masks '("\\.hrl\\'" flymake-syntaxerl))
+     (add-to-list 'flymake-allowed-file-name-masks '("\\.app\\'" flymake-syntaxerl))
+     (add-to-list 'flymake-allowed-file-name-masks '("\\.app.src\\'" flymake-syntaxerl))
+     (add-to-list 'flymake-allowed-file-name-masks '("\\.config\\'" flymake-syntaxerl))
+     (add-to-list 'flymake-allowed-file-name-masks '("\\.rel\\'" flymake-syntaxerl))
+     (add-to-list 'flymake-allowed-file-name-masks '("\\.script\\'" flymake-syntaxerl))
+     (add-to-list 'flymake-allowed-file-name-masks '("\\.escript\\'" flymake-syntaxerl))
+     ;; should be the last.
+     (flymake-mode 1)
+))
 
 (provide 'erlang-settings)
 

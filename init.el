@@ -18,7 +18,7 @@
 (defvar plugin-path (concat emacs-root "el-get/")
   "*Path to el-get plugins.")
 
-;; load a path to elang list as distel install in el-get distel package depends on it
+;; load a path to elang lisp as distel install in el-get distel package depends on it
 (add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.14/emacs")
 
 ;; add subdirectories of root into load path
@@ -28,7 +28,6 @@
 
 (add-to-list 'load-path (concat emacs-root "settings"))
 (add-to-list 'load-path (concat emacs-root "site-lisp"))
-(add-to-list 'load-path (concat emacs-root "erlang"))
 (add-to-list 'load-path (concat emacs-root "exec-path-from-shell"))
 
 ;; set PATH and PYTHONPATH from env
@@ -60,7 +59,7 @@
 (require 'python-settings)
 (require 'drag-and-drop-settings)
 (require 'key-binding-settings)
-(require 'fill-column-indicator-settings)
+;;(require 'fill-column-indicator-settings)
 (require 'puppet-mode-settings)
 (require 'color-theme-settings)
 (require 'helm-settings)

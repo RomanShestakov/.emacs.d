@@ -1,0 +1,3 @@
+[submodule "syntaxerl"]
+	path = syntaxerl
+	url = git://github.com/ten0s/syntaxerl.git

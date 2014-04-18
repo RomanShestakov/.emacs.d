@@ -63,6 +63,7 @@
                 yasnippet
                 projectile
                 flx
+                flymake
                 ))
 
 (require 'el-get-git)
