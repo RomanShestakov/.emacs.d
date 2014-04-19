@@ -1,4 +1,4 @@
-EMACS setup
+* EMACS setup
 
 I re-used lots of ideas from the following emacs project
 https://github.com/jhamrick/emacs
