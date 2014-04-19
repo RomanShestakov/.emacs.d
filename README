@@ -18,7 +18,19 @@ apt-get install git
 Distel mode depends on Erlang mode, so need to correct a path to the version of 
 tools/emacs (why erlang install doesn't make symlink to it?)
 
-;; load a path to elang list as distel install in el-get distel package depends on it
+need this line in init.el
+;; load a path to erlang list as distel install in el-get distel package depends on it
 (add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.13/emacs")
+
+* Syntax checker for erlang-mode
+I am using syntaxerl - https://github.com/ten0s/syntaxerl, which integrates nicely with flymake
+
+#+BEGIN_SRC bash
+git clone git://github.com/ten0s/syntaxerl.git
+cd syntaxerl
+make
+#+END_SRC 
+
+this will generate syntaxerl file which needs to be added to .emacs.d/bin
 
 
