@@ -22,14 +22,6 @@
 (require 'distel)
 (distel-setup)
 
-;; define auto erlang mode for these files/extensions.
-(add-to-list 'auto-mode-alist '(".*\\.app\\'" . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*app\\.src\\'" . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*\\.config\\'" . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*\\.rel\\'" . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*\\.script\\'" . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*\\.escript\\'" . erlang-mode))
-
 ;; Some Erlang customizations
 (add-hook 'erlang-mode-hook
       (lambda ()
@@ -125,6 +117,16 @@ project should have .erlang in it."
   "*Script used to compile."
   (flymake-compile-script-path (concat emacs-root "bin/syntaxerl")))
 
+;; define auto erlang mode for these files/extensions.
+(add-to-list 'auto-mode-alist '(".*\\.app\\'" . erlang-mode))
+(add-to-list 'auto-mode-alist '(".*\\.erl\\'" . erlang-mode))
+(add-to-list 'auto-mode-alist '(".*\\.hrl\\'" . erlang-mode))
+(add-to-list 'auto-mode-alist '(".*app\\.src\\'" . erlang-mode))
+(add-to-list 'auto-mode-alist '(".*\\.config\\'" . erlang-mode))
+(add-to-list 'auto-mode-alist '(".*\\.rel\\'" . erlang-mode))
+(add-to-list 'auto-mode-alist '(".*\\.script\\'" . erlang-mode))
+(add-to-list 'auto-mode-alist '(".*\\.escript\\'" . erlang-mode))
+
 (add-hook 'erlang-mode-hook
   '(lambda()
      (add-to-list 'flymake-allowed-file-name-masks '("\\.erl\\'" flymake-syntaxerl))
@@ -142,3 +144,6 @@ project should have .erlang in it."
 (provide 'erlang-settings)
 
 ;;; erlang-settings.el ends here
+
+
+
