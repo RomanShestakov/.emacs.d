@@ -70,6 +70,7 @@
 (require 'org-mode-settings)
 (require 'projectile-settings)
 (require 'ido-settings)
+(require 'elisp-slime-nav-settings)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

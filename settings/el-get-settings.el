@@ -64,6 +64,7 @@
                 projectile
                 flx
                 flymake
+                elisp-slime-nav
                 ))
 
 (require 'el-get-git)
