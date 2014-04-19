@@ -26,10 +26,6 @@
   (normal-top-level-add-to-load-path '("."))
   (normal-top-level-add-subdirs-to-load-path))
 
-(add-to-list 'load-path (concat emacs-root "settings"))
-(add-to-list 'load-path (concat emacs-root "site-lisp"))
-(add-to-list 'load-path (concat emacs-root "exec-path-from-shell"))
-
 ;; set PATH and PYTHONPATH from env
 (require 'exec-path-from-shell)
 (exec-path-from-shell-copy-env "PATH")
