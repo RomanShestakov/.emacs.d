@@ -8,22 +8,30 @@ https://github.com/jhamrick/emacs
 Extra packages are installed with el-get
 
 * Extra dependencies:
+
 el-get needs bzr to checkout python-mode. Some plug-ins need tex to compile.
 
+these packages needs to be installed before running el-get install
+#+BEGIN_SRC bash
 apt-get install texinfo
 apt-get install texlive
 apt-get install bzr
 apt-get install git
+#+END_SRC
+
+* Distel-mode
 
 Distel mode depends on Erlang mode, so need to correct a path to the version of 
 tools/emacs (why erlang install doesn't make symlink to it?)
 
-need this line in init.el
+need to add this line in init.el
+#+BEGIN_SRC elisp
 ;; load a path to erlang list as distel install in el-get distel package depends on it
-(add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.13/emacs")
+(add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.14/emacs")
+#+END_SRC
 
 * Syntax checker for erlang-mode
-I am using syntaxerl - https://github.com/ten0s/syntaxerl, which integrates nicely with flymake
+I am using [[https://github.com/ten0s/syntaxerl][syntaxerl]], which integrates with flymake
 
 #+BEGIN_SRC bash
 git clone git://github.com/ten0s/syntaxerl.git
