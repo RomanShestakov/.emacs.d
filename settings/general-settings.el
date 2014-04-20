@@ -45,8 +45,8 @@
 ;(electric-pair-mode t)
 
 ;; show matching paren without delay
-;(show-paren-mode 1)
-;(setq show-paren-delay 0)
+(show-paren-mode 1)
+(setq show-paren-delay 0)
 
 ;; set left alt key with META and the right alt key with ALT,
 ;; use command as Meta as well as left Alt
