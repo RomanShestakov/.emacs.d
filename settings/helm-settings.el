@@ -23,6 +23,11 @@
       do(add-to-list 'helm-boring-file-regexp-list ext))
 
 (global-set-key (kbd "M-t") 'helm-for-files)
+;; http://www.emacswiki.org/emacs/ShiftedKeys
+(global-set-key (kbd "S-<f12>") 'helm-do-grep)
+
+;; define "glimpse" like functionality and bind to <S-F12>
+;; do a recursive grep for pattern
 
 (provide 'helm-settings)
 
