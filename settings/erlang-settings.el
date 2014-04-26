@@ -5,11 +5,7 @@
 
 ;;; Code:
 
-;; set paths to erlang libs
-(defvar erlang-root-dir "/usr/local/lib/erlang/lib")
-(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
-;; moved this to init as el-get distel package depends on this
-;;(setq load-path  (cons "/usr/local/lib/erlang/lib/tools-2.6.13/emacs" load-path))
+;; paths to erlang libs are set in init.el
 
 (require 'erlang-start)
 

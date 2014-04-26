@@ -18,8 +18,16 @@
 (defvar plugin-path (concat emacs-root "el-get/")
   "*Path to el-get plugins.")
 
+;; set path to erlang install
 ;; load a path to elang lisp as distel install in el-get distel package depends on it
-(add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.14/emacs")
+(defvar erlang-root  "/usr/local/lib/erlang"
+  ;(getenv "ERL_TOP")
+  "*Path to Erlang installation.  Env var ERL_TOP needs to be set in bash environment.")
+(defvar erlang-root-dir
+  (concat erlang-root "/lib")
+  "*Path to erlang lib.")
+(setq exec-path (cons (concat erlang-root "/bin") exec-path))
+(add-to-list 'load-path (concat erlang-root "/lib/tools-2.6.14/emacs"))
 
 ;; add subdirectories of root into load path
 (let ((default-directory emacs-root))
