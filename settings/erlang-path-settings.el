@@ -21,17 +21,16 @@
 
 ;; set path to erlang install
 ;; load a path to elang lisp as distel install in el-get distel package depends on it
-(defvar erlang-root (getenv "ERL_TOP")
-    "*Path to Erlang installation.  Env var ERL_TOP needs to be set in bash environment.")
+;; (defvar erlang-root (getenv "ERL_TOP")
+;;     "*Path to Erlang installation.  Env var ERL_TOP needs to be set in bash environment.")
             
-;; (defvar erlang-root1
-;;   (let* (root (getenv "ERL_TOP"))
-;;     (unless root
-;;       (progn
-;;         (message "root: %s" root)
-;;         root)
-;;       "/usr/local/lib/erlang1"))
-;;   "*Path to Erlang installation.  Env var ERL_TOP needs to be set in bash environment.")
+(defvar erlang-root
+  (let ((root (getenv "ERL_TOP")))
+    (if root
+        root
+      "/usr/local/lib/erlang"))
+  "*Path to Erlang installation.
+Env var ERL_TOP needs to be set in bash environment.  If ERL_TOP is not set, return  /usr/local/lib/erlang.")
 
 (defvar erlang-root-dir
   (concat erlang-root "/lib")
