@@ -22,22 +22,16 @@
 (loop for ext in '("\\.swf$" "\\.elc$" "\\.pyc$")
       do(add-to-list 'helm-boring-file-regexp-list ext))
 
+;; bind <M-t> to helm find files
 (global-set-key (kbd "M-t") 'helm-for-files)
-;; http://www.emacswiki.org/emacs/ShiftedKeys
-;(global-set-key (kbd "S-<f12>") 'helm-do-grep)
 
-;; define "glimpse" like functionality and bind to <S-F12>
-;; do a recursive grep for pattern
-(defun rec-search ()
-  "*Do recursive search for a pattern."
-  (interactive)
-  ;; TODO - start from from project root
-  (helm-do-grep-1 '("~")
-                  '(4)
-                  nil
-                  '("*.*")))
-                  
-(global-set-key (kbd "S-<f12>") 'rec-search)
+;; http://www.emacswiki.org/emacs/ShiftedKeys
+;; http://stackoverflow.com/questions/6156286/emacs-lisp-call-function-with-prefix-argument-programmatically
+;; add 'glimpse' - grep recursively in files
+(global-set-key (kbd "S-<f12>")
+                (lambda() (interactive)
+                  (setq current-prefix-arg '(4))
+                  (call-interactively 'helm-do-grep)))
 
 (provide 'helm-settings)
 
