@@ -10,13 +10,29 @@
 
 ;;; Code:
 
-;; paths to erlang libs are set in init.el
+(eval-when-compile (require 'cl))
+
+;; read value of env variable "ERL_TOP"
+;; this var should be set in env
+; export ERL_TOP=/usr/local/lib/erlang
+
+(require 'exec-path-from-shell)
+(exec-path-from-shell-copy-env "ERL_TOP")
 
 ;; set path to erlang install
 ;; load a path to elang lisp as distel install in el-get distel package depends on it
-(defvar erlang-root  "/usr/local/lib/erlang"
-  ;(getenv "ERL_TOP")
-  "*Path to Erlang installation.  Env var ERL_TOP needs to be set in bash environment.")
+(defvar erlang-root (getenv "ERL_TOP")
+    "*Path to Erlang installation.  Env var ERL_TOP needs to be set in bash environment.")
+            
+;; (defvar erlang-root1
+;;   (let* (root (getenv "ERL_TOP"))
+;;     (unless root
+;;       (progn
+;;         (message "root: %s" root)
+;;         root)
+;;       "/usr/local/lib/erlang1"))
+;;   "*Path to Erlang installation.  Env var ERL_TOP needs to be set in bash environment.")
+
 (defvar erlang-root-dir
   (concat erlang-root "/lib")
   "*Path to erlang lib.")
@@ -27,6 +43,3 @@
 (provide 'erlang-path-settings)
 
 ;;; erlang-path-settings.el ends here
-
-
-
