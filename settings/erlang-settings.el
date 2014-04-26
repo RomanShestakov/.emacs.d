@@ -5,7 +5,8 @@
 
 ;;; Code:
 
-;; paths to erlang libs are set in init.el
+;; set paths to erlang libs
+(require 'erlang-path-settings)
 
 (require 'erlang-start)
 

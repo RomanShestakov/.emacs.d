@@ -18,6 +18,10 @@
   "*Include PLUGIN."
   (add-to-list 'load-path (make-elget-path plugin)))
 
+;; set correct paths to erlang installation as distel mode
+;; depends on it
+(require 'erlang-path-settings)
+
 ;; add el-get to the load path, and install it if it doesn't exist
 (eval-when-compile (defvar emacs-root))
 (add-to-list 'load-path (concat emacs-root "el-get/el-get"))
