@@ -9,12 +9,21 @@ https://github.com/jhamrick/emacs
 
 * Environment vars 
 
+** ERL_TOP
 The path to erlang installation are loaded from env var ERL_TOP so
 this var needs to be set in bash .profile
 
 #+BEGIN_SRC bash
 # root of erlang install
 export ERL_TOP=/usr/local/lib/erlang
+#+END_SRC
+
+** PYTHONPATH
+
+PYTHONPATH is used by python-mode, should be setup by .profile
+
+#+BEGIN_SRC bash
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:
 #+END_SRC
 
 If this env is not setup, erlang-path-settings will set the default

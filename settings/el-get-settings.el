@@ -55,7 +55,7 @@
                 emacs-dirtree
                 move-text
                 puppet-mode
-                fill-column-indicator
+                ;;fill-column-indicator
                 python-mode
                 ace-jump-mode
                 multiple-cursors

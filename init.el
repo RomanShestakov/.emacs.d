@@ -5,23 +5,27 @@
 
 ;;; Code:
 
-;; root of all emacs-related stuff
-(defvar emacs-root
-  (if (or (eq system-type 'cygwin)
-          (eq system-type 'gnu/linux)
-          (eq system-type 'linux)
-          (eq system-type 'darwin))
-      "~/.emacs.d/"    "z:/.emacs.d/")
-  "Path to where EMACS configuration root is.")
+;; add root to all emacs-related stuff
+;; and add load-paths to packages
+;; see http://stackoverflow.com/questions/23324760/emacs-byte-compile-errors-on-the-first-require-statement
+;; for the use of eval-and-compile
+(eval-and-compile
+  (defvar emacs-root
+    (if (or (eq system-type 'cygwin)
+            (eq system-type 'gnu/linux)
+            (eq system-type 'linux)
+            (eq system-type 'darwin))
+        "~/.emacs.d/"    "z:/.emacs.d/")
+    "Path to where EMACS configuration root is.")
 
-;; path to where plugins are kept
-(defvar plugin-path (concat (file-name-as-directory emacs-root) "el-get")
-  "*Path to el-get plugins.")
+  ;; path to where plugins are kept
+  (defvar plugin-path (concat (file-name-as-directory emacs-root) "el-get")
+    "*Path to el-get plugins.")
 
-;; add subdirectories of root into load path
-(let ((default-directory emacs-root))
-  (normal-top-level-add-to-load-path '("."))
-  (normal-top-level-add-subdirs-to-load-path))
+  ;; add subdirectories of root into load path
+  (let ((default-directory emacs-root))
+    (normal-top-level-add-to-load-path '("."))
+    (normal-top-level-add-subdirs-to-load-path)))
 
 ;; set PATH and PYTHONPATH from env
 (require 'exec-path-from-shell)
@@ -52,7 +56,6 @@
 (require 'python-settings)
 (require 'drag-and-drop-settings)
 (require 'key-binding-settings)
-;;(require 'fill-column-indicator-settings)
 (require 'puppet-mode-settings)
 (require 'color-theme-settings)
 (require 'helm-settings)
@@ -64,6 +67,7 @@
 (require 'projectile-settings)
 (require 'ido-settings)
 (require 'elisp-slime-nav-settings)
+;;(require 'fill-column-indicator-settings)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
