@@ -1,7 +1,24 @@
+#+TITLE:    Emacs customisation installation notes
+#+AUTHOR:   Roman Shestakov
+#+LANGUAGE: en
+
 * EMACS setup
 
 I re-used lots of ideas from the following emacs project
 https://github.com/jhamrick/emacs
+
+* Environment vars 
+
+The path to erlang installation are loaded from env var ERL_TOP so
+this var needs to be set in bash .profile
+
+#+BEGIN_SRC bash
+# root of erlang install
+export ERL_TOP=/usr/local/lib/erlang
+#+END_SRC
+
+If this env is not setup, erlang-path-settings will set the default
+location '/usr/local/lib/erlang'
 
 * Emacs plug-ins
 
