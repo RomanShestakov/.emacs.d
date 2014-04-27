@@ -15,7 +15,7 @@
   "Path to where EMACS configuration root is.")
 
 ;; path to where plugins are kept
-(defvar plugin-path (concat emacs-root "el-get/")
+(defvar plugin-path (concat (file-name-as-directory emacs-root) "el-get")
   "*Path to el-get plugins.")
 
 ;; add subdirectories of root into load path

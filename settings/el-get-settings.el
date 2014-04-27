@@ -24,7 +24,7 @@
 
 ;; add el-get to the load path, and install it if it doesn't exist
 (eval-when-compile (defvar emacs-root))
-(add-to-list 'load-path (concat emacs-root "el-get/el-get"))
+(add-to-list 'load-path (concat (file-name-as-directory emacs-root) "el-get/el-get"))
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
       (url-retrieve-synchronously
