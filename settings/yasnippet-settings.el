@@ -4,8 +4,6 @@
 
 ;;; Code:
 
-(require 'custom-functions)
-(include-plugin "yasnippet")
 (require 'yasnippet)
 (yas-global-mode 1)
 

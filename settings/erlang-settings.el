@@ -7,11 +7,9 @@
 
 ;; set paths to erlang libs
 (require 'erlang-path-settings)
-
 (require 'erlang-start)
 
 ;; set path to distel root
-(include-plugin "distel")
 (let ((distel-dir (concat emacs-root "el-get/distel/elisp")))
   (unless (member distel-dir load-path)
     (setq load-path (append load-path (list distel-dir)))))

@@ -4,8 +4,6 @@
 
 ;;; Code:
 
-(require 'custom-functions)
-(include-plugin "puppet-mode")
 (require 'puppet-mode)
 
 ;; assosiate .pp file extension with puppet-mode

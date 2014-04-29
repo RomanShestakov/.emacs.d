@@ -90,7 +90,6 @@
 (setq auto-save-dafault nil)
 
 ;; display windows numbers
-(include-plugin "window-number")
 (autoload 'window-number-mode "window-number"
   "A global minor mode that enables selection of windows according to
  numbers with the C-x C-j prefix.  Another mode,

@@ -39,15 +39,12 @@
 (require 'general-settings)
 
 ;; tramp-mode
-(include-plugin "tramp")
 (require 'tramp)
 
 ;; git
-(include-plugin "magit")
 (require 'magit)
 
 ;; move-text
-(include-plugin "move-text")
 (require 'move-text)
 (move-text-default-bindings)
 

@@ -5,10 +5,6 @@
 
 ;;; Code:
 
-(require 'custom-functions)
-
-(include-plugin "flx")
-
 ;; setup ido mode and flx-mode
 (require 'flx-ido)
 (setq ido-enable-flex-matching t)

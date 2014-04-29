@@ -4,8 +4,8 @@
 ;; enable global mode for flycheck
 
 ;;; Code:
-(require 'custom-functions)
-(include-plugin "flycheck")
+
+(require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 (provide 'flycheck-mode-settings)

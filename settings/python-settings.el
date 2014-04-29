@@ -26,7 +26,6 @@
 ;; (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:")
 ;; (exec-path-from-shell-copy-env "PYTHONPATH")
 
-(include-plugin "python-mode")
 (require 'python-mode)
 
 ;; add path to python-mode and pymacs

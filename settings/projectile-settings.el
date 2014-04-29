@@ -7,9 +7,7 @@
 
 ;;; Code:
 
-(require 'custom-functions)
-
-(include-plugin "projectile")
+(require 'projectile)
 (projectile-global-mode)
 (add-hook 'python-mode 'erlang-mode)
 
