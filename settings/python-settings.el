@@ -69,7 +69,7 @@
 ;(include-plugin "pydoc-info-0.2")
 ;(require 'pydoc-info)
 
-(include-plugin "jedi")
+;;(include-plugin "jedi")
 (require 'jedi)
 
 (add-hook 'python-mode-hook 'jedi:setup)

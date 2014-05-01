@@ -6,7 +6,7 @@
 (require 'custom-functions)
 
 ;; load paths to favorite themes
-(add-to-list 'custom-theme-load-path (concat emacs-root "gruber-darker-theme"))
+(add-to-list 'custom-theme-load-path (concat (file-name-as-directory emacs-root) "gruber-darker-theme"))
 
 ;; ;; at home use solarized (on mac), for anything else use gruber-dark
 ;; (if (system-is-mac)
@@ -26,6 +26,13 @@
 
 ;;(set-default-font "Inconselata-13")
 ;;(set-default-font "Monaco-13")
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 
 (provide 'color-theme-settings)
 

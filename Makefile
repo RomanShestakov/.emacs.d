@@ -12,7 +12,7 @@ compile:
 
 tar:
 	rm -rf ${TMP}/tar
-	rm -rf ./tar;mkdir tar
+	#rm -rf ./tar;mkdir tar
 	mkdir -p ${TMP}/tar
 	cp -Rf ../.emacs.d ${TMP}/tar
 	cd ${TMP}/tar/.emacs.d
@@ -22,7 +22,7 @@ tar:
 	cp -Rf ${TMP}/tar/.emacs.d/el-get/* ${TMP}/tar/.emacs.d/site-lisp/
 	rm -rf ${TMP}/tar/.emacs.d/el-get
 	tar czf ${TMP}/tar/emacs.tar.gz ${TMP}/tar/.emacs.d
-	cp ${TMP}/tar/emacs.tar.gz $(CURDIR)/tar/.
+	#cp ${TMP}/tar/emacs.tar.gz $(CURDIR)/tar/.
 
 clean:
 	find . -name "*.elc" -print | xargs rm -f
