@@ -38,11 +38,22 @@ Extra packages are installed with el-get
 el-get needs bzr to checkout python-mode. Some plug-ins need tex to compile.
 
 these packages needs to be installed before running el-get install
+
 #+BEGIN_SRC bash
+#for linux debian
 apt-get install texinfo
 apt-get install texlive
 apt-get install bzr
 apt-get install git
+#+END_SRC
+
+#+BEGIN_SRC bash
+# for macos
+brew install git
+brew install bzr
+brew install texinfo
+#download / install mactex
+http://www.tug.org/mactex/
 #+END_SRC
 
 * Distel-mode
