@@ -6,6 +6,9 @@
 
 (require 'custom-functions)
 
+;; set default directory
+(setq default-directory "~")
+
 ;; language
 (setq current-language-environment "English")
 
