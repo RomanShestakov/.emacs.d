@@ -19,11 +19,14 @@
 (load-theme 'gruber-darker t)
 
 ;; set up fonts
+;; http://superuser.com/questions/210555/emacs-font-settings-not-working-in-new-frame
 (if (system-is-mac)
     (progn
-      (set-default-font "-apple-inconsolata-medium-r-normal--13-130-72-72-m-130-iso10646-1")
+      (add-to-list 'default-frame-alist
+                   '(font . "-apple-inconsolata-medium-r-normal--13-130-72-72-m-130-iso10646-1"))
       (setq mac-allow-anti-aliasing t)))
 
+;;(set-default-font "-apple-inconsolata-medium-r-normal--13-130-72-72-m-130-iso10646-1")
 ;;(set-default-font "Inconselata-13")
 ;;(set-default-font "Monaco-13")
 
