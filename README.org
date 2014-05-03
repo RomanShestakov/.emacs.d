@@ -49,10 +49,12 @@ apt-get install git
 
 #+BEGIN_SRC bash
 # for macos
+# use homebrew: ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+brew install autoconf
 brew install git
 brew install bzr
 brew install texinfo
-#download / install mactex
+#download / manually install mactex
 http://www.tug.org/mactex/
 #+END_SRC
 
