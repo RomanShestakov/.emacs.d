@@ -8,15 +8,11 @@
 ;; load paths to favorite themes
 (add-to-list 'custom-theme-load-path (concat (file-name-as-directory emacs-root) "gruber-darker-theme"))
 
-;; ;; at home use solarized (on mac), for anything else use gruber-dark
-;; (if (system-is-mac)
-;;     (progn
-;;       (load-theme 'solarized-dark t)
-;;       (setq solarized-termcolors 256))
-;;   (load-theme 'gruber-darker t))
-
-;; ;; load gruber-darker
-(load-theme 'gruber-darker t)
+;; load gruber-darker
+(if (>= emacs-major-version 23)
+    (load-theme 'gruber-darker t)
+  (require 'color-theme-gruber-darker)
+  (color-theme-gruber-darker))
 
 ;; set up fonts
 ;; http://superuser.com/questions/210555/emacs-font-settings-not-working-in-new-frame

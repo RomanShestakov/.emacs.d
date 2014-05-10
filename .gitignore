@@ -6,3 +6,4 @@
 *.elc
 /tramp
 /projectile-bookmarks.eld
+/snippets/erlang-mode/.yas-compiled-snippets.el
