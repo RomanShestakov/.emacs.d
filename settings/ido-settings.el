@@ -17,6 +17,7 @@
 (setq ido-create-new-buffer 'always)
 (setq ido-file-extensions-order '(".scala" ".org" ".txt" ".py" ".emacs" ".xml" ".el" ".ini" ".cfg" ".cnf"))
 ;; You can disable the merging (the "looking in other directories" in ido vulgo) with
+;; http://stackoverflow.com/questions/7479565/emacs-ido-mode-and-creating-new-files-in-directories-it-keeps-changing-the-dire
 (setq ido-auto-merge-work-directories-length -1)
 
 (provide 'ido-settings)
