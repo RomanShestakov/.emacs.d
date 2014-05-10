@@ -1,3 +1,9 @@
 [submodule "syntaxerl"]
 	path = syntaxerl
 	url = git://github.com/ten0s/syntaxerl.git
+[submodule "site-lisp/emacs-elixir"]
+	path = site-lisp/emacs-elixir
+	url = https://github.com/elixir-lang/emacs-elixir.git
+[submodule "site-lisp/elixir-mix"]
+	path = site-lisp/elixir-mix
+	url = https://github.com/tonini/elixir-mix.el.git
