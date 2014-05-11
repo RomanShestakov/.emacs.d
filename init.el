@@ -45,8 +45,10 @@
 
 ;; set PATH and PYTHONPATH from env
 (require 'exec-path-from-shell)
-(exec-path-from-shell-copy-env "PATH")
-(exec-path-from-shell-copy-env "PYTHONPATH")
+(eval-after-load 'exec-path-from-shell
+  '(progn
+     (exec-path-from-shell-copy-env "PATH")
+     (exec-path-from-shell-copy-env "PYTHONPATH")))
 
 ;; load plugins with el-get
 (require 'el-get-settings)
@@ -58,7 +60,7 @@
 (require 'tramp)
 
 ;; git
-(require 'magit)
+(autoload 'magit "magit" t)
 
 ;; move-text
 (require 'move-text)
@@ -75,12 +77,12 @@
 (require 'helm-settings)
 (require 'ctag-settings)
 (require 'dirtree-settings)
-(require 'yasnippet-settings)
 (require 'flycheck-mode-settings)
 (require 'org-mode-settings)
 (require 'projectile-settings)
 (require 'ido-settings)
 (require 'elisp-slime-nav-settings)
+(require 'yasnippet-settings)
 ;;(require 'fill-column-indicator-settings)
 
 ;; see #7 from http://a-nickels-worth.blogspot.co.uk/2007/11/effective-emacs.html
