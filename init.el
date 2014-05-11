@@ -83,6 +83,7 @@
 (require 'elisp-slime-nav-settings)
 ;;(require 'fill-column-indicator-settings)
 
+;; see #7 from http://a-nickels-worth.blogspot.co.uk/2007/11/effective-emacs.html
 (setq custom-file (concat (file-name-as-directory emacs-root) ".emacs-custom.el"))
 (load custom-file 'noerror)
 
