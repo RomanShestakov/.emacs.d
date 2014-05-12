@@ -14,8 +14,8 @@
   (unless (member distel-dir load-path)
     (setq load-path (append load-path (list distel-dir)))))
 
-(require 'distel)
-(distel-setup)
+(autoload 'distel "distel" t)
+(eval-after-load 'distel (distel-setup))
 
 ;; Some Erlang customizations
 (add-hook 'erlang-mode-hook
