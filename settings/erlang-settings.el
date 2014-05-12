@@ -23,8 +23,7 @@
         ;; when starting an Erlang shell in Emacs, default in the node name
         (setq inferior-erlang-machine-options '("-sname" "emacs"))
         ;; add Erlang functions to an imenu menu
-        (imenu-add-to-menubar "imenu")
-))
+        (imenu-add-to-menubar "imenu")))
 
 (setq erl-nodename-cache
       (make-symbol
@@ -41,8 +40,7 @@
     ("\M-?"      erl-complete)
     ("\M-."      erl-find-source-under-point)
     ("\M-,"      erl-find-source-unwind)
-    ("\M-*"      erl-find-source-unwind)
-    )
+    ("\M-*"      erl-find-source-unwind))
   "Additional keys to bind when in Erlang shell.")
 
 (add-hook 'erlang-shell-mode-hook
@@ -80,15 +78,14 @@ project should have .erlang in it."
   (setq inferior-erlang-machine-options '("-sname" "emacs"))
   ;; compile file with F9
   (define-key erlang-mode-map [f9] 'my-erlang-compile)
-  (define-key erlang-mode-map (kbd "C-c C-z") 'my-erlang-shell-display)
-  )
-   
+  (define-key erlang-mode-map (kbd "C-c C-z") 'my-erlang-shell-display))
+
 ;; disable flycheck mode for erlang as flycheck doesnt' recognise includes
 (setq flycheck-disabled-checkers '(erlang))
 
-;; add include directory to default compile path.
-(defvar erlang-compile-extra-opts
-  '(bin_opt_info debug_info (i . "../include") (i . "../deps") (i . "../../") (i . "../../../deps")))
+;; ;; add include directory to default compile path.
+;; (defvar erlang-compile-extra-opts
+;;   '(bin_opt_info debug_info (i . "../include") (i . "../deps") (i . "../../") (i . "../../../deps")))
 
 ;; define where put beam files.
 (setq erlang-compile-outdir "../ebin")
@@ -96,7 +93,7 @@ project should have .erlang in it."
 ;; flymake syntax checking.
 ;; setup syntaxerl to do error checking
 ;; https://github.com/ten0s/syntaxerl
-(require 'flymake)
+(autoload 'flymake "flymake" t)
 ;;(setq flymake-log-level 3)
 
 (defun flymake-compile-script-path (path)
