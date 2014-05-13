@@ -5,6 +5,9 @@
 
 ;;; Code:
 
+(eval-when-compile
+  (require 'cl))
+
 ;; time emacs load time
 (defvar *emacs-load-start* (current-time))
 
@@ -17,9 +20,6 @@
   (message ".emacs loaded in %fms" (/ (- (anarcat/time-to-ms (current-time))
                                          (anarcat/time-to-ms *emacs-load-start*)) 1000000.0)))
 (add-hook 'after-init-hook 'anarcat/display-timing t)
-
-(eval-when-compile
-  (require 'cl))
 
 ;; add root to all emacs-related stuff
 ;; and add load-paths to packages
@@ -69,20 +69,20 @@
 ;; add modes with customized settings
 (require 'erlang-settings)
 (require 'elixir-settings)
-(require 'python-settings)
+;(require 'python-settings)
 (require 'drag-and-drop-settings)
 (require 'key-binding-settings)
 (require 'puppet-mode-settings)
 (require 'color-theme-settings)
 (require 'helm-settings)
-(require 'ctag-settings)
 (require 'dirtree-settings)
 (require 'flycheck-mode-settings)
 (require 'org-mode-settings)
-(require 'projectile-settings)
 (require 'ido-settings)
 (require 'elisp-slime-nav-settings)
 (require 'yasnippet-settings)
+;(require 'ctag-settings)
+;(require 'projectile-settings)
 ;;(require 'fill-column-indicator-settings)
 
 ;; see #7 from http://a-nickels-worth.blogspot.co.uk/2007/11/effective-emacs.html
