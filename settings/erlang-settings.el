@@ -71,8 +71,6 @@ project should have .erlang in it."
   (when-let (default-directory (locate-dominating-file default-directory ".erlang"))
             (erlang-compile)))
 
-;; add hooks to erlang-mode
-(add-hook 'erlang-mode-hook 'my-erlang-mode-hook)
 (defun my-erlang-mode-hook ()
   "*When starting an Erlang shell in Emacs, default in the node name."
   (setq inferior-erlang-machine-options '("-sname" "emacs"))
@@ -80,12 +78,11 @@ project should have .erlang in it."
   (define-key erlang-mode-map [f9] 'my-erlang-compile)
   (define-key erlang-mode-map (kbd "C-c C-z") 'my-erlang-shell-display))
 
+;; add hooks to erlang-mode
+(add-hook 'erlang-mode-hook 'my-erlang-mode-hook)
+
 ;; disable flycheck mode for erlang as flycheck doesnt' recognise includes
 (setq flycheck-disabled-checkers '(erlang))
-
-;; ;; add include directory to default compile path.
-;; (defvar erlang-compile-extra-opts
-;;   '(bin_opt_info debug_info (i . "../include") (i . "../deps") (i . "../../") (i . "../../../deps")))
 
 ;; define where put beam files.
 (setq erlang-compile-outdir "../ebin")
@@ -108,30 +105,6 @@ project should have .erlang in it."
 (defun flymake-syntaxerl ()
   "*Script used to compile."
   (flymake-compile-script-path (concat emacs-root "bin/syntaxerl")))
-
-;; define auto erlang mode for these files/extensions.
-(add-to-list 'auto-mode-alist '(".*\\.app\\'" . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*\\.erl\\'" . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*\\.hrl\\'" . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*app\\.src\\'" . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*\\.config\\'" . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*\\.rel\\'" . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*\\.script\\'" . erlang-mode))
-(add-to-list 'auto-mode-alist '(".*\\.escript\\'" . erlang-mode))
-
-(add-hook 'erlang-mode-hook
-  '(lambda()
-     (add-to-list 'flymake-allowed-file-name-masks '("\\.erl\\'" flymake-syntaxerl))
-     (add-to-list 'flymake-allowed-file-name-masks '("\\.hrl\\'" flymake-syntaxerl))
-     (add-to-list 'flymake-allowed-file-name-masks '("\\.app\\'" flymake-syntaxerl))
-     (add-to-list 'flymake-allowed-file-name-masks '("\\.app.src\\'" flymake-syntaxerl))
-     (add-to-list 'flymake-allowed-file-name-masks '("\\.config\\'" flymake-syntaxerl))
-     (add-to-list 'flymake-allowed-file-name-masks '("\\.rel\\'" flymake-syntaxerl))
-     (add-to-list 'flymake-allowed-file-name-masks '("\\.script\\'" flymake-syntaxerl))
-     (add-to-list 'flymake-allowed-file-name-masks '("\\.escript\\'" flymake-syntaxerl))
-     ;; should be the last.
-     (flymake-mode 1)
-))
 
 (provide 'erlang-settings)
 
