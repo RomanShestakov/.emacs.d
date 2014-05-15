@@ -16,8 +16,8 @@
 ;; this var should be set in env
 ; export ERL_TOP=/usr/local/lib/erlang
 
-(require 'exec-path-from-shell)
-(exec-path-from-shell-copy-env "ERL_TOP")
+(autoload 'exec-path-from-shell-copy-env "exec-path-from-shell" t)
+(eval-after-load 'exec-path-from-shell (exec-path-from-shell-copy-env "ERL_TOP"))
 
 ;; set path to erlang install load a path to elang lisp as distel
 ;; install in el-get distel package depends on it if root is nil or
@@ -53,8 +53,16 @@ Env var ERL_TOP needs to be set in bash environment.  If ERL_TOP is not set, ret
            (concat (file-name-as-directory erlang-root-dir) (get-erlang-tools-dir-name)))
           "emacs"))
 
-;; add erlang tools to load-path
-(add-to-list 'load-path (get-full-path-to-erlang-tools-dir))
+;; ;; add erlang tools to load-path
+;; (add-to-list 'load-path (get-full-path-to-erlang-tools-dir))
+
+;;;###autoload
+(defun erlang-path-init()
+  "*Sets the paths to erlang mode."
+  (add-to-list 'load-path (get-full-path-to-erlang-tools-dir)))
+
+(erlang-path-init)
+;(add-to-list 'load-path (get-full-path-to-erlang-tools-dir))
 
 (provide 'erlang-path-settings)
 

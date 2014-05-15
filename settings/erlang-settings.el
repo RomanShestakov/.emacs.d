@@ -109,6 +109,3 @@ project should have .erlang in it."
 (provide 'erlang-settings)
 
 ;;; erlang-settings.el ends here
-
-
-
