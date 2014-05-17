@@ -9,9 +9,11 @@
 
 ;; resize vertically split window with 'M-S- +/-'
 ;; because UP/DOWN arrow combination don't work on Putty
-(require 'window-resizing)
-(global-set-key (kbd "M-+") 'move-border-up)
-(global-set-key (kbd "M-_") 'move-border-down)
+(load "window-resizing")
+(eval-after-load "window-resizing"
+  '(progn
+     (global-set-key (kbd "M-+") 'move-border-up)
+     (global-set-key (kbd "M-_") 'move-border-down)))
 
 ;;;; binding to resize window : http://www.emacswiki.org/emacs/WindowResize
 ;; (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
