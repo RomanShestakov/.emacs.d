@@ -45,6 +45,8 @@ apt-get install texinfo
 apt-get install texlive
 apt-get install bzr
 apt-get install git
+# python mode autocomple with jedi needs vertualenv
+apt-get install -y python-virtualenv
 #+END_SRC
 
 #+BEGIN_SRC bash
@@ -56,6 +58,9 @@ brew install bzr
 brew install texinfo
 #download / manually install mactex
 http://www.tug.org/mactex/
+# need to install pip and virtualenv for jedi autocompletion to work in python-mode
+easy-install pip
+pip install virtualenv
 #+END_SRC
 
 * Distel-mode
@@ -81,3 +86,9 @@ make
 this will generate syntaxerl file which needs to be added to .emacs.d/bin
 
 
+* Jedi autocompletion mode for python
+jedi requires that pip and virtualenv are installed
+easy-install pip
+pip install virtualenv
+then in emacs:
+M-x jedi:install-server
