@@ -41,13 +41,13 @@ these packages needs to be installed before running el-get install
 
 #+BEGIN_SRC bash
 #for linux debian
-apt-get install texinfo
-apt-get install texlive
-apt-get install bzr
-apt-get install git
+sudo apt-get install texinfo
+sudo apt-get install texlive
+sudo apt-get install bzr
+sudo apt-get install git
 # python mode autocomple with jedi needs vertualenv
-apt-get install -y python-virtualenv
-pip install ipython
+sudo apt-get install -y python-virtualenv
+sudo pip install ipython
 #+END_SRC
 
 #+BEGIN_SRC bash
