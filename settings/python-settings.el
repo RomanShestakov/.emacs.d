@@ -20,7 +20,7 @@
 
 ;;; Code:
 
-(require 'custom-functions)
+;(require 'custom-functions)
 
 ;; Set PYTHONPATH, because we don't load .bashrc
 ;; (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:")
@@ -29,8 +29,8 @@
 (require 'python-mode)
 
 ;; add path to python-mode and pymacs
-(add-to-list 'load-path (concat emacs-root "el-get/pymacs"))
-(add-to-list 'load-path (concat emacs-root "el-get/python-mode"))
+;(add-to-list 'load-path (concat emacs-root "el-get/pymacs"))
+;(add-to-list 'load-path (concat emacs-root "el-get/python-mode"))
 (setq py-install-directory (concat emacs-root "el-get/python-mode"))
 
 ;; use python-mode for .py files
@@ -69,9 +69,8 @@
 ;(include-plugin "pydoc-info-0.2")
 ;(require 'pydoc-info)
 
-;;(include-plugin "jedi")
-(require 'jedi)
-
+;(require 'jedi)
+(autoload 'jedi-setup "jedi" t)
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
 

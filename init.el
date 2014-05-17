@@ -69,7 +69,7 @@
 ;; add modes with customized settings
 (require 'erlang-settings)
 (require 'elixir-settings)
-;(require 'python-settings)
+(require 'python-settings)
 (require 'drag-and-drop-settings)
 (require 'key-binding-settings)
 (require 'puppet-mode-settings)
