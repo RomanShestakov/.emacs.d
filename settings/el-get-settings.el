@@ -20,7 +20,8 @@
 
 ;; set correct paths to erlang installation as distel mode
 ;; depends on it
-(require 'erlang-path-settings)
+(autoload 'erlang-path-init "erlang-path-settings" t)
+(erlang-path-init)
 
 ;; add el-get to the load path, and install it if it doesn't exist
 (eval-when-compile (defvar emacs-root))
@@ -73,11 +74,15 @@
                 ;color-theme
                 ))
 
-(require 'el-get-git)
+;;(require 'el-get-git)
+
+;(autoload 'el-get-git-shallow-clone "el-get-git" t)
 
 ;; first enable shallow clone, so we don't need to clone the entire
 ;; history of every project
-(setq el-get-git-shallow-clone t)
+(defvar el-get-git-shallow-clone)
+(eval-after-load "el-get-git"
+  (setq el-get-git-shallow-clone t))
 
 ;; then install!
 (el-get 'sync my-packages)
