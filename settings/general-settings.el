@@ -4,8 +4,6 @@
 
 ;;; Code:
 
-(require 'custom-functions)
-
 ;; set default directory
 (setq default-directory "~")
 
@@ -48,14 +46,17 @@
 ;(electric-pair-mode t)
 
 ;; show matching paren without delay
+(autoload 'show-paren-mode "paren" t)
 (show-paren-mode 1)
-(setq show-paren-delay 0)
+(defvar show-paren-delay)
+(eval-when-compile (setq show-paren-delay 0))
 
 ;; set left alt key with META and the right alt key with ALT,
 ;; use command as Meta as well as left Alt
+(autoload 'system-is-mac "custom-functions" t)
 (if (system-is-mac)
     (progn
-      (setq mac-option-key-is-meta t)
+      ;(setq mac-option-key-is-meta t)
       (setq mac-right-option-modifier nil)
       (setq mac-command-modifier 'meta)))
 
@@ -90,7 +91,9 @@
 (setq backup-inhibited t)
 
 ;; disable auto save
-(setq auto-save-dafault nil)
+(defvar auto-save-dafault)
+(eval-when-compile
+  (setq auto-save-dafault nil))
 
 ;; display windows numbers
 (autoload 'window-number-mode "window-number"
