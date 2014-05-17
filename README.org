@@ -47,6 +47,7 @@ apt-get install bzr
 apt-get install git
 # python mode autocomple with jedi needs vertualenv
 apt-get install -y python-virtualenv
+pip install ipython
 #+END_SRC
 
 #+BEGIN_SRC bash
@@ -61,6 +62,7 @@ http://www.tug.org/mactex/
 # need to install pip and virtualenv for jedi autocompletion to work in python-mode
 easy-install pip
 pip install virtualenv
+pip install ipython
 #+END_SRC
 
 * Distel-mode
