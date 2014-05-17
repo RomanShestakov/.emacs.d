@@ -21,6 +21,9 @@
 
 ;; enable line numbering
 (global-linum-mode 1)
+(eval-after-load "linum"
+  '(progn
+     (setq linum-format "%d ")))
 
 ;; allow delete region by <DEL>
 (delete-selection-mode 1)
