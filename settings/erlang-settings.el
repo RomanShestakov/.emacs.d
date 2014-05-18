@@ -13,7 +13,6 @@
      (when ,var ,@body)))
 
 ;; set paths to erlang libs
-(autoload 'erlang-path-init "erlang-path-settings" t)
 (erlang-path-init)
 (load "erlang-start" 'no-error)
 
@@ -88,7 +87,7 @@ project should have .erlang in it."
      ;; flymake syntax checking.
      ;; setup syntaxerl to do error checking
      ;; https://github.com/ten0s/syntaxerl
-     (autoload 'flymake "flymake" t)
+     ;(autoload 'flymake "flymake" t)
      ;;(setq flymake-log-level 3)
 
      (defun flymake-compile-script-path (path)

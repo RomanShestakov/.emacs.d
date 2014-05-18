@@ -21,9 +21,9 @@
 
 ;; enable line numbering
 (global-linum-mode 1)
-(eval-after-load "linum"
-  '(progn
-     (setq linum-format "%d ")))
+;; (eval-after-load "linum"
+;;   '(progn
+;;      (setq linum-format "%d ")))
 
 ;; allow delete region by <DEL>
 (delete-selection-mode 1)
@@ -49,7 +49,7 @@
 ;(electric-pair-mode t)
 
 ;; show matching paren without delay
-(autoload 'show-paren-mode "paren" t)
+;(autoload 'show-paren-mode "paren" t)
 (show-paren-mode 1)
 (defvar show-paren-delay)
 (eval-when-compile (setq show-paren-delay 0))

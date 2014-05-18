@@ -26,53 +26,53 @@
 ;; (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:")
 ;; (exec-path-from-shell-copy-env "PYTHONPATH")
 
-(require 'python-mode)
-
 ;; add path to python-mode and pymacs
 ;(add-to-list 'load-path (concat emacs-root "el-get/pymacs"))
 ;(add-to-list 'load-path (concat emacs-root "el-get/python-mode"))
-(setq py-install-directory (concat emacs-root "el-get/python-mode"))
+(eval-after-load "python-mode"
+  '(progn
+     (setq py-install-directory (concat emacs-root "el-get/python-mode"))
+     ;; use python-mode for .py files
+     (add-to-list 'auto-mode-alist '("\.py\'" . python-mode))
 
-;; use python-mode for .py files
-(add-to-list 'auto-mode-alist '("\.py\'" . python-mode))
+     (setq-default py-shell-name "/usr/local/bin/ipython")
+     (setq-default py-which-bufname "IPython")
 
-(setq-default py-shell-name "/usr/local/bin/ipython")
-(setq-default py-which-bufname "IPython")
+     (setq-default py-python-command-args
+                   (if (system-is-mac)
+                       '("--gui=osx" "--pylab=osx" "--colors" "Linux")
+                     (if (system-is-linux)
+                         '("--gui=wx" "--pylab=wx" "--colors" "Linux")
+                       '())))
 
-(setq-default py-python-command-args
-              (if (system-is-mac)
-                  '("--gui=osx" "--pylab=osx" "--colors" "Linux")
-                (if (system-is-linux)
-                 '("--gui=wx" "--pylab=wx" "--colors" "Linux")
-                 '())))
+     (setq py-force-py-shell-name-p 1)
 
-(setq py-force-py-shell-name-p 1)
+     ;; switch to the interpreter after executing code
+     ;; (setq py-shell-switch-buffers-on-execute-p t)
+     (setq py-switch-buffers-on-execute-p nil)
 
-;; switch to the interpreter after executing code
-;; (setq py-shell-switch-buffers-on-execute-p t)
-(setq py-switch-buffers-on-execute-p nil)
+     ;; try to automagically figure out indentantion
+     (setq py-smart-indentation t)
 
-;; try to automagically figure out indentantion
-(setq py-smart-indentation t)
+     ;; add F9 and S-F9 keybindings
+     (add-hook 'python-mode-hook 'my-python-mode-hook)
+     (defun my-python-mode-hook ()
+       "*Compile file with F9."
+       (define-key python-mode-map [f9]
+         (lambda()
+           (interactive)
+           (progn
+             (py-execute-buffer)))))
 
-;; add F9 and S-F9 keybindings
-(add-hook 'python-mode-hook 'my-python-mode-hook)
-(defun my-python-mode-hook ()
-  "*Compile file with F9."
-  (define-key python-mode-map [f9]
-    (lambda()
-      (interactive)
-      (progn
-        (py-execute-buffer)))))
+     ;; pydoc info
+     ;;(include-plugin "pydoc-info-0.2")
+     ;;(require 'pydoc-info)
 
-;; pydoc info
-;(include-plugin "pydoc-info-0.2")
-;(require 'pydoc-info)
-
-;(require 'jedi)
-(autoload 'jedi-setup "jedi" t)
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)
+     ;;(require 'jedi)
+     (autoload 'jedi-setup "jedi" t)
+     (add-hook 'python-mode-hook 'jedi:setup)
+     (setq jedi:complete-on-dot t)
+     ))
 
 (provide 'python-settings)
 

@@ -5,8 +5,7 @@
 
 ;;; Code:
 
-(eval-when-compile
-  (require 'cl))
+(eval-when-compile (require 'cl))
 
 ;; time emacs load time
 (defvar *emacs-load-start* (current-time))
@@ -43,9 +42,12 @@
     (normal-top-level-add-to-load-path '("."))
     (normal-top-level-add-subdirs-to-load-path)))
 
+;; load auto-generated files with autoloads from settings
+(load-file (concat (file-name-as-directory emacs-root) "settings/loaddefs.el"))
+
 ;; set PATH and PYTHONPATH from env
-(require 'exec-path-from-shell)
-(eval-after-load 'exec-path-from-shell
+;; (require 'exec-path-from-shell)
+(eval-after-load "exec-path-from-shell"
   '(progn
      (exec-path-from-shell-copy-env "PATH")
      (exec-path-from-shell-copy-env "PYTHONPATH")))
@@ -57,10 +59,7 @@
 (require 'general-settings)
 
 ;; tramp-mode
-(require 'tramp)
-
-;; git
-(autoload 'magit "magit" t)
+;;(require 'tramp)
 
 ;; move-text
 (require 'move-text)
@@ -86,7 +85,12 @@
 ;;(require 'fill-column-indicator-settings)
 
 ;; see #7 from http://a-nickels-worth.blogspot.co.uk/2007/11/effective-emacs.html
+;; load custom-file
 (setq custom-file (concat (file-name-as-directory emacs-root) ".emacs-custom.el"))
 (load custom-file 'noerror)
+
+;; make sure that loaddefs.el is updated on emacs exit
+;; http://stackoverflow.com/questions/4189159/emacs23-elisp-how-to-properly-autoload-this-library
+(add-hook 'kill-emacs-hook 'update-autoloads-in-package-area)
 
 ;;; init.el ends here

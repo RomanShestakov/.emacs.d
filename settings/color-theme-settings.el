@@ -3,7 +3,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(autoload 'system-is-mac "custom-functions" t)
+;(autoload 'system-is-mac "custom-functions" t)
 
 (defvar emacs-root)
 
