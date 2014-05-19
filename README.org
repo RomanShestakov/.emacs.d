@@ -89,10 +89,27 @@ make
 
 this will generate syntaxerl file which needs to be added to .emacs.d/bin
 
-
 * Jedi autocompletion mode for python
 jedi requires that pip and virtualenv are installed
 easy-install pip
 pip install virtualenv
 then in emacs:
 M-x jedi:install-server
+* How to create emacs.tar.gz
+it is possible to create a distrib of .emacs.d which doesn't have dependency on el-get.
+running:
+#+BEGIN_SRC 
+cd .emacs.d
+make tar
+#+END_SRC
+
+will create a tar and upload it into:
+https://github.com/RomanShestakov/em1.git
+
+uploading from this URL and then running:
+
+#+BEGIN_SRC 
+tar -zxvf emacs.tar.gz
+#+END_SRC
+
+will create a emacs distro
