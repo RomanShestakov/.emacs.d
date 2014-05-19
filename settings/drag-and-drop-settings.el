@@ -7,6 +7,7 @@
 ;; note that the EMACS window must be selected (CMD-TAB) for the modifiers to register.
 
 ;;; Code:
+;;;###autoload
 (defun ns-insert-filename ()
   "Insert contents of first element of `ns-input-file' at point."
   (interactive)
@@ -15,6 +16,7 @@
   (if ns-input-file                     ; any more? Separate by " "
       (insert " ")))
 
+;;;###autoload
 (defun ns-find-file-in-frame ()
   "Do a `find-file' with the `ns-input-file' as argument; staying in frame."
   (interactive)
