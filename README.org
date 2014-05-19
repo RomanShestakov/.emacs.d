@@ -48,6 +48,8 @@ sudo apt-get install git
 # python mode autocomple with jedi needs vertualenv
 sudo apt-get install -y python-virtualenv
 sudo pip install ipython
+# run jedi install
+# M-x jedi:install-server
 #+END_SRC
 
 #+BEGIN_SRC bash
