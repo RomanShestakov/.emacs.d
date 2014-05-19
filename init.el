@@ -75,7 +75,6 @@
 (require 'python-settings)
 (require 'drag-and-drop-settings)
 (require 'key-binding-settings)
-(require 'puppet-mode-settings)
 (require 'color-theme-settings)
 (require 'helm-settings)
 (require 'dirtree-settings)
