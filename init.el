@@ -66,6 +66,7 @@
 (require 'general-settings)
 
 ;; move-text mode
+(require 'move-text)
 (move-text-default-bindings)
 
 ;; add modes with customized settings
@@ -80,6 +81,7 @@
 (require 'ido-settings)
 (require 'elisp-slime-nav-settings)
 (require 'yasnippet-settings)
+(require 'magit)
 ;(require 'ctag-settings)
 ;(require 'projectile-settings)
 ;;(require 'fill-column-indicator-settings)
