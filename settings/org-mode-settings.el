@@ -14,6 +14,12 @@
    ;;(erlang . t)
    ))
 
+(defun nolinum ()
+  "*Disable nulum in 'org-mode'."
+  (global-linum-mode 0))
+
+(add-hook 'org-mode-hook 'nolinum)
+
 (provide 'org-mode-settings)
 
 ;;; org-mode-settings.el ends here
