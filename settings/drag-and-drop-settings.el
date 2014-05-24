@@ -25,8 +25,11 @@
 
 ; Upon drag-and-drop: Find the file, w/shift insert filename; w/meta insert file contents
 ; note that the emacs window must be selected (CMD-TAB) for the modifiers to register
+;;;###autoload
 (define-key global-map [M-ns-drag-file] 'ns-insert-file)
+;;;###autoload
 (define-key global-map [S-ns-drag-file] 'ns-insert-filename)
+;;;###autoload
 (define-key global-map [ns-drag-file] 'ns-find-file-in-frame)
 
 (provide 'drag-and-drop-settings)

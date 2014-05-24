@@ -65,15 +65,13 @@
 ;; apply general customisation settings
 (require 'general-settings)
 
-;; move-text
-(require 'move-text)
+;; move-text mode
 (move-text-default-bindings)
 
 ;; add modes with customized settings
 (require 'erlang-settings)
 (require 'elixir-settings)
 (require 'python-settings)
-(require 'drag-and-drop-settings)
 (require 'key-binding-settings)
 (require 'color-theme-settings)
 (require 'helm-settings)

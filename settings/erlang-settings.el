@@ -13,6 +13,7 @@
      (when ,var ,@body)))
 
 ;; set paths to erlang libs
+(autoload 'erlang-path-init "erlang-path-settings" nil)
 (erlang-path-init)
 (load "erlang-start" 'no-error)
 
