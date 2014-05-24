@@ -5,6 +5,7 @@
 ;;; Code:
 
 ;; setup global key bindings
+;;;###autoload
 (global-set-key (kbd "\C-x g") 'magit-status )
 
 ;; resize vertically split window with 'M-S- +/-'
