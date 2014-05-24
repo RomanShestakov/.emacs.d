@@ -11,9 +11,10 @@
 
 ;;; Code:
 
-(require 'elisp-slime-nav)
-(dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
-  (add-hook hook 'elisp-slime-nav-mode))
+(eval-after-load "elisp-slime-nav"
+  '(progn
+     (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
+       (add-hook hook 'elisp-slime-nav-mode))))
 
 (provide 'elisp-slime-nav-settings)
 
