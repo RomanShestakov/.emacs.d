@@ -91,6 +91,7 @@
 (load custom-file 'noerror)
 
 ;; load flycheck
+(autoload 'global-flycheck-mode "flycheck" nil)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; make sure that loaddefs.el is updated on emacs exit
