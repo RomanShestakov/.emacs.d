@@ -4,34 +4,35 @@
 ;; https://github.com/emacs-helm/helm/wiki
 
 ;;; Code:
-(require 'helm)
-(require 'helm-descbinds)
-(require 'helm-files)
 
-(fset 'describe-bindings 'helm-descbinds)
+(autoload 'helm-mode "helm-mode" nil)
 (helm-mode 1)
 
-(global-set-key (kbd "C-c h") 'helm-mini)
+(eval-after-load "helm"
+  '(progn
+    (fset 'describe-bindings 'helm-descbinds)
+    (global-set-key (kbd "C-c h") 'helm-mini)
 
-;; http://amitp.blogspot.co.uk/2012/10/emacs-helm-for-finding-files.html
-;; find files
-(setq helm-idle-delay 0.1)
-(setq helm-input-idle-delay 0.1)
+    ;; http://amitp.blogspot.co.uk/2012/10/emacs-helm-for-finding-files.html
+    ;; find files
+    (setq helm-idle-delay 0.1)
+    (setq helm-input-idle-delay 0.1)
 
-(setq helm-locate-command "locate-with-mdfind %.0s %s")
-(loop for ext in '("\\.swf$" "\\.elc$" "\\.pyc$")
-      do(add-to-list 'helm-boring-file-regexp-list ext))
+    (setq helm-locate-command "locate-with-mdfind %.0s %s")
+    (loop for ext in '("\\.swf$" "\\.elc$" "\\.pyc$")
+          do(add-to-list 'helm-boring-file-regexp-list ext))
 
-;; bind <M-t> to helm find files
-(global-set-key (kbd "M-t") 'helm-for-files)
+    ;; bind <M-t> to helm find files
+    (global-set-key (kbd "M-t") 'helm-for-files)
 
-;; http://www.emacswiki.org/emacs/ShiftedKeys
-;; http://stackoverflow.com/questions/6156286/emacs-lisp-call-function-with-prefix-argument-programmatically
-;; add 'glimpse' - grep recursively in files
-(global-set-key (kbd "S-<f12>")
-                (lambda() (interactive)
-                  (setq current-prefix-arg '(4))
-                  (call-interactively 'helm-do-grep)))
+    ;; http://www.emacswiki.org/emacs/ShiftedKeys
+    ;; http://stackoverflow.com/questions/6156286/emacs-lisp-call-function-with-prefix-argument-programmatically
+    ;; add 'glimpse' - grep recursively in files
+    (global-set-key (kbd "S-<f12>")
+                    (lambda() (interactive)
+                      (setq current-prefix-arg '(4))
+                      (call-interactively 'helm-do-grep)))
+    ))
 
 (provide 'helm-settings)
 
