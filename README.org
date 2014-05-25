@@ -103,13 +103,19 @@ cd .emacs.d
 make tar
 #+END_SRC
 
-will create a tar and upload it into:
+will create a tar and upload it into repo:
 https://github.com/RomanShestakov/em1.git
 
-uploading from this URL and then running:
+* How to user emacs.tar.gz on host machine
 
 #+BEGIN_SRC 
-tar -zxvf emacs.tar.gz
+git clone https://github.com/RomanShestakov/em1.git
+tar -zxvf em1/emacs.tar.gz
+cp -r em1/Users/romanshestakov/tmp/tar/.emacs.d/ .
+#start with no init
+sudo emacs -nw --no-init-file
+# comment out 
+;;(require 'el-get-settings)
+in init.el
 #+END_SRC
 
-will create a emacs distro
