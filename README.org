@@ -111,7 +111,7 @@ https://github.com/RomanShestakov/em1.git
 #+BEGIN_SRC 
 git clone https://github.com/RomanShestakov/em1.git
 tar -zxvf em1/emacs.tar.gz
-cp -r em1/Users/romanshestakov/tmp/tar/.emacs.d/ .
+cp -r Users/romanshestakov/tmp/tar/.emacs.d/ .
 #start with no init
 sudo emacs -nw --no-init-file
 # comment out 
