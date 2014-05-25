@@ -4,9 +4,10 @@
 ;;; Code:
 
 ;; tree - required for dirtree
-(require 'tree-mode)
-(require 'windata)
-(require 'dirtree)
+;(require 'tree-mode)
+;(require 'windata)
+;(require 'dirtree)
+;(autoload 'dirtree "dirtree" "Add directory to tree view")
 
 (provide 'dirtree-settings)
 

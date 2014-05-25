@@ -76,7 +76,6 @@
 (require 'key-binding-settings)
 (require 'color-theme-settings)
 (require 'helm-settings)
-(require 'dirtree-settings)
 (require 'org-mode-settings)
 (require 'ido-settings)
 (require 'elisp-slime-nav-settings)
