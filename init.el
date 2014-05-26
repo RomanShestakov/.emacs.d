@@ -79,6 +79,7 @@
 (require 'org-mode-settings)
 (require 'ido-settings)
 (require 'elisp-slime-nav-settings)
+(require 'flycheck-mode-settings)
 (require 'yasnippet-settings)
 (require 'magit)
 ;(require 'ctag-settings)
@@ -89,10 +90,6 @@
 ;; load custom-file
 (setq custom-file (concat (file-name-as-directory emacs-root) ".emacs-custom.el"))
 (load custom-file 'noerror)
-
-;; load flycheck
-(autoload 'global-flycheck-mode "flycheck" nil)
-(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; make sure that loaddefs.el is updated on emacs exit
 ;; http://stackoverflow.com/questions/4189159/emacs23-elisp-how-to-properly-autoload-this-library
