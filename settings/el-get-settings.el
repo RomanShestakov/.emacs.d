@@ -71,7 +71,7 @@
                 flymake
                 elisp-slime-nav
                 ;; to be able to run color theme at emcs 23
-                ;color-theme
+                color-theme
                 ))
 
 ;;(require 'el-get-git)
