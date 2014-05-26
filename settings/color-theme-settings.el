@@ -6,7 +6,7 @@
 (defvar emacs-root)
 
 ;; load gruber-darker
-(if (>= emacs-major-version 23)
+(if (>= emacs-major-version 24)
     '(progn
        ;; load paths to favorite themes
        (add-to-list 'custom-theme-load-path
