@@ -116,6 +116,11 @@ cp -r Users/romanshestakov/tmp/tar/.emacs.d/ .
 sudo emacs -nw --no-init-file
 # comment out 
 ;;(require 'el-get-settings)
+;;(require 'elixir-settings)
+;;(require 'helm-settings)
+;;(require 'org-mode-settings)
+;;(require 'flycheck-mode-settings)
+;;(require 'yasnippet-settings)
+;;(require 'magit)
 in init.el
 #+END_SRC
-
