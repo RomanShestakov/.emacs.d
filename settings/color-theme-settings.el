@@ -5,13 +5,13 @@
 
 (defvar emacs-root)
 
-;; load paths to favorite themes
-(add-to-list 'custom-theme-load-path
-             (concat (file-name-as-directory emacs-root) "gruber-darker-theme"))
-
 ;; load gruber-darker
 (if (>= emacs-major-version 23)
-    (load-theme 'gruber-darker t)
+    '(progn
+       ;; load paths to favorite themes
+       (add-to-list 'custom-theme-load-path
+                    (concat (file-name-as-directory emacs-root) "gruber-darker-theme"))
+       (load-theme 'gruber-darker t))
   (load "color-theme-gruber-darker")
   (eval-after-load "color-theme-gruber-darker"
     '(progn
