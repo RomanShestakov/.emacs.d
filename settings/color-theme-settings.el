@@ -7,14 +7,14 @@
 
 ;; load gruber-darker
 (if (>= emacs-major-version 24)
-    '(progn
+    (progn
        ;; load paths to favorite themes
        (add-to-list 'custom-theme-load-path
                     (concat (file-name-as-directory emacs-root) "gruber-darker-theme"))
        (load-theme 'gruber-darker t))
   (load "color-theme-gruber-darker")
   (eval-after-load "color-theme-gruber-darker"
-    '(progn
+    (progn
        (color-theme-gruber-darker))))
 
 ;; set up fonts
