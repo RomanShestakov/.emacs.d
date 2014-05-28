@@ -90,8 +90,15 @@
 ;; don't blink the curson
 ;;(blink-cursor-mode 0)
 
-;;disable backup
-(setq backup-inhibited t)
+;; http://stackoverflow.com/questions/151945/how-do-i-control-how-emacs-makes-backup-files
+;; make backups by copying files
+(setq backup-by-copying t)
+;; dir for backup files
+(setq backup-directory-alist `(("." . "~/.saves")))
+(setq delete-old-versions t
+      kept-new-versions 6
+      kept-old-versions 2
+      version-control t)
 
 ;; disable auto save
 (defvar auto-save-dafault)
