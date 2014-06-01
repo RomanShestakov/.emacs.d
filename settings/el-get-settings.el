@@ -72,6 +72,7 @@
                 elisp-slime-nav
                 ;; to be able to run color theme at emcs 23
                 color-theme
+                org-cua-dwim
                 ))
 
 ;;(require 'el-get-git)
@@ -90,3 +91,6 @@
 (provide 'el-get-settings)
 
 ;;; el-get-settings.el ends here
+
+
+

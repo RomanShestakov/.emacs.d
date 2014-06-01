@@ -43,7 +43,7 @@
 ;;(setq project-dir (getenv "PWD"))
 
 ;; cua-mode is conflicting with org-mode and with python-mode
-;; (cua-mode t)
+(cua-mode t)
 
 ;; enable electric-pair
 ;(electric-pair-mode t)
