@@ -33,6 +33,20 @@
     (goto-char (point-max))
     (eval-print-last-sexp)))
 
+;; https://searchcode.com/codesearch/view/58622862/
+(eval-after-load "el-get-custom"
+  '(progn
+     (message "el-get-sources")
+     (setq el-get-sources
+           '(
+             (:name json-mode
+                    :type git
+                    :url "git://github.com/joshwnj/json-mode.git")
+             (:name json-reformat
+                    :type git
+                    :url "https://github.com/gongo/json-reformat.git")
+             ))))
+
 ;; packages to install
 (defvar
   my-packages '(
@@ -73,11 +87,14 @@
                 ;; to be able to run color theme at emcs 23
                 color-theme
                 org-cua-dwim
+                json-mode
+               ; json-snatcher
+                json-reformat
                 ))
 
-;;(require 'el-get-git)
+;; (require 'el-get-git)
 
-;(autoload 'el-get-git-shallow-clone "el-get-git" t)
+;; (autoload 'el-get-git-shallow-clone "el-get-git" t)
 
 ;; first enable shallow clone, so we don't need to clone the entire
 ;; history of every project
@@ -91,6 +108,4 @@
 (provide 'el-get-settings)
 
 ;;; el-get-settings.el ends here
-
-
 
