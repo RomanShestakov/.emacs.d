@@ -71,7 +71,7 @@
 
 ;; add modes with customized settings
 (require 'erlang-settings)
-(require 'elixir-settings)
+;(require 'elixir-settings)
 (require 'python-settings)
 (require 'key-binding-settings)
 (require 'color-theme-settings)
@@ -82,6 +82,7 @@
 (require 'flycheck-mode-settings)
 (require 'yasnippet-settings)
 (require 'magit)
+(require 'virtualenv-settings)
 ;(require 'ctag-settings)
 ;(require 'projectile-settings)
 ;;(require 'fill-column-indicator-settings)
@@ -96,3 +97,9 @@
 (add-hook 'kill-emacs-hook 'update-autoloads-in-package-area)
 
 ;;; init.el ends here
+
+
+
+
+
+

@@ -90,6 +90,7 @@
                 json-mode
                ; json-snatcher
                 json-reformat
+                virtualenvwrapper
                 ))
 
 ;; (require 'el-get-git)
