@@ -82,14 +82,19 @@ project should have .erlang in it."
      ;; disable flycheck mode for erlang as flycheck doesnt' recognise includes
      (setq flycheck-disabled-checkers '(erlang))
 
+     ;; add include directory to default compile path.
+     (defvar erlang-compile-extra-opts
+       '(bin_opt_info debug_info (i . "../include") (i . "../deps") (i . "../../") (i . "../../../deps")))
+
      ;; define where put beam files.
      (setq erlang-compile-outdir "../ebin")
 
      ;; flymake syntax checking.
      ;; setup syntaxerl to do error checking
      ;; https://github.com/ten0s/syntaxerl
-     ;(autoload 'flymake "flymake" t)
+     ;; (autoload 'flymake "flymake" t)
      ;;(setq flymake-log-level 3)
+     (require 'flymake)
 
      (defun flymake-compile-script-path (path)
        "*PATH to compile script."
@@ -103,6 +108,20 @@ project should have .erlang in it."
      (defun flymake-syntaxerl ()
        "*Script used to compile."
        (flymake-compile-script-path (concat emacs-root "bin/syntaxerl")))
+
+     (add-hook 'erlang-mode-hook
+               '(lambda()
+                  (add-to-list 'flymake-allowed-file-name-masks '("\\.erl\\'" flymake-syntaxerl))
+                  (add-to-list 'flymake-allowed-file-name-masks '("\\.hrl\\'" flymake-syntaxerl))
+                  (add-to-list 'flymake-allowed-file-name-masks '("\\.app\\'" flymake-syntaxerl))
+                  (add-to-list 'flymake-allowed-file-name-masks '("\\.app.src\\'" flymake-syntaxerl))
+                  (add-to-list 'flymake-allowed-file-name-masks '("\\.config\\'" flymake-syntaxerl))
+                  (add-to-list 'flymake-allowed-file-name-masks '("\\.rel\\'" flymake-syntaxerl))
+                  (add-to-list 'flymake-allowed-file-name-masks '("\\.script\\'" flymake-syntaxerl))
+                  (add-to-list 'flymake-allowed-file-name-masks '("\\.escript\\'" flymake-syntaxerl))
+                  ;; should be the last.
+                  (flymake-mode 1)
+                  ))
      ))
 
 (provide 'erlang-settings)
