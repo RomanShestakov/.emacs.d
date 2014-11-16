@@ -54,15 +54,22 @@
      ;; try to automagically figure out indentantion
      (setq py-smart-indentation t)
 
-     ;; add F9 and S-F9 keybindings
+     ;; add F9
      (add-hook 'python-mode-hook 'my-python-mode-hook)
      (defun my-python-mode-hook ()
        "*Compile file with F9."
-       (define-key python-mode-map [f9]
+       (define-key python-mode-map (kbd "<f9>")
          (lambda()
            (interactive)
            (progn
-             (py-execute-buffer)))))
+             (py-execute-buffer))))
+
+       (define-key python-mode-map (kbd "<f8>")
+         (lambda()
+           (interactive)
+           (progn
+             (py-execute-region))))
+       )
 
      ;; pydoc info
      ;;(include-plugin "pydoc-info-0.2")

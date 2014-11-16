@@ -91,6 +91,7 @@
                ; json-snatcher
                 json-reformat
                 virtualenvwrapper
+                multi-term
                 ))
 
 ;; (require 'el-get-git)

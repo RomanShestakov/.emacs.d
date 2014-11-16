@@ -71,7 +71,6 @@
 
 ;; add modes with customized settings
 (require 'erlang-settings)
-;(require 'elixir-settings)
 (require 'python-settings)
 (require 'key-binding-settings)
 (require 'color-theme-settings)
@@ -83,8 +82,11 @@
 (require 'yasnippet-settings)
 (require 'magit)
 (require 'virtualenv-settings)
-;(require 'ctag-settings)
-;(require 'projectile-settings)
+(require 'multi-term-settings)
+
+;;(require 'elixir-settings)
+;;(require 'ctag-settings)
+;;(require 'projectile-settings)
 ;;(require 'fill-column-indicator-settings)
 
 ;; see #7 from http://a-nickels-worth.blogspot.co.uk/2007/11/effective-emacs.html
@@ -97,9 +99,3 @@
 (add-hook 'kill-emacs-hook 'update-autoloads-in-package-area)
 
 ;;; init.el ends here
-
-
-
-
-
-
