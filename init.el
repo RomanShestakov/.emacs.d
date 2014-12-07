@@ -69,6 +69,10 @@
 (require 'move-text)
 (move-text-default-bindings)
 
+;; https://github.com/ramnes/move-border
+;; allows to move border between windows
+(require 'move-border)
+
 ;; add modes with customized settings
 (require 'erlang-settings)
 (require 'python-settings)

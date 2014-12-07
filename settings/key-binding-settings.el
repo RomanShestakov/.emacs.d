@@ -8,13 +8,20 @@
 ;;;###autoload
 (global-set-key (kbd "\C-x g") 'magit-status )
 
-;; resize vertically split window with 'M-S- +/-'
-;; because UP/DOWN arrow combination don't work on Putty
-(load "window-resizing")
-(eval-after-load "window-resizing"
-  '(progn
-     (global-set-key (kbd "M-+") 'move-border-up)
-     (global-set-key (kbd "M-_") 'move-border-down)))
+;; ;; resize vertically split window with 'M-S- +/-'
+;; ;; because UP/DOWN arrow combination don't work on Putty
+;; (load "window-resizing")
+;; (eval-after-load "window-resizing"
+;;   '(progn
+;;      (global-set-key (kbd "M-[") 'move-border-up)
+;;      (global-set-key (kbd "M-]") 'move-border-up)))
+
+;; allows to move borders between windows
+;; https://github.com/ramnes/move-border
+(global-set-key (kbd "M-S-<up>") 'move-border-up)
+(global-set-key (kbd "M-S-<down>") 'move-border-down)
+(global-set-key (kbd "M-S-<left>") 'move-border-left)
+(global-set-key (kbd "M-S-<right>") 'move-border-right)
 
 ;;;; binding to resize window : http://www.emacswiki.org/emacs/WindowResize
 ;; (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
