@@ -87,6 +87,7 @@
 (require 'magit)
 (require 'virtualenv-settings)
 (require 'multi-term-settings)
+(require 'prolog-settings)
 
 ;;(require 'elixir-settings)
 ;;(require 'ctag-settings)

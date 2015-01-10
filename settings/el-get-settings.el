@@ -78,7 +78,7 @@
                 helm
                 helm-descbinds
                 eproject
-                etags-select
+                ;etags-select
                 yasnippet
                 projectile
                 flx
@@ -92,6 +92,7 @@
                 json-reformat
                 virtualenvwrapper
                 multi-term
+                prolog-el
                 ))
 
 ;; (require 'el-get-git)
@@ -109,5 +110,5 @@
 
 (provide 'el-get-settings)
 
-;;; el-get-settings.el ends here
+;;; el-get-settings.el ends here.
 
