@@ -100,10 +100,11 @@
       kept-old-versions 2
       version-control t)
 
-;; disable auto save
-(defvar auto-save-dafault)
-(eval-when-compile
-  (setq auto-save-dafault nil))
+;; autosave into ~/tmp/autosaves
+(custom-set-variables
+ '(auto-save-file-name-transforms '((".*" "~/tmp/autosaves/\\1" t))))
+;; create autosave dir if nessasary
+(make-directory "~/tmp/autosaves" t)
 
 ;; display windows numbers
 (autoload 'window-number-mode "window-number"
