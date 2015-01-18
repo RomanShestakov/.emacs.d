@@ -80,7 +80,7 @@
                 eproject
                 ;etags-select
                 yasnippet
-                projectile
+                ;projectile
                 flx
                 flymake
                 elisp-slime-nav

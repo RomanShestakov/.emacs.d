@@ -8,8 +8,10 @@
 
 ;; to get around issue with renamed function
 ;; http://lists.gnu.org/archive/html/bug-gnu-emacs/2015-01/msg00351.html
-(defun class-slot-initarg (class-name slot)
-  (eieio--class-slot-initarg (eieio--class-v class-name) slot))
+(if (>= emacs-major-version 24)
+    (progn
+      (defun class-slot-initarg (class-name slot)
+        (eieio--class-slot-initarg (eieio--class-v class-name) slot))))
 
 (autoload 'helm-mode "helm-mode" nil)
 (helm-mode 1)
