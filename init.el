@@ -33,13 +33,18 @@
         "~/.emacs.d/"    "z:/.emacs.d/")
     "Path to where EMACS configuration root is.")
 
+  ;; set path to "~/.emacs/lisp dir for custom packages
+  (defvar my-lisp-dir
+    (concat (file-name-as-directory emacs-root) "lisp")
+    "*Path to custom lisp lib.")
+
   ;; path to where plugins are kept
   (defvar plugin-path (concat (file-name-as-directory emacs-root) "el-get")
     "*Path to el-get plugins.")
 
   ;; add subdirectories of root into load path
   (let ((default-directory emacs-root))
-    (normal-top-level-add-to-load-path '("."))
+    ;;(normal-top-level-add-to-load-path '("."))
     (normal-top-level-add-subdirs-to-load-path)))
 
 ;; set PATH and PYTHONPATH from env

@@ -14,8 +14,7 @@
 
 ;; read value of env variable "ERL_TOP"
 ;; this var should be set in env
-; export ERL_TOP=/usr/local/lib/erlang
-
+;; export ERL_TOP=/usr/local/lib/erlang
 (autoload 'exec-path-from-shell-copy-env "exec-path-from-shell" t)
 (eval-after-load 'exec-path-from-shell (exec-path-from-shell-copy-env "ERL_TOP"))
 
