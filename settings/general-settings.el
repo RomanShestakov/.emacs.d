@@ -20,7 +20,7 @@
 (menu-bar-mode -1)
 
 ;; enable line numbering
-(global-linum-mode 1)
+;; (global-linum-mode 1)
 ;; (eval-after-load "linum"
 ;;   '(progn
 ;;      (setq linum-format "%d ")))
