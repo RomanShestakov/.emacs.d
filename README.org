@@ -7,8 +7,7 @@
 I re-used lots of ideas from the following emacs project
 https://github.com/jhamrick/emacs
 
-* Environment vars 
-
+* Environment vars that needs to be set in .profile
 ** ERL_TOP
 The path to erlang installation are loaded from env var ERL_TOP so
 this var needs to be set in bash .profile
@@ -31,7 +30,8 @@ location '/usr/local/lib/erlang'
 
 * Emacs plug-ins
 
-Extra packages are installed with el-get
+Extra packages are installed with el-get. They are placed in ~/.emacs/el-get.
+The packages that are installed manually should be placed into ~/.emacs/lisp
 
 * Extra dependencies:
 
@@ -67,6 +67,8 @@ pip install virtualenv
 pip install ipython
 #+END_SRC
 
+* Color theme - gruber-darker-theme
+https://github.com/rexim/gruber-darker-theme
 * Distel-mode
 
 Distel mode depends on Erlang mode, so need to correct a path to the version of 
@@ -124,3 +126,8 @@ sudo emacs -nw --no-init-file
 ;;(require 'magit)
 in init.el
 #+END_SRC
+
+
+
+
+
