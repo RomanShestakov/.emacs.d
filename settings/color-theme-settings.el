@@ -10,7 +10,7 @@
     (progn
        ;; load paths to favorite themes
        (add-to-list 'custom-theme-load-path
-                    (concat (file-name-as-directory emacs-root) "gruber-darker-theme"))
+                    (concat (file-name-as-directory my-lisp-dir) "gruber-darker-theme"))
        (load-theme 'gruber-darker t))
   (load "color-theme-gruber-darker")
   (eval-after-load "color-theme-gruber-darker"
