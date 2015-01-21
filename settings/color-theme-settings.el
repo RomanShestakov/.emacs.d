@@ -5,6 +5,9 @@
 
 (defvar emacs-root)
 
+;; to get rid of reference to free variable
+(eval-when-compile (defvar my-lisp-dir))
+
 ;; load gruber-darker
 (if (>= emacs-major-version 24)
     (progn
@@ -33,3 +36,4 @@
 (provide 'color-theme-settings)
 
 ;;; color-theme-settings.el ends here
+
