@@ -99,6 +99,9 @@
 ;;(require 'projectile-settings)
 ;;(require 'fill-column-indicator-settings)
 
+;; stop maggit nagging
+(setq magit-last-seen-setup-instructions "1.4.0")
+
 ;; see #7 from http://a-nickels-worth.blogspot.co.uk/2007/11/effective-emacs.html
 ;; load custom-file
 (setq custom-file (concat (file-name-as-directory emacs-root) ".emacs-custom.el"))
