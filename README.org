@@ -39,8 +39,8 @@ el-get needs bzr to checkout python-mode. Some plug-ins need tex to compile.
 
 these packages needs to be installed before running el-get install
 
+** linux debian
 #+BEGIN_SRC bash
-#for linux debian
 sudo apt-get install texinfo
 sudo apt-get install texlive
 sudo apt-get install bzr
@@ -52,13 +52,19 @@ sudo pip install ipython
 # M-x jedi:install-server
 #+END_SRC
 
+** MacOs
 #+BEGIN_SRC bash
-# for macos
-# use homebrew: ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+# use homebrew
+# install homebrew:
+# ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 brew install autoconf
 brew install git
 brew install bzr
-brew install texinfo
+# emacs depends on texinfo v.5.2
+# brew install texinfo
+# http://www.linuxfromscratch.org/lfs/view/development/chapter06/texinfo.html
+brew link texinfo --force
+brew info texinfo
 #download / manually install mactex
 http://www.tug.org/mactex/
 # need to install pip and virtualenv for jedi autocompletion to work in python-mode
@@ -66,6 +72,14 @@ easy-install pip
 pip install virtualenv
 pip install ipython
 #+END_SRC
+
+** to install Vagrant VM with emacs setup:
+## this will load VM repo and install it with Vagrant
+
+git clone https://github.com/RomanShestakov/vm.git
+cd vm
+vagrant up
+
 
 * Color theme - gruber-darker-theme
 https://github.com/rexim/gruber-darker-theme
