@@ -71,7 +71,7 @@
                 move-text
                 puppet-mode
                 ;;fill-column-indicator
-                python-mode
+                ;;python-mode
                 ace-jump-mode
                 multiple-cursors
                 distel

@@ -20,66 +20,49 @@
 
 ;;; Code:
 
-;(require 'custom-functions)
+;; set PATHONPATH from env
+(require 'exec-path-from-shell)
+(exec-path-from-shell-copy-env "PATHONPATH")
 
-;; Set PYTHONPATH, because we don't load .bashrc
-;; (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages:")
-;; (exec-path-from-shell-copy-env "PYTHONPATH")
+(require 'python)
 
-;; add path to python-mode and pymacs
-;(add-to-list 'load-path (concat emacs-root "el-get/pymacs"))
-;(add-to-list 'load-path (concat emacs-root "el-get/python-mode"))
-(eval-after-load "python-mode"
-  '(progn
-     (setq py-install-directory (concat emacs-root "el-get/python-mode"))
-     ;; use python-mode for .py files
-     (add-to-list 'auto-mode-alist '("\.py\'" . python-mode))
+(setq python-shell-interpreter "ipython")
+(setq python-shell-interpreter-args
+      (if (system-is-mac)
+          "--matplotlib=osx --colors=Linux"
+        (if (system-is-linux)
+            "--gui=wx --matplotlib=wx --colors=Linux")))
+(setq python-shell-prompt-regexp "In \\[[0-9]+\\]: ")
+(setq python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: ")
+(setq python-shell-completion-setup-code  "from IPython.core.completerlib import module_completion")
+(setq python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n")
+(setq python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
-     (setq-default py-shell-name "/usr/local/bin/ipython")
-     (setq-default py-which-bufname "IPython")
+;; add F9
+(add-hook 'python-mode-hook 'my-python-mode-hook)
+(defun my-python-mode-hook ()
+  "*Compile file with F9."
+  (define-key python-mode-map (kbd "<f9>")
+    (lambda()
+      (interactive)
+      (progn
+        (python-shell-send-buffer))))
 
-     (setq-default py-python-command-args
-                   (if (system-is-mac)
-                       '("--gui=osx" "--pylab=osx" "--colors" "Linux")
-                     (if (system-is-linux)
-                         '("--gui=wx" "--pylab=wx" "--colors" "Linux")
-                       '())))
+  (define-key python-mode-map (kbd "<f8>")
+    (lambda()
+      (interactive)
+      (progn
+        (python-shell-send-region))))
+  )
 
-     (setq py-force-py-shell-name-p 1)
+;; pydoc info
+;;(include-plugin "pydoc-info-0.2")
+;;(require 'pydoc-info)
 
-     ;; switch to the interpreter after executing code
-     ;; (setq py-shell-switch-buffers-on-execute-p t)
-     (setq py-switch-buffers-on-execute-p nil)
-
-     ;; try to automagically figure out indentantion
-     (setq py-smart-indentation t)
-
-     ;; add F9
-     (add-hook 'python-mode-hook 'my-python-mode-hook)
-     (defun my-python-mode-hook ()
-       "*Compile file with F9."
-       (define-key python-mode-map (kbd "<f9>")
-         (lambda()
-           (interactive)
-           (progn
-             (py-execute-buffer))))
-
-       (define-key python-mode-map (kbd "<f8>")
-         (lambda()
-           (interactive)
-           (progn
-             (py-execute-region))))
-       )
-
-     ;; pydoc info
-     ;;(include-plugin "pydoc-info-0.2")
-     ;;(require 'pydoc-info)
-
-     ;;(require 'jedi)
-     (autoload 'jedi-setup "jedi" t)
-     (add-hook 'python-mode-hook 'jedi:setup)
-     (setq jedi:complete-on-dot t)
-     ))
+(require 'jedi)
+(autoload 'jedi-setup "jedi" t)
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
 
 (provide 'python-settings)
 
