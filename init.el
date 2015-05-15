@@ -37,15 +37,15 @@
 (require 'exec-path-from-shell)
 (exec-path-from-shell-copy-env "PATH")
 
-;; ;; load settings/loaddefs if available, if not generate it first
-;; ;; this file contains autoloads from packages in settings dir
-;; (autoload 'update-autoloads-in-package-area "update-auto-loads" t)
-;; (let ((loaddef (concat (file-name-as-directory emacs-root) "settings/loaddefs.el")))
-;;   (if (file-exists-p loaddef)
-;;       (progn
-;;         (load-file loaddef))
-;;     (update-autoloads-in-package-area)
-;;     (load-file loaddef)))
+;; load settings/loaddefs if available, if not generate it first
+;; this file contains autoloads from packages in settings dir
+(autoload 'update-autoloads-in-package-area "update-auto-loads" t)
+(let ((loaddef (concat (file-name-as-directory emacs-root) "settings/loaddefs.el")))
+  (if (file-exists-p loaddef)
+      (progn
+        (load-file loaddef))
+    (update-autoloads-in-package-area)
+    (load-file loaddef)))
 
 ;; load plugins with el-get
 (require 'el-get-settings)
