@@ -27,11 +27,12 @@
 (require 'python)
 
 (setq python-shell-interpreter "ipython")
-(setq python-shell-interpreter-args
-      (if (system-is-mac)
-          "--matplotlib=osx --colors=Linux"
-        (if (system-is-linux)
-            "--gui=wx --matplotlib=wx --colors=Linux")))
+;; (setq python-shell-interpreter-args
+;;       (if (system-is-mac)
+;;           "--matplotlib=osx --colors=Linux"
+;;         (if (system-is-linux)
+;;             "--gui=wx --matplotlib=wx --colors=Linux")))
+(setq python-shell-interpreter-args "")
 (setq python-shell-prompt-regexp "In \\[[0-9]+\\]: ")
 (setq python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: ")
 (setq python-shell-completion-setup-code  "from IPython.core.completerlib import module_completion")
