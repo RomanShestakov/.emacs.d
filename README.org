@@ -2,8 +2,6 @@
 #+AUTHOR:   Roman Shestakov
 #+LANGUAGE: en
 
-* EMACS setup
-
 I re-used lots of ideas from the following emacs project
 https://github.com/jhamrick/emacs
 
@@ -33,13 +31,11 @@ location '/usr/local/lib/erlang'
 Extra packages are installed with el-get. They are placed in ~/.emacs/el-get.
 The packages that are installed manually should be placed into ~/.emacs/lisp
 
-* Extra dependencies:
-
+* EMACS Setup
+** Extra dependencies:
 el-get needs bzr to checkout python-mode. Some plug-ins need tex to compile.
-
-these packages needs to be installed before running el-get install
-
-** linux debian
+these packages needs to be installed before running el-get install:
+** Linux debian
 #+BEGIN_SRC bash
 sudo apt-get install texinfo
 sudo apt-get install texlive
@@ -73,13 +69,20 @@ pip install virtualenv
 pip install ipython
 #+END_SRC
 
-** to install Vagrant VM with emacs setup:
+** Install Vagrant VM with emacs setup:
 ## this will load VM repo and install it with Vagrant
-
+#+BEGIN_SRC 
 git clone https://github.com/RomanShestakov/vm.git
 cd vm
 vagrant up
-
+vagrant ssh
+emacs -nw
+## setup jedi 
+M-x jedi:install-server
+start python file.
+C-c C-p - start python shell
+C-c C-c - eval python buffer
+#+END_SRC
 
 * Color theme - gruber-darker-theme
 https://github.com/rexim/gruber-darker-theme
@@ -105,6 +108,16 @@ make
 
 this will generate syntaxerl file which needs to be added to .emacs.d/bin
 
+* Python mode
+I use python.el which is shipped with emacs.
+The setup depends on ipython, virtualenv.
+Before starting using python mode, jedi mode needs to be initialized.
+M-x jedi:install-server
+
+shortcuts:
+C-c C-p - start python shell
+C-c C-c - execute buffer (or F9)
+
 * Jedi autocompletion mode for python
 jedi requires that pip and virtualenv are installed
 easy-install pip
@@ -123,7 +136,6 @@ will create a tar and upload it into repo:
 https://github.com/RomanShestakov/em1.git
 
 * How to user emacs.tar.gz on host machine
-
 #+BEGIN_SRC 
 git clone https://github.com/RomanShestakov/em1.git
 tar -zxvf em1/emacs.tar.gz
