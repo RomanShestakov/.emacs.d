@@ -20,9 +20,9 @@
 
 ;;; Code:
 
-;; set PATHONPATH from env
-(require 'exec-path-from-shell)
-(exec-path-from-shell-copy-env "PATHONPATH")
+;; ;; ;; set PATHONPATH from env
+;; (require 'exec-path-from-shell)
+;; (exec-path-from-shell-copy-env "PATHONPATH")
 
 (require 'python)
 
@@ -60,10 +60,20 @@
 ;;(include-plugin "pydoc-info-0.2")
 ;;(require 'pydoc-info)
 
-(require 'jedi)
-(autoload 'jedi-setup "jedi" t)
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)
+(use-package jedi
+  :ensure t
+  :preface
+  (declare-function jedi:goto-definition jedi nil)
+  (declare-function jedi:related-names jedi nil)
+  (declare-function jedi:show-doc jedi nil)
+  :bind (("C-." . jedi:goto-definition)
+         ("C-c r" . jedi:related-names)
+         ("C-?" . jedi:show-doc)))
+
+;; (require 'jedi)
+;; (autoload 'jedi-setup "jedi" t)
+;; (add-hook 'python-mode-hook 'jedi:setup)
+;; (setq jedi:complete-on-dot t)
 
 (provide 'python-settings)
 

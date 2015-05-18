@@ -7,6 +7,16 @@
 
 (eval-when-compile (require 'cl))
 
+;; Bootstrap package management
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(package-initialize)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(eval-when-compile (require 'use-package))
+
 ;; add root to all emacs-related stuff
 ;; and add load-paths to packages
 ;; see http://stackoverflow.com/questions/23324760/emacs-byte-compile-errors-on-the-first-require-statement
@@ -25,41 +35,82 @@
     (concat (file-name-as-directory emacs-root) "lisp")
     "*Path to custom lisp lib.")
 
-  ;; path to where plugins are kept
-  (defvar plugin-path (concat (file-name-as-directory emacs-root) "el-get")
-    "*Path to el-get plugins.")
-
   ;; add subdirectories of root into load path
   (let ((default-directory emacs-root))
     (normal-top-level-add-subdirs-to-load-path)))
 
 ;; set PATH from env
-(require 'exec-path-from-shell)
-(exec-path-from-shell-copy-env "PATH")
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-env "PATH")
+  (exec-path-from-shell-copy-env "PATHONPATH"))
 
-;; load settings/loaddefs if available, if not generate it first
-;; this file contains autoloads from packages in settings dir
-(autoload 'update-autoloads-in-package-area "update-auto-loads" t)
-(let ((loaddef (concat (file-name-as-directory emacs-root) "settings/loaddefs.el")))
-  (if (file-exists-p loaddef)
-      (progn
-        (load-file loaddef))
-    (update-autoloads-in-package-area)
-    (load-file loaddef)))
+;; org-mode
+(use-package org
+  :ensure t
+  :config
+  (setq org-support-shift-select t)
+  (setq org-completion-use-ido t)
+  (use-package org-repo-todo :ensure t))
 
-;; load plugins with el-get
-(require 'el-get-settings)
+;; magit
+(use-package magit
+  :ensure t
+  :bind ("C-x g" . magit-status)
+  :config
+  (bind-key "C-c C-a" #'magit-just-amend magit-mode-map)
+  (advice-add 'magit-process-sentinel :around #'magit-process-alert-after-finish-in-background)
+  (setq git-commit-summary-max-length 72
+        magit-completing-read-function 'magit-ido-completing-read
+        magit-log-auto-more t
+        ;;magit-repository-directories (funcall #'projectile-relevant-known-git-projects)
+        magit-no-confirm t))
+(setq magit-last-seen-setup-instructions "1.4.0")
 
-;; apply general customisation settings
-(require 'general-settings)
+;; display windows numbers
+(use-package window-number
+  :ensure t
+  :config
+  (window-number-mode 1)
+  (window-number-meta-mode 1))
 
-;; move-text mode
-(require 'move-text)
-(move-text-default-bindings)
+;; enable multi-term
+(use-package multi-term
+  :ensure t
+  :defer t
+  :bind ("C-c t" . multi-term-next)
+  :init
+  (setq multi-term-program-switches "--login")
+  (add-hook 'term-mode-hook (lambda() (setq yas-dont-activate t)))
+  (setq multi-term-program "/bin/bash"
+        term-unbind-key-list '("C-x"
+                               "C-h"
+                               "M-x"
+                               "C-z")
+        term-term-name "xterm-256color"))
 
 ;; https://github.com/ramnes/move-border
 ;; allows to move border between windows
-(require 'move-border)
+(use-package move-border
+  :load-path "lisp/move-border")
+
+;; enable flycheck
+(use-package flycheck
+  :ensure t
+  :defer 5
+  :config
+  (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
+
+;; move-text mode
+(use-package move-text
+  :ensure t
+  :config
+  (move-text-default-bindings))
+
+;; apply general customisation settings
+(require 'general-settings)
 
 ;; add modes with customized settings
 (require 'erlang-settings)
@@ -67,30 +118,21 @@
 (require 'key-binding-settings)
 (require 'color-theme-settings)
 (require 'helm-settings)
-(require 'org-mode-settings)
 (require 'ido-settings)
-(require 'elisp-slime-nav-settings)
-(require 'flycheck-mode-settings)
-(require 'yasnippet-settings)
-(require 'magit)
-(require 'virtualenv-settings)
-(require 'multi-term-settings)
+
+;; (require 'org-mode-settings)
+;; (require 'elisp-slime-nav-settings)
+;; (require 'flycheck-mode-settings)
+;; (require 'yasnippet-settings)
+;; (require 'magit)
+;; (require 'virtualenv-settings)
+;; (require 'multi-term-settings)
+
 ;;(require 'prolog-settings)
 ;;(require 'elixir-settings)
 ;;(require 'ctag-settings)
 ;;(require 'projectile-settings)
 ;;(require 'fill-column-indicator-settings)
 
-;; stop maggit nagging
-(setq magit-last-seen-setup-instructions "1.4.0")
-
-;; see #7 from http://a-nickels-worth.blogspot.co.uk/2007/11/effective-emacs.html
-;; load custom-file
-(setq custom-file (concat (file-name-as-directory emacs-root) ".emacs-custom.el"))
-(load custom-file 'noerror)
-
-;; ;; make sure that loaddefs.el is updated on emacs exit
-;; ;; http://stackoverflow.com/questions/4189159/emacs23-elisp-how-to-properly-autoload-this-library
-;; (add-hook 'kill-emacs-hook 'update-autoloads-in-package-area)
-
 ;;; init.el ends here
+
