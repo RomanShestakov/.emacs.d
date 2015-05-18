@@ -58,15 +58,15 @@
 ;; magit
 (use-package magit
   :ensure t
-  :bind ("C-x g" . magit-status)
-  :config
-  (bind-key "C-c C-a" #'magit-just-amend magit-mode-map)
-  (advice-add 'magit-process-sentinel :around #'magit-process-alert-after-finish-in-background)
-  (setq git-commit-summary-max-length 72
-        magit-completing-read-function 'magit-ido-completing-read
-        magit-log-auto-more t
-        ;;magit-repository-directories (funcall #'projectile-relevant-known-git-projects)
-        magit-no-confirm t))
+  :bind ("C-x g" . magit-status))
+  ;; :config
+  ;; (bind-key "C-c C-a" #'magit-just-amend magit-mode-map)
+  ;; (advice-add 'magit-process-sentinel :around #'magit-process-alert-after-finish-in-background)
+  ;; (setq git-commit-summary-max-length 72
+  ;;       magit-completing-read-function 'magit-ido-completing-read
+  ;;       magit-log-auto-more t
+  ;;       ;;magit-repository-directories (funcall #'projectile-relevant-known-git-projects)
+  ;;       magit-no-confirm t))
 (setq magit-last-seen-setup-instructions "1.4.0")
 
 ;; display windows numbers
