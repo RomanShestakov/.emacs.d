@@ -84,7 +84,6 @@
         term-term-name "xterm-256color"))
 
 ;; https://github.com/ramnes/move-border
-;; allows to move border between windows
 (use-package move-border
   :load-path "lisp/move-border")
 
@@ -101,6 +100,25 @@
   :config
   (move-text-default-bindings))
 
+;; flx-ido
+(use-package flx-ido
+  :ensure t
+  ;:disabled t
+  ;:load-path "site-lisp/flx"
+  :config
+  (setq ido-enable-flex-matching t)
+  (setq ido-everywhere t)
+  (ido-mode 1)
+  ;; disable ido faces to see flx highlights
+  (setq ido-use-faces nil)
+  (setq ido-use-filename-at-point 'guess)
+  (setq ido-create-new-buffer 'always)
+  (setq ido-file-extensions-order '(".scala" ".org" ".txt" ".py" ".emacs" ".xml" ".el" ".ini" ".cfg" ".cnf"))
+  ;; You can disable the merging (the "looking in other directories" in ido vulgo) with
+  ;; http://stackoverflow.com/questions/7479565/emacs-ido-mode-and-creating-new-files-in-directories-it-keeps-changing-the-dire
+  (setq ido-auto-merge-work-directories-length -1)
+  (flx-ido-mode 1))
+
 ;; apply general customisation settings
 (require 'general-settings)
 
@@ -110,15 +128,11 @@
 (require 'key-binding-settings)
 (require 'color-theme-settings)
 (require 'helm-settings)
-(require 'ido-settings)
 
-;; (require 'org-mode-settings)
+;; (require 'ido-settings)
 ;; (require 'elisp-slime-nav-settings)
-;; (require 'flycheck-mode-settings)
 ;; (require 'yasnippet-settings)
-;; (require 'magit)
 ;; (require 'virtualenv-settings)
-;; (require 'multi-term-settings)
 
 ;;(require 'prolog-settings)
 ;;(require 'elixir-settings)

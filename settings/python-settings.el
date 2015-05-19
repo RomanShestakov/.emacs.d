@@ -20,10 +20,6 @@
 
 ;;; Code:
 
-;; ;; ;; set PATHONPATH from env
-;; (require 'exec-path-from-shell)
-;; (exec-path-from-shell-copy-env "PATHONPATH")
-
 (require 'python)
 
 (setq python-shell-interpreter "ipython")
@@ -69,11 +65,6 @@
   :bind (("C-." . jedi:goto-definition)
          ("C-c r" . jedi:related-names)
          ("C-?" . jedi:show-doc)))
-
-;; (require 'jedi)
-;; (autoload 'jedi-setup "jedi" t)
-;; (add-hook 'python-mode-hook 'jedi:setup)
-;; (setq jedi:complete-on-dot t)
 
 (provide 'python-settings)
 
