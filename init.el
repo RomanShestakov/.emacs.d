@@ -103,8 +103,6 @@
 ;; flx-ido
 (use-package flx-ido
   :ensure t
-  ;:disabled t
-  ;:load-path "site-lisp/flx"
   :config
   (setq ido-enable-flex-matching t)
   (setq ido-everywhere t)
