@@ -4,10 +4,13 @@
 
 I re-used lots of ideas from the following emacs project
 https://github.com/jhamrick/emacs
+https://github.com/jwiegley/use-package
+https://github.com/jwiegley/dot-emacs
+http://pages.sachachua.com/.emacs.d/Sacha.html#unnumbered-189
 
 * Environment vars that needs to be set in .profile
 ** ERL_TOP
-The path to erlang installation are loaded from env var ERL_TOP so
+The path to erlang installation is loaded from env var ERL_TOP so
 this var needs to be set in bash .profile
 
 #+BEGIN_SRC bash
@@ -28,7 +31,8 @@ location '/usr/local/lib/erlang'
 
 * Emacs plug-ins
 
-Extra packages are installed with el-get. They are placed in ~/.emacs/el-get.
+Extra packages are installed with MELPA. They are placed in ~/.emacs/elpa.
+Install of packages 
 The packages that are installed manually should be placed into ~/.emacs/lisp
 
 * EMACS Setup
@@ -89,13 +93,21 @@ https://github.com/rexim/gruber-darker-theme
 * Distel-mode
 
 Distel mode depends on Erlang mode, so need to correct a path to the version of 
-tools/emacs (why erlang install doesn't make symlink to it?)
+tools/emacs
 
-need to add this line in init.el
+Distel mode lives in lisp/distel - it is easier this way when getting via ELPA.
+Also it needs to compile erl files before the first run. 
+
 #+BEGIN_SRC elisp
-;; load a path to erlang list as distel install in el-get distel package depends on it
-(add-to-list 'load-path "/usr/local/lib/erlang/lib/tools-2.6.14/emacs")
+cd .emacs.d/lisp/distel
+make
 #+END_SRC
+
+To use distel mode: 
+
+1. start erlang shell : C-c C-z
+2. connect distel to it: C-c C-d n
+now M-. should work 
 
 * Syntax checker for erlang-mode
 I am using [[https://github.com/ten0s/syntaxerl][syntaxerl]], which integrates with flymake
@@ -124,36 +136,4 @@ easy-install pip
 pip install virtualenv
 then in emacs:
 M-x jedi:install-server
-* How to create emacs.tar.gz
-it is possible to create a distrib of .emacs.d which doesn't have dependency on el-get.
-running:
-#+BEGIN_SRC 
-cd .emacs.d
-make tar
-#+END_SRC
-
-will create a tar and upload it into repo:
-https://github.com/RomanShestakov/em1.git
-
-* How to user emacs.tar.gz on host machine
-#+BEGIN_SRC 
-git clone https://github.com/RomanShestakov/em1.git
-tar -zxvf em1/emacs.tar.gz
-cp -r Users/romanshestakov/tmp/tar/.emacs.d/ .
-#start with no init
-sudo emacs -nw --no-init-file
-# comment out 
-;;(require 'el-get-settings)
-;;(require 'elixir-settings)
-;;(require 'helm-settings)
-;;(require 'org-mode-settings)
-;;(require 'flycheck-mode-settings)
-;;(require 'yasnippet-settings)
-;;(require 'magit)
-in init.el
-#+END_SRC
-
-
-
-
 
