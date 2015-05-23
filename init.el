@@ -118,6 +118,25 @@
   (setq ido-auto-merge-work-directories-length -1)
   (flx-ido-mode 1))
 
+;; projectile
+;; https://github.com/lunaryorn/.emacs.d/blob/master/init.el
+(use-package projectile
+  :ensure t
+  ;; :bind (("s-p" . projectile-find-file)
+  ;;        ("s-b" . projectile-switch-to-buffer)
+  ;;        ("s-F" . projectile-ag))
+  :init (projectile-global-mode)
+  :diminish projectile-mode
+  :config
+  (progn
+    (setq projectile-enable-caching t)
+    (setq projectile-require-project-root nil)
+    (setq projectile-keymap-prefix (kbd "C-c p"))
+    (setq projectile-completion-system 'helm)))
+(use-package helm-projectile
+  :ensure t
+  :defer t)
+
 ;; apply general customisation settings
 (require 'general-settings)
 
@@ -140,4 +159,3 @@
 ;;(require 'fill-column-indicator-settings)
 
 ;;; init.el ends here
-

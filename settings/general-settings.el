@@ -87,6 +87,9 @@
 ;; add a new line when going to the next line
 (setq next-line-add-newlines t)
 
+;; short yes or no
+(fset 'yes-or-no-p #'y-or-n-p)
+
 ;; don't blink the curson
 ;;(blink-cursor-mode 0)
 

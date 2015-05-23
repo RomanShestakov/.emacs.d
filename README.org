@@ -2,13 +2,8 @@
 #+AUTHOR:   Roman Shestakov
 #+LANGUAGE: en
 
-I re-used lots of ideas from the following emacs project
-https://github.com/jhamrick/emacs
-https://github.com/jwiegley/use-package
-https://github.com/jwiegley/dot-emacs
-http://pages.sachachua.com/.emacs.d/Sacha.html#unnumbered-189
-
-* Environment vars that needs to be set in .profile
+* Environment vars
+set the following vars in .profile
 ** ERL_TOP
 The path to erlang installation is loaded from env var ERL_TOP so
 this var needs to be set in bash .profile
@@ -30,20 +25,18 @@ If this env is not setup, erlang-path-settings will set the default
 location '/usr/local/lib/erlang'
 
 * Emacs plug-ins
-
-Extra packages are installed with MELPA. They are placed in ~/.emacs/elpa.
-Install of packages 
+External packages are installed from MELPA using use-package macro. They are placed in ~/.emacs.d/elpa.
+~/.emacs.d/elpa dir is saved into git tree. This is done to improve portability across different systems.
 The packages that are installed manually should be placed into ~/.emacs/lisp
 
-* EMACS Setup
+* Emacs Setup
 ** Extra dependencies:
-el-get needs bzr to checkout python-mode. Some plug-ins need tex to compile.
-these packages needs to be installed before running el-get install:
+These packages needs to be installed before install:
 ** Linux debian
 #+BEGIN_SRC bash
-sudo apt-get install texinfo
-sudo apt-get install texlive
-sudo apt-get install bzr
+#sudo apt-get install texinfo
+#sudo apt-get install texlive
+#sudo apt-get install bzr
 sudo apt-get install git
 # python mode autocomple with jedi needs vertualenv
 sudo apt-get install -y python-virtualenv
@@ -59,12 +52,12 @@ sudo pip install ipython
 # ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 brew install autoconf
 brew install git
-brew install bzr
+# brew install bzr
 # emacs depends on texinfo v.5.2
 # brew install texinfo
 # http://www.linuxfromscratch.org/lfs/view/development/chapter06/texinfo.html
-brew link texinfo --force
-brew info texinfo
+# brew link texinfo --force
+# brew info texinfo
 #download / manually install mactex
 http://www.tug.org/mactex/
 # need to install pip and virtualenv for jedi autocompletion to work in python-mode
@@ -74,6 +67,7 @@ pip install ipython
 #+END_SRC
 
 ** Install Vagrant VM with emacs setup:
+
 ## this will load VM repo and install it with Vagrant
 #+BEGIN_SRC 
 git clone https://github.com/RomanShestakov/vm.git
@@ -136,4 +130,15 @@ easy-install pip
 pip install virtualenv
 then in emacs:
 M-x jedi:install-server
+
+* Projectile
+http://tuhdo.github.io/helm-projectile.html
+* Key bindings
+* Links to the nice emacs configurations
+https://github.com/jhamrick/emacs
+https://github.com/jwiegley/use-package
+https://github.com/jwiegley/dot-emacs
+http://pages.sachachua.com/.emacs.d/Sacha.html#unnumbered-189
+https://github.com/lunaryorn/.emacs.d/blob/master/init.el
+
 
