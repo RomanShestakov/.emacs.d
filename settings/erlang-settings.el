@@ -25,13 +25,13 @@
   "*Path to Erlang installation.
 Env var ERL_TOP needs to be set in bash environment.  If ERL_TOP is not set, return  /usr/local/lib/erlang.")
 
-;; add lib to erlang-root
+;; add erlang bin dir to exec-path
+(setq exec-path (cons (concat (file-name-as-directory erlang-root) "bin") exec-path))
+
+;; add "lib" to erlang-root
 (defvar erlang-root-dir
   (concat (file-name-as-directory erlang-root) "lib")
   "*Path to erlang lib.")
-
-;; add erlang bin dir to exec-path
-(setq exec-path (cons (concat (file-name-as-directory erlang-root) "bin") exec-path))
 
 ;; find the name of tools- directory
 (defun get-erlang-tools-dir-name ()
@@ -46,13 +46,49 @@ Env var ERL_TOP needs to be set in bash environment.  If ERL_TOP is not set, ret
            (concat (file-name-as-directory erlang-root-dir) (get-erlang-tools-dir-name)))
           "emacs"))
 
-;;;###autoload
 (defun erlang-path-init()
   "*Sets the paths to erlang mode."
   (add-to-list 'load-path (get-full-path-to-erlang-tools-dir)))
 
-;; set paths to erlang libs
-;;(autoload 'erlang-path-init "erlang-path-settings" nil)
+;; http://stackoverflow.com/questions/6367743/emacs-find-file-without-changing-working-directory
+(defun my-erlang-shell-display()
+  "*Override existing erlang-shell-display to make sure that
+erlang shell is always started from the root of the project. Root
+project should have .erlang in it."
+  (interactive)
+  (when-let (default-directory (locate-dominating-file default-directory ".erlang"))
+            (erlang-shell-display)))
+
+(defun my-erlang-compile()
+  "*Override existing erlang-compile to make sure that
+erlang shell is always started from the root of the project. Root
+project should have .erlang in it."
+  (interactive)
+  (when-let (default-directory (locate-dominating-file default-directory ".erlang"))
+            (erlang-compile)))
+
+(defun my-erlang-mode-hook ()
+  "*When starting an Erlang shell in Emacs, default in the node name."
+  (setq inferior-erlang-machine-options '("-sname" "emacs"))
+  ;; compile file with F9
+  (define-key erlang-mode-map [f9] 'my-erlang-compile)
+  (define-key erlang-mode-map (kbd "C-c C-z") 'my-erlang-shell-display))
+
+(defun flymake-compile-script-path (path)
+  "*PATH to compile script."
+  (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                     'flymake-create-temp-inplace))
+         (local-file (file-relative-name
+                      temp-file
+                      (file-name-directory buffer-file-name))))
+    (list path (list local-file))))
+
+;; path to syntaxerl binary used by flymake for erlang syntax checking
+(defun flymake-syntaxerl ()
+  "*Syntaxerl script used for erlang syntax checking."
+  (flymake-compile-script-path (concat emacs-root "bin/syntaxerl")))
+
+;; load erlang paths and init erlang-mode
 (erlang-path-init)
 (load "erlang-start" 'no-error)
 
@@ -65,14 +101,9 @@ Env var ERL_TOP needs to be set in bash environment.  If ERL_TOP is not set, ret
           (add-hook 'erlang-mode-hook
                     (lambda ()
                       ;; when starting an Erlang shell in Emacs, default in the node name
-                      (setq inferior-erlang-machine-options '("-sname" "emacs"))
-                      ))
+                      (setq inferior-erlang-machine-options '("-sname" "emacs"))))
 
      (setq erl-nodename-cache (make-symbol (concat "emacs")))
-        ;; Mac OS X uses "name.local" instead of "name", this should work
-        ;; pretty much anywhere without having to muck with NetInfo
-        ;; ... but I only tested it on Mac OS X.
-       ;(car (split-string (shell-command-to-string "hostname"))))))
 
      ;; A number of the erlang-extended-mode key bindings are useful in the shell too
      (defconst distel-shell-keys
@@ -83,37 +114,19 @@ Env var ERL_TOP needs to be set in bash environment.  If ERL_TOP is not set, ret
          ("\M-*"      erl-find-source-unwind))
        "Additional keys to bind when in Erlang shell.")
 
+     ;; define auto erlang mode for these files/extensions.
+     (add-to-list 'auto-mode-alist '(".*\\.app\\'" . erlang-mode))
+     (add-to-list 'auto-mode-alist '(".*app\\.src\\'" . erlang-mode))
+     (add-to-list 'auto-mode-alist '(".*\\.config\\'" . erlang-mode))
+     (add-to-list 'auto-mode-alist '(".*\\.rel\\'" . erlang-mode))
+     (add-to-list 'auto-mode-alist '(".*\\.script\\'" . erlang-mode))
+     (add-to-list 'auto-mode-alist '(".*\\.escript\\'" . erlang-mode))
+     
      (add-hook 'erlang-shell-mode-hook
                (lambda ()
                  ;; add some Distel bindings to the Erlang shell
                  (dolist (spec distel-shell-keys)
-                   (define-key erlang-shell-mode-map (car spec) (cadr spec)))))
-     
-     ))
-
-     ;; http://stackoverflow.com/questions/6367743/emacs-find-file-without-changing-working-directory
-     (defun my-erlang-shell-display()
-       "*Override existing erlang-shell-display to make sure that
-erlang shell is always started from the root of the project. Root
-project should have .erlang in it."
-       (interactive)
-       (when-let (default-directory (locate-dominating-file default-directory ".erlang"))
-                 (erlang-shell-display)))
-
-     (defun my-erlang-compile()
-       "*Override existing erlang-compile to make sure that
-erlang shell is always started from the root of the project. Root
-project should have .erlang in it."
-       (interactive)
-       (when-let (default-directory (locate-dominating-file default-directory ".erlang"))
-                 (erlang-compile)))
-
-     (defun my-erlang-mode-hook ()
-       "*When starting an Erlang shell in Emacs, default in the node name."
-       (setq inferior-erlang-machine-options '("-sname" "emacs"))
-       ;; compile file with F9
-       (define-key erlang-mode-map [f9] 'my-erlang-compile)
-       (define-key erlang-mode-map (kbd "C-c C-z") 'my-erlang-shell-display))
+                   (define-key erlang-shell-mode-map (car spec) (cadr spec)))))))
 
      ;; add hooks to erlang-mode
      (add-hook 'erlang-mode-hook 'my-erlang-mode-hook)
@@ -131,22 +144,8 @@ project should have .erlang in it."
      ;; flymake syntax checking.
      ;; setup syntaxerl to do error checking
      ;; https://github.com/ten0s/syntaxerl
-     ;; (autoload 'flymake "flymake" t)
-     ;;(setq flymake-log-level 3)
      (require 'flymake)
-
-     (defun flymake-compile-script-path (path)
-       "*PATH to compile script."
-       (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                          'flymake-create-temp-inplace))
-              (local-file (file-relative-name
-                           temp-file
-                           (file-name-directory buffer-file-name))))
-         (list path (list local-file))))
-
-     (defun flymake-syntaxerl ()
-       "*Script used to compile."
-       (flymake-compile-script-path (concat emacs-root "bin/syntaxerl")))
+     ;;(setq flymake-log-level 3)
 
      (add-hook 'erlang-mode-hook
                '(lambda()

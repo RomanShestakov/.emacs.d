@@ -102,7 +102,7 @@ To use distel mode:
 now M-. should work 
 
 * Syntax checker for erlang-mode
-I am using [[https://github.com/ten0s/syntaxerl][syntaxerl]], which integrates with flymake
+Erlang mode uses [[https://github.com/ten0s/syntaxerl][syntaxerl]] for erlang syntax checking, which integrates with flymake
 
 #+BEGIN_SRC bash
 git clone git://github.com/ten0s/syntaxerl.git
@@ -143,7 +143,6 @@ https://github.com/jwiegley/use-package
 https://github.com/jwiegley/dot-emacs
 http://pages.sachachua.com/.emacs.d/Sacha.html#unnumbered-189
 https://github.com/lunaryorn/.emacs.d/blob/master/init.el
-
 
 
 * How to start up erlang session with distel
