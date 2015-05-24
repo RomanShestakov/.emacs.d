@@ -147,7 +147,8 @@
          ("M-x" . helm-M-x)
          ("M-t" . helm-for-files)
          ("C-x c o" . helm-occur)
-         ("C-x c s" . helm-swoop)
+         ;; TODO: install helm-swoop
+         ;;("C-x c s" . helm-swoop)
          ("C-x c y" . helm-yas-complete)
          ("C-x c Y" . helm-yas-create-snippet-on-region)
          ("C-x c b" . my/helm-do-grep-book-notes)
