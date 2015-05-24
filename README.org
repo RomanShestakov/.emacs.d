@@ -2,35 +2,7 @@
 #+AUTHOR:   Roman Shestakov
 #+LANGUAGE: en
 
-* Environment vars
-set the following vars in .profile
-** ERL_TOP
-The path to erlang installation is loaded from env var ERL_TOP so
-this var needs to be set in bash .profile
-
-#+BEGIN_SRC bash
-# root of erlang install
-export ERL_TOP=/usr/local/lib/erlang
-#+END_SRC
-
-** PYTHONPATH
-
-PYTHONPATH is used by python-mode, should be setup by .profile
-
-#+BEGIN_SRC bash
-export PYTHONPATH=/usr/local/lib/python2.7/site-packages:
-#+END_SRC
-
-If this env is not setup, erlang-path-settings will set the default
-location '/usr/local/lib/erlang'
-
-* Emacs plug-ins
-External packages are installed from MELPA using use-package macro. They are placed in ~/.emacs.d/elpa.
-~/.emacs.d/elpa dir is saved into git tree. This is done to improve portability across different systems.
-The packages that are installed manually should be placed into ~/.emacs/lisp
-
-* Emacs Setup
-** Extra dependencies:
+* Pre-requisites
 These packages needs to be installed before install:
 ** Linux debian
 #+BEGIN_SRC bash
@@ -58,7 +30,7 @@ brew install git
 # http://www.linuxfromscratch.org/lfs/view/development/chapter06/texinfo.html
 # brew link texinfo --force
 # brew info texinfo
-#download / manually install mactex
+# download / manually install mactex
 http://www.tug.org/mactex/
 # need to install pip and virtualenv for jedi autocompletion to work in python-mode
 easy-install pip
@@ -66,8 +38,29 @@ pip install virtualenv
 pip install ipython
 #+END_SRC
 
-** Install Vagrant VM with emacs setup:
+* Install
+# Clone from github:
+git clone https://github.com/RomanShestakov/.emacs.d.git
+# build distel
+cd .emacs.d/lisp/distel && make
 
+# Environment vars
+# set the following vars in .profile
+# ERL_TOP
+# The path to erlang installation is loaded from env var ERL_TOP so
+# this var needs to be set in bash .profile
+
+#+BEGIN_SRC bash
+export ERL_TOP=/usr/local/lib/erlang
+#+END_SRC
+
+# PYTHONPATH
+# PYTHONPATH is used by python-mode, should be setup by .profile
+#+BEGIN_SRC bash
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:
+#+END_SRC
+
+* Install with Vagrant
 ## this will load VM repo and install it with Vagrant
 #+BEGIN_SRC 
 git clone https://github.com/RomanShestakov/vm.git
@@ -81,6 +74,11 @@ start python file.
 C-c C-p - start python shell
 C-c C-c - eval python buffer
 #+END_SRC
+
+* Emacs plug-ins
+External packages are installed from MELPA using use-package macro. They are placed in ~/.emacs.d/elpa.
+~/.emacs.d/elpa dir is saved into git tree. This is done to improve portability across different systems.
+The packages that are installed manually should be placed into ~/.emacs/lisp
 
 * Color theme - gruber-darker-theme
 https://github.com/rexim/gruber-darker-theme
@@ -148,3 +146,9 @@ https://github.com/lunaryorn/.emacs.d/blob/master/init.el
 
 
 
+* How to start up erlang session with distel
+Erlang project should have a .erlang file in the root. See .emacs/snippets/erlang-mode/erlang.
+Any .erl file in the project should be evaluated by F9 - this will open a new erlang shell (if not already opened).
+Erlang shell will load .erlang from the root of the project and will setup all the required paths to the dependecies.
+C-c C-d n - will start Distel session linked to the loaded erlang shell.
+After that M-. / M-, binding should work.
