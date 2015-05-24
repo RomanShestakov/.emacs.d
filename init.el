@@ -15,7 +15,11 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
-(eval-when-compile (require 'use-package))
+(eval-when-compile
+  (require 'use-package))
+
+;; allows remove not-useful info for minor modes 
+(require 'diminish)
 
 ;; add root to all emacs-related stuff
 ;; and add load-paths to packages
@@ -122,16 +126,14 @@
 ;; https://github.com/lunaryorn/.emacs.d/blob/master/init.el
 (use-package projectile
   :ensure t
-  ;; :bind (("s-p" . projectile-find-file)
-  ;;        ("s-b" . projectile-switch-to-buffer)
-  ;;        ("s-F" . projectile-ag))
   :init (projectile-global-mode)
   :diminish projectile-mode
   :config
   (progn
     (setq projectile-enable-caching t)
-    (setq projectile-require-project-root nil)
+    ;;(setq projectile-require-project-root nil)
     (setq projectile-keymap-prefix (kbd "C-c p"))
+    (define-key projectile-command-map (kbd "g") #'projectile-grep)
     (setq projectile-completion-system 'helm)))
 (use-package helm-projectile
   :ensure t

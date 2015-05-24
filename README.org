@@ -133,12 +133,18 @@ M-x jedi:install-server
 
 * Projectile
 http://tuhdo.github.io/helm-projectile.html
-* Key bindings
-* Links to the nice emacs configurations
+** Key bindings for projectile
+C-c p p - switch project
+C-c p f - find file in the current project
+C-c p g - grep in files in the project
+C-u C-c p f - invalidate cache
+C-c p C-h - help (show key bindings)
+* Links to the nice examples of emacs configurations
 https://github.com/jhamrick/emacs
 https://github.com/jwiegley/use-package
 https://github.com/jwiegley/dot-emacs
 http://pages.sachachua.com/.emacs.d/Sacha.html#unnumbered-189
 https://github.com/lunaryorn/.emacs.d/blob/master/init.el
+
 
 
