@@ -17,9 +17,8 @@
   (package-install 'use-package))
 (eval-when-compile
   (require 'use-package))
-
-;; allows remove not-useful info for minor modes 
 (require 'diminish)
+(require 'bind-key)
 
 ;; add root to all emacs-related stuff
 ;; and add load-paths to packages
