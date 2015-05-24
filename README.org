@@ -146,10 +146,15 @@ After that M-. / M-, binding should work.
 * Some nice emacs functions
 describe-personal-keybindings - allows to see defined keys binding and overrides
 * Links to the nice examples of emacs configurations
-[[https://github.com/jhamrick/emacs][Jessica Hamrick emacs setup as Python IDE]]
-[[https://github.com/jwiegley/use-package][Use-package Git repo]]
-[[https://github.com/jwiegley/dot-emacs][John Wiegley init.el]]
-[[http://pages.sachachua.com/.emacs.d/Sacha.html#unnumbered-189][Sacha Chua init file]]
-https://github.com/lunaryorn/.emacs.d/blob/master/init.el
-[[https://www.youtube.com/watch?v=2TSKxxYEbII][John Wiegley explanation for use-package]]
+- [[https://github.com/jhamrick/emacs][Jessica Hamrick emacs setup as Python IDE]]
+- [[https://github.com/jwiegley/use-package][Use-package Git repo]]
+- [[https://github.com/jwiegley/dot-emacs][John Wiegley init.el]]
+- [[http://pages.sachachua.com/.emacs.d/Sacha.html#unnumbered-189][Sacha Chua init file]]
+- https://github.com/lunaryorn/.emacs.d/blob/master/init.el
+- [[https://www.youtube.com/watch?v=2TSKxxYEbII][John Wiegley explanation for use-package]]
+
+
+
+
+
 
