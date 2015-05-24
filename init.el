@@ -171,6 +171,16 @@
   :ensure t
   :defer t)
 
+;; Elisp go-to-definition with M-. and back again with M-,
+(use-package elisp-slime-nav
+  :ensure t
+  :defer t
+  :diminish elisp-slime-nav-mode
+  :bind (("M-." . elisp-slime-nav-find-elisp-thing-at-point)
+         ("M-," . pop-tag-mark))
+  :config
+  (add-hook 'emacs-lisp-mode-hook (lambda () (elisp-slime-nav-mode t))))
+
 ;; apply general emacs customisation settings
 (use-package general-settings)
 
