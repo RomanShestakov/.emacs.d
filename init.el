@@ -121,6 +121,38 @@
   (setq ido-auto-merge-work-directories-length -1)
   (flx-ido-mode 1))
 
+;; helm
+(use-package helm
+  :ensure t
+  :diminish helm-mode
+  :init
+  (progn
+    (require 'helm-config)
+    (setq helm-candidate-number-limit 100)
+    ;; From https://gist.github.com/antifuchs/9238468
+    ;; update fast sources immediately (doesn't).
+    (setq helm-idle-delay 0.0
+          ;; this actually updates things
+          helm-input-idle-delay 0.01  
+          helm-yas-display-key-on-candidate t
+          helm-quick-update t
+          helm-M-x-requires-pattern nil
+          helm-ff-skip-boring-files t)
+    (helm-mode))
+  :bind (("C-c h" . helm-mini)
+         ("C-h a" . helm-apropos)
+         ("C-x C-b" . helm-buffers-list)
+         ("C-x b" . helm-buffers-list)
+         ("M-y" . helm-show-kill-ring)
+         ("M-x" . helm-M-x)
+         ("M-t" . helm-for-files)
+         ("C-x c o" . helm-occur)
+         ("C-x c s" . helm-swoop)
+         ("C-x c y" . helm-yas-complete)
+         ("C-x c Y" . helm-yas-create-snippet-on-region)
+         ("C-x c b" . my/helm-do-grep-book-notes)
+         ("C-x c SPC" . helm-all-mark-rings)))
+
 ;; projectile
 ;; https://github.com/lunaryorn/.emacs.d/blob/master/init.el
 (use-package projectile
@@ -138,25 +170,23 @@
   :ensure t
   :defer t)
 
-;; apply general customisation settings
-(require 'general-settings)
+;; apply general emacs customisation settings
+(use-package general-settings)
 
 ;; add modes with customized settings
-(require 'erlang-settings)
-(require 'python-settings)
-(require 'key-binding-settings)
-(require 'color-theme-settings)
-(require 'helm-settings)
+(use-package erlang-settings)
+(use-package python-settings)
+(use-package key-binding-settings)
+(use-package color-theme-settings)
 
 ;; (require 'ido-settings)
 ;; (require 'elisp-slime-nav-settings)
 ;; (require 'yasnippet-settings)
 ;; (require 'virtualenv-settings)
-
-;;(require 'prolog-settings)
-;;(require 'elixir-settings)
-;;(require 'ctag-settings)
-;;(require 'projectile-settings)
-;;(require 'fill-column-indicator-settings)
+;; (require 'prolog-settings)
+;; (require 'elixir-settings)
+;; (require 'ctag-settings)
+;; (require 'projectile-settings)
+;; (require 'fill-column-indicator-settings)
 
 ;;; init.el ends here
