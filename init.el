@@ -48,7 +48,6 @@
   :config
   (exec-path-from-shell-initialize)
   (exec-path-from-shell-copy-env "PATH")
-  (exec-path-from-shell-copy-env "ERL_TOP")
   (exec-path-from-shell-copy-env "PATHONPATH"))
 
 ;; org-mode
@@ -183,8 +182,6 @@
 
 ;; apply general emacs customisation settings
 (use-package general-settings)
-
-;; add modes with customized settings
 (use-package erlang-settings)
 (use-package python-settings)
 (use-package key-binding-settings)

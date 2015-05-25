@@ -144,7 +144,7 @@ C-c C-d n - will start Distel session linked to the loaded erlang shell.
 After that M-. / M-, binding should work.
 * Some nice emacs functions
 describe-personal-keybindings - allows to see defined keys binding and overrides
-* Links to the nice examples of emacs configurations
+* Links to some emacs resources
 - [[https://github.com/jhamrick/emacs][Jessica Hamrick emacs setup as Python IDE]]
 - [[https://github.com/jwiegley/use-package][Use-package Git repo]]
 - [[https://github.com/jwiegley/dot-emacs][John Wiegley init.el]]
@@ -153,6 +153,7 @@ describe-personal-keybindings - allows to see defined keys binding and overrides
 - [[https://www.youtube.com/watch?v=2TSKxxYEbII][John Wiegley explanation for use-package]]
 - [[http://www.lunaryorn.com/2014/07/02/autoloads-in-emacs-lisp.html][Autoloads in Emacs Lisp]]
 - [[https://martinralbrecht.wordpress.com/2014/11/03/c-development-with-emacs/][C development with Emacs]]
+- [[https://www.youtube.com/watch?v=QRBcm6jFJ3Q][Emacs Lisp Development Tips with John Wiegley]]
 
 
 
