@@ -119,8 +119,8 @@ Before starting using python mode, jedi mode needs to be initialized.
 M-x jedi:install-server
 
 shortcuts:
-C-c C-p - start python shell
-C-c C-c - execute buffer (or F9)
+- C-c C-p - start python shell
+- C-c C-c - execute buffer (or F9)
 
 * Jedi autocompletion mode for python
 jedi requires that pip and virtualenv are installed
