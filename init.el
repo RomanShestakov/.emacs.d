@@ -48,6 +48,7 @@
   :config
   (exec-path-from-shell-initialize)
   (exec-path-from-shell-copy-env "PATH")
+  (exec-path-from-shell-copy-env "ERL_TOP")
   (exec-path-from-shell-copy-env "PATHONPATH"))
 
 ;; org-mode

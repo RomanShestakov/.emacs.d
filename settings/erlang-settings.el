@@ -14,16 +14,9 @@
 
 ;; set path to erlang install load a path to elang lisp as distel
 ;; install in el-get distel package depends on it if root is nil or
-;; empty (because env ERL_TOP is not setup, default to standard erlang
-;; location "/usr/local/lib/erlang"
-(defvar erlang-root
-  (let ((root (getenv "ERL_TOP")))
-    (if (and (not root)
-             (not (equal "" root)))
-        root
-      "/usr/local/lib/erlang"))
-  "*Path to Erlang installation.
-Env var ERL_TOP needs to be set in bash environment.  If ERL_TOP is not set, return  /usr/local/lib/erlang.")
+(defvar erlang-root (getenv "ERL_TOP")
+  "*Path to Erlang installation. Env var ERL_TOP needs to be set in bash environment.")
+;(defvar erlang-root "/usr/local/lib/erlang")
 
 ;; add erlang bin dir to exec-path
 (setq exec-path (cons (concat (file-name-as-directory erlang-root) "bin") exec-path))
@@ -49,6 +42,39 @@ Env var ERL_TOP needs to be set in bash environment.  If ERL_TOP is not set, ret
 (defun erlang-path-init()
   "*Sets the paths to erlang mode."
   (add-to-list 'load-path (get-full-path-to-erlang-tools-dir)))
+
+;; ;; functions to locate project root
+
+;; (defvar erlang-settings-project-root-files-bottom-up
+;;   '(".projectile" ; projectile project marker
+;;     ".erlang"     ; erlang
+;;     )
+;;   "A list of files considered to mark the root of a project.
+;; This root files pattern overrides discovery of any root files
+;; pattern that would have found a project root in a subdirectory.")
+
+;; (defvar erlang-settings-project-root-files-functions
+;;   '(erlang-setting-project-root-bottom-up
+;;     ;;root-top-down
+;;     ;;root-top-down-recurring
+;;     )
+;;   "A list of functions for finding project roots.")
+
+;; (defun erlang-settings-project-root-bottom-up (dir &optional list)
+;;   "Identify a project root in DIR by looking at `erlang-settings-project-root-files-bottom-up'.
+;; Returns a project root directory path or nil if not found."
+;;   (--reduce-from
+;;    (or acc
+;;        (locate-dominating-file dir it))
+;;    nil
+;;    (or list erlang-settings-project-root-files-bottom-up)))
+
+
+;; (defun erlang-settings-project-root ()
+;;   "Retrieves the root directory of a project if available.
+;; The current directory is assumed to be the project's root otherwise."
+;;   (erlang-settings-project-root-files-functions))
+
 
 ;; http://stackoverflow.com/questions/6367743/emacs-find-file-without-changing-working-directory
 (defun my-erlang-shell-display()
