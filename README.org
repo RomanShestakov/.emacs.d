@@ -142,8 +142,10 @@ Any .erl file in the project should be evaluated by F9 - this will open a new er
 Erlang shell will load .erlang from the root of the project and will setup all the required paths to the dependecies.
 C-c C-d n - will start Distel session linked to the loaded erlang shell.
 After that M-. / M-, binding should work.
-* Some nice emacs functions
-describe-personal-keybindings - allows to see defined keys binding and overrides
+* Some useful emacs functions
+- describe-personal-keybindings - allows to see defined keys binding and overrides
+- (normal-erase-is-backspace-mode 0) - allows to set emacs into a correct mode for backspace button to work
+- If C-h sends delete char, try to use F1 for help-command 
 * Links to some emacs resources
 - [[https://github.com/jhamrick/emacs][Jessica Hamrick emacs setup as Python IDE]]
 - [[https://github.com/jwiegley/use-package][Use-package Git repo]]
