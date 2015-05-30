@@ -1,4 +1,4 @@
-;;; init.el --- entry point for configuration
+;; init.el --- entry point for configuration
 
 ;;; Commentary:
 ;; the root tree of calls to various modes
@@ -180,6 +180,14 @@
          ("M-," . pop-tag-mark))
   :config
   (add-hook 'emacs-lisp-mode-hook (lambda () (elisp-slime-nav-mode t))))
+
+;; Paredit
+(use-package paredit
+  :ensure t
+  :diminish paredit-mode
+  :init
+  (progn
+    (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)))
 
 ;; apply general emacs customisation settings
 (use-package general-settings)

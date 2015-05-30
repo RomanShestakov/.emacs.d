@@ -10,6 +10,7 @@
 
 ;; to add flycheck - need to install flake8 and pylint
 ;; http://stackoverflow.com/questions/19803033/emacs-flycheck-configured-syntax-checker-python-flake8-cannot-be-used
+
 ;; https://github.com/flycheck/flycheck
 ;; sudo pip install flake8
 ;; sudo pip install pylint
@@ -51,6 +52,9 @@
       (progn
         (python-shell-send-region))))
   )
+
+;; add flycheck
+(add-hook 'python-mode-hook 'flycheck-mode)
 
 ;; pydoc info
 ;;(include-plugin "pydoc-info-0.2")
