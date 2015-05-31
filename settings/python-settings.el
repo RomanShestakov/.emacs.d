@@ -51,6 +51,18 @@
       (progn
         (python-shell-send-region)))))
 
+
+;; get auto-complete
+(use-package auto-complete
+  :ensure t
+  :defer t)
+
+;; get epc 
+(use-package epc
+  :ensure t
+  :defer t)
+
+;; get jedi
 (use-package jedi
   :ensure t
   :preface
@@ -61,7 +73,10 @@
          ("M-," . jedi:goto-definition-pop-marker)
          ("M-/" . jedi:get-in-function-call)
          ;("C-c r" . jedi:related-names)
-         ("M-?" . jedi:show-doc)))
+         ("M-?" . jedi:show-doc))
+  :config
+  (progn
+    (setq jedi:complete-on-dot t)))
 
 ;; add hooks to python-mode
 (add-hook 'python-mode-hook 'flycheck-mode)

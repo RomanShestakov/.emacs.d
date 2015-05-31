@@ -164,4 +164,4 @@ After that M-. / M-, binding should work.
 - [[https://www.youtube.com/watch?v=eH-epEqLVAs][Emacs for Python talk]]
 - [[https://www.youtube.com/watch?v=6BlTGPsjGJk][Another talk on how to setup Emacs for python]]
 - [[https://github.com/wernerandrew/jedi-starter][Git repo with python jedi setup, used in Emacs Python setup talk]]
-
+- [[http://emacsnyc.org/assets/documents/using-emacs-as-a-python-ide.pdf][PDF slides from Emacs Python setup talk]]
