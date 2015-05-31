@@ -37,7 +37,6 @@
 (setq python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
 ;; add F9
-(add-hook 'python-mode-hook 'my-python-mode-hook)
 (defun my-python-mode-hook ()
   "*Compile file with F9."
   (define-key python-mode-map (kbd "<f9>")
@@ -50,15 +49,7 @@
     (lambda()
       (interactive)
       (progn
-        (python-shell-send-region))))
-  )
-
-;; add flycheck
-(add-hook 'python-mode-hook 'flycheck-mode)
-
-;; pydoc info
-;;(include-plugin "pydoc-info-0.2")
-;;(require 'pydoc-info)
+        (python-shell-send-region)))))
 
 (use-package jedi
   :ensure t
@@ -66,9 +57,20 @@
   (declare-function jedi:goto-definition jedi nil)
   (declare-function jedi:related-names jedi nil)
   (declare-function jedi:show-doc jedi nil)
-  :bind (("C-." . jedi:goto-definition)
-         ("C-c r" . jedi:related-names)
-         ("C-?" . jedi:show-doc)))
+  :bind (("M-." . jedi:goto-definition)
+         ("M-," . jedi:goto-definition-pop-marker)
+         ("M-/" . jedi:get-in-function-call)
+         ;("C-c r" . jedi:related-names)
+         ("M-?" . jedi:show-doc)))
+
+;; add hooks to python-mode
+(add-hook 'python-mode-hook 'flycheck-mode)
+(add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-mode-hook 'my-python-mode-hook)
+
+;; pydoc info
+;;(include-plugin "pydoc-info-0.2")
+;;(require 'pydoc-info)
 
 (provide 'python-settings)
 

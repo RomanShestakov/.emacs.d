@@ -136,6 +136,7 @@ M-x jedi:install-server
 - C-c p g - grep in files in the project
 - C-u C-c p f - invalidate cache
 - C-c p C-h - help (show key bindings)
+- C-c p k - kill all the buffers for a project
 * How to start up erlang session with distel
 Erlang project should have a .erlang file in the root. See .emacs/snippets/erlang-mode/erlang.
 Any .erl file in the project should be evaluated by F9 - this will open a new erlang shell (if not already opened).
@@ -161,6 +162,6 @@ After that M-. / M-, binding should work.
 - [[https://www.youtube.com/watch?v=QRBcm6jFJ3Q][Emacs Lisp Development Tips with John Wiegley]]
 - [[https://github.com/bbatsov/emacs-lisp-style-guide][The Emacs Lisp Style Guide]]
 - [[https://www.youtube.com/watch?v=eH-epEqLVAs][Emacs for Python talk]]
-
-
+- [[https://www.youtube.com/watch?v=6BlTGPsjGJk][Another talk on how to setup Emacs for python]]
+- [[https://github.com/wernerandrew/jedi-starter][Git repo with python jedi setup, used in Emacs Python setup talk]]
 

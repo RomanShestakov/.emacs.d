@@ -10,6 +10,7 @@
 ;; Bootstrap package management
 (require 'package)
 (setq package-enable-at-startup nil)
+;; melpa url must have a trailing "/" at the end
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 (unless (package-installed-p 'use-package)
@@ -17,6 +18,7 @@
   (package-install 'use-package))
 (eval-when-compile
   (require 'use-package))
+;; allow to remove minor modes from status line
 (require 'diminish)
 (require 'bind-key)
 
@@ -88,8 +90,13 @@
         term-term-name "xterm-256color"))
 
 ;; https://github.com/ramnes/move-border
+;; allows to move borders between windows
 (use-package move-border
-  :load-path "lisp/move-border")
+  :load-path "lisp/move-border"
+  :bind (("M-S-<up>" . move-border-up) 
+         ("M-S-<down>" . move-border-down)
+         ("M-S-<left>" . move-border-left)
+         ("M-S-<right>" . move-border-right)))
 
 ;; enable flycheck
 (use-package flycheck
@@ -99,6 +106,7 @@
   (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
 
 ;; move-text mode
+;; move a line with M-up/down
 (use-package move-text
   :ensure t
   :config
@@ -193,7 +201,6 @@
 (use-package general-settings)
 (use-package erlang-settings)
 (use-package python-settings)
-(use-package key-binding-settings)
 (use-package color-theme-settings)
 
 ;; (require 'ido-settings)
@@ -205,5 +212,17 @@
 ;; (require 'ctag-settings)
 ;; (require 'projectile-settings)
 ;; (require 'fill-column-indicator-settings)
+
+;; http://stackoverflow.com/questions/26171265/emacs-keyboard-bindings-on-os-x-iterm2
+;; hardcode keybinding to make emacs work with iTerm2
+;; otherwise moving border between windows doesn't work in linux terminal started from iterm
+(define-key input-decode-map "\e[1;10A" [M-S-up])
+(define-key input-decode-map "\e[1;10B" [M-S-down])
+(define-key input-decode-map "\e[1;10C" [M-S-right])
+(define-key input-decode-map "\e[1;10D" [M-S-left])
+(define-key input-decode-map "\e[1;9A" [M-up])
+(define-key input-decode-map "\e[1;9B" [M-down])
+(define-key input-decode-map "\e[1;9C" [M-right])
+(define-key input-decode-map "\e[1;9D" [M-left])
 
 ;;; init.el ends here
