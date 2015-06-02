@@ -93,7 +93,7 @@
 ;; allows to move borders between windows
 (use-package move-border
   :load-path "lisp/move-border"
-  :bind (("M-S-<up>" . move-border-up) 
+  :bind (("M-S-<up>" . move-border-up)
          ("M-S-<down>" . move-border-down)
          ("M-S-<left>" . move-border-left)
          ("M-S-<right>" . move-border-right)))
@@ -141,7 +141,7 @@
     ;; update fast sources immediately (doesn't).
     (setq helm-idle-delay 0.0
           ;; this actually updates things
-          helm-input-idle-delay 0.01  
+          helm-input-idle-delay 0.01
           helm-yas-display-key-on-candidate t
           helm-quick-update t
           helm-M-x-requires-pattern nil
@@ -226,3 +226,16 @@
 (define-key input-decode-map "\e[1;9D" [M-left])
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(auto-save-file-name-transforms (quote ((".*" "~/tmp/autosaves/\\1" t))))
+ '(safe-local-variable-values (quote ((project-venv-name . "coursera-python")))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

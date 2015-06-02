@@ -52,12 +52,21 @@
         (python-shell-send-region)))))
 
 
+;; setup virtualenvwrapper
+(use-package virtualenvwrapper
+  :ensure t
+  :config
+  (setq venv-location "~/.virtualenvs")
+  (venv-initialize-interactive-shells)
+  ;; show the name of env in status line
+  (setq-default mode-line-format (cons '(:exec venv-current-name) mode-line-format)))
+
 ;; get auto-complete
 (use-package auto-complete
   :ensure t
   :defer t)
 
-;; get epc 
+;; get epc
 (use-package epc
   :ensure t
   :defer t)
@@ -82,7 +91,17 @@
 (add-hook 'python-mode-hook 'flycheck-mode)
 (add-hook 'python-mode-hook 'jedi:setup)
 (add-hook 'python-mode-hook 'my-python-mode-hook)
-
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;; install common package when creating a new virtualenv
+(add-hook 'venv-postmkvirtualenv-hook
+          (lambda () (shell-command "pip install pytest flake8 jedi")))
+;; auto-change the virtualenv when a file from virtual env is opened
+;; for this to work the project needs to have a file .dir-locals.el
+;; ((python-mode . ((project-venv-name . "name"))))
+(add-hook 'python-mode-hook (lambda ()
+                              (hack-local-variables)
+                              (when (boundp 'project-venv-name)
+                                (venv-workon project-venv-name))))
 ;; pydoc info
 ;;(include-plugin "pydoc-info-0.2")
 ;;(require 'pydoc-info)

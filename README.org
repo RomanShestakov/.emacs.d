@@ -137,6 +137,16 @@ M-x jedi:install-server
 - C-u C-c p f - invalidate cache
 - C-c p C-h - help (show key bindings)
 - C-c p k - kill all the buffers for a project
+* Virtualevnwrapper
+The python mode setup uses [[https://github.com/porterjamesj/virtualenvwrapper.el][virtualenvwrapper
+]]Virt-env fuctions are called with M-x. All related functions
+have 'venv' prefix:
+- venv-mkvirtualenv - create a new env
+- venv-workon - switch to new env
+- venv-deactive - switch off env
+- venv-rmvirtualenv - delete env
+- venv-lsvirtualenv - ls
+- venv-cdvirtualenv - change current default dir
 * How to start up erlang session with distel
 Erlang project should have a .erlang file in the root. See .emacs/snippets/erlang-mode/erlang.
 Any .erl file in the project should be evaluated by F9 - this will open a new erlang shell (if not already opened).
@@ -165,3 +175,6 @@ After that M-. / M-, binding should work.
 - [[https://www.youtube.com/watch?v=6BlTGPsjGJk][Another talk on how to setup Emacs for python]]
 - [[https://github.com/wernerandrew/jedi-starter][Git repo with python jedi setup, used in Emacs Python setup talk]]
 - [[http://emacsnyc.org/assets/documents/using-emacs-as-a-python-ide.pdf][PDF slides from Emacs Python setup talk]]
+- [[http://wenshanren.org/?p=351][Python debugging with Emacs]]
+- [[https://www.masteringemacs.org/article/compiling-running-scripts-emacs][Another python debug setup in Emacs]]
+- [[http://batsov.com/articles/2011/11/30/the-ultimate-collection-of-emacs-resources/][Ultimate collection of Emacs resources]] 
