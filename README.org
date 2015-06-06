@@ -62,13 +62,13 @@ export PYTHONPATH=/usr/local/lib/python2.7/site-packages:
 
 * Install with Vagrant
 ## this will load VM repo and install it with Vagrant
-#+BEGIN_SRC 
+#+BEGIN_SRC
 git clone https://github.com/RomanShestakov/vm.git
 cd vm
 vagrant up
 vagrant ssh
 emacs -nw
-## setup jedi 
+## setup jedi
 M-x jedi:install-server
 start python file.
 C-c C-p - start python shell
@@ -82,36 +82,43 @@ The packages that are installed manually should be placed into ~/.emacs/lisp
 
 * Color theme - gruber-darker-theme
 https://github.com/rexim/gruber-darker-theme
-* Distel-mode
+* Erlang mode
+** Distel-mode
 
-Distel mode depends on Erlang mode, so need to correct a path to the version of 
+Distel mode depends on Erlang mode, so need to correct a path to the version of
 tools/emacs
 
 Distel mode lives in lisp/distel - it is easier this way when getting via ELPA.
-Also it needs to compile erl files before the first run. 
+Also it needs to compile erl files before the first run.
 
 #+BEGIN_SRC elisp
 cd .emacs.d/lisp/distel
 make
 #+END_SRC
 
-To use distel mode: 
+To use distel mode:
 
 1. start erlang shell : C-c C-z
 2. connect distel to it: C-c C-d n
-now M-. should work 
+now M-. should work
 
-* Syntax checker for erlang-mode
+** Syntax checker for erlang-mode
 Erlang mode uses [[https://github.com/ten0s/syntaxerl][syntaxerl]] for erlang syntax checking, which integrates with flymake
 
 #+BEGIN_SRC bash
 git clone git://github.com/ten0s/syntaxerl.git
 cd syntaxerl
 make
-#+END_SRC 
+#+END_SRC
 
 this will generate syntaxerl file which needs to be added to .emacs.d/bin
 
+** How to start up erlang session with distel
+Erlang project should have a .erlang file in the root. See .emacs/snippets/erlang-mode/erlang.
+Any .erl file in the project should be evaluated by F9 - this will open a new erlang shell (if not already opened).
+Erlang shell will load .erlang from the root of the project and will setup all the required paths to the dependecies.
+C-c C-d n - will start Distel session linked to the loaded erlang shell.
+After that M-. / M-, binding should work.
 * Python mode
 I use python.el which is shipped with emacs.
 The setup depends on ipython, virtualenv.
@@ -122,22 +129,22 @@ shortcuts:
 - C-c C-p - start python shell
 - C-c C-c - execute buffer (or F9)
 
-* Jedi autocompletion mode for python
+** Jedi autocompletion mode for python
 jedi requires that pip and virtualenv are installed
 easy-install pip
 pip install virtualenv
 then in emacs:
 M-x jedi:install-server
 
-* [[http://tuhdo.github.io/helm-projectile.html][Projectile]]
-** Key bindings for projectile
+** [[http://tuhdo.github.io/helm-projectile.html][Projectile]]
+*** Key bindings for projectile
 - C-c p p - switch project
 - C-c p f - find file in the current project
 - C-c p g - grep in files in the project
 - C-u C-c p f - invalidate cache
 - C-c p C-h - help (show key bindings)
 - C-c p k - kill all the buffers for a project
-* Virtualevnwrapper
+** Virtualevnwrapper
 The python mode setup uses [[https://github.com/porterjamesj/virtualenvwrapper.el][virtualenvwrapper
 ]]Virt-env fuctions are called with M-x. All related functions
 have 'venv' prefix:
@@ -147,17 +154,21 @@ have 'venv' prefix:
 - venv-rmvirtualenv - delete env
 - venv-lsvirtualenv - ls
 - venv-cdvirtualenv - change current default dir
-* How to start up erlang session with distel
-Erlang project should have a .erlang file in the root. See .emacs/snippets/erlang-mode/erlang.
-Any .erl file in the project should be evaluated by F9 - this will open a new erlang shell (if not already opened).
-Erlang shell will load .erlang from the root of the project and will setup all the required paths to the dependecies.
-C-c C-d n - will start Distel session linked to the loaded erlang shell.
-After that M-. / M-, binding should work.
+** How to setup pyTDDmon
+[[http://pytddmon.org/?page_id=79][PyTDDMon.py]] is a nice unit test monitor
+it requires installation of TK.
+for mac it could be loaded from here
+http://www.activestate.com/activetcl/downloads
+for Linux Debian could be installed with:
+$ sudo apt-get install python-tk
+load pytddmon.py from http://pytddmon.org/?page_id=157
+drop it into scr dir of the project
+and run with python pytddmon.py &
 * Some useful emacs functions
 - describe-personal-keybindings - allows to see defined keys binding and overrides
 - (normal-erase-is-backspace-mode 0) - allows to set emacs into a correct mode for backspace button to work
-- If C-h sends delete char, try to use F1 for help-command 
-- C-c t - opens multiterm mode 
+- If C-h sends delete char, try to use F1 for help-command
+- C-c t - opens multiterm mode
 - M-r - reverse command search in multiterm mode (same as C-r in bash)
 
 * Links to some emacs resources
@@ -177,4 +188,7 @@ After that M-. / M-, binding should work.
 - [[http://emacsnyc.org/assets/documents/using-emacs-as-a-python-ide.pdf][PDF slides from Emacs Python setup talk]]
 - [[http://wenshanren.org/?p=351][Python debugging with Emacs]]
 - [[https://www.masteringemacs.org/article/compiling-running-scripts-emacs][Another python debug setup in Emacs]]
-- [[http://batsov.com/articles/2011/11/30/the-ultimate-collection-of-emacs-resources/][Ultimate collection of Emacs resources]] 
+- [[http://batsov.com/articles/2011/11/30/the-ultimate-collection-of-emacs-resources/][Ultimate collection of Emacs resources]]
+- [[https://www.youtube.com/watch?v=0cZ7szFuz18][Andrea Crotti - Emacs and shell as your best friends, video]]
+- [[https://github.com/AndreaCrotti/Emacs-configuration][Adrea Crotti Emacs config]]
+- [[https://www.youtube.com/watch?v=k50zqdXdYxc][TDD in Python with emacs video]]
