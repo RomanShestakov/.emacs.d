@@ -192,6 +192,7 @@
 ;; Paredit
 (use-package paredit
   :ensure t
+  :disabled t
   :diminish paredit-mode
   :init
   (progn
@@ -216,6 +217,7 @@
 ;; http://stackoverflow.com/questions/26171265/emacs-keyboard-bindings-on-os-x-iterm2
 ;; hardcode keybinding to make emacs work with iTerm2
 ;; otherwise moving border between windows doesn't work in linux terminal started from iterm
+;; how to use all functional keys over putty: http://emacswiki.org/emacs/PuTTY
 (define-key input-decode-map "\e[1;10A" [M-S-up])
 (define-key input-decode-map "\e[1;10B" [M-S-down])
 (define-key input-decode-map "\e[1;10C" [M-S-right])
@@ -224,6 +226,9 @@
 (define-key input-decode-map "\e[1;9B" [M-down])
 (define-key input-decode-map "\e[1;9C" [M-right])
 (define-key input-decode-map "\e[1;9D" [M-left])
+(define-key input-decode-map "\e[U" [f9])
+(define-key input-decode-map "\e[g" [S-f9])
+(define-key input-decode-map "\e[s" [C-f9])
 
 ;;; init.el ends here
 (custom-set-variables

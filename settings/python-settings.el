@@ -67,11 +67,11 @@
   (declare-function jedi:goto-definition jedi nil)
   (declare-function jedi:related-names jedi nil)
   (declare-function jedi:show-doc jedi nil)
-  :bind (("M-." . jedi:goto-definition)
-         ("M-," . jedi:goto-definition-pop-marker)
-         ("M-/" . jedi:get-in-function-call)
-         ;("C-c r" . jedi:related-names)
-         ("M-?" . jedi:show-doc))
+  :init
+  (bind-key "M-." 'jedi:goto-definition python-mode-map)
+  (bind-key "M-," 'jedi:goto-definition-pop-marker python-mode-map)
+  (bind-key "M-/" 'jedi:get-in-function-call python-mode-map)
+  (bind-key "M-?" 'jedi:show-doc python-mode-map)
   :config
   (progn
     (setq jedi:complete-on-dot t)))
