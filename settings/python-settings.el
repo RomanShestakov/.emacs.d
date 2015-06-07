@@ -36,21 +36,10 @@
 (setq python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n")
 (setq python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
-;; add F9
+;; add F9 and S-F9 binding to eval a buffer or selected expr
 (defun my-python-mode-hook ()
-  "*Compile file with F9."
-  (define-key python-mode-map (kbd "<f9>")
-    (lambda()
-      (interactive)
-      (progn
-        (python-shell-send-buffer))))
-
-  (define-key python-mode-map (kbd "<f8>")
-    (lambda()
-      (interactive)
-      (progn
-        (python-shell-send-region)))))
-
+  (define-key python-mode-map [f9] 'python-shell-send-buffer)
+  (define-key python-mode-map [S-f9] 'python-shell-send-region))
 
 ;; setup virtualenvwrapper
 (use-package virtualenvwrapper
