@@ -193,3 +193,4 @@ and run with python pytddmon.py &
 - [[https://www.youtube.com/watch?v=0cZ7szFuz18][Andrea Crotti - Emacs and shell as your best friends, video]]
 - [[https://github.com/AndreaCrotti/Emacs-configuration][Adrea Crotti Emacs config]]
 - [[https://www.youtube.com/watch?v=k50zqdXdYxc][TDD in Python with emacs video]]
+- [[https://github.com/inducer/pudb][PUDB python debugger]]

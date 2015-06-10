@@ -39,7 +39,8 @@
 ;; add F9 and S-F9 binding to eval a buffer or selected expr
 (defun my-python-mode-hook ()
   (define-key python-mode-map [f9] 'python-shell-send-buffer)
-  (define-key python-mode-map [S-f9] 'python-shell-send-region))
+  (define-key python-mode-map [S-f9] 'python-shell-send-region)
+  (define-key python-mode-map [S-f1] 'python-insert-breakpoint))
 
 ;; setup virtualenvwrapper
 (use-package virtualenvwrapper
@@ -76,6 +77,26 @@
   (progn
     (setq jedi:complete-on-dot t)))
 
+
+;; highlight breakpoint
+;; borrowed from https://www.masteringemacs.org/article/compiling-running-scripts-emacs
+(defun python--add-debug-highlight ()
+  "Adds a highlighter for use by `python--pdb-breakpoint-string'"
+  (highlight-lines-matching-regexp "## DEBUG ##\\s-*$" 'hi-red-b))
+
+(defvar python--pdb-breakpoint-string "import ipdb; ipdb.set_trace() ## DEBUG ##"
+  "Python breakpoint string used by `python-insert-breakpoint'")
+
+(defun python-insert-breakpoint ()
+  "Inserts a python breakpoint using `ipdb'"
+  (interactive)
+  (back-to-indentation)
+  ;; this preserves the correct indentation in case the line above
+  ;; point is a nested block
+  (split-line)
+  (insert python--pdb-breakpoint-string))
+
+
 ;; add hooks to python-mode
 (add-hook 'python-mode-hook 'flycheck-mode)
 (add-hook 'python-mode-hook 'jedi:setup)
@@ -91,9 +112,16 @@
                               (hack-local-variables)
                               (when (boundp 'project-venv-name)
                                 (venv-workon project-venv-name))))
+;; add debug highlighting
+(add-hook 'python-mode-hook 'python--add-debug-highlight)
+
 ;; pydoc info
 ;;(include-plugin "pydoc-info-0.2")
 ;;(require 'pydoc-info)
+
+;; shut up Can't guess python-indent-offset warnings
+;; http://stackoverflow.com/questions/18778894/emacs-24-3-python-cant-guess-python-indent-offset-using-defaults-4
+(python-indent-guess-indent-offset nil)
 
 (provide 'python-settings)
 
