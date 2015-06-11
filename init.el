@@ -201,8 +201,11 @@
 ;; apply general emacs customisation settings
 (use-package general-settings)
 (use-package erlang-settings)
-(use-package python-settings)
 (use-package color-theme-settings)
+(use-package python-settings
+  :config
+  (progn
+    (setq python-shell-interpreter "ipython")))
 
 ;; (require 'ido-settings)
 ;; (require 'elisp-slime-nav-settings)

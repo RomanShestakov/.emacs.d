@@ -127,7 +127,15 @@ M-x jedi:install-server
 
 shortcuts:
 - C-c C-p - start python shell
-- C-c C-c - execute buffer (or F9)
+- C-c C-c (or F9) - execute buffer
+- C-c C-r (or S-F9) - evaluate selected region
+- C-c v - virtual env workon
+
+typical session:
+start emacs
+open .py file
+C-c v - select virtualenv
+C-c C-p - start python shell inside emacs
 
 ** Jedi autocompletion mode for python
 jedi requires that pip and virtualenv are installed

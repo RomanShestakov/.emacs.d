@@ -23,7 +23,7 @@
 
 (require 'python)
 
-(setq python-shell-interpreter "ipython")
+;(setq python-shell-interpreter "ipython")
 ;; (setq python-shell-interpreter-args
 ;;       (if (system-is-mac)
 ;;           "--matplotlib=osx --colors=Linux"
@@ -32,24 +32,27 @@
 (setq python-shell-interpreter-args "")
 (setq python-shell-prompt-regexp "In \\[[0-9]+\\]: ")
 (setq python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: ")
-(setq python-shell-completion-setup-code  "from IPython.core.completerlib import module_completion")
 (setq python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n")
+(setq python-shell-completion-setup-code  "from IPython.core.completerlib import module_completion")
 (setq python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
-
-;; add F9 and S-F9 binding to eval a buffer or selected expr
-(defun my-python-mode-hook ()
-  (define-key python-mode-map [f9] 'python-shell-send-buffer)
-  (define-key python-mode-map [S-f9] 'python-shell-send-region)
-  (define-key python-mode-map [S-f1] 'python-insert-breakpoint))
 
 ;; setup virtualenvwrapper
 (use-package virtualenvwrapper
   :ensure t
+  :init
+  (bind-key "C-c v" 'venv-workon python-mode-map)
+  (bind-key "C-c d" 'venv-diactivate python-mode-map)
+  (bind-key "C-c l" 'venv-lsvirtualenv python-mode-map)
+  (bind-key "C-c m" 'venv-mkvirtualenv python-mode-map)
   :config
-  (setq venv-location "~/.virtualenvs")
-  (venv-initialize-interactive-shells)
-  ;; show the name of env in status line
-  (setq-default mode-line-format (cons '(:exec venv-current-name) mode-line-format)))
+  (progn
+    ;; Used by virtualenvwrapper.el to store virtualenvs
+    (setq venv-location "~/.virtualenvs")
+    ;; Used python-environment.el and by extend jedi.el
+    (setq python-environment-directory venv-location)
+    (venv-initialize-interactive-shells)
+    ;; show the name of env in status line
+    (setq-default mode-line-format (cons '(:exec venv-current-name) mode-line-format))))
 
 ;; get auto-complete
 (use-package auto-complete
@@ -62,6 +65,8 @@
   :defer t)
 
 ;; get jedi
+;; note that jedi depends on virtualenvwrapper and
+;; on (setq python-environment-directory venv-location)
 (use-package jedi
   :ensure t
   :preface
@@ -96,6 +101,11 @@
   (split-line)
   (insert python--pdb-breakpoint-string))
 
+;; add F9 and S-F9 binding to eval a buffer or selected expr
+(defun my-python-mode-hook ()
+  (define-key python-mode-map [f9] 'python-shell-send-buffer)
+  (define-key python-mode-map [S-f9] 'python-shell-send-region)
+  (define-key python-mode-map [S-f1] 'python-insert-breakpoint))
 
 ;; add hooks to python-mode
 (add-hook 'python-mode-hook 'flycheck-mode)
@@ -103,15 +113,6 @@
 (add-hook 'python-mode-hook 'my-python-mode-hook)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 ;; install common package when creating a new virtualenv
-(add-hook 'venv-postmkvirtualenv-hook
-          (lambda () (shell-command "pip install pytest flake8 jedi")))
-;; auto-change the virtualenv when a file from virtual env is opened
-;; for this to work the project needs to have a file .dir-locals.el
-;; ((python-mode . ((project-venv-name . "name"))))
-(add-hook 'python-mode-hook (lambda ()
-                              (hack-local-variables)
-                              (when (boundp 'project-venv-name)
-                                (venv-workon project-venv-name))))
 ;; add debug highlighting
 (add-hook 'python-mode-hook 'python--add-debug-highlight)
 
@@ -121,7 +122,7 @@
 
 ;; shut up Can't guess python-indent-offset warnings
 ;; http://stackoverflow.com/questions/18778894/emacs-24-3-python-cant-guess-python-indent-offset-using-defaults-4
-(python-indent-guess-indent-offset nil)
+;;(python-indent-guess-indent-offset nil)
 
 (provide 'python-settings)
 
