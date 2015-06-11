@@ -156,12 +156,13 @@ M-x jedi:install-server
 The python mode setup uses [[https://github.com/porterjamesj/virtualenvwrapper.el][virtualenvwrapper
 ]]Virt-env fuctions are called with M-x. All related functions
 have 'venv' prefix:
-- venv-mkvirtualenv - create a new env
-- venv-workon - switch to new env
-- venv-deactive - switch off env
+also some functions are binded to C-c prefix
+- venv-mkvirtualenv (C-c v) - create a new env
+- venv-workon (C-c v) - switch to new env
+- venv-deactive (C-c -d) - switch off env
 - venv-rmvirtualenv - delete env
-- venv-lsvirtualenv - ls
-- venv-cdvirtualenv - change current default dir
+- venv-lsvirtualenv (C-c l) - ls
+- venv-cdvirtualenv (C-c c) - change current default dir
 ** How to setup pyTDDmon
 [[http://pytddmon.org/?page_id=79][PyTDDMon.py]] is a nice unit test monitor
 it requires installation of TK.

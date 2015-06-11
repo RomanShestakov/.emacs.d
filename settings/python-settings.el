@@ -44,6 +44,7 @@
   (bind-key "C-c d" 'venv-diactivate python-mode-map)
   (bind-key "C-c l" 'venv-lsvirtualenv python-mode-map)
   (bind-key "C-c m" 'venv-mkvirtualenv python-mode-map)
+  (bind-key "C-c c" 'venv-cdvirtualenv python-mode-map)
   :config
   (progn
     ;; Used by virtualenvwrapper.el to store virtualenvs
