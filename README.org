@@ -184,6 +184,15 @@ and run with python pytddmon.py &
 - C-SPC C-SPC - mark a place in a buffer
 - C-u C-space - return to the mark
 - M-x emacs-uptime - uptime of emacs session
+- M-m - back-to-indentation, move to the fist non-whitespace char on the line
+- C-b / C-f - move back and forward by a char
+- M-b / M-f - move back and forward by a word
+- M-d - kill a word to the right
+- M-Del - kill a word to the left
+- C-M b / C-M f - move by S-exp
+- C-h a - describe a function
+- C-h s - load syntax table
+- M-i -  imenu to show func definitions
 * Links to some emacs resources
 - [[https://github.com/jhamrick/emacs][Jessica Hamrick emacs setup as Python IDE]]
 - [[https://github.com/jwiegley/use-package][Use-package Git repo]]

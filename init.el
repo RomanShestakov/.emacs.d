@@ -233,6 +233,9 @@
 (define-key input-decode-map "\e[g" [S-f9])
 (define-key input-decode-map "\e[s" [C-f9])
 
+;; Use M-i for imenu to show func definitions
+(global-set-key (kbd "M-i") 'imenu)
+
 ;;; init.el ends here
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -240,7 +243,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auto-save-file-name-transforms (quote ((".*" "~/tmp/autosaves/\\1" t))))
- '(safe-local-variable-values (quote ((project-venv-name . "coursera-python")))))
+ '(safe-local-variable-values
+   (quote
+    ((project-venv-name . "ros")
+     (project-venv-name . "coursera-python"))))
+ '(send-mail-function (quote mailclient-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

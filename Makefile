@@ -9,6 +9,7 @@ all: compile
 
 compile:
 	emacs --batch --eval "(byte-recompile-directory \".\" 0)"
+	make -C lisp/distel
 
 clean:
 	find . -name "*.elc" -print | xargs rm -f
