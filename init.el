@@ -235,6 +235,8 @@
 
 ;; Use M-i for imenu to show func definitions
 (global-set-key (kbd "M-i") 'imenu)
+;; bind C-x r to rgrep command
+(global-set-key (kbd "C-x r") 'rgrep)
 
 ;;; init.el ends here
 (custom-set-variables
