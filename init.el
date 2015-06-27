@@ -241,7 +241,8 @@
 ;; copy / cut lines without selecting them first
 ;; http://emacs-fu.blogspot.de/2009/11/copying-lines-without-selecting-them.html
 ;; if there is not selection, assume the operation should be applied to the whole line.
-;; binded to M-w
+;; in case of selection use the usual behavour
+;; Binded to M-w
 (defadvice kill-ring-save (before slick-copy activate compile)
   "When called interactively with no active region, copy a single line instead."
   (interactive
@@ -249,12 +250,16 @@
      (message "Copied line")
      (list (line-beginning-position) (line-beginning-position 2)))))
 
+;; Binded to C-w
 (defadvice kill-region (before slick-cut activate compile)
   "When called interactively with no active region, kill a single line instead."
   (interactive
     (if mark-active (list (region-beginning) (region-end))
       (list (line-beginning-position)
         (line-beginning-position 2)))))
+
+;; uncomment in case if backspace is not working correctly
+;; (normal-erase-is-backspace-mode 0)
 
 ;;; init.el ends here
 (custom-set-variables
