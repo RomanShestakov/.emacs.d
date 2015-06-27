@@ -194,6 +194,7 @@ and run with python pytddmon.py &
 - C-h s - load syntax table
 - M-i -  imenu to show func definitions
 - C-x r - run rgrep
+- M-q - wrap paragraph
 * Links to some emacs resources
 - [[https://github.com/jhamrick/emacs][Jessica Hamrick emacs setup as Python IDE]]
 - [[https://github.com/jwiegley/use-package][Use-package Git repo]]
@@ -218,3 +219,4 @@ and run with python pytddmon.py &
 - [[https://github.com/AndreaCrotti/Emacs-configuration][Adrea Crotti Emacs config]]
 - [[https://www.youtube.com/watch?v=k50zqdXdYxc][TDD in Python with emacs video]]
 - [[https://github.com/inducer/pudb][PUDB python debugger]]
+- [[https://www.masteringemacs.org/all-articles][Mastering EMACS website - a book and a set of great articles]]
