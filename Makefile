@@ -8,7 +8,7 @@ TMP:=~/tmp
 all: compile
 
 compile:
-	emacs --batch --eval "(byte-recompile-directory \".\" 0)"
+	#emacs --batch --eval "(byte-recompile-directory \".\" 0)"
 	make -C lisp/distel
 
 clean:

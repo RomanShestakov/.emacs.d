@@ -39,10 +39,21 @@ pip install ipython
 #+END_SRC
 
 * Install
+I have  added 'elpa'  dir into a  git repo for  .emacs.d. This  is the
+directory when use-package auto-installs  the packages from ELPA. This
+is done for convinience  as some of the machines I  use are behind the
+firewalls and  can't install all  the packages automatically.   On the
+machines which do  have access to un-restricted Internet  it is better
+to allow auto-install.  In this case remove  .emacs.d/elpa and restart
+emacs.
+#+BEGIN_SRC
+rm -rf .emacs.d/elpa
+#+END_SRC
+
 # Clone from github:
 git clone https://github.com/RomanShestakov/.emacs.d.git
 # build distel
-cd .emacs.d/lisp/distel && make
+make
 
 # Environment vars
 # set the following vars in .profile
@@ -195,6 +206,7 @@ and run with python pytddmon.py &
 - M-i -  imenu to show func definitions
 - C-x r - run rgrep
 - M-q - wrap paragraph
+- C-u M-q - wrap paragraph and auto-align
 * Links to some emacs resources
 - [[https://github.com/jhamrick/emacs][Jessica Hamrick emacs setup as Python IDE]]
 - [[https://github.com/jwiegley/use-package][Use-package Git repo]]
