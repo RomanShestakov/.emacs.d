@@ -46,14 +46,15 @@ firewalls and  can't install all  the packages automatically.   On the
 machines which do  have access to un-restricted Internet  it is better
 to allow auto-install.  In this case remove  .emacs.d/elpa and restart
 emacs.
-#+BEGIN_SRC
-rm -rf .emacs.d/elpa
-#+END_SRC
 
+#+BEGIN_SRC
 # Clone from github:
 git clone https://github.com/RomanShestakov/.emacs.d.git
+# remove ELPA if need to refresh packages from ELPA
+rm -rf .emacs.d/elpa
 # build distel
 make
+#+END_SRC
 
 # Environment vars
 # set the following vars in .profile

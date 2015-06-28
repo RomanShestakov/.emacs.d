@@ -207,15 +207,7 @@
   (progn
     (setq python-shell-interpreter "ipython")))
 
-;; (require 'ido-settings)
-;; (require 'elisp-slime-nav-settings)
-;; (require 'yasnippet-settings)
-;; (require 'virtualenv-settings)
 ;; (require 'prolog-settings)
-;; (require 'elixir-settings)
-;; (require 'ctag-settings)
-;; (require 'projectile-settings)
-;; (require 'fill-column-indicator-settings)
 
 ;; http://stackoverflow.com/questions/26171265/emacs-keyboard-bindings-on-os-x-iterm2
 ;; hardcode keybinding to make emacs work with iTerm2
