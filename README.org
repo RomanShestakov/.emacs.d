@@ -185,28 +185,168 @@ load pytddmon.py from http://pytddmon.org/?page_id=157
 drop it into scr dir of the project
 and run with python pytddmon.py &
 * Some useful emacs functions
-- describe-personal-keybindings - allows to see defined keys binding and overrides
-- (normal-erase-is-backspace-mode 0) - allows to set emacs into a correct mode for backspace button to work
 - If C-h sends delete char, try to use F1 for help-command
-- C-c t - opens multiterm mode
 - M-r - reverse command search in multiterm mode (same as C-r in bash)
 - M-x - describe-personal-key-bindings
-- C-h r - invoke emacs manual
-- C-SPC C-SPC - mark a place in a buffer
-- C-u C-space - return to the mark
-- M-x emacs-uptime - uptime of emacs session
+- M-x - emacs-uptime - uptime of emacs session
 - M-m - back-to-indentation, move to the fist non-whitespace char on the line
-- C-b / C-f - move back and forward by a char
-- M-b / M-f - move back and forward by a word
-- M-d - kill a word to the right
-- M-Del - kill a word to the left
-- C-M b / C-M f - move by S-exp
-- C-h a - describe a function
-- C-h s - load syntax table
-- M-i -  imenu to show func definitions
-- C-x r - run rgrep
-- M-q - wrap paragraph
-- C-u M-q - wrap paragraph and auto-align
+
+* Useful shortcuts
+|-------------------------------------------+---------------------------------------------------------------|
+| key                                       | description                                                   |
+|-------------------------------------------+---------------------------------------------------------------|
+| emacs                                     |                                                               |
+|-------------------------------------------+---------------------------------------------------------------|
+| M-t                                       | find files (helm-for-files)                                   |
+| M-q                                       | wrap line if it is too long (fill-paragraph func)             |
+| C-u, M-q                                  | wrap line and align text                                      |
+| emacs -nw                                 | open emacs in no window mode                                  |
+| M-S up/down                               | resize window split                                           |
+| M-S left/right                            | resize window split                                           |
+| C-c M-b                                   | build ctags for a project                                     |
+| C-x C-f C-f                               | get out of ido mode into normal file find: [[http://stackoverflow.com/questions/5138110/emacs-create-new-file-with-ido-enabled][from here]]          |
+| C-j in ido                                | accept what was typed - [[http://stackoverflow.com/questions/812524/ido-mode-is-too-smart-can-i-get-it-to-not-complete-a-filename?rq=1][ from here]]                            |
+| C-x, r                                    | grep for pattern, rgrep                                       |
+| C-x C- + / -                              | change font size                                              |
+| C-h b                                     | describe current key bindings                                 |
+| C-h k                                     | describe key pressed                                          |
+| C-h f                                     | describe function                                             |
+| C-h r                                     | run emacs manual                                              |
+| C-h v                                     | describe variable                                             |
+| M-g M-g                                   | goto line number                                              |
+| C-u M-<bar>                               | execute shell command http://irreal.org/blog/?p=354           |
+| C-c t                                     | start/switch to multi-term                                    |
+| C-c T                                     | always start a new multi-term session                         |
+| M-s Up/down                               | move a line up or dow                                         |
+| C-x h                                     | select entire buffer                                          |
+| C-x C-e                                   | eval s-expression                                             |
+| C-M left/right arrow                      | go to the beginning/end of parenthesis                        |
+| M-: (read-event "?")                      | read keystrockes                                              |
+| C-SPC C-SPC                               | mark a place in a buffer                                      |
+| C-u C-SPC                                 | return to the mark                                            |
+| M-i                                       | run imenu to show func definitions                            |
+| C-x, (                                    | start recording a macro                                       |
+| C-x, )                                    | stop recording a macro                                        |
+| C-x, e                                    | play a macro                                                  |
+| M-BackSpace                               | kill a word on the left                                       |
+| M-d                                       | kill a word on the right                                      |
+| M-r                                       |                                                               |
+|                                           |                                                               |
+|-------------------------------------------+---------------------------------------------------------------|
+|                                           |                                                               |
+| slime-nav-mode                            |                                                               |
+|-------------------------------------------+---------------------------------------------------------------|
+| C-c C-d C-d                               | find out value of variable in elisp                           |
+| M-.                                       | jump to function def in elisp                                 |
+| M-,                                       | jump out                                                      |
+| M-x sort-lines                            | sorts selected region                                         |
+|-------------------------------------------+---------------------------------------------------------------|
+| [[http://orgmode.org/manual/Built_002din-table-editor.html][Org-mode]]                                  |                                                               |
+|-------------------------------------------+---------------------------------------------------------------|
+| C-C C-e                                   | export mode                                                   |
+| C-C C-t                                   | put task into DONE                                            |
+| C-C C-o                                   | go to the link origin                                         |
+| M-up/down                                 | move line                                                     |
+| C-M - down                                | insert line into org table                                    |
+| '*'                                       | start a new header                                            |
+| '-'                                       | start a bullet list.                                          |
+| C-c                                       | cycle thru different bullet styles,                           |
+| M-Return                                  | insert a new item                                             |
+| M-<Right>/<Left>                          | promote / demote the item                                     |
+| C-c VertBar                               | create table                                                  |
+| M - <right/left>                          | move column to right/left                                     |
+| M - S <right/left/up/down>                | insert column or row (will also remove an column or raw)      |
+| C-u M-!                                   | to insert the result of command into a buffer                 |
+| cua-mode                                  | breaks region selection                                       |
+| < s TAB                                   | insert SRC template                                           |
+| C-c C-c                                   | execute python source in org-mode                             |
+| C-S <Return>                              | create a new TODO item                                        |
+| C-c -                                     | insert horizontal line below                                  |
+|-------------------------------------------+---------------------------------------------------------------|
+| Python                                    |                                                               |
+|-------------------------------------------+---------------------------------------------------------------|
+| C-c !                                     | start python interpreter                                      |
+| C-c \vert(pipe char) or S-F9              | send active region to interpreter                             |
+| C-c C-c  or F9                            | eval entire buffer                                            |
+| M-x venv-mkvirtualenv                     | create a new virtualenv                                       |
+| C-c C-s                                   | execute python command                                        |
+|                                           |                                                               |
+|-------------------------------------------+---------------------------------------------------------------|
+| vim                                       |                                                               |
+|-------------------------------------------+---------------------------------------------------------------|
+| esc                                       | enter command mode                                            |
+| i                                         | insert mode                                                   |
+| Shift:                                    | column mode                                                   |
+| wq!                                       | save file and exit                                            |
+| yy                                        | yank mode, copy current line                                  |
+| p (lowr case)                             | paste the line below the cursor                               |
+| P (upper case)                            | paste on the line above the cursor                            |
+| o                                         | insert mode , creates a next line                             |
+| Shift: =                                  | show the line number we are on                                |
+| 23 yy                                     | yank 23 lines below the cursor                                |
+| move coursor to the positions and press p | paste 23 lines                                                |
+| dd                                        | delete line                                                   |
+| 10 dd                                     | delete 10 lines                                               |
+| A                                         | takes to the end of the line and enters insert mode           |
+| a                                         | moves one char to the right and enters insert mode            |
+| R                                         | enter replace insert mode (allows to type over existing text) |
+| Shit h (H)                                | jump to the top of the page (Home)                            |
+| Shift l(L)                                | jump to the last line                                         |
+| u                                         | undo the last change                                          |
+| cc                                        | delee contents of the line and override it                    |
+| cw                                        | override one word                                             |
+| /                                         | search forward                                                |
+| ?                                         | search backward                                               |
+| n                                         | next occuranse                                                |
+| N                                         | occurance before the current one                              |
+| esc : %s/word1/word2                      | replace word1 with word2 in entire file (%)                   |
+| esc : 1s/word1/word2                      | replace word1 with word2 on line 1                            |
+| :w                                        | save file                                                     |
+| :wq                                       | save/exit                                                     |
+| :q                                        | exit                                                          |
+| :q!                                       | exit without saving changes                                   |
+| :! <shell command>                        | execute shell command inside vim                              |
+| :! ls                                     | show command output inside vim                                |
+| :e /filename                              | load file into vim                                            |
+| :e /etc/passwd                            | open /etc/passwd file                                         |
+| :r /etc/passwd                            | load etc/passwd into current file                             |
+|-------------------------------------------+---------------------------------------------------------------|
+| Prolog                                    |                                                               |
+|-------------------------------------------+---------------------------------------------------------------|
+| C-c C-b                                   | eval prolog buffer, conduct buffer                            |
+| C-c Enter                                 | run prolog in inferior buffer                                 |
+|                                           |                                                               |
+|                                           |                                                               |
+|-------------------------------------------+---------------------------------------------------------------|
+| Tmux                                      | http://www.sitepoint.com/tmux-a-simple-start/                 |
+|                                           | [[https://www.youtube.com/watch?v=nD6g-rM5Bh0][Tmux Basics Video]]                                             |
+|                                           | [[http://tmuxcheatsheet.com/][Tmux Cheat Sheet]]                                              |
+|-------------------------------------------+---------------------------------------------------------------|
+| C-b %                                     | split the pane vertically                                     |
+| C-b "                                     | split the current pane horizontally                           |
+| C-b Arrows                                | to switch the panes                                           |
+| C-b z                                     | toggle the pane into full screen mode  (zoom)                 |
+| C-b c                                     | add new window                                                |
+| C-b <window number>                       | to switch to the given window                                 |
+| C-b d                                     | detach tmux session                                           |
+| tmux ls                                   | list tmux detached sessions                                   |
+| tmux attach -t 0                          | attach to tmux session                                        |
+| tmux kill-session -t 0                    | kill session                                                  |
+| tmux new -s newsession                    | create new session                                            |
+| tmux list-sessions                        | list running sessions                                         |
+| C-b ,                                     | rename window                                                 |
+| C-b p                                     | switch to prev window                                         |
+| C-b n                                     | switch to next window                                         |
+| C-b w                                     | list existing windows so it is possible to select window      |
+| C-b :                                     | run some named command (e.g. split-window)                    |
+| C-b x (or type 'exit')                    | kill pane (remove split)                                      |
+| C-b q                                     | show panes numbers                                            |
+| C-b &                                     | kill window                                                   |
+| C-b ?                                     | show shortcuts                                                |
+| C-b (release) arrows                      | move to a panes                                               |
+| C-b (hold) arrows                         | resize the panes                                              |
+|-------------------------------------------+---------------------------------------------------------------|
+
 * Links to some emacs resources
 - [[https://github.com/jhamrick/emacs][Jessica Hamrick emacs setup as Python IDE]]
 - [[https://github.com/jwiegley/use-package][Use-package Git repo]]
