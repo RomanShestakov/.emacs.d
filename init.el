@@ -12,6 +12,8 @@
 (setq package-enable-at-startup nil)
 ;; melpa url must have a trailing "/" at the end
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+;; (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -51,6 +53,7 @@
   (exec-path-from-shell-initialize)
   (exec-path-from-shell-copy-env "PATH")
   (exec-path-from-shell-copy-env "ERL_TOP")
+  (exec-path-from-shell-copy-env "OCAML_TOPLEVEL_PATH")
   (exec-path-from-shell-copy-env "PATHONPATH"))
 
 ;; org-mode
@@ -198,9 +201,11 @@
   (progn
     (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)))
 
+
 ;; apply general emacs customisation settings
 (use-package general-settings)
 (use-package erlang-settings)
+(use-package ocaml-settings)
 (use-package color-theme-settings)
 (use-package python-settings
   :config

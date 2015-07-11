@@ -185,6 +185,16 @@ $ sudo apt-get install python-tk
 load pytddmon.py from http://pytddmon.org/?page_id=157
 drop it into scr dir of the project
 and run with python pytddmon.py &
+* Ocaml mode
+#+BEGIN_SRC
+# install opam
+brew install opam
+opam init
+eval `opam config env`
+opam install core utop
+opam install merlin
+opam install async yojson core_extended core_bench cohttp async_graphics cryptokit menhir incremental
+#+END_SRC
 * Some useful emacs functions
 - If C-h sends delete char, try to use F1 for help-command
 - M-r - reverse command search in multiterm mode (same as C-r in bash)
@@ -373,3 +383,7 @@ and run with python pytddmon.py &
 - [[https://www.youtube.com/watch?v=k50zqdXdYxc][TDD in Python with emacs video]]
 - [[https://github.com/inducer/pudb][PUDB python debugger]]
 - [[https://www.masteringemacs.org/all-articles][Mastering EMACS website - a book and a set of great articles]]
+- [[https://github.com/stormogulen/.emacs/blob/master/emacs-config.org][stormogulen/.emacs - setup for Ocalm + some interesting setting for languages]]
+- [[http://mads-hartmann.com/ocaml/2014/01/05/using-utop-in-emacs.html][Using Utop for Ocaml in Emacs]]
+- [[https://github.com/realworldocaml/book/wiki/Installation-Instructions][Ocaml install for emacs from RealWorldOcaml book]]
+- [[https://github.com/the-lambda-church/merlin/wiki/emacs-from-scratch][Ocaml Merlin emacs setup]]
