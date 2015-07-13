@@ -4,80 +4,63 @@
 ;;; https://github.com/diml/utop
 ;;; https://github.com/realworldocaml/book/wiki/Installation-Instructions
 ;;; https://github.com/the-lambda-church/merlin/wiki/emacs-from-scratch
+;;; http://the-lambda-church.github.io/merlin/
+;;; http://mort.io/blog/2013/10/13/21st-century-ide/
+;;; http://www.lunaryorn.com/2014/12/03/generic-syntax-checkers-in-flycheck.html
 
 ;;; Code:
 
 ;; Ocaml
+(use-package opam
+  :ensure t
+  :init (opam-init))
+
 (use-package utop
   :ensure t)
 
-(use-package merlin
+(use-package ocp-indent
   :ensure t)
+
+(use-package merlin
+  :ensure t
+  :init (add-hook 'tuareg-mode-hook #'merlin-mode)
+  :config
+  (progn
+    (setq merlin-use-auto-complete-mode 'easy)
+    ;;(setq merlin-error-after-save nil)
+    ))
+
+;; Check OCaml code with Merlin
+(use-package flycheck-ocaml
+  :ensure t
+  :defer t
+  :init
+  (with-eval-after-load 'merlin
+    (flycheck-ocaml-setup)))
 
 (use-package tuareg
   :ensure t
+  :defer t
   :config
-  (setq auto-mode-alist
-        (append '(("\\.ml[ily]?$" . tuareg-mode)
+  (progn
+    (setq auto-mode-alist
+          (append '(("\\.ml[ily]?$" . tuareg-mode)
                   ("\\.topml$" . tuareg-mode))
-                auto-mode-alist))
-  (autoload 'utop "utop" "Toplevel for Ocaml" t)
-  (add-hook 'tuareg-mode-hook 'merlin-mode)
-  (setq merlin-use-auto-complete-mode t)
-  (setq merlin-error-after-save nil))
+                  auto-mode-alist))
+    (setq tuareg-in-indent 0)
+    (setq tuareg-use-smie nil)
+    (setq indent-line-function 'ocp-indent-line)
+    (setq tuareg-font-lock-symbols t)
+    (autoload 'utop "utop" "Toplevel for Ocaml" t)))
 
-;; -- Tweaks for OS X -------------------------------------
-;; Tweak for problem on OS X where Emacs.app doesn't run the right
-;; init scripts when invoking a sub-shell
-(cond
- ;; macosx
- ((eq window-system 'ns)
-  ;; Invoke login shells, so that .profile or .bash_profile is read
-  (setq shell-command-switch "-lc")))
+;; (setq merlin-report-warnings nil)
+;; (setq merlin-use-auto-complete-mode 'easy)
 
 ;; opam and utop setup
 (dolist
     (var (car (read-from-string
                (shell-command-to-string "opam config env --sexp"))))
   (setenv (car var) (cadr var)))
-
-;; Update the emacs path
-(setq exec-path (split-string (getenv "PATH") path-separator))
-
-;; Update the emacs load path
-(push (concat (getenv "OCAML_TOPLEVEL_PATH") "/../../share/emacs/site-lisp") load-path)
-
-(autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
-(add-hook 'tuareg-mode-hook 'utop-minor-mode)
-(setq tuareg-font-lock-symbols t)
-
-;; Indent `=' like a standard keyword.
-(setq tuareg-lazy-= t)
-;; Indent [({ like standard keywords.
-(setq tuareg-lazy-paren t)
-;; No indentation after `in' keywords.
-(setq tuareg-in-indent 0)
-
-;; -- merlin setup ---------------------------------------
-(setq opam-share (substring (shell-command-to-string "opam config var share") 0 -1))
-(add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
-(require 'merlin)
-
-;; Enable Merlin for ML buffers
-(add-hook 'tuareg-mode-hook 'merlin-mode)
-
-;; So you can do it on a mac, where `C-<up>` and `C-<down>` are used
-;; by spaces.
-(define-key merlin-mode-map
-  (kbd "C-c <up>") 'merlin-type-enclosing-go-up)
-(define-key merlin-mode-map
-  (kbd "C-c <down>") 'merlin-type-enclosing-go-down)
-(set-face-background 'merlin-type-face "#88FF44")
-
-;; -- enable auto-complete -------------------------------
-;; Not required, but useful along with merlin-mode
-(require 'auto-complete)
-(add-hook 'tuareg-mode-hook 'auto-complete-mode)
 
 ;; add F9 and S-F9 binding to eval a buffer or selected expr
 (defun my-ocaml-mode-hook ()
@@ -87,6 +70,8 @@
 
 ;; add hooks to tuareg-mode
 (add-hook 'tuareg-mode-hook 'my-ocaml-mode-hook)
+;(add-hook 'tuareg-mode-hook 'merlin-mode)
+(add-hook 'tuareg-mode-hook 'auto-complete-mode)
 
 (provide 'ocaml-settings)
 

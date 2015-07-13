@@ -387,3 +387,4 @@ opam install async yojson core_extended core_bench cohttp async_graphics cryptok
 - [[http://mads-hartmann.com/ocaml/2014/01/05/using-utop-in-emacs.html][Using Utop for Ocaml in Emacs]]
 - [[https://github.com/realworldocaml/book/wiki/Installation-Instructions][Ocaml install for emacs from RealWorldOcaml book]]
 - [[https://github.com/the-lambda-church/merlin/wiki/emacs-from-scratch][Ocaml Merlin emacs setup]]
+- [[http://mort.io/blog/2013/10/13/21st-century-ide/][A 21st Century IDE - ocaml setup]]

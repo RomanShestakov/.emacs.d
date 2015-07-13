@@ -201,6 +201,10 @@
   (progn
     (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)))
 
+;; get auto-complete
+(use-package auto-complete
+  :ensure t
+  :defer t)
 
 ;; apply general emacs customisation settings
 (use-package general-settings)

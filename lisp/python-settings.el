@@ -55,10 +55,10 @@
     ;; show the name of env in status line
     (setq-default mode-line-format (cons '(:exec venv-current-name) mode-line-format))))
 
-;; get auto-complete
-(use-package auto-complete
-  :ensure t
-  :defer t)
+;; ;; get auto-complete
+;; (use-package auto-complete
+;;   :ensure t
+;;   :defer t)
 
 ;; get epc
 (use-package epc
