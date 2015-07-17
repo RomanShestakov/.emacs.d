@@ -23,12 +23,13 @@
 
 (use-package merlin
   :ensure t
-  :init (add-hook 'tuareg-mode-hook #'merlin-mode)
+  :init
+  (add-hook 'tuareg-mode-hook #'merlin-mode)
   :config
   (progn
     (setq merlin-use-auto-complete-mode 'easy)
-    ;;(setq merlin-error-after-save nil)
-    ))
+    ;;(setq merlin-report-warnings nil)
+    (setq merlin-error-after-save nil)))
 
 ;; Check OCaml code with Merlin
 (use-package flycheck-ocaml
@@ -47,14 +48,12 @@
           (append '(("\\.ml[ily]?$" . tuareg-mode)
                   ("\\.topml$" . tuareg-mode))
                   auto-mode-alist))
-    (setq tuareg-in-indent 0)
-    (setq tuareg-use-smie nil)
-    (setq indent-line-function 'ocp-indent-line)
-    (setq tuareg-font-lock-symbols t)
+    ;; (setq tuareg-in-indent 0)
+    ;; (setq tuareg-use-smie nil)
+    ;; (setq indent-line-function 'ocp-indent-line)
+    ;; (setq tuareg-font-lock-symbols t)
     (autoload 'utop "utop" "Toplevel for Ocaml" t)))
 
-;; (setq merlin-report-warnings nil)
-;; (setq merlin-use-auto-complete-mode 'easy)
 
 ;; opam and utop setup
 (dolist
@@ -70,8 +69,8 @@
 
 ;; add hooks to tuareg-mode
 (add-hook 'tuareg-mode-hook 'my-ocaml-mode-hook)
-;(add-hook 'tuareg-mode-hook 'merlin-mode)
 (add-hook 'tuareg-mode-hook 'auto-complete-mode)
+(add-hook 'tuareg-mode-hook 'flycheck-mode)
 
 (provide 'ocaml-settings)
 
