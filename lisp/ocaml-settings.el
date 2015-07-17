@@ -28,7 +28,7 @@
   :config
   (progn
     (setq merlin-use-auto-complete-mode 'easy)
-    ;;(setq merlin-report-warnings nil)
+    (setq merlin-report-warnings nil)
     (setq merlin-error-after-save nil)))
 
 ;; Check OCaml code with Merlin
@@ -54,6 +54,12 @@
     ;; (setq tuareg-font-lock-symbols t)
     (autoload 'utop "utop" "Toplevel for Ocaml" t)))
 
+;; ;; Tweak for problem on OS X where Emacs.app doesn't run the right
+;; ;; init scripts when invoking a sub-shell
+;; (cond
+;;  ((eq window-system 'ns) ; macosx
+;;   ;; Invoke login shells, so that .profile or .bash_profile is read
+;;   (setq shell-command-switch "-lc")))
 
 ;; opam and utop setup
 (dolist

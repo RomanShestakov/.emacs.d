@@ -195,6 +195,17 @@ opam install core utop
 opam install merlin
 opam install async yojson core_extended core_bench cohttp async_graphics cryptokit menhir incremental
 #+END_SRC
+
+It is a very good idea to use .merlin file for each Ocaml project. This
+will make merlin (and correspondingly flycheck-ocaml) error checking work correctly.
+Add .merlin file into the root of the project
+More about the setup could be found [[https://github.com/the-lambda-church/merlin/wiki/emacs-from-scratch][here]]
+
+#+BEGIN_SRC
+#contents of .merlin
+PKG core lwt
+#+END_SRC
+
 * Some useful emacs functions
 - If C-h sends delete char, try to use F1 for help-command
 - M-r - reverse command search in multiterm mode (same as C-r in bash)
