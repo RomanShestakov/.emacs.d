@@ -78,6 +78,7 @@
   (window-number-meta-mode 1))
 
 ;; enable multi-term
+;; https://github.com/Hawstein/my-emacs/blob/master/_emacs/multi-term-settings.el
 (use-package multi-term
   :ensure t
   :defer t
@@ -85,12 +86,19 @@
   :init
   (setq multi-term-program-switches "--login")
   (add-hook 'term-mode-hook (lambda() (setq yas-dont-activate t)))
-  (setq multi-term-program "/bin/bash"
-        term-unbind-key-list '("C-x"
+  (setq multi-term-program "/bin/bash")
+  (setq term-unbind-key-list '("C-x"
                                "C-h"
                                "M-x"
-                               "C-z")
-        term-term-name "xterm-256color"))
+                               "C-z"
+                               "<up>"
+                               "<down>"))
+  (setq term-bind-key-alist '(("C-a" . term-send-raw)
+                              ("C-e" . term-send-raw)
+                              ("C-y" . term-send-raw)
+                              ("C-k" . term-send-raw)
+                              ))
+  (setq term-term-name "xterm-256color"))
 
 ;; https://github.com/ramnes/move-border
 ;; allows to move borders between windows
@@ -203,6 +211,11 @@
 
 ;; get auto-complete
 (use-package auto-complete
+  :ensure t
+  :defer t)
+
+;; yaml mode
+(use-package yaml-mode
   :ensure t
   :defer t)
 

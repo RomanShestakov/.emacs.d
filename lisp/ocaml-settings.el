@@ -7,6 +7,8 @@
 ;;; http://the-lambda-church.github.io/merlin/
 ;;; http://mort.io/blog/2013/10/13/21st-century-ide/
 ;;; http://www.lunaryorn.com/2014/12/03/generic-syntax-checkers-in-flycheck.html
+;;; https://gist.github.com/unhammer/c1ac7320141f09ac38e0
+;;; http://blog.nullspace.io/beginners-guide-to-ocaml-beginners-guides.html
 
 ;;; Code:
 
@@ -54,12 +56,12 @@
     ;; (setq tuareg-font-lock-symbols t)
     (autoload 'utop "utop" "Toplevel for Ocaml" t)))
 
-;; ;; Tweak for problem on OS X where Emacs.app doesn't run the right
-;; ;; init scripts when invoking a sub-shell
-;; (cond
-;;  ((eq window-system 'ns) ; macosx
-;;   ;; Invoke login shells, so that .profile or .bash_profile is read
-;;   (setq shell-command-switch "-lc")))
+;; Tweak for problem on OS X where Emacs.app doesn't run the right
+;; init scripts when invoking a sub-shell
+(cond
+ ((eq window-system 'ns) ; macosx
+  ;; Invoke login shells, so that .profile or .bash_profile is read
+  (setq shell-command-switch "-lc")))
 
 ;; opam and utop setup
 (dolist
