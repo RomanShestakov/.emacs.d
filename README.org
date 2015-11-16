@@ -92,6 +92,9 @@ External packages are installed from MELPA using use-package macro. They are pla
 ~/.emacs.d/elpa dir is saved into git tree. This is done to improve portability across different systems.
 The packages that are installed manually should be placed into ~/.emacs/lisp
 
+* Terminal setting
+the color mode requires 256 colors so set in .profile:
+export TERM=xterm-256color
 * Color theme - gruber-darker-theme
 https://github.com/rexim/gruber-darker-theme
 * Erlang mode
