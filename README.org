@@ -6,15 +6,14 @@
 These packages needs to be installed before install:
 ** Linux debian
 #+BEGIN_SRC bash
-#sudo apt-get install texinfo
-#sudo apt-get install texlive
-#sudo apt-get install bzr
+# git is needed for megit mode
 sudo apt-get install git
-# python mode autocomple with jedi needs vertualenv
+# python mode autocomple with jedi requires vertualenv
 sudo apt-get install -y python-virtualenv
+# optionally install ipython as a replacement for python shell in emacs:
 sudo pip install ipython
-# run jedi install
-# M-x jedi:install-server
+# to run jedi install from inside emacs:
+M-x jedi:install-server
 #+END_SRC
 
 ** MacOs
