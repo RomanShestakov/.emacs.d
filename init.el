@@ -221,8 +221,9 @@
 
 ;; apply general emacs customisation settings
 (use-package general-settings)
+;; requires setting "ERL_TOP"
 (use-package erlang-settings)
-(use-package ocaml-settings)
+;; (use-package ocaml-settings)
 (use-package color-theme-settings)
 (use-package python-settings
   :config

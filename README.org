@@ -3,13 +3,16 @@
 #+LANGUAGE: en
 
 * Pre-requisites
+This setup was tested with emacs 24.4
 These packages needs to be installed before install:
 ** Linux debian
 #+BEGIN_SRC bash
 # git is needed for megit mode
 sudo apt-get install git
-# python mode autocomple with jedi requires vertualenv
+# python mode autocomple with jedi requires virtualenv
 sudo apt-get install -y python-virtualenv
+# install pylint for python mode
+sudo pip install pylint
 # optionally install ipython as a replacement for python shell in emacs:
 sudo pip install ipython
 # to run jedi install from inside emacs:
@@ -261,7 +264,6 @@ type in file name, then C-j instead of RET
 |-------------------------------------------+---------------------------------------------------------------|
 |                                           |                                                               |
 | slime-nav-mode                            |                                                               |
-
 |-------------------------------------------+---------------------------------------------------------------|
 | C-c C-d C-d                               | find out value of variable in elisp                           |
 | M-.                                       | jump to function def in elisp                                 |
@@ -374,6 +376,12 @@ type in file name, then C-j instead of RET
 | C-b (hold) arrows                         | resize the panes                                              |
 |-------------------------------------------+---------------------------------------------------------------|
 
+* FAQ
+** How to check emacs version:
+#+BEGIN_SRC
+emacs --version
+#+END_SRC
+M-x emacs-version
 * Links to some emacs resources
 - [[https://github.com/jhamrick/emacs][Jessica Hamrick emacs setup as Python IDE]]
 - [[https://github.com/jwiegley/use-package][Use-package Git repo]]
