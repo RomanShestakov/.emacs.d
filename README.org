@@ -100,6 +100,12 @@ export TERM=xterm-256color
 * Color theme - gruber-darker-theme
 https://github.com/rexim/gruber-darker-theme
 * Erlang mode
+** YASnippet
+Erlang mode relies on .erlang to be present in the root of the
+project. To create this file from yasnippet template use the following steps:
+- enable YAS - M-x yas-global-mode
+- open a new buffer in erlang-mode and type in the word 'erlang', press TAB
+
 ** Distel-mode
 
 Distel mode depends on Erlang mode, so need to correct a path to the version of

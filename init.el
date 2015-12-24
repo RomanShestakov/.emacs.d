@@ -12,8 +12,9 @@
 (setq package-enable-at-startup nil)
 ;; melpa url must have a trailing "/" at the end
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-;; (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+;;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
 (package-initialize)
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -218,6 +219,14 @@
 (use-package yaml-mode
   :ensure t
   :defer t)
+
+;; yasnippet
+(use-package yasnippet
+  :ensure t
+  :defer t
+  ;;:diminish yasnippet-mode
+  :config
+  (yas-reload-all))
 
 ;; apply general emacs customisation settings
 (use-package general-settings)
