@@ -36,24 +36,24 @@
 (setq python-shell-completion-setup-code  "from IPython.core.completerlib import module_completion")
 (setq python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
-;; setup virtualenvwrapper
-(use-package virtualenvwrapper
-  :ensure t
-  :init
-  (bind-key "C-c v" 'venv-workon python-mode-map)
-  (bind-key "C-c d" 'venv-diactivate python-mode-map)
-  (bind-key "C-c l" 'venv-lsvirtualenv python-mode-map)
-  (bind-key "C-c m" 'venv-mkvirtualenv python-mode-map)
-  (bind-key "C-c c" 'venv-cdvirtualenv python-mode-map)
-  :config
-  (progn
-    ;; Used by virtualenvwrapper.el to store virtualenvs
-    (setq venv-location "~/.virtualenvs")
-    ;; Used python-environment.el and by extend jedi.el
-    (setq python-environment-directory venv-location)
-    (venv-initialize-interactive-shells)
-    ;; show the name of env in status line
-    (setq-default mode-line-format (cons '(:exec venv-current-name) mode-line-format))))
+;; ;; setup virtualenvwrapper
+;; (use-package virtualenvwrapper
+;;   :ensure t
+;;   :init
+;;   (bind-key "C-c v" 'venv-workon python-mode-map)
+;;   (bind-key "C-c d" 'venv-diactivate python-mode-map)
+;;   (bind-key "C-c l" 'venv-lsvirtualenv python-mode-map)
+;;   (bind-key "C-c m" 'venv-mkvirtualenv python-mode-map)
+;;   (bind-key "C-c c" 'venv-cdvirtualenv python-mode-map)
+;;   :config
+;;   (progn
+;;     ;; Used by virtualenvwrapper.el to store virtualenvs
+;;     (setq venv-location "~/.virtualenvs")
+;;     ;; Used python-environment.el and by extend jedi.el
+;;     (setq python-environment-directory venv-location)
+;;     (venv-initialize-interactive-shells)
+;;     ;; show the name of env in status line
+;;     (setq-default mode-line-format (cons '(:exec venv-current-name) mode-line-format))))
 
 ;; ;; get auto-complete
 ;; (use-package auto-complete
@@ -81,8 +81,10 @@
   (bind-key "M-?" 'jedi:show-doc python-mode-map)
   :config
   (progn
+    ;; http://stackoverflow.com/questions/21703693/can-virtualenv-be-avoided-when-using-emacs-jedi-in-anaconda
+    ;;(setq jedi:server-command (list "/Users/romanshestakov/anaconda/bin/python" jedi:server-script))
+    (setq jedi:server-command (list "python" jedi:server-script))
     (setq jedi:complete-on-dot t)))
-
 
 ;; highlight breakpoint
 ;; borrowed from https://www.masteringemacs.org/article/compiling-running-scripts-emacs
