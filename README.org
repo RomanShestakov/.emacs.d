@@ -4,7 +4,8 @@
 
 * Pre-requisites
 This setup was tested with emacs 24.4
-These packages needs to be installed before install:
+These packages needs to be installed before install.
+Python mode requires Conda install : http://conda.pydata.org/miniconda.html
 ** Linux debian
 #+BEGIN_SRC bash
 # git is needed for megit mode
@@ -171,6 +172,16 @@ M-x jedi:install-server
 http://stackoverflow.com/questions/21703693/can-virtualenv-be-avoided-when-using-emacs-jedi-in-anaconda/21704533#21704533
 https://groups.google.com/a/continuum.io/forum/#!topic/anaconda/WLeE62_2crQ
 
+** How to manually build conda packages for jedi integration:
+#+BEGIN_SRC
+git clone https://github.com/conda/conda-recipes.git
+conda install conda-build ipython
+conda build conda-recipes/python/jedi
+conda build conda-recipes/python/sexpdata
+conda build conda-recipes/python/epc
+conda install --use-local jedi sexpdata epc
+#+END_SRC
+
 ** [[http://tuhdo.github.io/helm-projectile.html][Projectile]]
 *** Key bindings for projectile
 - C-c p p - switch project
@@ -270,7 +281,7 @@ type in file name, then C-j instead of RET
 | M-BackSpace                               | kill a word on the left                                       |
 | M-d                                       | kill a word on the right                                      |
 | M-r                                       |                                                               |
-|                                           |                                                               |
+| M-1 / M-2                                 | change window                                                 |
 |-------------------------------------------+---------------------------------------------------------------|
 |                                           |                                                               |
 | slime-nav-mode                            |                                                               |
@@ -425,3 +436,5 @@ M-x emacs-version
 - [[https://realpython.com/blog/python/emacs-the-best-python-editor/][Emacs - the best python editor]]
 - [[http://stiglerdiet.com/blog/2015/Nov/24/my-python-environment-workflow-with-conda/][Conda Workflow]]
 - [[https://github.com/jorgenschaefer/elpy][ELPY mode]]
+- [[http://nsidc.github.io/2015/04/29/Conda%20Python%20at%20NSIDC-%20Changing%20How%20We%20Do%20Python.html][Conda workflow]]
+- [[http://stiglerdiet.com/blog/2015/Nov/24/my-python-environment-workflow-with-conda/][Conda workflow 2]]
