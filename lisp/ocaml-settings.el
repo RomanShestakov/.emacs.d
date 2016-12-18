@@ -12,6 +12,32 @@
 
 ;;; Code:
 
+;; (defun opam-shell-command-to-string (command)
+;;   "Similar to shell-command-to-string, but returns nil unless the process
+;;   returned 0 (shell-command-to-string ignores return value)"
+;;   (let* ((return-value 0)
+;;          (return-string
+;;           (with-output-to-string
+;;             (setq return-value
+;;                   (with-current-buffer standard-output
+;;                     (process-file shell-file-name nil t nil
+;;                                   shell-command-switch command))))))
+;;     (if (= return-value 0) return-string nil)))
+
+;; (setq opam-share
+;;   (let ((reply (opam-shell-command-to-string "opam config var share")))
+;;     (when reply (substring reply 0 -1))))
+
+(setq opam-share (substring (shell-command-to-string "opam config var share 2> /dev/null") 0 -1))
+(add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
+
+;; (require 'ocp-indent)
+;; (require 'merlin)
+;; (add-to-list 'load-path (concat opam-share "/emacs/site-lisp"))
+;; OPAM-installed tools automated detection and initialisation
+
+;; (require 'ocp-indent)
+
 ;; Ocaml
 (use-package opam
   :ensure t
@@ -27,9 +53,11 @@
   :ensure t
   :init
   (add-hook 'tuareg-mode-hook #'merlin-mode)
+  (bind-key "M-." 'merlin-locate)
+  (bind-key "M-," 'merlin-pop-stack)
   :config
   (progn
-    (setq merlin-use-auto-complete-mode 'easy)
+    (setq merlin-ac-setup 'easy)
     (setq merlin-report-warnings nil)
     (setq merlin-error-after-save nil)))
 
@@ -72,7 +100,7 @@
 ;; add F9 and S-F9 binding to eval a buffer or selected expr
 (defun my-ocaml-mode-hook ()
   ;;(define-key tuareg-mode-map [f9] 'tuareg-eval-buffer))
-  (define-key python-mode-map [S-f9] 'utop-eval-region)
+  (define-key tuareg-mode-map [S-f9] 'utop-eval-region)
   (define-key tuareg-mode-map [f9] 'utop-eval-buffer))
 
 ;; add hooks to tuareg-mode
