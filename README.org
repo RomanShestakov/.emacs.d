@@ -218,7 +218,7 @@ brew install opam
 opam init
 eval `opam config env`
 opam install core utop
-opam install merlin
+open install ocp-indent merlin
 opam install async yojson core_extended core_bench cohttp async_graphics cryptokit menhir incremental
 #+END_SRC
 
@@ -231,6 +231,10 @@ More about the setup could be found [[https://github.com/the-lambda-church/merli
 #contents of .merlin
 PKG core lwt
 #+END_SRC
+shortcuts:
+C-c C-t - check var type
+M-Tab - autocomplete
+M-. / M-, - follow the var definition / and return back
 
 * Some useful emacs functions
 - how to stop ido-mode to auto-complete files during saving:
