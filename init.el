@@ -201,32 +201,32 @@
   :config
   (add-hook 'emacs-lisp-mode-hook (lambda () (elisp-slime-nav-mode t))))
 
-;; Paredit
-(use-package paredit
-  :ensure t
-  :disabled t
-  :diminish paredit-mode
-  :init
-  (progn
-    (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)))
+;; ;; Paredit
+;; (use-package paredit
+;;   :ensure t
+;;   :disabled t
+;;   :diminish paredit-mode
+;;   :init
+;;   (progn
+;;     (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)))
 
 ;; get auto-complete
 (use-package auto-complete
   :ensure t
   :defer t)
 
-;; yaml mode
-(use-package yaml-mode
-  :ensure t
-  :defer t)
+;; ;; yaml mode
+;; (use-package yaml-mode
+;;   :ensure t
+;;   :defer t)
 
-;; yasnippet
-(use-package yasnippet
-  :ensure t
-  :defer t
-  ;;:diminish yasnippet-mode
-  :config
-  (yas-reload-all))
+;; ;; yasnippet
+;; (use-package yasnippet
+;;   :ensure t
+;;   :defer t
+;;   ;;:diminish yasnippet-mode
+;;   :config
+;;   (yas-reload-all))
 
 ;; apply general emacs customisation settings
 (use-package general-settings)
@@ -303,3 +303,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
+;; (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; ## end of OPAM user-setup addition for emacs / base ## keep this line

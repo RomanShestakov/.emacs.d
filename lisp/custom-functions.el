@@ -16,6 +16,12 @@
   (interactive)
   (string-equal system-type "gnu/linux"))
 
+;;;###autoload
+(defun close-all-buffers ()
+  "*Close all open buffers."
+  (interactive)
+  (mapc 'kill-buffer (buffer-list)))
+
 (provide 'custom-functions)
 
 ;;; custom-functions.el ends here

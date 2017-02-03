@@ -312,7 +312,7 @@ type in file name, then C-j instead of RET
 | M - S <right/left/up/down>                | insert column or row (will also remove an column or raw)      |
 | C-u M-!                                   | to insert the result of command into a buffer                 |
 | cua-mode                                  | breaks region selection                                       |
-| < s TAB                                   | insert SRC template                                           |
+| <s TAB                                    | insert SRC template                                           |
 | C-c C-c                                   | execute python source in org-mode                             |
 | C-S <Return>                              | create a new TODO item                                        |
 | C-c -                                     | insert horizontal line below                                  |

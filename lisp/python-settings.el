@@ -108,7 +108,11 @@
 (defun my-python-mode-hook ()
   (define-key python-mode-map [f9] 'python-shell-send-buffer)
   (define-key python-mode-map [S-f9] 'python-shell-send-region)
-  (define-key python-mode-map [S-f1] 'python-insert-breakpoint))
+  (define-key python-mode-map [S-f1] 'python-insert-breakpoint)
+  (setq indent-tabs-mode nil)
+  (setq python-indent-offset 4)
+  (setq tab-width 4)
+  (setq python-indent 4))
 
 ;; add hooks to python-mode
 (add-hook 'python-mode-hook 'flycheck-mode)
