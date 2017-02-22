@@ -55,7 +55,7 @@
   (exec-path-from-shell-copy-env "PATH")
   (exec-path-from-shell-copy-env "ERL_TOP")
   (exec-path-from-shell-copy-env "OCAML_TOPLEVEL_PATH")
-  (exec-path-from-shell-copy-env "PATHONPATH"))
+  (exec-path-from-shell-copy-env "PYTHONPATH"))
 
 ;; org-mode
 (use-package org

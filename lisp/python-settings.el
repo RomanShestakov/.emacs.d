@@ -23,13 +23,15 @@
 
 (require 'python)
 
-;(setq python-shell-interpreter "ipython")
+;; how to fix ipython broken output
+;; http://emacs.stackexchange.com/questions/24453/weird-shell-output-when-using-ipython-5?newreg=7e15e274404d40d3bf722e1e310ee278
+(setq python-shell-interpreter "ipython")
 ;; (setq python-shell-interpreter-args
 ;;       (if (system-is-mac)
 ;;           "--matplotlib=osx --colors=Linux"
 ;;         (if (system-is-linux)
 ;;             "--gui=wx --matplotlib=wx --colors=Linux")))
-(setq python-shell-interpreter-args "")
+(setq python-shell-interpreter-args "--simple-prompt -i")
 (setq python-shell-prompt-regexp "In \\[[0-9]+\\]: ")
 (setq python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: ")
 (setq python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n")
