@@ -234,10 +234,7 @@
 (use-package erlang-settings)
 (use-package ocaml-settings)
 (use-package color-theme-settings)
-(use-package python-settings
-  :config
-  (progn
-    (setq python-shell-interpreter "ipython")))
+(use-package python-settings)
 
 ;; (require 'prolog-settings)
 
