@@ -1,6 +1,7 @@
 ;;; python-settings.el --- customization for python-mode
 
 ;;; Commentary:
+;; http://damcb.com/setting-up-a-scientific-python-working-environment.html
 ;; http://pedrokroger.net/configuring-emacs-python-ide/
 ;; https://github.com/jhamrick/emacs/blob/macs-and-emacs-post/.emacs.d/settings/python-settings.el
 ;; https://github.com/jhamrick/emacs/blob/master/.emacs.d/settings/python-settings.el
@@ -116,7 +117,9 @@
   (setq indent-tabs-mode nil)
   (setq python-indent-offset 4)
   (setq tab-width 4)
-  (setq python-indent 4))
+  (setq python-indent 4)
+  (setq flycheck-checker 'python-pylint
+        flycheck-pylintc "~/.pylintrc"))
 
 ;; add hooks to python-mode
 (add-hook 'python-mode-hook 'flycheck-mode)
