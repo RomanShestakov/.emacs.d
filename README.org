@@ -41,6 +41,13 @@ pip install virtualenv
 pip install ipython
 #+END_SRC
 
+* Install emacs
+[[http://wikemacs.org/wiki/Installing_Emacs_on_OS_X][EMACS]]
+#+BEGIN_SRC
+brew update
+brew install emacs --with-cocoa
+brew linkapps emacs
+#+END_SRC
 * Install
 I have  added 'elpa'  dir into a  git repo for  .emacs.d. This  is the
 directory when use-package auto-installs  the packages from ELPA. This

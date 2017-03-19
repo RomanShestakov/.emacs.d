@@ -61,13 +61,15 @@
     (setq merlin-report-warnings nil)
     (setq merlin-error-after-save nil)))
 
-;; Check OCaml code with Merlin
-(use-package flycheck-ocaml
-  :ensure t
-  :defer t
-  :init
-  (with-eval-after-load 'merlin
-    (flycheck-ocaml-setup)))
+;; ;;Check OCaml code with Merlin
+;; (use-package flycheck-ocaml
+;;   :ensure t
+;;   :defer t
+;;   :init
+;;   (progn
+;;     (with-eval-after-load 'merlin
+;;       (setq merlin-error-after-save nil)
+;;       (flycheck-ocaml-setup)))
 
 (use-package tuareg
   :ensure t

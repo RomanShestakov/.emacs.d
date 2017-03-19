@@ -174,19 +174,20 @@
          ("C-x c b" . my/helm-do-grep-book-notes)
          ("C-x c SPC" . helm-all-mark-rings)))
 
-;; projectile
-;; https://github.com/lunaryorn/.emacs.d/blob/master/init.el
-(use-package projectile
-  :ensure t
-  :init (projectile-global-mode)
-  :diminish projectile-mode
-  :config
-  (progn
-    (setq projectile-enable-caching t)
-    ;;(setq projectile-require-project-root nil)
-    (setq projectile-keymap-prefix (kbd "C-c p"))
-    (define-key projectile-command-map (kbd "g") #'projectile-grep)
-    (setq projectile-completion-system 'helm)))
+;; ;; projectile
+;; ;; https://github.com/lunaryorn/.emacs.d/blob/master/init.el
+;; (use-package projectile
+;;   :ensure t
+;;   :init (projectile-global-mode)
+;;   :diminish projectile-mode
+;;   :config
+;;   (progn
+;;     (setq projectile-enable-caching t)
+;;     ;;(setq projectile-require-project-root nil)
+;;     (setq projectile-keymap-prefix (kbd "C-c p"))
+;;     (define-key projectile-command-map (kbd "g") #'projectile-grep)
+;;     (setq projectile-completion-system 'helm)))
+
 (use-package helm-projectile
   :ensure t
   :defer t)
@@ -210,10 +211,19 @@
 ;;   (progn
 ;;     (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)))
 
-;; get auto-complete
-(use-package auto-complete
+;; ;; get auto-complete
+;; (use-package auto-complete
+;;   :ensure t
+;;   :defer t)
+
+;; get company mode
+(use-package company
   :ensure t
-  :defer t)
+  :defer t
+  :config
+  (global-company-mode t)
+  (setq company-dabbrev-downcase 0)
+  (setq company-idle-delay 0))
 
 ;; ;; yaml mode
 ;; (use-package yaml-mode
@@ -235,6 +245,7 @@
 (use-package ocaml-settings)
 (use-package color-theme-settings)
 (use-package python-settings)
+(use-package rust-settings)
 
 ;; (require 'prolog-settings)
 
@@ -289,6 +300,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auto-save-file-name-transforms (quote ((".*" "~/tmp/autosaves/\\1" t))))
+ '(package-selected-packages
+   (quote
+    (cargo window-number utop use-package tuareg racer org-repo-todo opam ocp-indent multi-term move-text magit jedi helm-projectile flycheck-rust flycheck-ocaml flx-ido exec-path-from-shell elisp-slime-nav)))
  '(safe-local-variable-values
    (quote
     ((project-venv-name . "ros")
