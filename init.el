@@ -12,8 +12,8 @@
 (setq package-enable-at-startup nil)
 ;; melpa url must have a trailing "/" at the end
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-;;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+;; (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
 (package-initialize)
 (unless (package-installed-p 'use-package)
@@ -240,13 +240,13 @@
 
 ;; apply general emacs customisation settings
 (use-package general-settings)
+(use-package color-theme-settings)
 ;; requires setting "ERL_TOP"
 (use-package erlang-settings)
-(use-package ocaml-settings)
-(use-package color-theme-settings)
+;(use-package ocaml-settings)
 (use-package python-settings)
-(use-package rust-settings)
-
+;(use-package rust-settings)
+;(use-package cpp-settings)
 ;; (require 'prolog-settings)
 
 ;; http://stackoverflow.com/questions/26171265/emacs-keyboard-bindings-on-os-x-iterm2
@@ -302,7 +302,7 @@
  '(auto-save-file-name-transforms (quote ((".*" "~/tmp/autosaves/\\1" t))))
  '(package-selected-packages
    (quote
-    (cargo window-number utop use-package tuareg racer org-repo-todo opam ocp-indent multi-term move-text magit jedi helm-projectile flycheck-rust flycheck-ocaml flx-ido exec-path-from-shell elisp-slime-nav)))
+    (edts cmake-ide cargo window-number utop use-package tuareg racer org-repo-todo opam ocp-indent multi-term move-text magit jedi helm-projectile flycheck-rust flycheck-ocaml flx-ido exec-path-from-shell elisp-slime-nav)))
  '(safe-local-variable-values
    (quote
     ((project-venv-name . "ros")
@@ -317,3 +317,4 @@
 ;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
 ;; (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
 ;; ## end of OPAM user-setup addition for emacs / base ## keep this line
+(put 'upcase-region 'disabled nil)
