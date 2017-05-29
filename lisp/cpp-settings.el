@@ -20,9 +20,12 @@
 
 ;; install clang/llvm
 ;; brew install llvm --with-libcxx --with-clang --without-assertions --with-rtti
+;; brew link llvm
 ;; git clone git@github.com:Andersbakken/rtags.git; cd rtags; git submodule init; git submodule update
 ;; rtags + OSX
 ;; https://gist.github.com/floatplane/68f2006186cef4d3e165
+
+;; https://github.com/philippe-grenet/exordium
 
 
 ;; Add these to the PATH so that proper executables are found
@@ -54,9 +57,9 @@
 ;;   :ensure t
 ;;   :defer t)
 
-(use-package cmake-mode
-  :ensure t
-  :defer t)
+;; (use-package cmake-mode
+;;   :ensure t
+;;   :defer t)
 
 ;; (use-package company-irony
 ;;   :ensure t
@@ -102,9 +105,9 @@
 ;;   :ensure t
 ;;   :defer t)
 
-(use-package irony
-  :ensure t
-  :defer t)
+;; (use-package irony
+;;   :ensure t
+;;   :defer t)
 
 ;; (use-package let-alist
 ;;   :ensure t
@@ -134,34 +137,52 @@
 ;;   :ensure t
 ;;   :defer t)
 
+;; (use-package company-rtags
+;;   :ensure t
+;;   :defer t)
+
+
 ;; (use-package rtags
 ;;   :ensure t
 ;;   :defer t)
 
+(use-package rtags
+  :ensure t
+  :defer t
+  :config
+  (bind-key "M-." 'rtags-find-symbol-at-point)
+  (bind-key "M-," 'rtags-location-stack-back)
+  (setq rtags-autostart-diagnostics t)
+  (setq rtags-completions-enabled t)
+  (setq rtags-use-helm t)
+  (setq rtags-display-current-error-as-tooltip t)
+  (setq rtags-show-containing-function t)
+  (add-hook 'c++-mode-hook
+            (lambda ()
+              (rtags-start-process-unless-running)
+              (rtags-enable-standard-keybindings)
+              (push '(company-rtags)
+                    company-backend-c-mode-common)
+              )))
+
+(use-package flycheck-rtags
+  :ensure rtags)
+
 ;; (use-package company-rtags
 ;;   :ensure t
 ;;   :defer t)
 
 
-(use-package rtags
-  :ensure t
-  :defer t
-  :config (add-hook 'c++-mode-hook
-                    (lambda ()
-                      (rtags-enable-standard-keybindings c-mode-base-map)
-                      (setq rtags-completions-enabled t)
-                      (rtags-diagnostics))))
-
-(require 'company-rtags)
+;(add-hook 'objc-mode-hook #'my-flycheck-rtags-setup)
 
 ;; (use-package company-rtags
 ;;   :ensure t
 ;;   :defer t
-;;   :config (progn (add-hook
-;;                   'c++-mode-hook
-;;                   (lambda()
-;;                     ;; (set (make-local-variable 'company-backends) '(company-rtags))
-;;                     (setq company-rtags-begin-after-member-access t)))))
+;;   :config
+;;   (add-hook 'c++-mode-common-hook
+;;             (lambda()
+;;               (set (make-local-variable 'company-backends) '(company-rtags))
+;;               (setq company-rtags-begin-after-member-access t)))))
 
 ;; (use-package irony
 ;;   :ensure t
@@ -187,13 +208,13 @@
 ;;   (add-hook 'irony-mode-hook 'my-irony-mode-hook)
 ;;   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
-(use-package company
-  :ensure t
-  :init
-  (global-company-mode)
-  :bind (("<backtab>" . company-complete-common-or-cycle))
-  :config
-  (delete 'company-backends 'company-clang))
+;; (use-package company
+;;   :ensure t
+;;   :init
+;;   (global-company-mode)
+;;   :bind (("<backtab>" . company-complete-common-or-cycle))
+;;   :config
+;;   (delete 'company-backends 'company-clang))
 
 (use-package cmake-ide
   :ensure t
@@ -211,12 +232,25 @@
 ;;(define-key c++-mode-map [f9] 'cmake-ide-compile))
 
 (add-hook 'c++-mode-hook
-          (lambda () (setq flycheck-clang-language-standard "c++11"))
-       ;   (define-key c++-mode-map [f9] 'cmake-ide-compile))
+          (lambda () (
+                      setq flycheck-clang-language-standard "c++11"))
+          ;;(define-key c++-mode-map [f9] 'cmake-ide-compile)
           )
 
-(add-hook 'c++-mode-hook 'flycheck-mode)
-(add-hook 'c-mode-hook 'flycheck-mode)
+;; (add-hook 'c++-mode-hook 'flycheck-mode)
+;; (add-hook 'c-mode-hook 'flycheck-mode)
+
+;; (use-package flycheck-rtags
+;;   :ensure t
+;;   :defer t)
+
+;; (defun my-flycheck-rtags-setup ()
+;;   (flycheck-select-checker 'rtags)
+;;   (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
+;;   (setq-local flycheck-check-syntax-automatically nil))
+;; (add-hook 'c-mode-hook #'my-flycheck-rtags-setup)
+;; (add-hook 'c++-mode-hook #'my-flycheck-rtags-setup)
+
 
 ;; Load rtags and start the cmake-ide-setup process
 ;; (require 'rtags)

@@ -246,7 +246,7 @@
 ;(use-package ocaml-settings)
 (use-package python-settings)
 ;(use-package rust-settings)
-;(use-package cpp-settings)
+(use-package cpp-settings)
 ;; (require 'prolog-settings)
 
 ;; http://stackoverflow.com/questions/26171265/emacs-keyboard-bindings-on-os-x-iterm2
@@ -302,10 +302,11 @@
  '(auto-save-file-name-transforms (quote ((".*" "~/tmp/autosaves/\\1" t))))
  '(package-selected-packages
    (quote
-    (edts cmake-ide cargo window-number utop use-package tuareg racer org-repo-todo opam ocp-indent multi-term move-text magit jedi helm-projectile flycheck-rust flycheck-ocaml flx-ido exec-path-from-shell elisp-slime-nav)))
+    (company-rtags flycheck-rtags edts cmake-ide cargo window-number utop use-package tuareg racer org-repo-todo opam ocp-indent multi-term move-text magit jedi helm-projectile flycheck-rust flycheck-ocaml flx-ido exec-path-from-shell elisp-slime-nav)))
  '(safe-local-variable-values
    (quote
-    ((project-venv-name . "ros")
+    ((cmake-ide-build-dir . "/Users/romanshestakov/development/cpp/temp-conversion")
+     (project-venv-name . "ros")
      (project-venv-name . "coursera-python"))))
  '(send-mail-function (quote mailclient-send-it)))
 (custom-set-faces

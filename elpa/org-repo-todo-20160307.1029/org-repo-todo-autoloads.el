@@ -1,9 +1,9 @@
 ;;; org-repo-todo-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
+(add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil "org-repo-todo" "org-repo-todo.el" (22728 24675
+;;;### (autoloads nil "org-repo-todo" "org-repo-todo.el" (22828 27264
 ;;;;;;  0 0))
 ;;; Generated autoloads from org-repo-todo.el
 

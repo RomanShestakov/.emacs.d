@@ -43,7 +43,7 @@ pip install ipython
 
 * Install emacs
 [[http://wikemacs.org/wiki/Installing_Emacs_on_OS_X][EMACS]]
-#+BEGIN_SRC
+#+BEGeIN_SRC
 brew update
 brew install emacs --with-cocoa
 brew linkapps emacs
@@ -406,6 +406,7 @@ type in file name, then C-j instead of RET
 | C-b ?                                     | show shortcuts                                                |
 | C-b (release) arrows                      | move to a panes                                               |
 | C-b (hold) arrows                         | resize the panes                                              |
+| C-b : swap-window -t -1                   | move window forward                                           |
 |-------------------------------------------+---------------------------------------------------------------|
 
 * FAQ
