@@ -5,35 +5,6 @@
 
 ;;; Code:
 
-
-;; Bootstrap package management
-(require 'package)
-(setq package-enable-at-startup nil)
-
-(eval-when-compile (require 'cl))
-
-;; use my own melpa mirror
-(add-to-list 'load-path "~/.emacs.d/site-lisp/elpa-mirror")
-(require 'elpa-mirror)
-(setq elpamr-default-output-directory "~/myelpa")
-(setq package-archives '(("myelpa" . "~/myelpa")))
-;;
-;; melpa url must have a trailing "/" at the end
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-
-(package-initialize)
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-(eval-when-compile
-  (require 'use-package))
-
-
-;; allow to remove minor modes from status line
-(require 'diminish)
-(require 'bind-key)
-
 ;; add root to all emacs-related stuff
 ;; and add load-paths to packages
 ;; see http://stackoverflow.com/questions/23324760/emacs-byte-compile-errors-on-the-first-require-statement
@@ -57,6 +28,32 @@
     (normal-top-level-add-subdirs-to-load-path)))
 
 
+;; Bootstrap package management
+(require 'package)
+(setq package-enable-at-startup nil)
+
+(eval-when-compile (require 'cl))
+
+;; use my own melpa mirror
+;;(add-to-list 'load-path "~/.emacs.d/site-lisp/elpa-mirror")
+(require 'elpa-mirror)
+(setq elpamr-default-output-directory "~/myelpa")
+(setq package-archives '(("myelpa" . "~/myelpa")))
+;;
+;; melpa url must have a trailing "/" at the end
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+
+(package-initialize)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+
+;; allow to remove minor modes from status line
+(require 'diminish)
+(require 'bind-key)
 
 ;; set PATH from env
 (use-package exec-path-from-shell
