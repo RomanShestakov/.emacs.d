@@ -10,12 +10,6 @@ Python mode requires Conda install : http://conda.pydata.org/miniconda.html
 #+BEGIN_SRC bash
 # git is needed for megit mode
 sudo apt-get install git
-# python mode autocomple with jedi requires virtualenv
-sudo apt-get install -y python-virtualenv
-# install pylint for python mode
-sudo pip install pylint
-# optionally install ipython as a replacement for python shell in emacs:
-sudo pip install ipython
 # to run jedi install from inside emacs:
 M-x jedi:install-server
 #+END_SRC
@@ -48,18 +42,13 @@ brew update
 brew install emacs --with-cocoa
 brew linkapps emacs
 #+END_SRC
-* Install
-I have  added 'elpa'  dir into a  git repo for  .emacs.d. This  is the
-directory when use-package auto-installs  the packages from ELPA. This
-is done for convinience  as some of the machines I  use are behind the
-firewalls and  can't install all  the packages automatically.   On the
-machines which do  have access to un-restricted Internet  it is better
-to allow auto-install.  In this case remove  .emacs.d/elpa and restart
-emacs.
-
+* Install ELPA mirror
+[[https://github.com/RomanShestakov/myelpa.git][myelpa]] is a MELPA mirror created with [[https://github.com/redguardtoo/elpa-mirror][ELPA Mirror]] package
+it is used to be able to configure emacs behind corp firewall
 #+BEGIN_SRC
 # Clone from github:
 git clone https://github.com/RomanShestakov/.emacs.d.git
+git clone https://github.com/RomanShestakov/myelpa.git
 # remove ELPA if need to refresh packages from ELPA
 rm -rf .emacs.d/elpa
 # build distel
