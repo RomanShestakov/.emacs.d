@@ -5,22 +5,31 @@
 
 ;;; Code:
 
-(eval-when-compile (require 'cl))
 
 ;; Bootstrap package management
 (require 'package)
 (setq package-enable-at-startup nil)
+
+(eval-when-compile (require 'cl))
+
+;; use my own melpa mirror
+(add-to-list 'load-path "~/.emacs.d/site-lisp/elpa-mirror")
+(require 'elpa-mirror)
+(setq elpamr-default-output-directory "~/myelpa")
+(setq package-archives '(("myelpa" . "~/myelpa")))
+;;
 ;; melpa url must have a trailing "/" at the end
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-;; (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
 (package-initialize)
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
 (eval-when-compile
   (require 'use-package))
+
+
 ;; allow to remove minor modes from status line
 (require 'diminish)
 (require 'bind-key)
@@ -38,14 +47,16 @@
         "~/.emacs.d/"    "z:/.emacs.d/")
     "Path to where EMACS configuration root is.")
 
-  ;; set path to "~/.emacs/lisp dir for custom packages
+  ;; set path to "~/.emacs/site-lisp dir for custom packages
   (defvar my-lisp-dir
-    (concat (file-name-as-directory emacs-root) "lisp")
-    "*Path to custom lisp lib.")
+    (concat (file-name-as-directory emacs-root) "site-lisp")
+    "*Path to custom site-lisp lib.")
 
   ;; add subdirectories of root into load path
   (let ((default-directory emacs-root))
     (normal-top-level-add-subdirs-to-load-path)))
+
+
 
 ;; set PATH from env
 (use-package exec-path-from-shell

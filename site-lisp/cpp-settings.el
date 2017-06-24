@@ -278,6 +278,8 @@
 ;; Create clang-format file using google style
 ;; clang-format -style=google -dump-config > .clang-format
 
+;; set 4 space indent
+(setq-default c-basic-offset 4)
 
 (provide 'cpp-settings)
 
