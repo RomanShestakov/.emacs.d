@@ -38,10 +38,15 @@
 ;;(add-to-list 'load-path "~/.emacs.d/site-lisp/elpa-mirror")
 (require 'elpa-mirror)
 (setq elpamr-default-output-directory "~/myelpa")
-(setq package-archives '(("myelpa" . "~/myelpa")))
+;;(setq package-archives '(("myelpa" . "~/myelpa")))
 ;;
 ;; melpa url must have a trailing "/" at the end
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+;; (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+
+;; (setq package-archives '())
 
 (package-initialize)
 (unless (package-installed-p 'use-package)
@@ -112,7 +117,7 @@
 ;; https://github.com/ramnes/move-border
 ;; allows to move borders between windows
 (use-package move-border
-  :load-path "lisp/move-border"
+  :load-path "site-lisp/move-border"
   :bind (("M-S-<up>" . move-border-up)
          ("M-S-<down>" . move-border-down)
          ("M-S-<left>" . move-border-left)
