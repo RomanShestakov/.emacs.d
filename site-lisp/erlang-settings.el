@@ -47,7 +47,8 @@
   :diminish flycheck-mode
   :config
   (add-hook 'after-init-hook 'global-flycheck-mode)
-  (setq flycheck-display-errors-function nil
+  (setq
+        ;; flycheck-display-errors-function nil
         flycheck-erlang-include-path '("../include")
         flycheck-erlang-library-path '()
         flycheck-check-syntax-automatically '(save)))
