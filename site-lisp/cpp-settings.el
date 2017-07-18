@@ -27,7 +27,6 @@
 
 ;; https://github.com/philippe-grenet/exordium
 
-
 ;; Add these to the PATH so that proper executables are found
 ;; (setenv "PATH" (concat (getenv "PATH") ":/usr/texbin"))
 ;; (setenv "PATH" (concat (getenv "PATH") ":/usr/bin"))
@@ -36,6 +35,7 @@
 ;; (setq exec-path (append exec-path '("/usr/bin")))
 ;; (setq exec-path (append exec-path '("/usr/local/bin")))
 
+;;; Code:
 
 ;; (use-package async
 ;;   :ensure t
@@ -216,18 +216,18 @@
 ;;   :config
 ;;   (delete 'company-backends 'company-clang))
 
-(use-package cmake-ide
-  :ensure t
-  :init
-  (bind-key [f9] 'cmake-ide-compile)
-  (use-package semantic/bovine/gcc)
-  ;; (setq cmake-ide-flags-c++ (append '("-std=c++11")
-  ;;                                   (mapcar (lambda (path) (concat "-I" path)) (semantic-gcc-get-include-paths "c++"))))
-  ;; (setq cmake-ide-flags-c (append (mapcar (lambda (path) (concat "-I" path)) (semantic-gcc-get-include-paths "c"))))
-  ;; (put 'cmake-ide-build-dir 'safe-local-variable #'stringp)
-  ;; (global-set-key (kbd "C-c m") 'cmake-ide-compile)
-  ;; (define-key rust-mode-map [f9] 'cargo-process-run))
-  (cmake-ide-setup))
+;; (use-package cmake-ide
+;;   :ensure t
+;;   :init
+;;   (bind-key [f9] 'cmake-ide-compile)
+;;   (use-package semantic/bovine/gcc)
+;;   ;; (setq cmake-ide-flags-c++ (append '("-std=c++11")
+;;   ;;                                   (mapcar (lambda (path) (concat "-I" path)) (semantic-gcc-get-include-paths "c++"))))
+;;   ;; (setq cmake-ide-flags-c (append (mapcar (lambda (path) (concat "-I" path)) (semantic-gcc-get-include-paths "c"))))
+;;   ;; (put 'cmake-ide-build-dir 'safe-local-variable #'stringp)
+;;   ;; (global-set-key (kbd "C-c m") 'cmake-ide-compile)
+;;   ;; (define-key rust-mode-map [f9] 'cargo-process-run))
+;;   (cmake-ide-setup))
 
 ;;(define-key c++-mode-map [f9] 'cmake-ide-compile))
 
