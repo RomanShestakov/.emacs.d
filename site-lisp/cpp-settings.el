@@ -157,6 +157,7 @@
   (setq rtags-use-helm t)
   (setq rtags-display-current-error-as-tooltip t)
   (setq rtags-show-containing-function t)
+  (add-hook 'find-file-hook 'rtags-start-process-maybe)
   (add-hook 'c++-mode-hook
             (lambda ()
               (rtags-start-process-unless-running)
