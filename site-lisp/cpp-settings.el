@@ -146,8 +146,17 @@
 ;;   :ensure t
 ;;   :defer t)
 
+
+(defvar rtags-root (getenv "RTAGS_ROOT")
+  "*Path to RTAGS installation.  Location of rtags dir 'export RTAGS_ROOT=/opt/rtags-v2.10' needs to be set in bash environment.")
+
+(defun rtags-path-init()
+  "*Sets the paths to rtags elisp files."
+  (add-to-list 'load-path (concat (rtags-root-dir "share/emacs/site-lisp/rtags"))))
+
 (use-package rtags
-  :ensure t
+  ;; don't use ensure as we want to  load rtags.erl from the
+  ;; current installation of rtags
   :defer t
   :config
   (bind-key "M-." 'rtags-find-symbol-at-point)
@@ -166,8 +175,8 @@
                     company-backend-c-mode-common)
               )))
 
-(use-package flycheck-rtags
-  :ensure rtags)
+;; (use-package flycheck-rtags
+;;   :ensure rtags)
 
 ;; (use-package company-rtags
 ;;   :ensure t
@@ -232,11 +241,11 @@
 
 ;;(define-key c++-mode-map [f9] 'cmake-ide-compile))
 
-(add-hook 'c++-mode-hook
-          (lambda () (
-                      setq flycheck-clang-language-standard "c++11"))
-          ;;(define-key c++-mode-map [f9] 'cmake-ide-compile)
-          )
+;; (add-hook 'c++-mode-hook
+;;           (lambda () (
+;;                       setq flycheck-clang-language-standard "c++11"))
+;;           ;;(define-key c++-mode-map [f9] 'cmake-ide-compile)
+;;           )
 
 ;; (add-hook 'c++-mode-hook 'flycheck-mode)
 ;; (add-hook 'c-mode-hook 'flycheck-mode)
