@@ -146,18 +146,19 @@
 ;;   :ensure t
 ;;   :defer t)
 
-
-(defvar rtags-root (getenv "RTAGS_ROOT")
+(defvar rtags-root-dir (getenv "RTAGS_ROOT")
   "*Path to RTAGS installation.  Location of rtags dir 'export RTAGS_ROOT=/opt/rtags-v2.10' needs to be set in bash environment.")
 
 (defun rtags-path-init()
   "*Sets the paths to rtags elisp files."
-  (add-to-list 'load-path (concat (rtags-root-dir "share/emacs/site-lisp/rtags"))))
+  (add-to-list 'load-path (concat rtags-root-dir "/share/emacs/site-lisp/rtags/")))
+
+(rtags-path-init)
 
 (use-package rtags
   ;; don't use ensure as we want to  load rtags.erl from the
   ;; current installation of rtags
-  :defer t
+  ;; :defer t
   :config
   (bind-key "M-." 'rtags-find-symbol-at-point)
   (bind-key "M-," 'rtags-location-stack-back)
