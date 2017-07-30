@@ -218,7 +218,7 @@
   ;; (add-hook 'irony-mode-hook 'my-irony-mode-hook)
   ;; (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
-(defvar llmv-root-dir (getenv "LLVM_ROOT")
+(defvar llvm-root-dir (getenv "LLVM_ROOT")
   "*Path to LLVM installation.  \
 Location of llvm dir 'export LLVM_ROOT=/opt/llvm-4.0' needs to be set in bash environment.")
 
