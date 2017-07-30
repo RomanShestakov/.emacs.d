@@ -195,29 +195,67 @@
 ;;               (set (make-local-variable 'company-backends) '(company-rtags))
 ;;               (setq company-rtags-begin-after-member-access t)))))
 
-;; (use-package irony
-;;   :ensure t
-;;   :config
-;;   (use-package company-irony
-;;     :ensure t
-;;     :config
-;;     (add-to-list 'company-backends 'company-irony))
-;;   (use-package company-irony-c-headers
-;;     :ensure t
-;;     :config
-;;     (add-to-list 'company-backends 'company-irony-c-headers))
-;;   (add-hook 'c++-mode-hook 'irony-mode)
-;;   (add-hook 'c-mode-hook 'irony-mode)
-;;   (add-hook 'objc-mode-hook 'irony-mode)
-;;   ;; replace the `completion-at-point' and `complete-symbol' bindings in
-;;   ;; irony-mode's buffers by irony-mode's function
-;;   (defun my-irony-mode-hook ()
-;;     (define-key irony-mode-map [remap completion-at-point]
-;;       'irony-completion-at-point-async)
-;;     (define-key irony-mode-map [remap complete-symbol]
-;;       'irony-completion-at-point-async))
-;;   (add-hook 'irony-mode-hook 'my-irony-mode-hook)
-;;   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+(use-package irony
+  :ensure t
+  :config
+  (use-package company-irony
+    :ensure t
+    :config
+    (add-to-list 'company-backends 'company-irony))
+  (use-package company-irony-c-headers
+    :ensure t
+    :config
+    (add-to-list 'company-backends 'company-irony-c-headers))
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'c-mode-hook 'irony-mode)
+  (add-hook 'objc-mode-hook 'irony-mode)
+  ;; replace the `completion-at-point' and `complete-symbol' bindings in
+  ;; irony-mode's buffers by irony-mode's function
+  (defun my-irony-mode-hook ()
+    (define-key irony-mode-map [remap completion-at-point]
+      'irony-completion-at-point-async)
+    (define-key irony-mode-map [remap complete-symbol]
+      'irony-completion-at-point-async))
+  (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+
+(defun irony-install-server (command)
+  "Replace standar Irony command with the one which takes extra arguments.
+Install or reinstall the Irony server.
+The installation requires CMake and the libclang developpement package."
+
+  (interactive
+   (list (let ((command
+                (format
+                 (concat "%s %s %s %s %s %s && %s --build . "
+                         "--use-stderr --config Release --target install")
+                 (shell-quote-argument irony-cmake-executable)
+                 (shell-quote-argument (concat "-DCMAKE_INSTALL_PREFIX="
+                                               (expand-file-name
+                                                irony-server-install-prefix)))
+                 (shell-quote-argument "-DLIBCLANG_LIBRARY=/opt/llvm-4.0/lib/libclang.so")
+                 (shell-quote-argument "-DLIBCLANG_INCLUDE_DIR\=/opt/llvm-4.0/include")
+                 (shell-quote-argument "-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE")
+                 (shell-quote-argument irony-server-source-dir)
+                 (shell-quote-argument irony-cmake-executable))))
+           (irony--install-server-read-command command))))
+  (let ((build-dir (or irony-server-build-dir
+                       (concat
+                        (file-name-as-directory temporary-file-directory)
+                        (file-name-as-directory (format "build-irony-server-%s"
+                                                        (irony-version)))))))
+    (make-directory build-dir t)
+    (let ((default-directory build-dir))
+      ;; we need to kill the process to be able to install a new one,
+      ;; at least on Windows
+      (irony-server-kill)
+      (with-current-buffer (compilation-start command nil
+                                              #'(lambda (maj-mode)
+                                                  "*irony-server build*"))
+        (setq-local compilation-finish-functions
+                    '(irony--server-install-finish-function))))))
+
+
 
 ;; (use-package company
 ;;   :ensure t
