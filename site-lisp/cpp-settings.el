@@ -240,8 +240,7 @@ The installation requires CMake and the libclang developpement package."
                                                (expand-file-name
                                                 (concat llvm-root-dir "/lib/libclang.so"))))
                  (shell-quote-argument (concat "-DLIBCLANG_INCLUDE_DIR="
-                                               (expend-file-name
-                                                (concat llvm-root-dir "/include"))))
+                                                (concat llvm-root-dir "/include")))
                  (shell-quote-argument "-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE")
                  (shell-quote-argument irony-server-source-dir)
                  (shell-quote-argument irony-cmake-executable))))
