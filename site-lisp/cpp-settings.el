@@ -219,6 +219,11 @@
   (add-hook 'irony-mode-hook 'my-irony-mode-hook)
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
+
+(defvar llmv-root-dir (getenv "LLVM_ROOT")
+  "*Path to LLVM installation.  \
+Location of llvm dir 'export LLVM_ROOT=/opt/llvm-4.0' needs to be set in bash environment.")
+
 (defun irony-install-server (command)
   "Replace standar Irony command with the one which takes extra arguments.
 Install or reinstall the Irony server.
@@ -233,8 +238,12 @@ The installation requires CMake and the libclang developpement package."
                  (shell-quote-argument (concat "-DCMAKE_INSTALL_PREFIX="
                                                (expand-file-name
                                                 irony-server-install-prefix)))
-                 (shell-quote-argument "-DLIBCLANG_LIBRARY=/opt/llvm-4.0/lib/libclang.so")
-                 (shell-quote-argument "-DLIBCLANG_INCLUDE_DIR\=/opt/llvm-4.0/include")
+                 (shell-quote-argument (concat "-DLIBCLANG_LIBRARY="
+                                               (expand-file-name
+                                                (concat llvm-root-dir "/lib/libclang.so"))))
+                 (shell-quote-argument (concat "-DLIBCLANG_INCLUDE_DIR="
+                                               (expend-file-name
+                                                (concat llvm-root-dir "/opt/llvm-4.0/include"))))
                  (shell-quote-argument "-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE")
                  (shell-quote-argument irony-server-source-dir)
                  (shell-quote-argument irony-cmake-executable))))
