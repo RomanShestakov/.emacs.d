@@ -315,7 +315,7 @@
  '(auto-save-file-name-transforms (quote ((".*" "~/tmp/autosaves/\\1" t))))
  '(package-selected-packages
    (quote
-    (company-rtags flycheck-rtags edts cmake-ide cargo window-number utop use-package tuareg racer org-repo-todo opam ocp-indent multi-term move-text magit jedi helm-projectile flycheck-rust flycheck-ocaml flx-ido exec-path-from-shell elisp-slime-nav)))
+    (rtags company-rtags flycheck-rtags edts cmake-ide cargo window-number utop use-package tuareg racer org-repo-todo opam ocp-indent multi-term move-text magit jedi helm-projectile flycheck-rust flycheck-ocaml flx-ido exec-path-from-shell elisp-slime-nav)))
  '(safe-local-variable-values
    (quote
     ((cmake-ide-build-dir . "/Users/romanshestakov/development/cpp/temp-conversion")
