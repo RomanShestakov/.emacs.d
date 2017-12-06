@@ -37,115 +37,6 @@
 
 ;;; Code:
 
-;; (use-package async
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package auctex
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package auto-complete
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package autopair
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package clang-format
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package cmake-mode
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package company-irony
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package company-irony-c-headers
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package dash
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package elp
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package flycheck-irony
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package google-c-style
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package helm-ctest
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package helm-flycheck
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package helm-flyspell
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package helm-ls-git
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package hungry-delete
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package irony
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package let-alist
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package pkg-info
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package popup
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package rtags
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package seq
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package vlf
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package autopair
-;;   :ensure t
-;;   :defer t)
-
-;; (use-package company-rtags
-;;   :ensure t
-;;   :defer t)
-
-
-;; (use-package rtags
-;;   :ensure t
-;;   :defer t)
-
 (defvar rtags-root-dir (getenv "RTAGS_ROOT")
   "*Path to RTAGS installation.  Location of rtags dir 'export RTAGS_ROOT=/opt/rtags-v2.10' needs to be set in bash environment.")
 
@@ -172,8 +63,8 @@
             (lambda ()
               (rtags-start-process-unless-running)
               (rtags-enable-standard-keybindings)
-              ;; (push '(company-rtags)
-              ;;       company-backend-c-mode-common)
+              (push '(company-rtags)
+                    company-backend-c-mode-common)
               )))
 
 ;; (use-package flycheck-rtags
@@ -195,121 +86,79 @@
 ;;               (set (make-local-variable 'company-backends) '(company-rtags))
 ;;               (setq company-rtags-begin-after-member-access t)))))
 
-;; (use-package irony
-;;   :ensure t
-;;   :config
-;;   (use-package company-irony
-;;     :ensure t
-;;     :config
-;;     (add-to-list 'company-backends 'company-irony))
-;;   (add-hook 'c++-mode-hook 'irony-mode)
-;;   (add-hook 'c-mode-hook 'irony-mode)
-;;   ;; replace the `completion-at-point' and `complete-symbol' bindings in
-;;   ;; irony-mode's buffers by irony-mode's function
-;;   (defun my-irony-mode-hook ()
-;;     (setq company-backends '(company-irony-c-headers company-irony))
-;;     (setq irony-additional-clang-options '("-std=c++14")))
-;;     ;; (define-key irony-mode-map [remap completion-at-point]
-;;     ;;   'irony-completion-at-point-async)
-;;     ;; (define-key irony-mode-map [remap complete-symbol]
-;;     ;;   'irony-completion-at-point-async))
-;;   (add-hook 'irony-mode-hook 'my-irony-mode-hook)
-;;   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+(use-package irony
+  :ensure t
+  :config
+  (use-package company-irony
+    :ensure t
+    :config
+    (add-to-list 'company-backends 'company-irony))
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'c-mode-hook 'irony-mode)
+  ;; replace the `completion-at-point' and `complete-symbol' bindings in
+  ;; irony-mode's buffers by irony-mode's function
+  (defun my-irony-mode-hook ()
+    (setq company-backends '(company-irony-c-headers company-irony))
+    (setq irony-additional-clang-options '("-std=c++14")))
+    ;; (define-key irony-mode-map [remap completion-at-point]
+    ;;   'irony-completion-at-point-async)
+    ;; (define-key irony-mode-map [remap complete-symbol]
+    ;;   'irony-completion-at-point-async))
+  (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
-;; (use-package flycheck-irony
-;;   :ensure t
-;;   :commands flycheck-irony-setup
-;;   :init
-;;   (add-hook 'c++-mode-hook 'flycheck-irony-setup)
-;;   (add-hook 'c-mode-hook 'flycheck-irony-setup))
+(use-package flycheck-irony
+  :ensure t
+  :commands flycheck-irony-setup
+  :init
+  (add-hook 'c++-mode-hook 'flycheck-irony-setup)
+  (add-hook 'c-mode-hook 'flycheck-irony-setup))
 
 (defvar llvm-root-dir (getenv "LLVM_ROOT")
   "*Path to LLVM installation.  \
 Location of llvm dir 'export LLVM_ROOT=/opt/llvm-4.0' needs to be set in bash environment.")
 
-;; (defun irony-install-server (command)
-;;   "Replace standar Irony command with the one which takes extra arguments.
-;; Install or reinstall the Irony server.
-;; The installation requires CMake and the libclang developpement package."
+;; need to run teh following command from the cmd
+;; cmake -DCMAKE_INSTALL_PREFIX\=/home/vagrant/.emacs.d/irony/ -DLIBCLANG_LIBRARY\=/opt/llvm-4.0/lib/libclang.so -DLIBCLANG_INCLUDE_DIR\=/opt/llvm-4.0/include -DCMAKE_INSTALL_RPATH=/opt/llvm-4.0/lib \
+;; -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE  /home/vagrant/.emacs.d/elpa/irony-20170725.1249/server && cmake --build . --use-stderr --config Release --target install
+(defun irony-install-server (command)
+  "Replace standard Irony with the one which takes extra arguments.
+Install or reinstall the Irony server.
+The installation requires CMake and the libclang developpement package."
 
-;;   (interactive
-;;    (list (let ((command
-;;                 (format
-;;                  (concat "%s %s %s %s %s %s && %s --build . "
-;;                          "--use-stderr --config Release --target install")
-;;                  (shell-quote-argument irony-cmake-executable)
-;;                  (shell-quote-argument (concat "-DCMAKE_INSTALL_PREFIX="
-;;                                                (expand-file-name
-;;                                                 irony-server-install-prefix)))
-;;                  (shell-quote-argument (concat "-DLIBCLANG_LIBRARY="
-;;                                                (expand-file-name
-;;                                                 (concat llvm-root-dir "/lib/libclang.so"))))
-;;                  (shell-quote-argument (concat "-DLIBCLANG_INCLUDE_DIR="
-;;                                                 (concat llvm-root-dir "/include")))
-;;                  (shell-quote-argument "-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE")
-;;                  (shell-quote-argument irony-server-source-dir)
-;;                  (shell-quote-argument irony-cmake-executable))))
-;;            (irony--install-server-read-command command))))
-;;   (let ((build-dir (or irony-server-build-dir
-;;                        (concat
-;;                         (file-name-as-directory temporary-file-directory)
-;;                         (file-name-as-directory (format "build-irony-server-%s"
-;;                                                         (irony-version)))))))
-;;     (make-directory build-dir t)
-;;     (let ((default-directory build-dir))
-;;       ;; we need to kill the process to be able to install a new one,
-;;       ;; at least on Windows
-;;       (irony-server-kill)
-;;       (with-current-buffer (compilation-start command nil
-;;                                               #'(lambda (maj-mode)
-;;                                                   "*irony-server build*"))
-;;         (setq-local compilation-finish-functions
-;;                     '(irony--server-install-finish-function))))))
-
-
-
-;; (use-package company
-;;   :ensure t
-;;   :init
-;;   (global-company-mode)
-;;   :bind (("<backtab>" . company-complete-common-or-cycle))
-;;   :config
-;;   (delete 'company-backends 'company-clang))
-
-;; (use-package cmake-ide
-;;   :ensure t
-;;   :init
-;;   (bind-key [f9] 'cmake-ide-compile)
-;;   (use-package semantic/bovine/gcc)
-;;   ;; (setq cmake-ide-flags-c++ (append '("-std=c++11")
-;;   ;;                                   (mapcar (lambda (path) (concat "-I" path)) (semantic-gcc-get-include-paths "c++"))))
-;;   ;; (setq cmake-ide-flags-c (append (mapcar (lambda (path) (concat "-I" path)) (semantic-gcc-get-include-paths "c"))))
-;;   ;; (put 'cmake-ide-build-dir 'safe-local-variable #'stringp)
-;;   ;; (global-set-key (kbd "C-c m") 'cmake-ide-compile)
-;;   ;; (define-key rust-mode-map [f9] 'cargo-process-run))
-;;   (cmake-ide-setup))
-
-;;(define-key c++-mode-map [f9] 'cmake-ide-compile))
-
-(add-hook 'c++-mode-hook
-          (lambda () (
-                      setq flycheck-clang-language-standard "c++11"))
-          ;;(define-key c++-mode-map [f9] 'cmake-ide-compile)
-          )
-
-;; (add-hook 'c++-mode-hook 'flycheck-mode)
-;; (add-hook 'c-mode-hook 'flycheck-mode)
-
-;; (use-package flycheck-rtags
-;;   :ensure t
-;;   :defer t)
-
-;; (defun my-flycheck-rtags-setup ()
-;;   (flycheck-select-checker 'rtags)
-;;   (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
-;;   (setq-local flycheck-check-syntax-automatically nil))
-;; (add-hook 'c-mode-hook #'my-flycheck-rtags-setup)
-;; (add-hook 'c++-mode-hook #'my-flycheck-rtags-setup)
+  (interactive
+   (list (let ((command
+                (format
+                 (concat "%s %s %s %s %s %s && %s --build . "
+                         "--use-stderr --config Release --target install")
+                 (shell-quote-argument irony-cmake-executable)
+                 (shell-quote-argument (concat "-DCMAKE_INSTALL_PREFIX="
+                                               (expand-file-name
+                                                irony-server-install-prefix)))
+                 (shell-quote-argument (concat "-DLIBCLANG_LIBRARY="
+                                               (expand-file-name
+                                                (concat llvm-root-dir "/lib/libclang.so"))))
+                 (shell-quote-argument (concat "-DLIBCLANG_INCLUDE_DIR="
+                                                (concat llvm-root-dir "/include")))
+                 (shell-quote-argument "-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE")
+                 (shell-quote-argument irony-server-source-dir)
+                 (shell-quote-argument irony-cmake-executable))))
+           (irony--install-server-read-command command))))
+  (let ((build-dir (or irony-server-build-dir
+                       (concat
+                        (file-name-as-directory temporary-file-directory)
+                        (file-name-as-directory (format "build-irony-server-%s"
+                                                        (irony-version)))))))
+    (make-directory build-dir t)
+    (let ((default-directory build-dir))
+      ;; we need to kill the process to be able to install a new one,
+      ;; at least on Windows
+      (irony-server-kill)
+      (with-current-buffer (compilation-start command nil
+                                              #'(lambda (maj-mode)
+                                                  "*irony-server build*"))
+        (setq-local compilation-finish-functions
+                    '(irony--server-install-finish-function))))))
 
 
 ;; Load rtags and start the cmake-ide-setup process
