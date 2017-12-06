@@ -172,8 +172,8 @@
             (lambda ()
               (rtags-start-process-unless-running)
               (rtags-enable-standard-keybindings)
-              (push '(company-rtags)
-                    company-backend-c-mode-common)
+              ;; (push '(company-rtags)
+              ;;       company-backend-c-mode-common)
               )))
 
 ;; (use-package flycheck-rtags
@@ -195,76 +195,76 @@
 ;;               (set (make-local-variable 'company-backends) '(company-rtags))
 ;;               (setq company-rtags-begin-after-member-access t)))))
 
-(use-package irony
-  :ensure t
-  :config
-  (use-package company-irony
-    :ensure t
-    :config
-    (add-to-list 'company-backends 'company-irony))
-  (add-hook 'c++-mode-hook 'irony-mode)
-  (add-hook 'c-mode-hook 'irony-mode)
-  ;; replace the `completion-at-point' and `complete-symbol' bindings in
-  ;; irony-mode's buffers by irony-mode's function
-  (defun my-irony-mode-hook ()
-    (setq company-backends '(company-irony-c-headers company-irony))
-    (setq irony-additional-clang-options '("-std=c++14")))
-    ;; (define-key irony-mode-map [remap completion-at-point]
-    ;;   'irony-completion-at-point-async)
-    ;; (define-key irony-mode-map [remap complete-symbol]
-    ;;   'irony-completion-at-point-async))
-  (add-hook 'irony-mode-hook 'my-irony-mode-hook)
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+;; (use-package irony
+;;   :ensure t
+;;   :config
+;;   (use-package company-irony
+;;     :ensure t
+;;     :config
+;;     (add-to-list 'company-backends 'company-irony))
+;;   (add-hook 'c++-mode-hook 'irony-mode)
+;;   (add-hook 'c-mode-hook 'irony-mode)
+;;   ;; replace the `completion-at-point' and `complete-symbol' bindings in
+;;   ;; irony-mode's buffers by irony-mode's function
+;;   (defun my-irony-mode-hook ()
+;;     (setq company-backends '(company-irony-c-headers company-irony))
+;;     (setq irony-additional-clang-options '("-std=c++14")))
+;;     ;; (define-key irony-mode-map [remap completion-at-point]
+;;     ;;   'irony-completion-at-point-async)
+;;     ;; (define-key irony-mode-map [remap complete-symbol]
+;;     ;;   'irony-completion-at-point-async))
+;;   (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+;;   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
-(use-package flycheck-irony
-  :ensure t
-  :commands flycheck-irony-setup
-  :init
-  (add-hook 'c++-mode-hook 'flycheck-irony-setup)
-  (add-hook 'c-mode-hook 'flycheck-irony-setup))
+;; (use-package flycheck-irony
+;;   :ensure t
+;;   :commands flycheck-irony-setup
+;;   :init
+;;   (add-hook 'c++-mode-hook 'flycheck-irony-setup)
+;;   (add-hook 'c-mode-hook 'flycheck-irony-setup))
 
 (defvar llvm-root-dir (getenv "LLVM_ROOT")
   "*Path to LLVM installation.  \
 Location of llvm dir 'export LLVM_ROOT=/opt/llvm-4.0' needs to be set in bash environment.")
 
-(defun irony-install-server (command)
-  "Replace standar Irony command with the one which takes extra arguments.
-Install or reinstall the Irony server.
-The installation requires CMake and the libclang developpement package."
+;; (defun irony-install-server (command)
+;;   "Replace standar Irony command with the one which takes extra arguments.
+;; Install or reinstall the Irony server.
+;; The installation requires CMake and the libclang developpement package."
 
-  (interactive
-   (list (let ((command
-                (format
-                 (concat "%s %s %s %s %s %s && %s --build . "
-                         "--use-stderr --config Release --target install")
-                 (shell-quote-argument irony-cmake-executable)
-                 (shell-quote-argument (concat "-DCMAKE_INSTALL_PREFIX="
-                                               (expand-file-name
-                                                irony-server-install-prefix)))
-                 (shell-quote-argument (concat "-DLIBCLANG_LIBRARY="
-                                               (expand-file-name
-                                                (concat llvm-root-dir "/lib/libclang.so"))))
-                 (shell-quote-argument (concat "-DLIBCLANG_INCLUDE_DIR="
-                                                (concat llvm-root-dir "/include")))
-                 (shell-quote-argument "-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE")
-                 (shell-quote-argument irony-server-source-dir)
-                 (shell-quote-argument irony-cmake-executable))))
-           (irony--install-server-read-command command))))
-  (let ((build-dir (or irony-server-build-dir
-                       (concat
-                        (file-name-as-directory temporary-file-directory)
-                        (file-name-as-directory (format "build-irony-server-%s"
-                                                        (irony-version)))))))
-    (make-directory build-dir t)
-    (let ((default-directory build-dir))
-      ;; we need to kill the process to be able to install a new one,
-      ;; at least on Windows
-      (irony-server-kill)
-      (with-current-buffer (compilation-start command nil
-                                              #'(lambda (maj-mode)
-                                                  "*irony-server build*"))
-        (setq-local compilation-finish-functions
-                    '(irony--server-install-finish-function))))))
+;;   (interactive
+;;    (list (let ((command
+;;                 (format
+;;                  (concat "%s %s %s %s %s %s && %s --build . "
+;;                          "--use-stderr --config Release --target install")
+;;                  (shell-quote-argument irony-cmake-executable)
+;;                  (shell-quote-argument (concat "-DCMAKE_INSTALL_PREFIX="
+;;                                                (expand-file-name
+;;                                                 irony-server-install-prefix)))
+;;                  (shell-quote-argument (concat "-DLIBCLANG_LIBRARY="
+;;                                                (expand-file-name
+;;                                                 (concat llvm-root-dir "/lib/libclang.so"))))
+;;                  (shell-quote-argument (concat "-DLIBCLANG_INCLUDE_DIR="
+;;                                                 (concat llvm-root-dir "/include")))
+;;                  (shell-quote-argument "-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE")
+;;                  (shell-quote-argument irony-server-source-dir)
+;;                  (shell-quote-argument irony-cmake-executable))))
+;;            (irony--install-server-read-command command))))
+;;   (let ((build-dir (or irony-server-build-dir
+;;                        (concat
+;;                         (file-name-as-directory temporary-file-directory)
+;;                         (file-name-as-directory (format "build-irony-server-%s"
+;;                                                         (irony-version)))))))
+;;     (make-directory build-dir t)
+;;     (let ((default-directory build-dir))
+;;       ;; we need to kill the process to be able to install a new one,
+;;       ;; at least on Windows
+;;       (irony-server-kill)
+;;       (with-current-buffer (compilation-start command nil
+;;                                               #'(lambda (maj-mode)
+;;                                                   "*irony-server build*"))
+;;         (setq-local compilation-finish-functions
+;;                     '(irony--server-install-finish-function))))))
 
 
 
@@ -291,11 +291,11 @@ The installation requires CMake and the libclang developpement package."
 
 ;;(define-key c++-mode-map [f9] 'cmake-ide-compile))
 
-;; (add-hook 'c++-mode-hook
-;;           (lambda () (
-;;                       setq flycheck-clang-language-standard "c++11"))
-;;           ;;(define-key c++-mode-map [f9] 'cmake-ide-compile)
-;;           )
+(add-hook 'c++-mode-hook
+          (lambda () (
+                      setq flycheck-clang-language-standard "c++11"))
+          ;;(define-key c++-mode-map [f9] 'cmake-ide-compile)
+          )
 
 ;; (add-hook 'c++-mode-hook 'flycheck-mode)
 ;; (add-hook 'c-mode-hook 'flycheck-mode)
