@@ -67,13 +67,20 @@
                     company-backend-c-mode-common)
               )))
 
-;; (use-package flycheck-rtags
-;;   :ensure rtags)
+(defun my-flycheck-rtags-setup ()
+  "RTags create more accurate overlays than Flychceck."
+  (flycheck-select-checker 'rtags)
+  (setq-local flycheck-highlighting-mode nil)
+  (setq-local flycheck-check-syntax-automatically nil))
+
+(use-package flycheck-rtags
+  :ensure t
+  :init
+  (add-hook 'c++-mode-hook 'my-flycheck-rtags-setup))
 
 ;; (use-package company-rtags
 ;;   :ensure t
 ;;   :defer t)
-
 
 ;(add-hook 'objc-mode-hook #'my-flycheck-rtags-setup)
 
@@ -191,9 +198,5 @@ The installation requires CMake and the libclang developpement package."
 (setq-default c-basic-offset 4)
 
 (provide 'cpp-settings)
-
-
-
-
 
 ;;; cpp-settings.el ends here
