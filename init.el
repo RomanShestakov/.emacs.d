@@ -41,10 +41,11 @@
 ;;(setq package-archives '(("myelpa" . "~/myelpa")))
 ;;
 ;; melpa url must have a trailing "/" at the end
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-;; (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+;;(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+;;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+;;(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 
 ;; (setq package-archives '())
 
@@ -57,7 +58,7 @@
   (require 'use-package))
 
 ;; allow to remove minor modes from status line
-(require 'diminish)
+;;(require 'diminish)
 (require 'bind-key)
 
 ;; set PATH from env
@@ -78,11 +79,11 @@
   (setq org-completion-use-ido t)
   (use-package org-repo-todo :ensure t))
 
-;; magit
+;; ;; magit
 (use-package magit
   :ensure t
   :bind ("C-x g" . magit-status))
-(setq magit-last-seen-setup-instructions "1.4.0")
+;; ;;(setq magit-last-seen-setup-instructions "1.4.0")
 
 ;; display windows numbers
 (use-package window-number
@@ -255,7 +256,7 @@
 (use-package general-settings)
 (use-package color-theme-settings)
 ;; requires setting "ERL_TOP"
-(use-package erlang-settings)
+;;(use-package erlang-settings)
 ;(use-package ocaml-settings)
 (use-package python-settings)
 ;(use-package rust-settings)
