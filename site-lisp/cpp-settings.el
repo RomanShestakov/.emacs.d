@@ -44,8 +44,19 @@
   "*Sets the paths to rtags elisp files."
   (add-to-list 'load-path (concat rtags-root-dir "/share/emacs/site-lisp/rtags/")))
 
-(rtags-path-init)
+(defvar irony-root-dir (getenv "IRONY_ROOT")
+  "*Path to IRONY installation.  Location of irony dir 'export IRONY_ROOT=/opt/irony-v1.2.1' needs to be set in bash environment.")
 
+(defun irony-path-init()
+  "*Sets the paths to irony elisp files."
+  (add-to-list 'load-path (concat irony-root-dir "/share/emacs/site-lisp/irony/")))
+
+;; load paths
+(rtags-path-init)
+(irony-path-init)
+
+;; note rtags *is not installed* from MELPA (missing :ensure t)
+;; instead it is used from path initialized by rtags-path-init()
 (use-package rtags
   ;; don't use ensure as we want to  load rtags.erl from the
   ;; current installation of rtags
@@ -94,7 +105,7 @@
 ;;               (setq company-rtags-begin-after-member-access t)))))
 
 (use-package irony
-  :ensure t
+  ;:ensure t
   :config
   (use-package company-irony
     :ensure t
