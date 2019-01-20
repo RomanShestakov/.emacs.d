@@ -74,8 +74,7 @@
             (lambda ()
               (rtags-start-process-unless-running)
               (rtags-enable-standard-keybindings)
-              (push '(company-rtags)
-                    company-backend-c-mode-common)
+              (push '(company-rtags) company-backends)
               )))
 
 (defun my-flycheck-rtags-setup ()
@@ -112,11 +111,11 @@
     :config
     (add-to-list 'company-backends 'company-irony))
   (add-hook 'c++-mode-hook 'irony-mode)
-  (add-hook 'c-mode-hook 'irony-mode)
+;;  (add-hook 'c-mode-hook 'irony-mode)
   ;; replace the `completion-at-point' and `complete-symbol' bindings in
   ;; irony-mode's buffers by irony-mode's function
   (defun my-irony-mode-hook ()
-    (setq company-backends '(company-irony-c-headers company-irony))
+;;    (setq company-backends '(company-irony-c-headers company-irony))
     (setq irony-additional-clang-options '("-std=c++14")))
     ;; (define-key irony-mode-map [remap completion-at-point]
     ;;   'irony-completion-at-point-async)
@@ -138,7 +137,7 @@ Location of llvm dir 'export LLVM_ROOT=/opt/llvm-4.0' needs to be set in bash en
 
 ;; need to run teh following command from the cmd
 ;; cmake -DCMAKE_INSTALL_PREFIX\=/home/vagrant/.emacs.d/irony/ -DLIBCLANG_LIBRARY\=/opt/llvm-4.0/lib/libclang.so -DLIBCLANG_INCLUDE_DIR\=/opt/llvm-4.0/include -DCMAKE_INSTALL_RPATH=/opt/llvm-4.0/lib \
-;; -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE  /home/vagrant/.emacs.d/elpa/irony-20170725.1249/server && cmake --build . --use-stderr --config Release --target install
+;; -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE  /home/vagrant/.emacs.d/elpa/irony-20180519.422/server && cmake --build . --use-stderr --config Release --target install
 (defun irony-install-server (command)
   "Replace standard Irony with the one which takes extra arguments.
 Install or reinstall the Irony server.
