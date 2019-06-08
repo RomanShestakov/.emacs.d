@@ -26,7 +26,7 @@
 (if (system-is-mac)
     (progn
       (add-to-list 'default-frame-alist
-                   '(font . "-apple-inconsolata-medium-r-normal--13-130-72-72-m-130-iso10646-1"))
+                   '(font . "Inconsolata-14"))
       (setq mac-allow-anti-aliasing t)))
 
 ;;(set-default-font "-apple-inconsolata-medium-r-normal--13-130-72-72-m-130-iso10646-1")
@@ -36,4 +36,3 @@
 (provide 'color-theme-settings)
 
 ;;; color-theme-settings.el ends here
-

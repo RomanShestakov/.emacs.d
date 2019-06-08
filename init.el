@@ -92,37 +92,37 @@
   (window-number-mode 1)
   (window-number-meta-mode 1))
 
-;; enable multi-term
-;; https://github.com/Hawstein/my-emacs/blob/master/_emacs/multi-term-settings.el
-(use-package multi-term
-  :ensure t
-  :defer t
-  :bind ("C-c t" . multi-term-next)
-  :init
-  (setq multi-term-program-switches "--login")
-  (add-hook 'term-mode-hook (lambda() (setq yas-dont-activate t)))
-  (setq multi-term-program "/bin/bash")
-  (setq term-unbind-key-list '("C-x"
-                               "C-h"
-                               "M-x"
-                               "C-z"
-                               "<up>"
-                               "<down>"))
-  (setq term-bind-key-alist '(("C-a" . term-send-raw)
-                              ("C-e" . term-send-raw)
-                              ("C-y" . term-send-raw)
-                              ("C-k" . term-send-raw)
-                              ))
-  (setq term-term-name "xterm-256color"))
+;; ;; enable multi-term
+;; ;; https://github.com/Hawstein/my-emacs/blob/master/_emacs/multi-term-settings.el
+;; (use-package multi-term
+;;   :ensure t
+;;   :defer t
+;;   :bind ("C-c t" . multi-term-next)
+;;   :init
+;;   (setq multi-term-program-switches "--login")
+;;   (add-hook 'term-mode-hook (lambda() (setq yas-dont-activate t)))
+;;   (setq multi-term-program "/bin/bash")
+;;   (setq term-unbind-key-list '("C-x"
+;;                                "C-h"
+;;                                "M-x"
+;;                                "C-z"
+;;                                "<up>"
+;;                                "<down>"))
+;;   (setq term-bind-key-alist '(("C-a" . term-send-raw)
+;;                               ("C-e" . term-send-raw)
+;;                               ("C-y" . term-send-raw)
+;;                               ("C-k" . term-send-raw)
+;;                               ))
+;;   (setq term-term-name "xterm-256color"))
 
-;; https://github.com/ramnes/move-border
-;; allows to move borders between windows
-(use-package move-border
-  :load-path "site-lisp/move-border"
-  :bind (("M-S-<up>" . move-border-up)
-         ("M-S-<down>" . move-border-down)
-         ("M-S-<left>" . move-border-left)
-         ("M-S-<right>" . move-border-right)))
+;; ;; https://github.com/ramnes/move-border
+;; ;; allows to move borders between windows
+;; (use-package move-border
+;;   :load-path "site-lisp/move-border"
+;;   :bind (("M-S-<up>" . move-border-up)
+;;          ("M-S-<down>" . move-border-down)
+;;          ("M-S-<left>" . move-border-left)
+;;          ("M-S-<right>" . move-border-right)))
 
 ;; enable flycheck
 (use-package flycheck
@@ -138,22 +138,22 @@
   :config
   (move-text-default-bindings))
 
-;; flx-ido
-(use-package flx-ido
-  :ensure t
-  :config
-  (setq ido-enable-flex-matching t)
-  (setq ido-everywhere t)
-  (ido-mode 1)
-  ;; disable ido faces to see flx highlights
-  (setq ido-use-faces nil)
-  (setq ido-use-filename-at-point 'guess)
-  (setq ido-create-new-buffer 'always)
-  (setq ido-file-extensions-order '(".scala" ".org" ".txt" ".py" ".emacs" ".xml" ".el" ".ini" ".cfg" ".cnf"))
-  ;; You can disable the merging (the "looking in other directories" in ido vulgo) with
-  ;; http://stackoverflow.com/questions/7479565/emacs-ido-mode-and-creating-new-files-in-directories-it-keeps-changing-the-dire
-  (setq ido-auto-merge-work-directories-length -1)
-  (flx-ido-mode 1))
+;; ;; flx-ido
+;; (use-package flx-ido
+;;   :ensure t
+;;   :config
+;;   (setq ido-enable-flex-matching t)
+;;   (setq ido-everywhere t)
+;;   (ido-mode 1)
+;;   ;; disable ido faces to see flx highlights
+;;   (setq ido-use-faces nil)
+;;   (setq ido-use-filename-at-point 'guess)
+;;   (setq ido-create-new-buffer 'always)
+;;   (setq ido-file-extensions-order '(".org" ".txt" ".py" ".emacs" ".xml" ".el" ".ini" ".cfg" ".cnf"))
+;;   ;; You can disable the merging (the "looking in other directories" in ido vulgo) with
+;;   ;; http://stackoverflow.com/questions/7479565/emacs-ido-mode-and-creating-new-files-in-directories-it-keeps-changing-the-dire
+;;   (setq ido-auto-merge-work-directories-length -1)
+;;   (flx-ido-mode 1))
 
 ;; helm
 (use-package helm
@@ -181,10 +181,11 @@
          ("M-x" . helm-M-x)
          ("M-t" . helm-for-files)
          ("C-x c o" . helm-occur)
+         ("C-x C-f" . helm-find-files)
          ;; TODO: install helm-swoop
          ;;("C-x c s" . helm-swoop)
-         ("C-x c y" . helm-yas-complete)
-         ("C-x c Y" . helm-yas-create-snippet-on-region)
+         ;; ("C-x c y" . helm-yas-complete)
+         ;; ("C-x c Y" . helm-yas-create-snippet-on-region)
          ("C-x c b" . my/helm-do-grep-book-notes)
          ("C-x c SPC" . helm-all-mark-rings)))
 
@@ -202,9 +203,9 @@
 ;;     (define-key projectile-command-map (kbd "g") #'projectile-grep)
 ;;     (setq projectile-completion-system 'helm)))
 
-(use-package helm-projectile
-  :ensure t
-  :defer t)
+;; (use-package helm-projectile
+;;   :ensure t
+;;   :defer t)
 
 ;; Elisp go-to-definition with M-. and back again with M-,
 (use-package elisp-slime-nav
@@ -231,6 +232,7 @@
 ;;   :defer t)
 
 ;; get company mode
+;; company is text completion mode
 (use-package company
   :ensure t
   :defer t
@@ -279,57 +281,57 @@
 (define-key input-decode-map "\e[g" [S-f9])
 (define-key input-decode-map "\e[s" [C-f9])
 
-;; Use M-i for imenu to show func definitions
-(global-set-key (kbd "M-i") 'imenu)
-;; bind C-x r to rgrep command
-(global-set-key (kbd "C-x r") 'rgrep)
+;; ;; Use M-i for imenu to show func definitions
+;; (global-set-key (kbd "M-i") 'imenu)
+;; ;; bind C-x r to rgrep command
+;; (global-set-key (kbd "C-x r") 'rgrep)
 
-;; copy / cut lines without selecting them first
-;; http://emacs-fu.blogspot.de/2009/11/copying-lines-without-selecting-them.html
-;; if there is not selection, assume the operation should be applied to the whole line.
-;; in case of selection use the usual behavour
-;; Binded to M-w
-(defadvice kill-ring-save (before slick-copy activate compile)
-  "When called interactively with no active region, copy a single line instead."
-  (interactive
-   (if mark-active (list (region-beginning) (region-end))
-     (message "Copied line")
-     (list (line-beginning-position) (line-beginning-position 2)))))
+;; ;; copy / cut lines without selecting them first
+;; ;; http://emacs-fu.blogspot.de/2009/11/copying-lines-without-selecting-them.html
+;; ;; if there is not selection, assume the operation should be applied to the whole line.
+;; ;; in case of selection use the usual behavour
+;; ;; Binded to M-w
+;; (defadvice kill-ring-save (before slick-copy activate compile)
+;;   "When called interactively with no active region, copy a single line instead."
+;;   (interactive
+;;    (if mark-active (list (region-beginning) (region-end))
+;;      (message "Copied line")
+;;      (list (line-beginning-position) (line-beginning-position 2)))))
 
-;; Binded to C-w
-(defadvice kill-region (before slick-cut activate compile)
-  "When called interactively with no active region, kill a single line instead."
-  (interactive
-    (if mark-active (list (region-beginning) (region-end))
-      (list (line-beginning-position)
-        (line-beginning-position 2)))))
+;; ;; Binded to C-w
+;; (defadvice kill-region (before slick-cut activate compile)
+;;   "When called interactively with no active region, kill a single line instead."
+;;   (interactive
+;;     (if mark-active (list (region-beginning) (region-end))
+;;       (list (line-beginning-position)
+;;         (line-beginning-position 2)))))
 
 ;; uncomment in case if backspace is not working correctly
 ;; (normal-erase-is-backspace-mode 0)
 
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(auto-save-file-name-transforms (quote ((".*" "~/tmp/autosaves/\\1" t))))
- '(package-selected-packages
-   (quote
-    (rtags company-rtags flycheck-rtags edts cmake-ide cargo window-number utop use-package tuareg racer org-repo-todo opam ocp-indent multi-term move-text magit jedi helm-projectile flycheck-rust flycheck-ocaml flx-ido exec-path-from-shell elisp-slime-nav)))
- '(safe-local-variable-values
-   (quote
-    ((cmake-ide-build-dir . "/Users/romanshestakov/development/cpp/temp-conversion")
-     (project-venv-name . "ros")
-     (project-venv-name . "coursera-python"))))
- '(send-mail-function (quote mailclient-send-it)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
-;; (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
-;; ## end of OPAM user-setup addition for emacs / base ## keep this line
-(put 'upcase-region 'disabled nil)
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(auto-save-file-name-transforms (quote ((".*" "~/tmp/autosaves/\\1" t))))
+;;  '(package-selected-packages
+;;    (quote
+;;     (rtags company-rtags flycheck-rtags edts cmake-ide cargo window-number utop use-package tuareg racer org-repo-todo opam ocp-indent multi-term move-text magit jedi helm-projectile flycheck-rust flycheck-ocaml flx-ido exec-path-from-shell elisp-slime-nav)))
+;;  '(safe-local-variable-values
+;;    (quote
+;;     ((cmake-ide-build-dir . "/Users/romanshestakov/development/cpp/temp-conversion")
+;;      (project-venv-name . "ros")
+;;      (project-venv-name . "coursera-python"))))
+;;  '(send-mail-function (quote mailclient-send-it)))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  )
+;; ;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
+;; ;; (require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; ;; ## end of OPAM user-setup addition for emacs / base ## keep this line
+;; (put 'upcase-region 'disabled nil)

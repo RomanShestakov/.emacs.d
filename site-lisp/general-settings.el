@@ -42,8 +42,8 @@
 ;; set project dir
 ;;(setq project-dir (getenv "PWD"))
 
-;; cua-mode is conflicting with org-mode and with python-mode
-(cua-mode t)
+;; ;; cua-mode is conflicting with org-mode and with python-mode
+;; (cua-mode t)
 
 ;; enable electric-pair
 ;(electric-pair-mode t)
@@ -66,9 +66,9 @@
 ;; number of characters untill the fill column
 (setq-default fill-column 70)
 
-;; default window width and height
+;; default window width and height at startup
 (defun custom-set-frame-size()
-  (add-to-list 'default-frame-alist '(height . 100))
+  (add-to-list 'default-frame-alist '(height . 55))
   (add-to-list 'default-frame-alist '(width . 130)))
 (custom-set-frame-size)
 (add-hook 'before-make-frame-hook 'custom-set-frame-size)
@@ -93,34 +93,40 @@
 ;; don't blink the curson
 ;;(blink-cursor-mode 0)
 
-;; http://stackoverflow.com/questions/151945/how-do-i-control-how-emacs-makes-backup-files
-;; make backups by copying files
-(setq backup-by-copying t)
-;; dir for backup files
-(setq backup-directory-alist `(("." . "~/.saves")))
-(setq delete-old-versions t
-      kept-new-versions 6
-      kept-old-versions 2
-      version-control t)
+;; ;; http://stackoverflow.com/questions/151945/how-do-i-control-how-emacs-makes-backup-files
+;; ;; make backups by copying files
+;; (setq backup-by-copying t)
+;; ;; dir for backup files
+;; (setq backup-directory-alist `(("." . "~/.saves")))
+;; (setq delete-old-versions t
+;;       kept-new-versions 6
+;;       kept-old-versions 2
+;;       version-control t)
 
-;; autosave into ~/tmp/autosaves
-(custom-set-variables
- '(auto-save-file-name-transforms '((".*" "~/tmp/autosaves/\\1" t))))
-;; create autosave dir if nessasary
-(make-directory "~/tmp/autosaves" t)
+;; stop creating backup files
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+;; stop creating temp symbolic links
+(setq create-lockfiles nil)
+
+;; ;; autosave into ~/tmp/autosaves
+;; (custom-set-variables
+;;  '(auto-save-file-name-transforms '((".*" "~/tmp/autosaves/\\1" t))))
+;; ;; create autosave dir if nessasary
+;; (make-directory "~/tmp/autosaves" t)
 
 ;; make sure that dired is not trying to find alternative file
 (put 'dired-find-alternate-file 'disabled nil)
 
-;; eval list buffer with F9
-(add-hook 'emacs-lisp-mode-hook 'my-lisp-mode-hook)
-(defun my-lisp-mode-hook ()
-  "* Make f9 to eval erlang buffer."
-  (define-key emacs-lisp-mode-map [f9]
-    (lambda()
-      (interactive)
-      (progn
-        (eval-buffer)))))
+;; ;; eval list buffer with F9
+;; (add-hook 'emacs-lisp-mode-hook 'my-lisp-mode-hook)
+;; (defun my-lisp-mode-hook ()
+;;   "* Make f9 to eval erlang buffer."
+;;   (define-key emacs-lisp-mode-map [f9]
+;;     (lambda()
+;;       (interactive)
+;;       (progn
+;;         (eval-buffer)))))
 
 (provide 'general-settings)
 
