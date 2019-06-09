@@ -27,26 +27,22 @@
   (let ((default-directory emacs-root))
     (normal-top-level-add-subdirs-to-load-path)))
 
-
 ;; Bootstrap package management
 (require 'package)
 (setq package-enable-at-startup nil)
 
 (eval-when-compile (require 'cl))
 
-;; use my own melpa mirror
-;;(add-to-list 'load-path "~/.emacs.d/site-lisp/elpa-mirror")
+;; use local melpa mirror
+;; to create local repo:
+;; M-x elpamr-create-mirror-for-installed
 (require 'elpa-mirror)
-(setq elpamr-default-output-directory "~/myelpa")
-;;(setq package-archives '(("myelpa" . "~/myelpa")))
-;;
-;; melpa url must have a trailing "/" at the end
-;;(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-;;(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-;;(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+(setq elpamr-default-output-directory (concat (file-name-as-directory emacs-root) "myelpa/"))
+(setq package-archives '(("myelpa" . elpamr-default-output-directory)))
 
+;; melpa url must have a trailing "/" at the end
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 ;; (setq package-archives '())
 
 (package-initialize)
@@ -86,6 +82,7 @@
 ;; ;;(setq magit-last-seen-setup-instructions "1.4.0")
 
 ;; display windows numbers
+;; move between windows with M-<number>
 (use-package window-number
   :ensure t
   :config

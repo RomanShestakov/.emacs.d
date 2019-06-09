@@ -247,7 +247,7 @@ type in file name, then C-j instead of RET
 |-------------------------------------------+---------------------------------------------------------------|
 | emacs                                     |                                                               |
 |-------------------------------------------+---------------------------------------------------------------|
-| M-t                                       | find files (helm-for-files)                                   |
+| C-x C-f                                   | find files (helm-for-files)                                   |
 | M-q                                       | wrap line if it is too long (fill-paragraph func)             |
 | C-u, M-q                                  | wrap line and align text                                      |
 | emacs -nw                                 | open emacs in no window mode                                  |
@@ -282,6 +282,7 @@ type in file name, then C-j instead of RET
 | M-d                                       | kill a word on the right                                      |
 | M-r                                       |                                                               |
 | M-1 / M-2                                 | change window                                                 |
+| C-M-n/p                                   | more to matching parenthesis                                  |
 |-------------------------------------------+---------------------------------------------------------------|
 |                                           |                                                               |
 | slime-nav-mode                            |                                                               |
