@@ -1,3 +1,4 @@
 *.beam
 *.elc
 elpa/*
+auto-save-list/*
