@@ -37,8 +37,9 @@
 ;; to create local repo:
 ;; M-x elpamr-create-mirror-for-installed
 (require 'elpa-mirror)
-(setq elpamr-default-output-directory (concat (file-name-as-directory emacs-root) "myelpa/"))
-(setq package-archives '(("myelpa" . elpamr-default-output-directory)))
+(setq elpamr-default-output-directory (concat (file-name-as-directory emacs-root) "myelpa"))
+;;(setq package-archives '(("myelpa" . elpamr-default-output-directory)))
+(setq package-archives '(("myelpa" . "~/.emacs.d/myelpa")))
 
 ;; melpa url must have a trailing "/" at the end
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
