@@ -58,7 +58,7 @@
 ;; (defun rtags-path-init()
 ;;   "*Sets the paths to rtags elisp files."
 ;;   (add-to-list 'load-path (concat rtags-root-dir "/share/emacs/site-lisp/rtags/")))
-
+q
 ;; (defvar irony-root-dir (getenv "IRONY_ROOT")
 ;;   "*Path to IRONY installation.  Location of irony dir 'export IRONY_ROOT=/opt/irony-v1.2.1' needs to be set in bash environment.")
 
