@@ -45,12 +45,13 @@
 (use-package eglot
   :ensure t
   :config
-  (general-define-key :keymap 'eglot-mode-map "M-." . 'xref-find-definitions)
-  (general-define-key :keymap 'eglot-mode-map "M-," . 'pop-tag-mark)
-  (setq company-backends (cons 'company-capf (remove 'company-capf company-backends)))
+  (bind-key "M-." 'xref-find-definitions)
+  (bind-key "M-," 'pop-tag-mark)
+;;  (setq company-backends (cons 'company-capf (remove 'company-capf company-backends)))
   (projectile-mode t)
   (add-to-list 'eglot-server-programs `((c++-mode), clangd-exe))
   (add-hook 'c++-mode-hook 'eglot-ensure))
+
 
 ;;(with-eval-after-load 'project (add-to-list 'project-find-functions 'ddavis/projectile-proj-find-function))
 
