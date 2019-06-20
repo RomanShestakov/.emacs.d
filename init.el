@@ -42,7 +42,7 @@
 (setq package-archives '(("myelpa" . "~/.emacs.d/myelpa")))
 
 ;; melpa url must have a trailing "/" at the end
-(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 ;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 ;; (setq package-archives '())
