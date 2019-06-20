@@ -45,15 +45,14 @@
 (use-package eglot
   :ensure t
   :config
-  :bind (("M-." . xref-find-definitions)
-         ("M-," . pop-tag-mark))
-  (require 'eglot))
+  (general-define-key :keymap 'eglot-mode-map "M-." . 'xref-find-definitions)
+  (general-define-key :keymap 'eglot-mode-map "M-," . 'pop-tag-mark)
+  (setq company-backends (cons 'company-capf (remove 'company-capf company-backends)))
+  (projectile-mode t)
+  (add-to-list 'eglot-server-programs `((c++-mode), clangd-exe))
+  (add-hook 'c++-mode-hook 'eglot-ensure))
 
-(setq company-backends (cons 'company-capf (remove 'company-capf company-backends)))
-(projectile-mode t)
 ;;(with-eval-after-load 'project (add-to-list 'project-find-functions 'ddavis/projectile-proj-find-function))
-(add-to-list 'eglot-server-programs `((c++-mode), clangd-exe))
-(add-hook 'c++-mode-hook 'eglot-ensure)
 
 ;; (defvar rtags-root-dir (getenv "RTAGS_ROOT")
 ;;   "*Path to RTAGS installation.  Location of rtags dir 'export RTAGS_ROOT=/opt/rtags-v2.10' needs to be set in bash environment.")
