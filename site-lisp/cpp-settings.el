@@ -45,9 +45,12 @@
 (use-package eglot
   :ensure t
   :config
+  :bind (("M-." . xref-find-definitions)
+         ("M-," . pop-tag-mark))
   (require 'eglot))
+
 (setq company-backends (cons 'company-capf (remove 'company-capf company-backends)))
-;;(projectile-mode t)
+(projectile-mode t)
 ;;(with-eval-after-load 'project (add-to-list 'project-find-functions 'ddavis/projectile-proj-find-function))
 (add-to-list 'eglot-server-programs `((c++-mode), clangd-exe))
 (add-hook 'c++-mode-hook 'eglot-ensure)
@@ -58,7 +61,7 @@
 ;; (defun rtags-path-init()
 ;;   "*Sets the paths to rtags elisp files."
 ;;   (add-to-list 'load-path (concat rtags-root-dir "/share/emacs/site-lisp/rtags/")))
-q
+
 ;; (defvar irony-root-dir (getenv "IRONY_ROOT")
 ;;   "*Path to IRONY installation.  Location of irony dir 'export IRONY_ROOT=/opt/irony-v1.2.1' needs to be set in bash environment.")
 

@@ -187,23 +187,23 @@
          ("C-x c b" . my/helm-do-grep-book-notes)
          ("C-x c SPC" . helm-all-mark-rings)))
 
-;; ;; projectile
-;; ;; https://github.com/lunaryorn/.emacs.d/blob/master/init.el
-;; (use-package projectile
-;;   :ensure t
-;;   :init (projectile-global-mode)
-;;   :diminish projectile-mode
-;;   :config
-;;   (progn
-;;     (setq projectile-enable-caching t)
-;;     ;;(setq projectile-require-project-root nil)
-;;     (setq projectile-keymap-prefix (kbd "C-c p"))
-;;     (define-key projectile-command-map (kbd "g") #'projectile-grep)
-;;     (setq projectile-completion-system 'helm)))
+;; projectile
+;; https://github.com/lunaryorn/.emacs.d/blob/master/init.el
+(use-package projectile
+  :ensure t
+  :init (projectile-global-mode)
+  :diminish projectile-mode
+  :config
+  (progn
+    (setq projectile-enable-caching t)
+    ;;(setq projectile-require-project-root nil)
+    (setq projectile-keymap-prefix (kbd "C-c p"))
+    (define-key projectile-command-map (kbd "g") #'projectile-grep)
+    (setq projectile-completion-system 'helm)))
 
-;; (use-package helm-projectile
-;;   :ensure t
-;;   :defer t)
+(use-package helm-projectile
+  :ensure t
+  :defer t)
 
 ;; Elisp go-to-definition with M-. and back again with M-,
 (use-package elisp-slime-nav
