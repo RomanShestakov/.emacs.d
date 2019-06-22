@@ -50,10 +50,9 @@
   ;;(setq company-backends (cons 'company-capf (remove 'company-capf company-backends)))
   (projectile-mode t)
   (add-to-list 'eglot-server-programs `((c++-mode), clangd-exe))
+  (add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1)))
+  (add-hook 'c-mode-hook 'eglot-ensure)
   (add-hook 'c++-mode-hook 'eglot-ensure))
-
-;;(with-eval-after-load 'project (add-to-list 'project-find-functions 'ddavis/projectile-proj-find-function))
-
 
 (provide 'cpp-settings)
 
