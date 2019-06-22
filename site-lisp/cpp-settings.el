@@ -40,28 +40,17 @@
 ;; set 4 space indent
 (setq-default c-basic-offset 4)
 (defvar clangd-exe (executable-find "clangd")
-  "clangd executable path")
+  "Clangd executable path.")
 
 (use-package eglot
   :ensure t
   :config
   (bind-key "M-." 'xref-find-definitions)
   (bind-key "M-," 'pop-tag-mark)
-;;  (setq company-backends (cons 'company-capf (remove 'company-capf company-backends)))
+  ;;(setq company-backends (cons 'company-capf (remove 'company-capf company-backends)))
   (projectile-mode t)
   (add-to-list 'eglot-server-programs `((c++-mode), clangd-exe))
   (add-hook 'c++-mode-hook 'eglot-ensure))
-
-;; cmake-project used to be availabe in project-achive Marmelade
-;; but Marmelade is not live anymore so instead
-;; the package was loaded into local site-lisp
-(defun maybe-cmake-project-hook()
-  (if (file-exists-p "CMakeLists.txt") (cmake-project-mode)))
-(use-package cmake-project
-  :config
-  (add-hook 'c-mode-hook 'maybe-cmake-project-hook)
-  (add-hook 'c++-mode-hook 'maybe-cmake-project-hook)
-  )
 
 ;;(with-eval-after-load 'project (add-to-list 'project-find-functions 'ddavis/projectile-proj-find-function))
 

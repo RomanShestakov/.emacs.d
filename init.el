@@ -74,7 +74,7 @@
   :ensure t
   :config
   (setq org-support-shift-select t)
-  (setq org-completion-use-ido t)
+  ;(setq org-completion-use-ido t)
   (use-package org-repo-todo :ensure t))
 
 ;; ;; magit
@@ -127,6 +127,7 @@
 (use-package flycheck
   :ensure t
   :defer 5
+  :init (global-flycheck-mode)
   :config
   (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
 
@@ -192,7 +193,7 @@
 ;; https://github.com/lunaryorn/.emacs.d/blob/master/init.el
 (use-package projectile
   :ensure t
-  :init (projectile-global-mode)
+  :init (projectile-mode)
   :diminish projectile-mode
   :config
   (progn
@@ -237,7 +238,7 @@
   :defer t
   :config
   (global-company-mode t)
-  (setq company-dabbrev-downcase 0)
+  ;;(setq company-dabbrev-downcase 0)
   (setq company-idle-delay 0))
 
 ;; ;; yaml mode
@@ -341,7 +342,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (eglot window-number use-package org-repo-todo multi-term move-text magit jedi helm-projectile flycheck-rtags flycheck-irony flx-ido exec-path-from-shell elisp-slime-nav edts company-irony))))
+    (cmake-project yaml-mode eglot window-number use-package org-repo-todo multi-term move-text magit jedi helm-projectile flycheck-rtags flycheck-irony flx-ido exec-path-from-shell elisp-slime-nav edts company-irony))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
