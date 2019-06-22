@@ -43,4 +43,7 @@
  (use-package . [(20171030 1428) ((bind-key (1 0)) (diminish (0 44))) "A use-package declaration for simplifying your .emacs" tar])
  (window-number . [(20170731 1851) nil "Select windows by numbers." tar])
  (with-editor . [(20171006 352) ((emacs (24 4)) (async (1 9))) "Use the Emacsclient as $EDITOR" tar])
+ (flymake . [(1 0 6) ((emacs (26 1))) "A universal onfly syntax checker" tar])
+ (jsonrpc . [(1 0 7) ((emacs (25 2))) "JSON-RPC library" tar])
+ (eglot . [(20190512 1047) ((emacs (26 1)) (jsonrpc (1 0 7)) (flymake (1 0 5))) "Client for Language Server Protocol (LSP) servers" tar])
 )
