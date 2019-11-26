@@ -94,14 +94,14 @@
 ;; highlight breakpoint
 ;; borrowed from https://www.masteringemacs.org/article/compiling-running-scripts-emacs
 (defun python--add-debug-highlight ()
-  "Adds a highlighter for use by `python--pdb-breakpoint-string'"
+  "Adds a highlighter for use by `python--pdb-breakpoint-string'."
   (highlight-lines-matching-regexp "## DEBUG ##\\s-*$" 'hi-red-b))
 
 (defvar python--pdb-breakpoint-string "import ipdb; ipdb.set_trace() ## DEBUG ##"
-  "Python breakpoint string used by `python-insert-breakpoint'")
+  "Python breakpoint string used by `python-insert-breakpoint'.")
 
 (defun python-insert-breakpoint ()
-  "Inserts a python breakpoint using `ipdb'"
+  "Inserts a python breakpoint using `ipdb'."
   (interactive)
   (back-to-indentation)
   ;; this preserves the correct indentation in case the line above
