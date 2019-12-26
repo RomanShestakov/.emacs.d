@@ -37,7 +37,7 @@ pip install ipython
 
 * Install emacs
 [[http://wikemacs.org/wiki/Installing_Emacs_on_OS_X][EMACS]]
-#+BEGeIN_SRC
+#+BEGIN_SRC
 brew update
 brew install emacs --with-cocoa
 brew linkapps emacs
