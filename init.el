@@ -41,11 +41,12 @@
 ;;(setq package-archives '(("myelpa" . elpamr-default-output-directory)))
 (setq package-archives '(("myelpa" . "~/.emacs.d/myelpa")))
 
-;; melpa url must have a trailing "/" at the end
-(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+;; ;; melpa url must have a trailing "/" at the end
+(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
+;;(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-;; (setq package-archives '())
+;; ;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+;; ;; (setq package-archives '())
 
 (package-initialize)
 (unless (package-installed-p 'use-package)
@@ -58,6 +59,14 @@
 ;; allow to remove minor modes from status line
 ;;(require 'diminish)
 (require 'bind-key)
+
+;; see http://elpa.gnu.org/packages/gnu-elpa-keyring-update.html
+;; enable gnu-elpa-keyring-update
+;; to update signature keys
+;; temporaraly turn off signature check
+;;(setq package-check-signature nil)
+(use-package gnu-elpa-keyring-update
+  :ensure t)
 
 ;; set PATH from env
 (use-package exec-path-from-shell
@@ -123,13 +132,24 @@
 ;;          ("M-S-<left>" . move-border-left)
 ;;          ("M-S-<right>" . move-border-right)))
 
-;; enable flycheck
-(use-package flycheck
-  :ensure t
-  :defer 5
-  :init (global-flycheck-mode)
-  :config
-  (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
+
+;; enable flymake
+(use-package flymake
+  :ensure t)
+  ;; :defer 5
+  ;; :init (global-flymake-mode)
+  ;; :config
+  ;; (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
+
+
+
+;; ;; enable flycheck
+;; (use-package flycheck
+;;   :ensure t
+;;   :defer 5
+;;   :init (global-flycheck-mode)
+;;   :config
+;;   (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
 
 ;; move-text mode
 ;; move a line with M-up/down
@@ -342,7 +362,10 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (cmake-project yaml-mode eglot window-number use-package org-repo-todo multi-term move-text magit jedi helm-projectile flycheck-rtags flycheck-irony flx-ido exec-path-from-shell elisp-slime-nav edts company-irony))))
+    (gnu-elpa-keyring-update json-rpc flymake-cppcheck eglot-jl flymake-go cmake-project yaml-mode eglot window-number use-package org-repo-todo multi-term move-text magit jedi helm-projectile flycheck-rtags flycheck-irony flx-ido exec-path-from-shell elisp-slime-nav edts company-irony)))
+ '(safe-local-variable-values
+   (quote
+    ((cmake-ide-build-dir . "/Users/romanshestakov/development/cpp/temp-conversion")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
