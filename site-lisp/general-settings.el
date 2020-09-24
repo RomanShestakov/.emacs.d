@@ -54,6 +54,11 @@
 (defvar show-paren-delay)
 (eval-when-compile (setq show-paren-delay 0))
 
+;; use Ctr-return to jump to the matching paren
+;; https://gist.github.com/donghee/3937661
+(autoload 'jump-match-paren "custom-functions" t)
+(global-set-key [C-return] 'jump-match-paren)
+
 ;; set left alt key with META and the right alt key with ALT,
 ;; use command as Meta as well as left Alt
 (autoload 'system-is-mac "custom-functions" t)

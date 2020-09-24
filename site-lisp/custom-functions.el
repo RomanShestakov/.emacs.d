@@ -22,6 +22,15 @@
   (interactive)
   (mapc 'kill-buffer (buffer-list)))
 
+;;;###autoload
+(defun jump-match-paren (arg)
+  "Go to the matching parenthesis."
+  (interactive "p")
+  (cond ((looking-at "\\s\(\\|\\s\[") (forward-list 1) (backward-char 1))
+        ((looking-at "\\s\)\\|\\s\]") (forward-char 1) (backward-list 1))
+        (t (back-to-indentation))
+        ))
+
 (provide 'custom-functions)
 
 ;;; custom-functions.el ends here
