@@ -31,20 +31,18 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 
-(eval-when-compile (require 'cl))
-
 ;; use local melpa mirror
 ;; to create local repo:
 ;; M-x elpamr-create-mirror-for-installed
 (require 'elpa-mirror)
-(setq elpamr-default-output-directory (concat (file-name-as-directory emacs-root) "myelpa"))
-;;(setq package-archives '(("myelpa" . elpamr-default-output-directory)))
-(setq package-archives '(("myelpa" . "~/.emacs.d/myelpa")))
-
-;; ;; melpa url must have a trailing "/" at the end
-(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-;; ;; (setq package-archives '())
+(setq elpamr-default-output-directory (concat (file-name-as-directory emacs-root) "myelpa/"))
+;; url must have a trailing "/" at the end
+;; by default use local melpa - this forces to use local mirror of packages instead of melpa to avoid breaks
+(setq package-archives '(("myelpa" . "~/.emacs.d/myelpa/")))
+;(setq package-archives '(("myelpa" . (symbol-value 'elpamr-default-output-directory))))
+;; uncomment below if need to reload packages from global melpa
+;; (setq package-archives '(("melpa" . "https://melpa.org/packages/")))
+;; (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
 
 (package-initialize)
 (unless (package-installed-p 'use-package)
@@ -72,8 +70,8 @@
   :config
   (exec-path-from-shell-initialize)
   (exec-path-from-shell-copy-env "PATH")
-  (exec-path-from-shell-copy-env "ERL_TOP")
-  (exec-path-from-shell-copy-env "OCAML_TOPLEVEL_PATH")
+  ;; (exec-path-from-shell-copy-env "ERL_TOP")
+  ;; (exec-path-from-shell-copy-env "OCAML_TOPLEVEL_PATH")
   (exec-path-from-shell-copy-env "PYTHONPATH"))
 
 ;; org-mode
@@ -181,6 +179,9 @@
   (progn
     (require 'helm-config)
     (setq helm-candidate-number-limit 100)
+    ;; this was to fix issue with helm-find-files as file notification system is missing
+    ;; FIXME - compile emacs --with-file-notification=inotify option
+    (setq helm-ff-use-notify nil)
     ;; From https://gist.github.com/antifuchs/9238468
     ;; update fast sources immediately (doesn't).
     (setq helm-idle-delay 0.0
