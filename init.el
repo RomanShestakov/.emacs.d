@@ -181,7 +181,7 @@
     (setq helm-candidate-number-limit 100)
     ;; this was to fix issue with helm-find-files as file notification system is missing
     ;; FIXME - compile emacs --with-file-notification=inotify option
-    (setq helm-ff-use-notify nil)
+    ;; (setq helm-ff-use-notify nil)
     ;; From https://gist.github.com/antifuchs/9238468
     ;; update fast sources immediately (doesn't).
     (setq helm-idle-delay 0.0
