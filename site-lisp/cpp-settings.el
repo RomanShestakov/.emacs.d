@@ -42,6 +42,14 @@
 (defvar clangd-exe (executable-find "clangd")
   "Clangd executable path.")
 
+;; enable flymake
+(use-package flymake
+  :ensure t)
+  ;; :defer 5
+  ;; :init (global-flymake-mode)
+  ;; :config
+  ;; (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
+
 (use-package eglot
   :ensure t
   :config

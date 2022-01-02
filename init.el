@@ -129,23 +129,13 @@
 ;;          ("M-S-<right>" . move-border-right)))
 
 
-;; enable flymake
-(use-package flymake
-  :ensure t)
-  ;; :defer 5
-  ;; :init (global-flymake-mode)
-  ;; :config
-  ;; (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
-
-
-
-;; ;; enable flycheck
-;; (use-package flycheck
-;;   :ensure t
-;;   :defer 5
-;;   :init (global-flycheck-mode)
-;;   :config
-;;   (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
+;; enable flycheck
+(use-package flycheck
+  :ensure t
+  :defer 5
+  :init (global-flycheck-mode)
+  :config
+  (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
 
 ;; move-text mode
 ;; move a line with M-up/down
