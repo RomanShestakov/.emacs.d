@@ -59,6 +59,9 @@
   (projectile-mode t)
   (add-hook 'erlang-mode-hook 'eglot-ensure))
 
+;; completion
+(use-package company :ensure t)
+
 (use-package flycheck
   :diminish flycheck-mode
   :config
