@@ -51,16 +51,28 @@
                     erlang-compile-extra-opts '((i . "../include"))
                     erlang-root-dir "/usr/local/lib/erlang"))))
 
+
+;; completion
+(use-package company :ensure t)
+
+(use-package yasnippet
+  :ensure t
+  :hook ((erlang-mode . yas-minor-mode)
+	       (snippet-mode . yas-minor-mode)))
+
+(use-package yasnippet-snippets
+  :ensure t
+  :after (yasnippet))
+
 (use-package eglot
   :ensure t
   :config
   (bind-key "M-." 'xref-find-definitions)
   (bind-key "M-," 'pop-tag-mark)
   (projectile-mode t)
-  (add-hook 'erlang-mode-hook 'eglot-ensure))
-
-;; completion
-(use-package company :ensure t)
+  (add-hook 'erlang-mode-hook 'eglot-ensure)
+  (setq eglot-ignored-server-capabilities '(:willSaveWaitUntil :textDocumentSync))
+  )
 
 (use-package flycheck
   :diminish flycheck-mode
