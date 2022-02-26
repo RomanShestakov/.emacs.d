@@ -250,10 +250,10 @@
   ;;(setq company-dabbrev-downcase 0)
   (setq company-idle-delay 0))
 
-;; ;; yaml mode
-;; (use-package yaml-mode
-;;   :ensure t
-;;   :defer t)
+;; yaml mode
+(use-package yaml-mode
+  :ensure t
+  :defer t)
 
 ;; ;; yasnippet
 ;; (use-package yasnippet
