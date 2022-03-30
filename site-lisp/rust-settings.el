@@ -17,51 +17,67 @@
 
 ;;(add-hook 'after-init-hook #'global-flycheck-mode)
 
+;;; Code:
+
 (use-package rust-mode
   :ensure t
   :defer t)
 
-(use-package cargo
-  :ensure t
-  :defer t)
 
-(use-package flycheck-rust
+(use-package eglot
   :ensure t
-  :defer t
-  :init (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
-
-(use-package racer
-  :ensure t
-  :init
-  (bind-key "M-." #'racer-find-definition)
-  ;;(bind-key "M-," 'jedi:goto-definition-pop-marker python-mode-map)
   :config
-  (add-hook 'rust-mode-hook #'racer-mode)
-  (add-hook 'racer-mode-hook #'eldoc-mode)
-  ;; Rustup binaries PATH
-  (setq racer-cmd "~/.cargo/bin/racer")
-  ;; Rust source code PATH
-  (setq racer-rust-src-path "/Users/romanshestakov/rust/src")
-  )
+;;  (bind-key "M-." 'xref-find-definitions)
+;;  (bind-key "M-," 'pop-tag-mark)
+  ;;(setq company-backends (cons 'company-capf (remove 'company-capf company-backends)))
+  (projectile-mode t)
+  (add-to-list 'eglot-server-programs '(rust-mode . "rust-analyzer"))
+  (add-hook 'rust-mode-hook 'eglot-ensure))
 
-(use-package rustfmt
-  :config
-  (define-key rust-mode-map (kbd "C-c C-f") #'rustfmt-format-buffer))
 
-(add-hook 'rust-mode-hook 'cargo-minor-mode)
 
-(defun my-rust-mode-hook ()
-  ;;(define-key rust-mode-map [f9] 'cargo-process-build)
-  (define-key rust-mode-map [f9] 'cargo-process-run))
+;; (use-package cargo
+;;   :ensure t
+;;   :defer t)
 
-(add-hook 'rust-mode-hook 'flycheck-mode)
-;;(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
-(add-hook 'rust-mode-hook 'my-rust-mode-hook)
+;; (use-package flycheck-rust
+;;   :ensure t
+;;   :defer t
+;;   :init (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
-;; completion
-(add-hook 'rust-mode-hook #'company-mode)
-(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-(setq company-tooltip-align-annotations t)
+;; (use-package rust-analyzer
+;;   :ensure t
+;;   :init
+;;   (bind-key "M-." #'racer-find-definition)
+;;   ;;(bind-key "M-," 'jedi:goto-definition-pop-marker python-mode-map)
+;;   :config
+;;   (add-hook 'rust-mode-hook #'racer-mode)
+;;   (add-hook 'racer-mode-hook #'eldoc-mode)
+;;   ;; Rustup binaries PATH
+;;   ;;(setq racer-cmd "~/.cargo/bin/racer")
+;;   ;; Rust source code PATH
+;; ;;  (setq racer-rust-src-path "/Users/romanshestakov/.cargo/")
+;;   )
+
+
+;; (use-package rustfmt
+;;   :config
+;;   (define-key rust-mode-map (kbd "C-c C-f") #'rustfmt-format-buffer))
+
+;; (add-hook 'rust-mode-hook 'cargo-minor-mode)
+
+;; (defun my-rust-mode-hook ()
+;;   ;;(define-key rust-mode-map [f9] 'cargo-process-build)
+;;   (define-key rust-mode-map [f9] 'cargo-process-run))
+
+;; (add-hook 'rust-mode-hook 'flycheck-mode)
+;; ;;(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+;; (add-hook 'rust-mode-hook 'my-rust-mode-hook)
+
+;; ;; completion
+;; (add-hook 'rust-mode-hook #'company-mode)
+;; (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+;; (setq company-tooltip-align-annotations t)
 
 ;; Key binding to jump to method definition
 ;(local-set-key (kbd "M-.") #'racer-find-definition)
