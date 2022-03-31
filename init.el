@@ -41,8 +41,8 @@
 (setq package-archives '(("myelpa" . "~/.emacs.d/myelpa/")))
 ;(setq package-archives '(("myelpa" . (symbol-value 'elpamr-default-output-directory))))
 ;; uncomment below if need to reload packages from global melpa
-;; (setq package-archives '(("melpa" . "https://melpa.org/packages/")))
-;; (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")))
+(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
 
 (package-initialize)
 (unless (package-installed-p 'use-package)
@@ -267,10 +267,10 @@
 (use-package general-settings)
 (use-package color-theme-settings)
 ;; requires setting "ERLANG_HOME"
-(use-package erlang-settings)
+;;(use-package erlang-settings)
 ;(use-package ocaml-settings)
 (use-package python-settings)
-;(use-package rust-settings)
+(use-package rust-settings)
 (use-package cpp-settings)
 ;; (require 'prolog-settings)
 
@@ -350,7 +350,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(gnu-elpa-keyring-update json-rpc flymake-cppcheck eglot-jl flymake-go cmake-project yaml-mode eglot window-number use-package org-repo-todo multi-term move-text magit jedi helm-projectile flycheck-rtags flycheck-irony flx-ido exec-path-from-shell elisp-slime-nav edts company-irony))
+   '(rustic gnu-elpa-keyring-update json-rpc flymake-cppcheck eglot-jl flymake-go cmake-project yaml-mode eglot window-number use-package org-repo-todo multi-term move-text magit jedi helm-projectile flycheck-rtags flycheck-irony flx-ido exec-path-from-shell elisp-slime-nav edts company-irony))
  '(safe-local-variable-values
    '((cmake-ide-build-dir . "/Users/romanshestakov/development/cpp/temp-conversion"))))
 (custom-set-faces
