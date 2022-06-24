@@ -31,20 +31,18 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 
-(eval-when-compile (require 'cl))
-
 ;; use local melpa mirror
 ;; to create local repo:
 ;; M-x elpamr-create-mirror-for-installed
 (require 'elpa-mirror)
-(setq elpamr-default-output-directory (concat (file-name-as-directory emacs-root) "myelpa"))
-;;(setq package-archives '(("myelpa" . elpamr-default-output-directory)))
-(setq package-archives '(("myelpa" . "~/.emacs.d/myelpa")))
-
-;; ;; melpa url must have a trailing "/" at the end
+(setq elpamr-default-output-directory (concat (file-name-as-directory emacs-root) "myelpa/"))
+;; url must have a trailing "/" at the end
+;; by default use local melpa - this forces to use local mirror of packages instead of melpa to avoid breaks
+(setq package-archives '(("myelpa" . "~/.emacs.d/myelpa/")))
+;(setq package-archives '(("myelpa" . (symbol-value 'elpamr-default-output-directory))))
+;; uncomment below if need to reload packages from global melpa
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")))
 (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-;; ;; (setq package-archives '())
 
 (package-initialize)
 (unless (package-installed-p 'use-package)
@@ -72,8 +70,8 @@
   :config
   (exec-path-from-shell-initialize)
   (exec-path-from-shell-copy-env "PATH")
-  (exec-path-from-shell-copy-env "ERL_TOP")
-  (exec-path-from-shell-copy-env "OCAML_TOPLEVEL_PATH")
+  ;; (exec-path-from-shell-copy-env "ERL_TOP")
+  ;; (exec-path-from-shell-copy-env "OCAML_TOPLEVEL_PATH")
   (exec-path-from-shell-copy-env "PYTHONPATH"))
 
 ;; org-mode
@@ -131,23 +129,13 @@
 ;;          ("M-S-<right>" . move-border-right)))
 
 
-;; enable flymake
-(use-package flymake
-  :ensure t)
-  ;; :defer 5
-  ;; :init (global-flymake-mode)
-  ;; :config
-  ;; (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
-
-
-
-;; ;; enable flycheck
-;; (use-package flycheck
-;;   :ensure t
-;;   :defer 5
-;;   :init (global-flycheck-mode)
-;;   :config
-;;   (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
+;; enable flycheck
+(use-package flycheck
+  :ensure t
+  :defer 5
+  :init (global-flycheck-mode)
+  :config
+  (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
 
 ;; move-text mode
 ;; move a line with M-up/down
@@ -181,6 +169,9 @@
   (progn
     (require 'helm-config)
     (setq helm-candidate-number-limit 100)
+    ;; this was to fix issue with helm-find-files as file notification system is missing
+    ;; FIXME - compile emacs --with-file-notification=inotify option
+    ;; (setq helm-ff-use-notify nil)
     ;; From https://gist.github.com/antifuchs/9238468
     ;; update fast sources immediately (doesn't).
     (setq helm-idle-delay 0.0
@@ -259,10 +250,10 @@
   ;;(setq company-dabbrev-downcase 0)
   (setq company-idle-delay 0))
 
-;; ;; yaml mode
-;; (use-package yaml-mode
-;;   :ensure t
-;;   :defer t)
+;; yaml mode
+(use-package yaml-mode
+  :ensure t
+  :defer t)
 
 ;; ;; yasnippet
 ;; (use-package yasnippet
@@ -275,11 +266,11 @@
 ;; apply general emacs customisation settings
 (use-package general-settings)
 (use-package color-theme-settings)
-;; requires setting "ERL_TOP"
+;; requires setting "ERLANG_HOME"
 ;;(use-package erlang-settings)
 ;(use-package ocaml-settings)
 (use-package python-settings)
-;(use-package rust-settings)
+(use-package rust-settings)
 (use-package cpp-settings)
 ;; (require 'prolog-settings)
 
@@ -359,7 +350,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(gnu-elpa-keyring-update json-rpc flymake-cppcheck eglot-jl flymake-go cmake-project yaml-mode eglot window-number use-package org-repo-todo multi-term move-text magit jedi helm-projectile flycheck-rtags flycheck-irony flx-ido exec-path-from-shell elisp-slime-nav edts company-irony))
+   '(rustic gnu-elpa-keyring-update json-rpc flymake-cppcheck eglot-jl flymake-go cmake-project yaml-mode eglot window-number use-package org-repo-todo multi-term move-text magit jedi helm-projectile flycheck-rtags flycheck-irony flx-ido exec-path-from-shell elisp-slime-nav edts company-irony))
  '(safe-local-variable-values
    '((cmake-ide-build-dir . "/Users/romanshestakov/development/cpp/temp-conversion"))))
 (custom-set-faces

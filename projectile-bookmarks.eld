@@ -1,1 +1,1 @@
-("~/.emacs.d/" "~/development/core/" "~/development/unix_programming/" "~/development/ansible-role-llvm/" "~/development/ansible-role-protobuf/" "~/development/ansible-role-valgrind/" "~/development/ansible-role-gcc/" "~/development/ansible-role-emacs/" "~/development/dotfiles/" "~/")
+("~/.emacs.d/" "~/development/programming_erlang/" "~/" "~/development/vm/" "~/development/ansible-role-llvm/" "~/development/ansible-role-valgrind/" "~/development/ansible-role-gcc/" "~/development/ansible-role-emacs/")

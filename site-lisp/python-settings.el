@@ -29,6 +29,16 @@
 ;;(setq python-shell-interpreter "ipython")
 (setq python-shell-interpreter "python3")
 
+(use-package eglot
+  :ensure t
+  :config
+  (bind-key "M-." 'xref-find-definitions)
+  (bind-key "M-," 'pop-tag-mark)
+  ;;(setq company-backends (cons 'company-capf (remove 'company-capf company-backends)))
+  (projectile-mode t)
+  (add-hook 'python-mode-hook 'eglot-ensure))
+
+
 ;; (setq python-shell-interpreter-args
 ;;       (if (system-is-mac)
 ;;           "--matplotlib=osx --colors=Linux"
@@ -65,49 +75,49 @@
 ;;   :ensure t
 ;;   :defer t)
 
-;; get epc
-(use-package epc
-  :ensure t
-  :defer t)
+;; ;; get epc
+;; (use-package epc
+;;   :ensure t
+;;   :defer t)
 
-;; get jedi
-;; note that jedi depends on virtualenvwrapper and
-;; on (setq python-environment-directory venv-location)
-(use-package jedi
-  :ensure t
-  :preface
-  (declare-function jedi:goto-definition jedi nil)
-  (declare-function jedi:related-names jedi nil)
-  (declare-function jedi:show-doc jedi nil)
-  :init
-  (bind-key "M-." 'jedi:goto-definition python-mode-map)
-  (bind-key "M-," 'jedi:goto-definition-pop-marker python-mode-map)
-  (bind-key "M-/" 'jedi:get-in-function-call python-mode-map)
-  (bind-key "M-?" 'jedi:show-doc python-mode-map)
-  :config
-  (progn
-    ;; http://stackoverflow.com/questions/21703693/can-virtualenv-be-avoided-when-using-emacs-jedi-in-anaconda
-    ;;(setq jedi:server-command (list "/Users/romanshestakov/anaconda/bin/python" jedi:server-script))
-    (setq jedi:server-command (list "python" jedi:server-script))
-    (setq jedi:complete-on-dot t)))
+;; ;; get jedi
+;; ;; note that jedi depends on virtualenvwrapper and
+;; ;; on (setq python-environment-directory venv-location)
+;; (use-package jedi
+;;   :ensure t
+;;   :preface
+;;   (declare-function jedi:goto-definition jedi nil)
+;;   (declare-function jedi:related-names jedi nil)
+;;   (declare-function jedi:show-doc jedi nil)
+;;   :init
+;;   (bind-key "M-." 'jedi:goto-definition python-mode-map)
+;;   (bind-key "M-," 'jedi:goto-definition-pop-marker python-mode-map)
+;;   (bind-key "M-/" 'jedi:get-in-function-call python-mode-map)
+;;   (bind-key "M-?" 'jedi:show-doc python-mode-map)
+;;   :config
+;;   (progn
+;;     ;; http://stackoverflow.com/questions/21703693/can-virtualenv-be-avoided-when-using-emacs-jedi-in-anaconda
+;;     ;;(setq jedi:server-command (list "/Users/romanshestakov/anaconda/bin/python" jedi:server-script))
+;;     (setq jedi:server-command (list "python" jedi:server-script))
+;;     (setq jedi:complete-on-dot t)))
 
-;; highlight breakpoint
-;; borrowed from https://www.masteringemacs.org/article/compiling-running-scripts-emacs
-(defun python--add-debug-highlight ()
-  "Adds a highlighter for use by `python--pdb-breakpoint-string'."
-  (highlight-lines-matching-regexp "## DEBUG ##\\s-*$" 'hi-red-b))
+;; ;; highlight breakpoint
+;; ;; borrowed from https://www.masteringemacs.org/article/compiling-running-scripts-emacs
+;; (defun python--add-debug-highlight ()
+;;   "Adds a highlighter for use by `python--pdb-breakpoint-string'."
+;;   (highlight-lines-matching-regexp "## DEBUG ##\\s-*$" 'hi-red-b))
 
-(defvar python--pdb-breakpoint-string "import ipdb; ipdb.set_trace() ## DEBUG ##"
-  "Python breakpoint string used by `python-insert-breakpoint'.")
+;; (defvar python--pdb-breakpoint-string "import ipdb; ipdb.set_trace() ## DEBUG ##"
+;;   "Python breakpoint string used by `python-insert-breakpoint'.")
 
-(defun python-insert-breakpoint ()
-  "Inserts a python breakpoint using `ipdb'."
-  (interactive)
-  (back-to-indentation)
-  ;; this preserves the correct indentation in case the line above
-  ;; point is a nested block
-  (split-line)
-  (insert python--pdb-breakpoint-string))
+;; (defun python-insert-breakpoint ()
+;;   "Inserts a python breakpoint using `ipdb'."
+;;   (interactive)
+;;   (back-to-indentation)
+;;   ;; this preserves the correct indentation in case the line above
+;;   ;; point is a nested block
+;;   (split-line)
+;;   (insert python--pdb-breakpoint-string))
 
 ;; add F9 and S-F9 binding to eval a buffer or selected expr
 (defun my-python-mode-hook ()
@@ -123,12 +133,12 @@
 
 ;; add hooks to python-mode
 (add-hook 'python-mode-hook 'flycheck-mode)
-(add-hook 'python-mode-hook 'jedi:setup)
+;;(add-hook 'python-mode-hook 'jedi:setup)
 (add-hook 'python-mode-hook 'my-python-mode-hook)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 ;; install common package when creating a new virtualenv
 ;; add debug highlighting
-(add-hook 'python-mode-hook 'python--add-debug-highlight)
+;;(add-hook 'python-mode-hook 'python--add-debug-highlight)
 
 ;; pydoc info
 ;;(include-plugin "pydoc-info-0.2")
