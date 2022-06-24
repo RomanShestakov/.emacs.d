@@ -78,8 +78,8 @@ by John Gruber."
      (show-paren-match-face ((t (:background "#52494e" :foreground "#f4f4ff"))))
      (show-paren-mismatch-face ((t (:foreground "#f4f4ff" :background "#c73c3f"))))
      ;; Line highlighting
-     (highlight ((t (:background "#282828" :foreground nil))))
-     (highlight-current-line-face ((t (:background "#282828" :foreground nil))))
+     (highlight ((t (:background "#3e4446" :foreground nil))))
+     (highlight-current-line-face ((t (:background "#3e4446" :foreground nil))))
 
      ;; Calendar
      (holiday-face ((t (:foreground "#f43841"))))
