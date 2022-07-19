@@ -1,10 +1,13 @@
+
+
+;;; Commentary:
 ;;; erlang-settings.el --- provide settings for erlang mode.
 
 ;;; Code:
 
 ;; set path to erlang install load a path to elang lisp as distel
 ;; install in el-get distel package depends on it if root is nil or
-(defvar erlang-root (getenv "ERLANG_HOME")
+(defvar erlang-root (or (getenv "ERLANG_HOME") "/usr/lib/erlang")
   "*Path to Erlang installation.  Env var ERLANG_HOME needs to be set in bash environment.")
 ;(defvar erlang-root "/usr/local/lib/erlang")
 
@@ -13,7 +16,7 @@
 
 ;; add "lib" to erlang-root
 (defvar erlang-root-dir
-  (concat (file-name-as-directory erlang-root) "lib/erlang/lib")
+  (concat (file-name-as-directory erlang-root) "lib")
   "*Path to erlang lib.")
 
 ;; find the name of tools- directory
@@ -49,7 +52,8 @@
             (lambda()
               (setq mode-name "erl"
                     erlang-compile-extra-opts '((i . "../include"))
-                    erlang-root-dir "/usr/local/lib/erlang"))))
+                    erlang-root-dir "/usr/lib/erlang")))
+  )
 
 
 ;; completion
