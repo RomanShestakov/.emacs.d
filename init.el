@@ -39,7 +39,7 @@
 ;; url must have a trailing "/" at the end
 ;; by default use local melpa - this forces to use local mirror of packages instead of melpa to avoid breaks
 (setq package-archives '(("myelpa" . "~/.emacs.d/myelpa/")))
-;(setq package-archives '(("myelpa" . (symbol-value 'elpamr-default-output-directory))))
+(setq package-archives '(("myelpa" . (symbol-value 'elpamr-default-output-directory))))
 ;; uncomment below if need to reload packages from global melpa
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")))
 (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
@@ -161,13 +161,13 @@
 ;;   (setq ido-auto-merge-work-directories-length -1)
 ;;   (flx-ido-mode 1))
 
-;; helm
+;; helmx
 (use-package helm
   :ensure t
   :diminish helm-mode
   :init
   (progn
-    (require 'helm-config)
+;;    (require 'helm-config)
     (setq helm-candidate-number-limit 100)
     ;; this was to fix issue with helm-find-files as file notification system is missing
     ;; FIXME - compile emacs --with-file-notification=inotify option
@@ -352,7 +352,8 @@
  '(package-selected-packages
    '(yasnippet-snippets rustic gnu-elpa-keyring-update json-rpc flymake-cppcheck eglot-jl flymake-go cmake-project yaml-mode eglot window-number use-package org-repo-todo multi-term move-text magit jedi helm-projectile flycheck-rtags flycheck-irony flx-ido exec-path-from-shell elisp-slime-nav edts company-irony))
  '(safe-local-variable-values
-   '((cmake-ide-build-dir . "/Users/romanshestakov/development/cpp/temp-conversion"))))
+   '((cmake-ide-build-dir . "/Users/romanshestakov/development/cpp/temp-conversion")))
+ '(warning-suppress-types '((use-package) (use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

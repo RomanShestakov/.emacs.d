@@ -8,7 +8,8 @@
 ;; set path to erlang install load a path to elang lisp as distel
 ;; install in el-get distel package depends on it if root is nil or
 (defvar erlang-root (or (getenv "ERLANG_HOME") "/usr/lib/erlang")
-  "*Path to Erlang installation.  Env var ERLANG_HOME needs to be set in bash environment.")
+  "*Path to Erlang installation.
+Env var ERLANG_HOME needs to be set in bash environment.")
 ;(defvar erlang-root "/usr/local/lib/erlang")
 
 ;; add erlang bin dir to exec-path

@@ -1,1 +1,1 @@
-("~/.emacs.d/" "~/development/programming_erlang/" "~/" "~/development/vm/" "~/development/ansible-role-llvm/" "~/development/ansible-role-valgrind/" "~/development/ansible-role-gcc/" "~/development/ansible-role-emacs/")
+("~/.emacs.d/" "~/development/dotfiles/" "~/")
