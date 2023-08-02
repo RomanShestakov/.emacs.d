@@ -16,14 +16,14 @@ Env var ERLANG_HOME needs to be set in bash environment.")
 (setq exec-path (cons (concat (file-name-as-directory erlang-root) "bin") exec-path))
 
 ;; add "lib" to erlang-root
-(defvar erlang-root-dir
-  (concat (file-name-as-directory erlang-root) "lib")
-  "*Path to erlang lib.")
+(defun get-erlang-root-dir()
+  "*Path to erlang lib."
+  (concat (file-name-as-directory erlang-root) "lib"))
 
 ;; find the name of tools- directory
 (defun get-erlang-tools-dir-name ()
   "*Get the name of tools dir in current erlang installation."
-  (file-name-as-directory (car (file-expand-wildcards (concat (file-name-as-directory erlang-root-dir) "tools-*")))))
+  (file-name-as-directory (car (file-expand-wildcards (concat (file-name-as-directory (get-erlang-root-dir)) "tools-*")))))
 
 ;; build the full absolute name to erlang tools
 (defun get-full-path-to-erlang-tools-dir ()
