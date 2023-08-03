@@ -1,1 +1,1 @@
-("~/.emacs.d/" "~/development/dotfiles/" "~/")
+("~/.emacs.d/" "~/development/elixir-ls/" "~/development/erlang_ls/" "~/development/dotfiles/" "~/")

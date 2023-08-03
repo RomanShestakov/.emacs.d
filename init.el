@@ -268,6 +268,7 @@
 (use-package color-theme-settings)
 ;; requires setting "ERLANG_HOME"
 (use-package erlang-settings)
+(use-package elixir-settings)
 ;(use-package ocaml-settings)
 (use-package python-settings)
 ;;(use-package rust-settings)
@@ -350,7 +351,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(yasnippet-snippets rustic gnu-elpa-keyring-update json-rpc flymake-cppcheck eglot-jl flymake-go cmake-project yaml-mode eglot window-number use-package org-repo-todo multi-term move-text magit jedi helm-projectile flycheck-rtags flycheck-irony flx-ido exec-path-from-shell elisp-slime-nav edts company-irony))
+   '(elixir-mode yasnippet-snippets rustic gnu-elpa-keyring-update json-rpc flymake-cppcheck eglot-jl flymake-go cmake-project yaml-mode window-number org-repo-todo multi-term move-text magit jedi helm-projectile flycheck-rtags flycheck-irony flx-ido exec-path-from-shell elisp-slime-nav edts company-irony))
  '(safe-local-variable-values
    '((cmake-ide-build-dir . "/Users/romanshestakov/development/cpp/temp-conversion")))
  '(warning-suppress-types '((use-package) (use-package))))
