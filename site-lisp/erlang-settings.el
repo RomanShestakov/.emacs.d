@@ -38,36 +38,56 @@ Env var ERLANG_HOME needs to be set in bash environment.")
 ;; add path to OTP installation to load-path
 (erlang-path-init)
 
+(use-package ivy-erlang-complete
+  :ensure t)
+
 (use-package erlang
-  :init
-  ;; define auto erlang mode for these files/extensions.
-  (add-to-list 'auto-mode-alist '(".*\\.app\\'" . erlang-mode))
-  (add-to-list 'auto-mode-alist '(".*app\\.src\\'" . erlang-mode))
-  (add-to-list 'auto-mode-alist '(".*\\.config\\'" . erlang-mode))
-  (add-to-list 'auto-mode-alist '(".*\\.rel\\'" . erlang-mode))
-  (add-to-list 'auto-mode-alist '(".*\\.erl\\'" . erlang-mode))
-  (add-to-list 'auto-mode-alist '(".*\\.script\\'" . erlang-mode))
-  (add-to-list 'auto-mode-alist '(".*\\.escript\\'" . erlang-mode))
-  :config
-  (add-hook 'erlang-mode-hook
-            (lambda()
-              (setq mode-name "erl"
-                    erlang-compile-extra-opts '((i . "../include"))
-                    erlang-root-dir "/usr/lib/erlang")))
-  )
+;;  :load-path ("<PATH TO OTP>/lib/erlang/lib/tools-3.0/emacs/")
+  :hook (after-save . ivy-erlang-complete-reparse)
+  :custom (ivy-erlang-complete-erlang-root erlang-root)
+  :config (ivy-erlang-complete-init)
+  :mode (("\\.erl?$" . erlang-mode)
+	 ("rebar\\.config$" . erlang-mode)
+	 ("relx\\.config$" . erlang-mode)
+	 ("sys\\.config\\.src$" . erlang-mode)
+	 ("sys\\.config$" . erlang-mode)
+	 ("\\.config\\.src?$" . erlang-mode)
+	 ("\\.config\\.script?$" . erlang-mode)
+	 ("\\.hrl?$" . erlang-mode)
+	 ("\\.app?$" . erlang-mode)
+	 ("\\.app.src?$" . erlang-mode)
+	 ("\\Emakefile" . erlang-mode)))
+
+;; (use-package erlang
+;;   :init
+;;   ;; define auto erlang mode for these files/extensions.
+;;   (add-to-list 'auto-mode-alist '(".*\\.app\\'" . erlang-mode))
+;;   (add-to-list 'auto-mode-alist '(".*app\\.src\\'" . erlang-mode))
+;;   (add-to-list 'auto-mode-alist '(".*\\.config\\'" . erlang-mode))
+;;   (add-to-list 'auto-mode-alist '(".*\\.rel\\'" . erlang-mode))
+;;   (add-to-list 'auto-mode-alist '(".*\\.erl\\'" . erlang-mode))
+;;   (add-to-list 'auto-mode-alist '(".*\\.script\\'" . erlang-mode))
+;;   (add-to-list 'auto-mode-alist '(".*\\.escript\\'" . erlang-mode))
+;;   :config
+;;   (add-hook 'erlang-mode-hook
+;;             (lambda()
+;;               (setq mode-name "erl"
+;;                     erlang-compile-extra-opts '((i . "../include"))
+;;                     erlang-root-dir "/usr/lib/erlang")))
+;;   )
 
 
-;; completion
-(use-package company :ensure t)
+;; ;; completion
+;; (use-package company :ensure t)
 
-(use-package yasnippet
-  :ensure t
-  :hook ((erlang-mode . yas-minor-mode)
-	       (snippet-mode . yas-minor-mode)))
+;; (use-package yasnippet
+;;   :ensure t
+;;   :hook ((erlang-mode . yas-minor-mode)
+;; 	       (snippet-mode . yas-minor-mode)))
 
-(use-package yasnippet-snippets
-  :ensure t
-  :after (yasnippet))
+;; (use-package yasnippet-snippets
+;;   :ensure t
+;;   :after (yasnippet))
 
 (use-package eglot
   :ensure t
@@ -79,15 +99,23 @@ Env var ERLANG_HOME needs to be set in bash environment.")
   (setq eglot-ignored-server-capabilities '(:willSaveWaitUntil :textDocumentSync))
   )
 
+(use-package delight
+  :ensure t)
+
 (use-package flycheck
-  :diminish flycheck-mode
-  :config
-  (add-hook 'after-init-hook 'global-flycheck-mode)
-  (setq
-        ;; flycheck-display-errors-function nil
-        flycheck-erlang-include-path '("../include")
-        flycheck-erlang-library-path '()
-        flycheck-check-syntax-automatically '(save)))
+  :ensure t
+  :delight
+  :config (global-flycheck-mode))
+
+;; (use-package flycheck
+;;   :diminish flycheck-mode
+;;   :config
+;;   (add-hook 'after-init-hook 'global-flycheck-mode)
+;;   (setq
+;;         ;; flycheck-display-errors-function nil
+;;         flycheck-erlang-include-path '("../include")
+;;         flycheck-erlang-library-path '()
+;;         flycheck-check-syntax-automatically '(save)))
 
 (provide 'erlang-settings)
 
