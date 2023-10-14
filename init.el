@@ -268,11 +268,12 @@
 (use-package color-theme-settings)
 ;; requires setting "ERLANG_HOME"
 (use-package erlang-settings)
-(use-package elixir-settings)
+;;(use-package elixir-settings)
 ;(use-package ocaml-settings)
 (use-package python-settings)
 ;;(use-package rust-settings)
 (use-package cpp-settings)
+(use-package web-settings)
 ;; (require 'prolog-settings)
 
 ;; http://stackoverflow.com/questions/26171265/emacs-keyboard-bindings-on-os-x-iterm2
@@ -351,7 +352,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(ivy-erlang-complete cmake-mode inf-elixir elixir-ts-mode elixir-mode yasnippet-snippets rustic gnu-elpa-keyring-update json-rpc flymake-cppcheck eglot-jl flymake-go cmake-project yaml-mode window-number org-repo-todo multi-term move-text magit jedi helm-projectile flycheck-rtags flycheck-irony flx-ido exec-path-from-shell elisp-slime-nav edts company-irony))
+   '(web-mode json-mode ivy-erlang-complete cmake-mode inf-elixir elixir-ts-mode elixir-mode yasnippet-snippets rustic gnu-elpa-keyring-update json-rpc flymake-cppcheck eglot-jl flymake-go cmake-project yaml-mode window-number org-repo-todo multi-term move-text magit jedi helm-projectile flycheck-rtags flycheck-irony flx-ido exec-path-from-shell elisp-slime-nav edts company-irony))
  '(safe-local-variable-values
    '((cmake-ide-build-dir . "/Users/romanshestakov/development/cpp/temp-conversion")))
  '(warning-suppress-types '((comp) (use-package) (use-package))))

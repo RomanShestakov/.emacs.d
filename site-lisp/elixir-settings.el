@@ -59,6 +59,15 @@
     (push '("|>" . ?\u25B7) prettify-symbols-alist)))
  (before-save . eglot-format))
 
+
+(use-package inf-elixir
+  :bind (("C-c i i" . 'inf-elixir)
+         ("C-c i p" . 'inf-elixir-project)
+         ("C-c i l" . 'inf-elixir-send-line)
+         ("C-c i r" . 'inf-elixir-send-region)
+         ("C-c i b" . 'inf-elixir-send-buffer)
+         ("C-c i R" . 'inf-elixir-reload-module)))
+
 (provide 'elixir-settings)
 
 ;;; elixir-settings.el ends here
