@@ -1,6 +1,6 @@
 
 ;;; Commentary:
-;;; web-settings.el --- provide settings for web dev.
+;;; typescript-settings.el --- provide settings for typescript.
 
 ;;; npm install -g typescript-language-server
 ;;; npm install typescript-eslint-language-service -D
@@ -33,4 +33,4 @@
 
 (provide 'web-settings)
 
-;;; web-settings.el ends here
+;;; typescript-settings.el ends here

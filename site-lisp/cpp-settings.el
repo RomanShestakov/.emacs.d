@@ -59,7 +59,7 @@
   (projectile-mode t)
   (add-to-list 'eglot-server-programs `((c++-mode), clangd-exe))
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-  (add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1)))
+  (add-hook 'eglot-managed-mode-hook (lambda () (flymake-mode -1)))
   (add-hook 'c-mode-hook 'eglot-ensure)
   (add-hook 'c++-mode-hook 'eglot-ensure))
 
