@@ -1,5 +1,4 @@
 
-
 ;;; Commentary:
 ;;; web-settings.el --- provide settings for web dev.
 
@@ -12,16 +11,14 @@
 (defvar ts-lang-server (executable-find "typescript-language-server")
   "TypeScript Language server executable path.")
 
-(use-package web-mode
-    :ensure t
-    :mode (("\\.ts\\'" . web-mode)
-           ("\\.js\\'" . web-mode)
-           ("\\.mjs\\'" . web-mode)
-           ("\\.tsx\\'" . web-mode)
-           ("\\.jsx\\'" . web-mode))
-    :config
-    (setq web-mode-content-types-alist
-   '(("jsx" . "\\.js[x]?\\'"))))
+(use-package treesit-auto
+  :config
+  (global-treesit-auto-mode))
+
+(use-package typescript-ts-mode
+  :mode (("\\.ts\\'" . typescript-ts-mode)
+         ("\\.tsx\\'" . tsx-ts-mode))
+         ("\\.js\\'" . typescript-ts-mode))
 
 (use-package eglot
   :ensure t
@@ -30,11 +27,9 @@
   (bind-key "M-," 'pop-tag-mark)
   ;;(setq company-backends (cons 'company-capf (remove 'company-capf company-backends)))
   (projectile-mode t)
-;;  (add-to-list 'eglot-server-programs '((web-mode) ts-lang-server "--stdio" ))
-  (add-to-list 'eglot-server-programs '(js-mode . ("typescript-language-server" "--stdio")))
-  (add-to-list 'eglot-server-programs '(web-mode . ("typescript-language-server" "--stdio")))
+  (add-to-list 'eglot-server-programs '(typescript-ts-mode . ("typescript-language-server" "--stdio")))
   (add-hook 'js-mode-hook 'eglot-ensure)
-  (add-hook 'web-mode-hook 'eglot-ensure))
+  (add-hook 'typescript-ts-mode-hook 'eglot-ensure))
 
 (provide 'web-settings)
 
