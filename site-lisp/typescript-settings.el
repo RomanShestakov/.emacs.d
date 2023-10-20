@@ -31,6 +31,6 @@
   (add-hook 'js-mode-hook 'eglot-ensure)
   (add-hook 'typescript-ts-mode-hook 'eglot-ensure))
 
-(provide 'web-settings)
+(provide 'typescript-settings)
 
 ;;; typescript-settings.el ends here
