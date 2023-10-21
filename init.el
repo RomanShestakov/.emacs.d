@@ -96,13 +96,13 @@
   (window-number-mode 1)
   (window-number-meta-mode 1))
 
-;; enable flycheck
-(use-package flycheck
-  :ensure t
-  :defer 5
-  :init (global-flycheck-mode)
-  :config
-  (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
+;; ;; enable flycheck
+;; (use-package flycheck
+;;   :ensure t
+;;   ;;:defer 5
+;;   :init (global-flycheck-mode)
+;;   :config
+;;   (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
 
 ;; helm
 (use-package helm
@@ -164,11 +164,8 @@
 ;; company is text completion mode
 (use-package company
   :ensure t
-  :defer t
   :config
-  (global-company-mode t)
-  ;;(setq company-dabbrev-downcase 0)
-  (setq company-idle-delay 0))
+  (global-company-mode t))
 
 ;; yaml mode
 (use-package yaml-mode
@@ -266,6 +263,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ignored-local-variable-values '((eval when (fboundp 'rainbow-mode) (rainbow-mode 1))))
  '(package-selected-packages
    '(rainbow-mode treesit-auto typescript-mode web-mode json-mode ivy-erlang-complete cmake-mode inf-elixir elixir-ts-mode elixir-mode yasnippet-snippets rustic gnu-elpa-keyring-update json-rpc flymake-cppcheck eglot-jl flymake-go cmake-project yaml-mode window-number org-repo-todo multi-term move-text magit jedi helm-projectile flycheck-rtags flycheck-irony flx-ido exec-path-from-shell elisp-slime-nav edts company-irony))
  '(safe-local-variable-values

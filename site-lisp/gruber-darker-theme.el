@@ -52,6 +52,7 @@
       (gruber-darker-red-1     "#c73c3f")
       (gruber-darker-red       "#f43841")
       (gruber-darker-red+1     "#ff4f58")
+      (gruber-darker-red3       "red3")
       (gruber-darker-green     "#73c936")
       (gruber-darker-yellow    "#ffdd33")
       (gruber-darker-brown     "#cc8c3c")
@@ -106,8 +107,8 @@
    `(compilation-warning ((t ,(list :foreground gruber-darker-brown
                                     :bold t
                                     :inherit 'unspecified))))
-   `(compilation-error ((t (:foreground ,gruber-darker-red+1))))
-   `(compilation-mode-line-fail ((t ,(list :foreground gruber-darker-red
+   `(compilation-error ((t (:foreground ,gruber-darker-red3))))
+   `(compilation-mode-line-fail ((t ,(list :foreground gruber-darker-red3
                                            :weight 'bold
                                            :inherit 'unspecified))))
    `(compilation-mode-line-exit ((t ,(list :foreground gruber-darker-green
@@ -166,16 +167,26 @@
    `(font-lock-string-face ((t (:foreground ,gruber-darker-green))))
    `(font-lock-type-face ((t (:foreground ,gruber-darker-quartz))))
    `(font-lock-variable-name-face ((t (:foreground ,gruber-darker-fg+1))))
-   `(font-lock-warning-face ((t (:foreground ,gruber-darker-red))))
+   `(font-lock-warning-face ((t (:foreground ,gruber-darker-red3))))
 
-   ;; Flymake
-   `(flymake-errline
+   ;;Flymake
+
+   `(flymake-error
      ((((supports :underline (:style wave)))
-       (:underline (:style wave :color ,gruber-darker-red)
+       (:underline (:style wave :color ,gruber-darker-red3)
                    :foreground unspecified
                    :background unspecified
                    :inherit unspecified))
-      (t (:foreground ,gruber-darker-red :weight bold :underline t))))
+      (t (:foreground ,gruber-darker-red3 :weight bold :underline t))))
+
+   `(flymake-errline
+     ((((supports :underline (:style wave)))
+       (:underline (:style wave :color ,gruber-darker-red3)
+                   :foreground unspecified
+                   :background unspecified
+                   :inherit unspecified))
+      (t (:foreground ,gruber-darker-red3 :weight bold :underline t))))
+
    `(flymake-warnline
      ((((supports :underline (:style wave)))
        (:underline (:style wave :color ,gruber-darker-yellow)

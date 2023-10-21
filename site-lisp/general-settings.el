@@ -134,6 +134,15 @@
 ;;       (progn
 ;;         (eval-buffer)))))
 
+
+;; (use-package files
+;;   :ensure nil
+;;   :custom ((make-backup-files nil "Do not make backup files on save buffer.")
+;; 	         (auto-save-default nil "Do not auto-save of every file-visiting buffer.")
+;; 	         (create-lockfiles  nil "Do not use lock-files.")
+;; 	         (require-final-newline t "Ends file with a newline."))
+;;   :hook (before-save . #'delete-trailing-whitespace))
+
 (provide 'general-settings)
 
 ;;; general-settings.el ends here

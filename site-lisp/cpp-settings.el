@@ -42,29 +42,30 @@
 (defvar clangd-exe (executable-find "clangd")
   "Clangd executable path.")
 
-;; enable flymake
-(use-package flymake
-  :ensure t)
-  ;; :defer 5
-  ;; :init (global-flymake-mode)
-  ;; :config
-  ;; (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
-
+;; https://edoput.it/2022/07/19/use-package.html
 (use-package eglot
-  :ensure t
+  ;; use nil to use builtin package
+  :ensure nil
   :config
   (bind-key "M-." 'xref-find-definitions)
   (bind-key "M-," 'pop-tag-mark)
-  ;;(setq company-backends (cons 'company-capf (remove 'company-capf company-backends)))
+  (setq company-backends (cons 'company-capf (remove 'company-capf company-backends)))
   (projectile-mode t)
   (add-to-list 'eglot-server-programs `((c++-mode), clangd-exe))
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-  (add-hook 'eglot-managed-mode-hook (lambda () (flymake-mode -1)))
-  (add-hook 'c-mode-hook 'eglot-ensure)
-  (add-hook 'c++-mode-hook 'eglot-ensure)
-  (add-hook 'c++-mode-hook (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace))))
+  ;; stop eldoc from poping up window
+  (add-to-list 'eglot-ignored-server-capabilites :hoverProvider)
+  ;; use flymake in favour of flycheck
+  (add-hook 'eglot-managed-mode-hook (lambda () (flymake-mode t)))
+  (add-hook 'eglot-managed-mode-hook (lambda () (flycheck-mode -1))))
+
+;; start eglot
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace))))
+
+;;(with-eval-after-load "eglot" (add-to-list 'eglot-stay-out-of 'eldoc))
 
 (provide 'cpp-settings)
-
 
 ;;; cpp-settings.el ends here
