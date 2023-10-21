@@ -8,17 +8,21 @@
 ;; to get rid of reference to free variable
 (eval-when-compile (defvar my-lisp-dir))
 
-;; load gruber-darker
-(if (>= emacs-major-version 24)
-    (progn
-       ;; load paths to favorite themes
-       (add-to-list 'custom-theme-load-path
-                    (concat (file-name-as-directory my-lisp-dir) "gruber-darker-theme"))
-       (load-theme 'gruber-darker t))
-  (load "color-theme-gruber-darker")
-  (eval-after-load "color-theme-gruber-darker"
-    (progn
-       (color-theme-gruber-darker))))
+;; ;; load gruber-darker
+;; (if (>= emacs-major-version 24)
+;;     (progn
+;;        ;; load paths to favorite themes
+;;        (add-to-list 'custom-theme-load-path (concat (file-name-as-directory my-lisp-dir) "gruber-darker-theme"))
+;;        (load-theme 'gruber-darker t))
+;;   (load "color-theme-gruber-darker")
+;;   (eval-after-load "color-theme-gruber-darker"
+;;     (progn
+;;        (color-theme-gruber-darker))))
+
+;; load paths to favorite themes
+(add-to-list 'custom-theme-load-path (concat (file-name-as-directory my-lisp-dir) "gruber-darker-theme"))
+(load-theme 'gruber-darker t)
+
 
 ;; set up fonts
 ;; http://superuser.com/questions/210555/emacs-font-settings-not-working-in-new-frame

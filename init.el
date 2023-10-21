@@ -82,7 +82,7 @@
   ;(setq org-completion-use-ido t)
   (use-package org-repo-todo :ensure t))
 
-;; ;; magit
+;; magit
 (use-package magit
   :ensure t
   :bind ("C-x g" . magit-status))
@@ -151,7 +151,7 @@
   (progn
     (setq projectile-enable-caching t)
     ;;(setq projectile-require-project-root nil)
-    (setq projectile-keymap-prefix (kbd "C-c p"))
+    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
     (define-key projectile-command-map (kbd "g") #'projectile-grep)
     (setq projectile-completion-system 'helm)))
 
