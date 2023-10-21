@@ -20,7 +20,7 @@
 ;;        (color-theme-gruber-darker))))
 
 ;; load paths to favorite themes
-(add-to-list 'custom-theme-load-path (concat (file-name-as-directory my-lisp-dir) "gruber-darker-theme"))
+(add-to-list 'custom-theme-load-path (file-name-as-directory my-lisp-dir))
 (load-theme 'gruber-darker t)
 
 
