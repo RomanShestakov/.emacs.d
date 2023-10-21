@@ -96,39 +96,6 @@
   (window-number-mode 1)
   (window-number-meta-mode 1))
 
-;; ;; enable multi-term
-;; ;; https://github.com/Hawstein/my-emacs/blob/master/_emacs/multi-term-settings.el
-;; (use-package multi-term
-;;   :ensure t
-;;   :defer t
-;;   :bind ("C-c t" . multi-term-next)
-;;   :init
-;;   (setq multi-term-program-switches "--login")
-;;   (add-hook 'term-mode-hook (lambda() (setq yas-dont-activate t)))
-;;   (setq multi-term-program "/bin/bash")
-;;   (setq term-unbind-key-list '("C-x"
-;;                                "C-h"
-;;                                "M-x"
-;;                                "C-z"
-;;                                "<up>"
-;;                                "<down>"))
-;;   (setq term-bind-key-alist '(("C-a" . term-send-raw)
-;;                               ("C-e" . term-send-raw)
-;;                               ("C-y" . term-send-raw)
-;;                               ("C-k" . term-send-raw)
-;;                               ))
-;;   (setq term-term-name "xterm-256color"))
-
-;; ;; https://github.com/ramnes/move-border
-;; ;; allows to move borders between windows
-;; (use-package move-border
-;;   :load-path "site-lisp/move-border"
-;;   :bind (("M-S-<up>" . move-border-up)
-;;          ("M-S-<down>" . move-border-down)
-;;          ("M-S-<left>" . move-border-left)
-;;          ("M-S-<right>" . move-border-right)))
-
-
 ;; enable flycheck
 (use-package flycheck
   :ensure t
@@ -137,31 +104,7 @@
   :config
   (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
 
-;; move-text mode
-;; move a line with M-up/down
-(use-package move-text
-  :ensure t
-  :config
-  (move-text-default-bindings))
-
-;; ;; flx-ido
-;; (use-package flx-ido
-;;   :ensure t
-;;   :config
-;;   (setq ido-enable-flex-matching t)
-;;   (setq ido-everywhere t)
-;;   (ido-mode 1)
-;;   ;; disable ido faces to see flx highlights
-;;   (setq ido-use-faces nil)
-;;   (setq ido-use-filename-at-point 'guess)
-;;   (setq ido-create-new-buffer 'always)
-;;   (setq ido-file-extensions-order '(".org" ".txt" ".py" ".emacs" ".xml" ".el" ".ini" ".cfg" ".cnf"))
-;;   ;; You can disable the merging (the "looking in other directories" in ido vulgo) with
-;;   ;; http://stackoverflow.com/questions/7479565/emacs-ido-mode-and-creating-new-files-in-directories-it-keeps-changing-the-dire
-;;   (setq ido-auto-merge-work-directories-length -1)
-;;   (flx-ido-mode 1))
-
-;; helmx
+;; helm
 (use-package helm
   :ensure t
   :diminish helm-mode
@@ -216,29 +159,6 @@
   :ensure t
   :defer t)
 
-;; Elisp go-to-definition with M-. and back again with M-,
-(use-package elisp-slime-nav
-  :ensure t
-  :defer t
-  :diminish elisp-slime-nav-mode
-  :bind (("M-." . elisp-slime-nav-find-elisp-thing-at-point)
-         ("M-," . pop-tag-mark))
-  :config
-  (add-hook 'emacs-lisp-mode-hook (lambda () (elisp-slime-nav-mode t))))
-
-;; ;; Paredit
-;; (use-package paredit
-;;   :ensure t
-;;   :disabled t
-;;   :diminish paredit-mode
-;;   :init
-;;   (progn
-;;     (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)))
-
-;; ;; get auto-complete
-;; (use-package auto-complete
-;;   :ensure t
-;;   :defer t)
 
 ;; get company mode
 ;; company is text completion mode
@@ -255,17 +175,10 @@
   :ensure t
   :defer t)
 
-;; ;; yasnippet
-;; (use-package yasnippet
-;;   :ensure t
-;;   :defer t
-;;   ;;:diminish yasnippet-mode
-;;   :config
-;;   (yas-reload-all))
-
 ;; apply general emacs customisation settings
 (use-package general-settings)
 (use-package color-theme-settings)
+(use-package elisp-settings)
 ;; run once to install tree-sitter
 ;;(use-package tree-sitter-settings)
 ;; requires setting "ERLANG_HOME"
@@ -354,7 +267,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(treesit-auto typescript-mode web-mode json-mode ivy-erlang-complete cmake-mode inf-elixir elixir-ts-mode elixir-mode yasnippet-snippets rustic gnu-elpa-keyring-update json-rpc flymake-cppcheck eglot-jl flymake-go cmake-project yaml-mode window-number org-repo-todo multi-term move-text magit jedi helm-projectile flycheck-rtags flycheck-irony flx-ido exec-path-from-shell elisp-slime-nav edts company-irony))
+   '(rainbow-mode treesit-auto typescript-mode web-mode json-mode ivy-erlang-complete cmake-mode inf-elixir elixir-ts-mode elixir-mode yasnippet-snippets rustic gnu-elpa-keyring-update json-rpc flymake-cppcheck eglot-jl flymake-go cmake-project yaml-mode window-number org-repo-todo multi-term move-text magit jedi helm-projectile flycheck-rtags flycheck-irony flx-ido exec-path-from-shell elisp-slime-nav edts company-irony))
  '(safe-local-variable-values
    '((cmake-ide-build-dir . "/Users/romanshestakov/development/cpp/temp-conversion")))
  '(warning-suppress-types '((comp) (use-package) (use-package))))

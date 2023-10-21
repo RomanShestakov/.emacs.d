@@ -61,7 +61,8 @@
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
   (add-hook 'eglot-managed-mode-hook (lambda () (flymake-mode -1)))
   (add-hook 'c-mode-hook 'eglot-ensure)
-  (add-hook 'c++-mode-hook 'eglot-ensure))
+  (add-hook 'c++-mode-hook 'eglot-ensure)
+  (add-hook 'c++-mode-hook (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace))))
 
 (provide 'cpp-settings)
 
