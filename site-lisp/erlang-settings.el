@@ -58,46 +58,16 @@ Env var ERLANG_HOME needs to be set in bash environment.")
 	 ("\\.app.src?$" . erlang-mode)
 	 ("\\Emakefile" . erlang-mode)))
 
-;; (use-package erlang
-;;   :init
-;;   ;; define auto erlang mode for these files/extensions.
-;;   (add-to-list 'auto-mode-alist '(".*\\.app\\'" . erlang-mode))
-;;   (add-to-list 'auto-mode-alist '(".*app\\.src\\'" . erlang-mode))
-;;   (add-to-list 'auto-mode-alist '(".*\\.config\\'" . erlang-mode))
-;;   (add-to-list 'auto-mode-alist '(".*\\.rel\\'" . erlang-mode))
-;;   (add-to-list 'auto-mode-alist '(".*\\.erl\\'" . erlang-mode))
-;;   (add-to-list 'auto-mode-alist '(".*\\.script\\'" . erlang-mode))
-;;   (add-to-list 'auto-mode-alist '(".*\\.escript\\'" . erlang-mode))
-;;   :config
-;;   (add-hook 'erlang-mode-hook
-;;             (lambda()
-;;               (setq mode-name "erl"
-;;                     erlang-compile-extra-opts '((i . "../include"))
-;;                     erlang-root-dir "/usr/lib/erlang")))
-;;   )
-
-
-;; ;; completion
-;; (use-package company :ensure t)
-
-;; (use-package yasnippet
-;;   :ensure t
-;;   :hook ((erlang-mode . yas-minor-mode)
-;; 	       (snippet-mode . yas-minor-mode)))
-
-;; (use-package yasnippet-snippets
-;;   :ensure t
-;;   :after (yasnippet))
-
 (use-package eglot
-  :ensure t
+  :ensure nil
   :config
   (bind-key "M-." 'xref-find-definitions)
   (bind-key "M-," 'pop-tag-mark)
   (projectile-mode t)
-  (add-hook 'erlang-mode-hook 'eglot-ensure)
-  (setq eglot-ignored-server-capabilities '(:willSaveWaitUntil :textDocumentSync))
-  )
+  ;;(add-hook 'erlang-mode-hook 'eglot-ensure)
+  (setq eglot-ignored-server-capabilities '(:willSaveWaitUntil :textDocumentSync)))
+
+(add-hook 'erlang-mode-hook 'eglot-ensure)
 
 (use-package delight
   :ensure t)

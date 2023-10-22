@@ -1,4 +1,4 @@
-;; init.el --- entry point for configuration
+; init.el --- entry point for configuration
 
 ;;; Commentary:
 ;; the root tree of calls to various modes
@@ -176,8 +176,8 @@
 (use-package general-settings)
 (use-package color-theme-settings)
 (use-package elisp-settings)
-;; run once to install tree-sitter
-;;(use-package tree-sitter-settings)
+(use-package tree-sitter-settings)
+
 ;; requires setting "ERLANG_HOME"
 (use-package erlang-settings)
 ;;(use-package elixir-settings)
@@ -265,7 +265,7 @@
  ;; If there is more than one, they won't work right.
  '(ignored-local-variable-values '((eval when (fboundp 'rainbow-mode) (rainbow-mode 1))))
  '(package-selected-packages
-   '(rainbow-mode treesit-auto typescript-mode web-mode json-mode ivy-erlang-complete cmake-mode inf-elixir elixir-ts-mode elixir-mode yasnippet-snippets rustic gnu-elpa-keyring-update json-rpc flymake-cppcheck eglot-jl flymake-go cmake-project yaml-mode window-number org-repo-todo multi-term move-text magit jedi helm-projectile flycheck-rtags flycheck-irony flx-ido exec-path-from-shell elisp-slime-nav edts company-irony))
+   '(tree-sitter-langs tree-sitter rainbow-mode treesit-auto typescript-mode web-mode json-mode ivy-erlang-complete cmake-mode inf-elixir elixir-ts-mode elixir-mode yasnippet-snippets rustic gnu-elpa-keyring-update json-rpc flymake-cppcheck eglot-jl flymake-go cmake-project yaml-mode window-number org-repo-todo multi-term move-text magit jedi helm-projectile flycheck-rtags flycheck-irony flx-ido exec-path-from-shell elisp-slime-nav edts company-irony))
  '(safe-local-variable-values
    '((cmake-ide-build-dir . "/Users/romanshestakov/development/cpp/temp-conversion")))
  '(warning-suppress-types '((comp) (use-package) (use-package))))
