@@ -17,18 +17,26 @@
   ;; by switching on and off
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
-;; this package loads all pre-compiled dll for a bunch of languages
-(use-package tree-sitter-langs
+;; ;; this package loads all pre-compiled dll for a bunch of languages
+;; however for some reason this doesn't work for c++
+;; so instead need to run one-off
+;; (use-package tree-sitter-langs
+;;   :ensure t
+;;   :after tree-sitter)
+
+;; this allows to auto-remap traditional modes to ts-mode
+;; e.g. c++ mode is mapped to c++-ts-mode
+(use-package treesit-auto
   :ensure t
-  :after tree-sitter)
+  :config)
 
-;; (use-package treesit-auto
-;;   :config
-;;   (global-treesit-auto-mode))
-
-;; this allows to specify languages for which treesit dlls
-;; need to be compiled
-;; and them compile them - this needs to be done once manually
+;; FIXME - add a check if treesitter dir exits and if so
+;; don't execute the code below
+;; ;; this allows to specify languages for which treesit dlls
+;; ;; need to be compiled
+;; ;; and them compile them - this needs to be done once manually
+;; so -uncomment the section below and execute mapc command
+;; to do one-off complilation of tree-sitter modes
 ;; (setq treesit-language-source-alist
 ;;    '(;(bash "https://github.com/tree-sitter/tree-sitter-bash")
 ;;      (cmake "https://github.com/uyha/tree-sitter-cmake")
