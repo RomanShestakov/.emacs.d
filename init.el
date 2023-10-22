@@ -159,13 +159,17 @@
   :ensure t
   :defer t)
 
-
 ;; get company mode
 ;; company is text completion mode
 (use-package company
   :ensure t
   :config
   (global-company-mode t))
+
+;;Eglot provides template based completion if the server supports snippet completion
+;; and yasnippet is enabled before Eglot connects to the server. T
+(use-package yasnippet
+  :ensure t)
 
 ;; yaml mode
 (use-package yaml-mode

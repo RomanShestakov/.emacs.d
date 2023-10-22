@@ -8,21 +8,13 @@
 ;; to get rid of reference to free variable
 (eval-when-compile (defvar my-lisp-dir))
 
-;; ;; load gruber-darker
-;; (if (>= emacs-major-version 24)
-;;     (progn
-;;        ;; load paths to favorite themes
-;;        (add-to-list 'custom-theme-load-path (concat (file-name-as-directory my-lisp-dir) "gruber-darker-theme"))
-;;        (load-theme 'gruber-darker t))
-;;   (load "color-theme-gruber-darker")
-;;   (eval-after-load "color-theme-gruber-darker"
-;;     (progn
-;;        (color-theme-gruber-darker))))
-
 ;; load paths to favorite themes
 (add-to-list 'custom-theme-load-path (file-name-as-directory my-lisp-dir))
 (load-theme 'gruber-darker t)
 
+;; start rainbow-mode so to see color codes in color theme
+(use-package rainbow-mode
+  :hook (emacs-lisp-mode text-mode lisp-mode))
 
 ;; set up fonts
 ;; http://superuser.com/questions/210555/emacs-font-settings-not-working-in-new-frame
@@ -32,10 +24,6 @@
       (add-to-list 'default-frame-alist
                    '(font . "Inconsolata-14"))
       (setq mac-allow-anti-aliasing t)))
-
-;;(set-default-font "-apple-inconsolata-medium-r-normal--13-130-72-72-m-130-iso10646-1")
-;;(set-default-font "Inconselata-13")
-;;(set-default-font "Monaco-13")
 
 (provide 'color-theme-settings)
 

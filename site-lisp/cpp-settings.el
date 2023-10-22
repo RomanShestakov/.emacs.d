@@ -62,7 +62,9 @@
   :config
   (bind-key "M-." 'xref-find-definitions)
   (bind-key "M-," 'pop-tag-mark)
-  (setq company-backends (cons 'company-capf (remove 'company-capf company-backends)))
+  ;;(setq company-backends (cons 'company-capf (remove 'company-capf company-backends)))
+  ;;(setq company-backends 'company-complete (remove 'company-clang company-backends)))
+
   (projectile-mode t)
   (add-to-list 'eglot-server-programs `((c++-mode), clangd-exe))
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
@@ -70,7 +72,9 @@
   (add-to-list 'eglot-ignored-server-capabilites :hoverProvider)
   ;; use flymake in favour of flycheck
   (add-hook 'eglot-managed-mode-hook (lambda () (flymake-mode t)))
-  (add-hook 'eglot-managed-mode-hook (lambda () (flycheck-mode -1))))
+  (add-hook 'eglot-managed-mode-hook (lambda () (flycheck-mode -1)))
+  (add-hook 'eglot-managed-mode-hook (lambda () (add-to-list 'company-backends '(company-capf :with company-yasnippet))))
+  )
 
 ;; start eglot
 (add-hook 'c-mode-hook 'eglot-ensure)
