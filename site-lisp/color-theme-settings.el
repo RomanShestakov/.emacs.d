@@ -14,6 +14,7 @@
 
 ;; start rainbow-mode so to see color codes in color theme
 (use-package rainbow-mode
+  :ensure t
   :hook (emacs-lisp-mode text-mode lisp-mode))
 
 ;; set up fonts

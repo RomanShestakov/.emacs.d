@@ -96,13 +96,13 @@
   (window-number-mode 1)
   (window-number-meta-mode 1))
 
-;; ;; enable flycheck
-;; (use-package flycheck
-;;   :ensure t
-;;   ;;:defer 5
-;;   :init (global-flycheck-mode)
-;;   :config
-;;   (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
+;; enable flycheck
+(use-package flycheck
+  :ensure t
+  ;;:defer 5
+  :init (global-flycheck-mode)
+  :config
+  (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
 
 ;; helm
 (use-package helm
@@ -117,13 +117,13 @@
     ;; (setq helm-ff-use-notify nil)
     ;; From https://gist.github.com/antifuchs/9238468
     ;; update fast sources immediately (doesn't).
-    (setq helm-idle-delay 0.0
-          ;; this actually updates things
-          helm-input-idle-delay 0.01
-          helm-yas-display-key-on-candidate t
-          helm-quick-update t
-          helm-M-x-requires-pattern nil
-          helm-ff-skip-boring-files t)
+    ;; (setq helm-idle-delay 0.0
+    ;;       ;; this actually updates things
+    ;;       helm-input-idle-delay 0.01
+    ;;       helm-yas-display-key-on-candidate t
+    ;;       helm-quick-update t
+    ;;       helm-M-x-requires-pattern nil
+    ;;       helm-ff-skip-boring-files t)
     (helm-mode))
   :bind (("C-c h" . helm-mini)
          ("C-h a" . helm-apropos)
@@ -183,7 +183,7 @@
 (use-package tree-sitter-settings)
 
 ;; requires setting "ERLANG_HOME"
-(use-package erlang-settings)
+;;(use-package erlang-settings)
 ;;(use-package elixir-settings)
 ;(use-package ocaml-settings)
 (use-package python-settings)

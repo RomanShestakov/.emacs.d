@@ -66,8 +66,8 @@
 (if (system-is-mac)
     (progn
       ;(setq mac-option-key-is-meta t)
-      (setq mac-right-option-modifier nil)
-      (setq mac-command-modifier 'meta)))
+      (setq-default mac-right-option-modifier nil)
+      (setq-default mac-command-modifier 'meta)))
 
 ;; number of characters untill the fill column
 (setq-default fill-column 70)
