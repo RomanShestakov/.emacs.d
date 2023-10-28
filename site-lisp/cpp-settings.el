@@ -59,6 +59,7 @@
 (use-package eglot
   ;; use nil to use builtin package
   :ensure nil
+  :defines: company-backends
   :config
   (bind-key "M-." 'xref-find-definitions)
   (bind-key "M-," 'pop-tag-mark)
@@ -73,8 +74,7 @@
   ;; use flymake in favour of flycheck
   (add-hook 'eglot-managed-mode-hook (lambda () (flymake-mode t)))
   (add-hook 'eglot-managed-mode-hook (lambda () (flycheck-mode -1)))
-  (add-hook 'eglot-managed-mode-hook (lambda () (add-to-list 'company-backends '(company-capf :with company-yasnippet))))
-  )
+  (add-hook 'eglot-managed-mode-hook (lambda () (add-to-list 'company-backends '(company-capf :with company-yasnippet)))))
 
 ;; start eglot
 (add-hook 'c-mode-hook 'eglot-ensure)

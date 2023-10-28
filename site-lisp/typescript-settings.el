@@ -14,6 +14,7 @@
 (use-package typescript-ts-mode
   :mode (("\\.ts\\'" . typescript-ts-mode)
          ("\\.tsx\\'" . tsx-ts-mode))
+         ;;("\\.tsx\\'" . typescript-ts-mode))
          ("\\.js\\'" . typescript-ts-mode))
 
 (use-package eglot
@@ -22,12 +23,14 @@
   (bind-key "M-." 'xref-find-definitions)
   (bind-key "M-," 'pop-tag-mark)
   (projectile-mode t)
+  (add-to-list 'eglot-server-programs '(tsx-ts-mode . ("typescript-language-server" "--stdio")))
   (add-to-list 'eglot-server-programs '(typescript-ts-mode . ("typescript-language-server" "--stdio"))))
 
-(add-hook 'js-mode-hook 'eglot-ensure)
-(add-hook 'typescript-ts-mode-hook 'eglot-ensure)
+(add-hook 'js-mode-hook #'eglot-ensure)
+(add-hook 'typescript-ts-mode-hook #'eglot-ensure)
+(add-hook 'tsx-ts-mode-hook #'eglot-ensure)
 
-;;(setq js-indent-level 2)
+(setq js-indent-level 2)
 
 (provide 'typescript-settings)
 

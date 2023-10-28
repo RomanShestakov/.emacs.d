@@ -16,6 +16,11 @@ the color mode requires 256 colors so set in .profile:
 export TERM=xterm-256color
 * Color theme - gruber-darker-theme
 https://github.com/rexim/gruber-darker-theme
+* how to install language-servers
+npm install -g vscode-langservers-extracted
+npm install -g typescript-language-server
+npm install -g typescript-eslint-language-service -D
+
 * Some useful emacs functions
 - how to stop ido-mode to auto-complete files during saving:
 type in file name, then C-j instead of RET

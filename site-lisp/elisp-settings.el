@@ -9,7 +9,7 @@
 (use-package elisp-slime-nav
   :ensure t
   :defer t
-  :diminish elisp-slime-nav-mode
+  :functions: elisp-slime-nav-mode
   :bind (("M-." . elisp-slime-nav-find-elisp-thing-at-point)
          ("M-," . pop-tag-mark))
   :config

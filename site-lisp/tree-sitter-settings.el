@@ -6,6 +6,8 @@
 ;;;
 ;;; https://www.masteringemacs.org/article/how-to-get-started-tree-sitter
 ;;; https://vxlabs.com/2022/06/12/typescript-development-with-emacs-tree-sitter-and-lsp-in-2022/
+;;; install VS code language servers: npm i -g vscode-langservers-extracted
+
 ;;; Code:
 
 (use-package tree-sitter
@@ -28,7 +30,9 @@
 ;; e.g. c++ mode is mapped to c++-ts-mode
 (use-package treesit-auto
   :ensure t
-  :config)
+  :functions: global-treesit-auto-mode
+  :config
+  (global-treesit-auto-mode))
 
 ;; FIXME - add a check if treesitter dir exits and if so
 ;; don't execute the code below
