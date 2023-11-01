@@ -30,7 +30,7 @@
 ;; e.g. c++ mode is mapped to c++-ts-mode
 (use-package treesit-auto
   :ensure t
-  :functions: global-treesit-auto-mode
+  :functions global-treesit-auto-mode
   :config
   (global-treesit-auto-mode))
 

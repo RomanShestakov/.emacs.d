@@ -59,7 +59,7 @@
 (use-package eglot
   ;; use nil to use builtin package
   :ensure nil
-  :defines: company-backends
+  :defines company-backends
   :config
   (bind-key "M-." 'xref-find-definitions)
   (bind-key "M-," 'pop-tag-mark)
