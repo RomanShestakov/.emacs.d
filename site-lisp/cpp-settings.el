@@ -42,10 +42,8 @@
 (defvar clangd-exe (executable-find "clangd")
   "Clangd executable path.")
 
-
-
-;; not really neede to use this re-mapping as
-;; in tree-sitter-settings
+;; ;; not really neede to use this re-mapping as
+;; ;; in tree-sitter-settings
 ;; (use-package c-ts-mode
 ;;   :ensure t
 ;;   :init
@@ -53,6 +51,13 @@
 ;;   (add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
 ;;   (add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode))
 ;;   (add-to-list 'major-mode-remap-alist '(c-or-c++-mode . c-or-c++-ts-mode)))
+
+
+
+(add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
+(add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode))
+(add-to-list 'major-mode-remap-alist
+             '(c-or-c++-mode . c-or-c++-ts-mode))
 
 
 ;; https://edoput.it/2022/07/19/use-package.html
@@ -67,8 +72,8 @@
   ;;(setq company-backends 'company-complete (remove 'company-clang company-backends)))
 
   (projectile-mode t)
-  (add-to-list 'eglot-server-programs `((c++-mode), clangd-exe))
-  (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+  (add-to-list 'eglot-server-programs `((c++-ts-mode), clangd-exe))
+  (add-to-list 'auto-mode-alist '("\\.h\\'" . c++--ts-mode))
   ;; stop eldoc from poping up window
   (add-to-list 'eglot-ignored-server-capabilites :hoverProvider)
   ;; use flymake in favour of flycheck
@@ -78,8 +83,8 @@
 
 ;; start eglot
 (add-hook 'c-mode-hook 'eglot-ensure)
-(add-hook 'c++-mode-hook 'eglot-ensure)
-(add-hook 'c++-mode-hook (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
+(add-hook 'c++-ts-mode-hook 'eglot-ensure)
+(add-hook 'c++-ts-mode-hook (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
 
 ;;(with-eval-after-load "eglot" (add-to-list 'eglot-stay-out-of 'eldoc))
 
