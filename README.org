@@ -30,6 +30,11 @@ type in file name, then C-j instead of RET
 - M-x - emacs-uptime - uptime of emacs session
 - M-m - back-to-indentation, move to the fist non-whitespace char on the line
 
+* How to
+** check config emacs has been built with
+C-h v system-configuration-options
+
+
 * Useful shortcuts
 |-------------------------------------------+---------------------------------------------------------------|
 | key                                       | description                                                   |

@@ -10,13 +10,11 @@
 ;; see http://stackoverflow.com/questions/23324760/emacs-byte-compile-errors-on-the-first-require-statement
 ;; for the use of eval-and-compile
 (eval-and-compile
-  (defvar emacs-root
-    (if (or (eq system-type 'cygwin)
-            (eq system-type 'gnu/linux)
-            (eq system-type 'linux)
-            (eq system-type 'darwin))
-        "~/.emacs.d/"    "z:/.emacs.d/")
-    "Path to where EMACS configuration root is.")
+
+  ;; user-emacs-directory is set by starting emacs with:
+  ;; emacs --init-directory=~/.emacs.d_29 -nw
+  ;; make emacs-root as a alias to user-emacs-directory
+  (defvaralias 'emacs-root 'user-emacs-directory "Path to where EMACS configuration root is.")
 
   ;; set path to "~/.emacs/site-lisp dir for custom packages
   (defvar my-lisp-dir
@@ -34,15 +32,25 @@
 ;; use local melpa mirror
 ;; to create local repo:
 ;; M-x elpamr-create-mirror-for-installed
-(require 'elpa-mirror)
-(setq elpamr-default-output-directory (concat (file-name-as-directory emacs-root) "myelpa/"))
 ;; url must have a trailing "/" at the end
 ;; by default use local melpa - this forces to use local mirror of packages instead of melpa to avoid breaks
-(setq package-archives '(("myelpa" . "~/.emacs.d/myelpa/")))
-(setq package-archives '(("myelpa" . (symbol-value 'elpamr-default-output-directory))))
+(defvar use-local-package-archive nil "Specify t if want to use local myelpa as package archive or nil otherwise.")
+
+(use-package elpa-mirror
+  :ensure nil
+  :config
+  (setq elpamr-default-output-directory (concat (file-name-as-directory emacs-root) "myelpa/"))
+  (setq package-archives
+        (if use-local-package-archive
+            '(("myelpa" . (('elpamr-default-output-directory))))
+          '(("melpa" . "https://melpa.org/packages/")
+            ("gnu" . "https://elpa.gnu.org/packages/")))))
+
+;(setq package-archives '(("myelpa" . "~/.emacs.d/myelpa/")))
+;;(setq package-archives '(("myelpa" . (symbol-value 'elpamr-default-output-directory))))
 ;; uncomment below if need to reload packages from global melpa
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")))
-(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
+;;(setq package-archives '(("melpa" . "https://melpa.org/packages/")))
+;;(add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
 
 (package-initialize)
 (unless (package-installed-p 'use-package)
