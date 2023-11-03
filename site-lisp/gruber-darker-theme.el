@@ -28,13 +28,12 @@
 
 ;;; Commentary:
 ;;
-;; Gruber Darker color theme for Emacs by Jason Blevins. A darker
-;; variant of the Gruber Dark theme for BBEdit by John Gruber. Adapted
+;; Gruber Darker color theme for Emacs by Jason Blevins.  A darker
+;; variant of the Gruber Dark theme for BBEdit by John Gruber.  Adapted
 ;; for deftheme and extended by Alexey Kutepov a.k.a. rexim.
 
-
-(deftheme gruber-darker
-  "Gruber Darker color theme for Emacs 24")
+;;; Code:
+(deftheme gruber-darker "Gruber Darker color theme for Emacs.")
 
 ;; Please, install rainbow-mode.
 ;; Colors with +x are lighter. Colors with -x are darker.
