@@ -84,6 +84,11 @@
 (setq-default tab-width 2)
 (setq indent-line-function 'insert-tab)
 
+;; use ido for file and dir finding and buffer switching
+(ido-mode 1)
+(setq ido-everywhere t)
+(setq ido-enable-flex-matching t)
+
 ;; ignore case while searching
 (setq-default case-fold-search 1)
 

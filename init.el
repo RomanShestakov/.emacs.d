@@ -28,6 +28,7 @@
 ;; Bootstrap package management
 (require 'package)
 (setq package-enable-at-startup nil)
+(require 'use-package)
 
 ;; use local melpa mirror
 ;; to create local repo:
@@ -47,14 +48,6 @@
           '(("melpa" . "https://melpa.org/packages/")
         ("gnu" . "https://elpa.gnu.org/packages/")))))
 
-
-(package-initialize)
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
-(eval-when-compile
-  (require 'use-package))
 
 ;; allow to remove minor modes from status line
 ;;(require 'diminish)
@@ -135,9 +128,9 @@
          ("C-x b" . helm-buffers-list)
          ("M-y" . helm-show-kill-ring)
          ("M-x" . helm-M-x)
-         ("M-t" . helm-for-files)
+         ;;("M-t" . helm-for-files)
          ("C-x c o" . helm-occur)
-         ("C-x C-f" . helm-find-files)
+         ;;("C-x C-f" . helm-find-files)
          ;; TODO: install helm-swoop
          ;;("C-x c s" . helm-swoop)
          ;; ("C-x c y" . helm-yas-complete)
@@ -145,23 +138,23 @@
          ("C-x c b" . my/helm-do-grep-book-notes)
          ("C-x c SPC" . helm-all-mark-rings)))
 
-;; projectile
-;; https://github.com/lunaryorn/.emacs.d/blob/master/init.el
-(use-package projectile
-  :ensure t
-  :init (projectile-mode)
-  :diminish projectile-mode
-  :config
-  (progn
-    (setq projectile-enable-caching t)
-    ;;(setq projectile-require-project-root nil)
-    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-    (define-key projectile-command-map (kbd "g") #'projectile-grep)
-    (setq projectile-completion-system 'helm)))
+;; ;; projectile
+;; ;; https://github.com/lunaryorn/.emacs.d/blob/master/init.el
+;; (use-package projectile
+;;   :ensure t
+;;   :init (projectile-mode)
+;;   :diminish projectile-mode
+;;   :config
+;;   (progn
+;;     (setq projectile-enable-caching t)
+;;     ;;(setq projectile-require-project-root nil)
+;;     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+;;     (define-key projectile-command-map (kbd "g") #'projectile-grep)
+;;     (setq projectile-completion-system 'helm)))
 
-(use-package helm-projectile
-  :ensure t
-  :defer t)
+;; (use-package helm-projectile
+;;   :ensure t
+;;   :defer t)
 
 ;; get company mode
 ;; company is text completion mode
