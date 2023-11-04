@@ -34,7 +34,8 @@ type in file name, then C-j instead of RET
 ** check config emacs has been built with
 C-h v system-configuration-options
 
-
+** check personal key-bindings setup throughout emacs
+M-x describe-personal-keybindings
 * Useful shortcuts
 |-------------------------------------------+---------------------------------------------------------------|
 | key                                       | description                                                   |

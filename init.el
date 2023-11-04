@@ -35,7 +35,7 @@
 ;; M-x elpamr-create-mirror-for-installed
 ;; url must have a trailing "/" at the end
 ;; by default use local melpa - this forces to use local mirror of packages instead of melpa to avoid breaks
-(defvar use-local-package-archive nil "Specify t if want to use local myelpa as package archive or nil otherwise.")
+(defvar use-local-package-archive nil "Set to t if want to use local myelpa as package archive or nil otherwise.")
 
 (use-package elpa-mirror
   :ensure nil
@@ -85,37 +85,22 @@
   :bind ("C-x g" . magit-status))
 ;; ;;(setq magit-last-seen-setup-instructions "1.4.0")
 
-;; (use-package winum
-;;   :ensure t
-;;   :bind-keymap
-;;   ("M-0" . 'winum-select-window-0-or-10)
-;;   ("M-1" . 'winum-select-window-1)
-;;   :config (winum-mode))
-
-(setq winum-keymap
-    (let ((map (make-sparse-keymap)))
-      (define-key map (kbd "C-`") 'winum-select-window-by-number)
-      (define-key map (kbd "C-²") 'winum-select-window-by-number)
-      (define-key map (kbd "M-0") 'winum-select-window-0-or-10)
-      (define-key map (kbd "M-1") 'winum-select-window-1)
-      (define-key map (kbd "M-2") 'winum-select-window-2)
-      (define-key map (kbd "M-3") 'winum-select-window-3)
-      (define-key map (kbd "M-4") 'winum-select-window-4)
-      (define-key map (kbd "M-5") 'winum-select-window-5)
-      (define-key map (kbd "M-6") 'winum-select-window-6)
-      (define-key map (kbd "M-7") 'winum-select-window-7)
-      (define-key map (kbd "M-8") 'winum-select-window-8)
-      map))
-(require 'winum)
-(winum-mode)
-
-;; ;; display windows numbers
-;; ;; move between windows with M-<number>
-;; (use-package window-number
-;;   :ensure t
-;;   :config
-;;   (window-number-mode 1)
-;;   (window-number-meta-mode 1))
+;; display windows numbers
+;; move between windows with M-<number>
+;; winum is a replacement for window-number mode
+(use-package winum
+  :ensure t
+  :bind( :map winum-keymap
+         ("M-0" . 'winum-select-window-0-or-10)
+         ("M-1" . 'winum-select-window-1)
+         ("M-2" . 'winum-select-window-2)
+         ("M-3" . 'winum-select-window-3)
+         ("M-4" . 'winum-select-window-4)
+         ("M-5" . 'winum-select-window-5))
+  :config (winum-mode)
+  (setq winum-format "[ %s ]")
+  (set-face-attribute 'winum-face nil :weight 'bold)
+  (set-face-background 'winum-face "darkred"))
 
 ;; enable flycheck
 (use-package flycheck
