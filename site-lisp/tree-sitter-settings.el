@@ -10,29 +10,81 @@
 
 ;;; Code:
 
-;; (use-package tree-sitter
+(require 'treesit)
+
+(defun treesit--install-language-grammar-1
+    (out-dir lang url &optional revision source-dir cc c++)
+  "Override existing treesit--install-language-grammar-1 func.
+To allow installing gramma from local dir."
+
+  (let* ((lang (symbol-name lang))
+         (default-directory (make-temp-file "treesit-workdir" t))
+         (workdir (expand-file-name "repo"))
+         (source-dir (expand-file-name (or source-dir "src") workdir))
+         (cc (or cc (seq-find #'executable-find '("cc" "gcc" "c99"))
+                 ;; If no C compiler found, just use cc and let
+                 ;; `call-process' signal the error.
+                 "cc"))
+         (c++ (or c++ (seq-find #'executable-find '("c++" "g++"))
+                  "c++"))
+         (soext (or (car dynamic-library-suffixes)
+                    (signal 'treesit-error '("Emacs cannot figure out the file extension for dynamic libraries for this system, because `dynamic-library-suffixes' is nil"))))
+         (out-dir (or (and out-dir (expand-file-name out-dir))
+                      (locate-user-emacs-file "tree-sitter")))
+         (lib-name (concat "libtree-sitter-" lang soext)))
+    (unwind-protect
+        (with-temp-buffer
+          (message "Compiling repository %s" url)
+          (treesit--call-process-signal "cp" nil t nil "-r" url workdir)
+          ;;cd "${sourcedir}"
+          (setq default-directory source-dir)
+          (message "Compiling library")
+          ;; cc -fPIC -c -I. parser.c
+          (treesit--call-process-signal
+           cc nil t nil "-fPIC" "-c" "-I." "parser.c")
+          ;; cc -fPIC -c -I. scanner.c
+          (when (file-exists-p "scanner.c")
+            (treesit--call-process-signal
+             cc nil t nil "-fPIC" "-c" "-I." "scanner.c"))
+          ;; c++ -fPIC -I. -c scanner.cc
+          (when (file-exists-p "scanner.cc")
+            (treesit--call-process-signal
+             c++ nil t nil "-fPIC" "-c" "-I." "scanner.cc"))
+          ;; cc/c++ -fPIC -shared *.o -o "libtree-sitter-${lang}.${soext}"
+          (apply #'treesit--call-process-signal
+                 (if (file-exists-p "scanner.cc") c++ cc)
+                 nil t nil
+                 `("-fPIC" "-shared"
+                   ,@(directory-files
+                      default-directory nil
+                      (rx bos (+ anychar) ".o" eos))
+                   "-o" ,lib-name))
+          ;; Copy out.
+          (unless (file-exists-p out-dir)
+            (make-directory out-dir t))
+          (let* ((library-fname (expand-file-name lib-name out-dir))
+                 (old-fname (concat library-fname ".old")))
+            ;; Rename the existing shared library, if any, then
+            ;; install the new one, and try deleting the old one.
+            ;; This is for Windows systems, where we cannot simply
+            ;; overwrite a DLL that is being used.
+            (if (file-exists-p library-fname)
+                (rename-file library-fname old-fname t))
+            (copy-file lib-name (file-name-as-directory out-dir) t t)
+            ;; Ignore errors, in case the old version is still used.
+            (ignore-errors (delete-file old-fname)))
+          (message "Library installed to %s/%s" out-dir lib-name))
+      (when (file-exists-p workdir)
+        (delete-directory workdir t)))))
+
+
+;; ;; this allows to auto-remap traditional modes to ts-mode
+;; ;; e.g. c++ mode is mapped to c++-ts-mode
+;; (use-package treesit-auto
 ;;   :ensure t
+;;   :functions global-treesit-auto-mode
 ;;   :config
-;;   ;; activate tree-sitter on any buffer containing code for which it has a parser available
-;;   (global-tree-sitter-mode)
-;;   ;; you can easily see the difference tree-sitter-hl-mode makes for python, ts or tsx
-;;   ;; by switching on and off
-;;   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
-
-;; ;; this package loads all pre-compiled dll for a bunch of languages
-;; however for some reason this doesn't work for c++
-;; so instead need to run one-off
-;; (use-package tree-sitter-langs
-;;   :ensure t
-;;   :after tree-sitter)
-
-;; this allows to auto-remap traditional modes to ts-mode
-;; e.g. c++ mode is mapped to c++-ts-mode
-(use-package treesit-auto
-  :ensure t
-  :functions global-treesit-auto-mode
-  :config
-  (global-treesit-auto-mode))
+;;   (global-treesit-auto-mode))
 
 ;; FIXME - add a check if treesitter dir exits and if so
 ;; don't execute the code below
@@ -60,6 +112,11 @@
 ;;      (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
 ;;      (yaml "https://github.com/ikatyang/tree-sitter-yaml")
 ;;      ))
+
+
+;; (setq treesit-language-source-alist
+;;    '((cpp "/home/romanshestakov/development/tree-sitter-cpp/")))
+
 ;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 
 (provide 'tree-sitter-settings)
