@@ -30,12 +30,6 @@ type in file name, then C-j instead of RET
 - M-x - emacs-uptime - uptime of emacs session
 - M-m - back-to-indentation, move to the fist non-whitespace char on the line
 
-* How to
-** check config emacs has been built with
-C-h v system-configuration-options
-
-** check personal key-bindings setup throughout emacs
-M-x describe-personal-keybindings
 * Useful shortcuts
 |-------------------------------------------+---------------------------------------------------------------|
 | key                                       | description                                                   |
@@ -193,3 +187,14 @@ M-x describe-personal-keybindings
 | C-b (hold) arrows                         | resize the panes                                              |
 | C-b : swap-window -t -1                   | move window forward                                           |
 |-------------------------------------------+---------------------------------------------------------------|
+
+
+* How to
+** check config emacs has been built with
+C-h v system-configuration-options
+
+** check personal key-bindings setup throughout emacs
+M-x describe-personal-keybindings
+
+** create file with IDO mode
+C-x C-f C-f
