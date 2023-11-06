@@ -43,11 +43,9 @@
   (setq elpamr-default-output-directory (concat (file-name-as-directory emacs-root) "myelpa/"))
   (setq package-archives
         (if use-local-package-archive
-            '(("myelpa" . "~/.emacs.d/myelpa/"))
-	  ;;'(("myelpa" . `elpamr-default-output-directory))
+	          `(("myelpa" . ,elpamr-default-output-directory))
           '(("melpa" . "https://melpa.org/packages/")
         ("gnu" . "https://elpa.gnu.org/packages/")))))
-
 
 ;; allow to remove minor modes from status line
 ;;(require 'diminish)
