@@ -71,7 +71,7 @@
   ;;(setq company-backends (cons 'company-capf (remove 'company-capf company-backends)))
   ;;(setq company-backends 'company-complete (remove 'company-clang company-backends)))
 
-  (projectile-mode t)
+  ;;(projectile-mode t)
   (add-to-list 'eglot-server-programs `((c++-ts-mode), clangd-exe))
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c++--ts-mode))
   ;; stop eldoc from poping up window
