@@ -15,6 +15,8 @@
   :config
   (add-hook 'emacs-lisp-mode-hook (lambda () (elisp-slime-nav-mode t))))
 
+
+
 (provide 'elisp-settings)
 
 ;;; elisp-settings.el ends here

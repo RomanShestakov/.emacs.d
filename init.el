@@ -137,9 +137,9 @@
          ("C-x b" . helm-buffers-list)
          ("M-y" . helm-show-kill-ring)
          ("M-x" . helm-M-x)
-         ;;("M-t" . helm-for-files)
+         ("M-t" . helm-for-files)
          ("C-x c o" . helm-occur)
-         ;;("C-x C-f" . helm-find-files)
+         ("C-x C-f" . helm-find-files)
          ;; TODO: install helm-swoop
          ;;("C-x c s" . helm-swoop)
          ;; ("C-x c y" . helm-yas-complete)
