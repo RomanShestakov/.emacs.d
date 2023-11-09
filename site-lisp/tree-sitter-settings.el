@@ -12,6 +12,45 @@
 
 (require 'treesit)
 
+
+;; ;; this allows to auto-remap traditional modes to ts-mode
+;; ;; e.g. c++ mode is mapped to c++-ts-mode
+;; (use-package treesit-auto
+;;   :ensure t
+;;   :functions global-treesit-auto-mode
+;;   :config
+;;   (global-treesit-auto-mode))
+
+;; FIXME - add a check if treesitter dir exits and if so
+;; don't execute the code below
+;; ;; this allows to specify languages for which treesit dlls
+;; ;; need to be compiled
+;; ;; and them compile them - this needs to be done once manually
+;; so -uncomment the section below and execute mapc command
+;; to do one-off complilation of tree-sitter modes
+;; (setq treesit-language-source-alist
+;;    '(;(bash "https://github.com/tree-sitter/tree-sitter-bash")
+;;      ;; (cmake "https://github.com/uyha/tree-sitter-cmake")
+;;      ;; (css "https://github.com/tree-sitter/tree-sitter-css")
+;;      ;; (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+;;      ;; (go "https://github.com/tree-sitter/tree-sitter-go")
+;;      ;; (html "https://github.com/tree-sitter/tree-sitter-html")
+;;      ;; (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+;;      ;; (json "https://github.com/tree-sitter/tree-sitter-json")
+;;      ;; (make "https://github.com/alemuller/tree-sitter-make")
+;;      ;; (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+;;      ;; (python "https://github.com/tree-sitter/tree-sitter-python")
+;;      ;; (toml "https://github.com/tree-sitter/tree-sitter-toml")
+;;      ;; (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+;;      ;; (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+;;      ;; (c "https://github.com/tree-sitter/tree-sitter-c")
+;;      ;; (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
+;;      ;; (yaml "https://github.com/ikatyang/tree-sitter-yaml")
+;;      ))
+;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
+
+
+;;; this is override to use local copy
 (defun treesit--install-language-grammar-1
     (out-dir lang url &optional revision source-dir cc c++)
   "Override existing treesit--install-language-grammar-1 func.
@@ -35,9 +74,17 @@ To allow installing gramma from local dir."
     (unwind-protect
         (with-temp-buffer
           (message "Compiling repository %s" url)
-          (treesit--call-process-signal "cp" nil t nil "-r" url workdir)
+;;          (treesit--call-process-signal "cp" nil t nil "-rv" url workdir)
+          (message "copying %s into %s" url workdir)
+          (copy-directory url workdir)
+          ;;(debug)
           ;;cd "${sourcedir}"
+          ;;          (source-dir (expand-file-name (or source-dir "src") workdir))
           (setq default-directory source-dir)
+          (if (file-exists-p source-dir)
+            (message "dir %s exists" source-dir)
+            (message "dir %s missing" source-dir)
+            )
           (message "Compiling library")
           ;; cc -fPIC -c -I. parser.c
           (treesit--call-process-signal
@@ -78,46 +125,11 @@ To allow installing gramma from local dir."
         (delete-directory workdir t)))))
 
 
-;; ;; this allows to auto-remap traditional modes to ts-mode
-;; ;; e.g. c++ mode is mapped to c++-ts-mode
-;; (use-package treesit-auto
-;;   :ensure t
-;;   :functions global-treesit-auto-mode
-;;   :config
-;;   (global-treesit-auto-mode))
+(setq treesit-language-source-alist
+;;   '((cpp "/home/romanshestakov/development/tree-sitter-cpp/"))
+      '((typescript "/home/romanshestakov/development/tree-sitter-typescript-master/" "" "typescript/src/")))
 
-;; FIXME - add a check if treesitter dir exits and if so
-;; don't execute the code below
-;; ;; this allows to specify languages for which treesit dlls
-;; ;; need to be compiled
-;; ;; and them compile them - this needs to be done once manually
-;; so -uncomment the section below and execute mapc command
-;; to do one-off complilation of tree-sitter modes
-;; (setq treesit-language-source-alist
-;;    '(;(bash "https://github.com/tree-sitter/tree-sitter-bash")
-;;      (cmake "https://github.com/uyha/tree-sitter-cmake")
-;;      (css "https://github.com/tree-sitter/tree-sitter-css")
-;;      (elisp "https://github.com/Wilfred/tree-sitter-elisp")
-;;      (go "https://github.com/tree-sitter/tree-sitter-go")
-;;      (html "https://github.com/tree-sitter/tree-sitter-html")
-;;      (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
-;;      (json "https://github.com/tree-sitter/tree-sitter-json")
-;;      (make "https://github.com/alemuller/tree-sitter-make")
-;;      (markdown "https://github.com/ikatyang/tree-sitter-markdown")
-;;      (python "https://github.com/tree-sitter/tree-sitter-python")
-;;      (toml "https://github.com/tree-sitter/tree-sitter-toml")
-;;      (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
-;;      (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
-;;      (c "https://github.com/tree-sitter/tree-sitter-c")
-;;      (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
-;;      (yaml "https://github.com/ikatyang/tree-sitter-yaml")
-;;      ))
-
-
-;; (setq treesit-language-source-alist
-;;    '((cpp "/home/romanshestakov/development/tree-sitter-cpp/")))
-
-;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
+(mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 
 (provide 'tree-sitter-settings)
 
