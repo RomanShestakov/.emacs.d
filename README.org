@@ -50,8 +50,9 @@ type in file name, then C-j instead of RET
 | C-h b                                     | describe current key bindings                                 |
 | C-h k                                     | describe key pressed                                          |
 | C-h f                                     | describe function                                             |
-| C-h r                                     | run emacs manual                                              |
-| C-h v                                     | describe variable                                             |
+| C-h v                                     | run emacs manual                                              |
+| C-h r                                     | describe variable                                             |
+| C-h i m                                   | build info menu                                               |
 | M-g M-g                                   | goto line number                                              |
 | C-u M-<bar>                               | execute shell command http://irreal.org/blog/?p=354           |
 | C-c t                                     | start/switch to multi-term                                    |
@@ -198,3 +199,8 @@ M-x describe-personal-keybindings
 
 ** create file with IDO mode
 C-x C-f C-f
+
+** how to search elisp manual
+M-x elisp-index-search
+M-x info-apropos
+C-h i - index terms
