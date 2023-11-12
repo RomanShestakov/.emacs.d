@@ -204,3 +204,33 @@ C-x C-f C-f
 M-x elisp-index-search
 M-x info-apropos
 C-h i - index terms
+
+
+
+** How to use rectangle mode
+http://xahlee.info/emacs/emacs/emacs_string-rectangle_ascii-art.html
+*** remove( kill ) rectangle
+1. put cursor at start
+2. set mark: C-Space
+3. move cursor to end
+4. kill-rectangle : C-x r k
+
+*** replace text in column
+1. put cursor at start
+2. set mark: C-Space
+3. move cursor to end
+4. replace-rectangle : C-x r t
+
+*** paste( yank) rectangle
+kill-rectangle: C-x r k
+yank-rectangle: C-x r y
+
+*** insert colunm of numbers:
+1. put cursor at start
+2. set mark: C-Space
+3. move cursor to end
+4. rectangle-number-lines: C-x r N
+use C-u before if need to start with diff number   
+
+
+
