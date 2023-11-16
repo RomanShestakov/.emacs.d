@@ -204,7 +204,8 @@ C-x C-f C-f
 M-x elisp-index-search
 M-x info-apropos
 C-h i - index terms
-
+d m elisp - open the lisp manual
+l # <enter> - list the entries for #
 
 
 ** How to use rectangle mode
