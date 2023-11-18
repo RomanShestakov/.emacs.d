@@ -63,7 +63,6 @@ Env var ERLANG_HOME needs to be set in bash environment.")
   :config
   (bind-key "M-." 'xref-find-definitions)
   (bind-key "M-," 'pop-tag-mark)
-  (projectile-mode t)
   ;;(add-hook 'erlang-mode-hook 'eglot-ensure)
   (setq eglot-ignored-server-capabilities '(:willSaveWaitUntil :textDocumentSync)))
 

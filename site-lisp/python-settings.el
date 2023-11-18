@@ -35,7 +35,6 @@
   (bind-key "M-." 'xref-find-definitions)
   (bind-key "M-," 'pop-tag-mark)
   ;;(setq company-backends (cons 'company-capf (remove 'company-capf company-backends)))
-  (projectile-mode t)
   ;;(add-hook 'python-mode-hook 'eglot-ensure)
   )
 

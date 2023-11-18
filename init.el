@@ -145,24 +145,6 @@
          ("C-x c b" . my/helm-do-grep-book-notes)
          ("C-x c SPC" . helm-all-mark-rings)))
 
-;; ;; projectile
-;; ;; https://github.com/lunaryorn/.emacs.d/blob/master/init.el
-;; (use-package projectile
-;;   :ensure t
-;;   :init (projectile-mode)
-;;   :diminish projectile-mode
-;;   :config
-;;   (progn
-;;     (setq projectile-enable-caching t)
-;;     ;;(setq projectile-require-project-root nil)
-;;     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-;;     (define-key projectile-command-map (kbd "g") #'projectile-grep)
-;;     (setq projectile-completion-system 'helm)))
-
-;; (use-package helm-projectile
-;;   :ensure t
-;;   :defer t)
-
 ;; get company mode
 ;; company is text completion mode
 (use-package company
