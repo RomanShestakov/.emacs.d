@@ -57,7 +57,6 @@ type in file name, then C-j instead of RET
 | C-u M-<bar>                               | execute shell command http://irreal.org/blog/?p=354           |
 | C-c t                                     | start/switch to multi-term                                    |
 | C-c T                                     | always start a new multi-term session                         |
-| M-s Up/down                               | move a line up or dow                                         |
 | C-x h                                     | select entire buffer                                          |
 | C-x C-e                                   | eval s-expression                                             |
 | C-M left/right arrow                      | go to the beginning/end of parenthesis                        |
@@ -65,14 +64,15 @@ type in file name, then C-j instead of RET
 | C-SPC C-SPC                               | mark a place in a buffer                                      |
 | C-u C-SPC                                 | return to the mark                                            |
 | M-i                                       | run imenu to show func definitions                            |
-| C-x, (                                    | start recording a macro                                       |
-| C-x, )                                    | stop recording a macro                                        |
+| F3                                        | start recording a macro                                       |
+| F4                                        | stop recording a macro                                        |
 | C-x, e                                    | play a macro                                                  |
 | M-BackSpace                               | kill a word on the left                                       |
 | M-d                                       | kill a word on the right                                      |
 | M-r                                       |                                                               |
 | M-1 / M-2                                 | change window                                                 |
 | C-M-n/p                                   | more to matching parenthesis                                  |
+| C-x `                                     | move to next error                                            |
 |-------------------------------------------+---------------------------------------------------------------|
 |                                           |                                                               |
 | slime-nav-mode                            |                                                               |
@@ -231,7 +231,9 @@ yank-rectangle: C-x r y
 2. set mark: C-Space
 3. move cursor to end
 4. rectangle-number-lines: C-x r N
-use C-u before if need to start with diff number   
+use C-u before if need to start with diff number
 
-
-
+*** indent-rigidly
+select region
+C-x TAB
+and then move region with arrows
