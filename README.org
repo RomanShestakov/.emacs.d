@@ -3,34 +3,34 @@
 #+LANGUAGE: en
 
 * Pre-requisites
-This setup was tested with emacs 27.1
+This setup was tested with emacs 29.1
 * Install emacs
-[[http://wikemacs.org/wiki/Installing_Emacs_on_OS_X][EMACS]]
+** with brew
 #+BEGIN_SRC
 brew update
 brew install emacs --with-cocoa
 brew linkapps emacs
 #+END_SRC
+
+** emacs ansible role
+#+BEGIN_SRC 
+cd /home/romanshestakov/development
+git clone https://github.com/RomanShestakov/ansible-role-emacs.git
+export $ANSIBLE_ROLES_PATH=/home/romanshestakov/development/ansible-role-emacs/
+sudo ansible localhost --module-name include_role --args name=ansible-role-emacs
+#+END_SRC
+
 * Terminal setting
 the color mode requires 256 colors so set in .profile:
 export TERM=xterm-256color
-* Color theme - gruber-darker-theme
-https://github.com/rexim/gruber-darker-theme
+
 * how to install language-servers
 npm install -g vscode-langservers-extracted
 npm install -g typescript-language-server
 npm install -g typescript-eslint-language-service -D
 
-* Some useful emacs functions
-- how to stop ido-mode to auto-complete files during saving:
-type in file name, then C-j instead of RET
-- If C-h sends delete char, try to use F1 for help-command
-- M-r - reverse command search in multiterm mode (same as C-r in bash)
-- M-x - describe-personal-key-bindings
-- M-x - emacs-uptime - uptime of emacs session
-- M-m - back-to-indentation, move to the fist non-whitespace char on the line
-
 * Useful shortcuts
+
 |-------------------------------------------+---------------------------------------------------------------|
 | key                                       | description                                                   |
 |-------------------------------------------+---------------------------------------------------------------|
@@ -152,13 +152,6 @@ type in file name, then C-j instead of RET
 | :e /etc/passwd                            | open /etc/passwd file                                         |
 | :r /etc/passwd                            | load etc/passwd into current file                             |
 |-------------------------------------------+---------------------------------------------------------------|
-| Prolog                                    |                                                               |
-|-------------------------------------------+---------------------------------------------------------------|
-| C-c C-b                                   | eval prolog buffer, conduct buffer                            |
-| C-c Enter                                 | run prolog in inferior buffer                                 |
-|                                           |                                                               |
-|                                           |                                                               |
-|-------------------------------------------+---------------------------------------------------------------|
 | Tmux                                      | http://www.sitepoint.com/tmux-a-simple-start/                 |
 |                                           | [[https://www.youtube.com/watch?v=nD6g-rM5Bh0][Tmux Basics Video]]                                             |
 |                                           | [[http://tmuxcheatsheet.com/][Tmux Cheat Sheet]]                                              |
@@ -191,14 +184,23 @@ type in file name, then C-j instead of RET
 
 
 * How to
+
+** Some useful emacs functions
+- If C-h sends delete char, try to use F1 for help-command
+- M-r - reverse command search in multiterm mode (same as C-r in bash)
+- M-x - describe-personal-key-bindings
+- M-x - emacs-uptime - uptime of emacs session
+- M-m - back-to-indentation, move to the fist non-whitespace char on the line
+
 ** check config emacs has been built with
 C-h v system-configuration-options
 
 ** check personal key-bindings setup throughout emacs
 M-x describe-personal-keybindings
-
 ** create file with IDO mode
 C-x C-f C-f
+how to stop ido-mode to auto-complete files during saving:
+type in file name, then C-j instead of RET
 
 ** how to search elisp manual
 M-x elisp-index-search
@@ -206,7 +208,6 @@ M-x info-apropos
 C-h i - index terms
 d m elisp - open the lisp manual
 l # <enter> - list the entries for #
-
 
 ** How to use rectangle mode
 http://xahlee.info/emacs/emacs/emacs_string-rectangle_ascii-art.html
@@ -237,3 +238,18 @@ use C-u before if need to start with diff number
 select region
 C-x TAB
 and then move region with arrows
+
+
+*** how to use debug and edebug
+M-x toggle-debug-on-error
+v - see local vars
+
+;; trigger debug on message
+(setq debug-on-message "TEST")
+
+;; to instrument edebugger
+C-u C-M x
+
+*** How to enable lexical binding in buffer
+add line:
+-*- lexical-binding: t; -*-
