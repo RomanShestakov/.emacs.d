@@ -260,6 +260,10 @@ add line:
 -*- lexical-binding: t; -*-
 
 
-
 ** elisp cheat-sheet
 M-x shortdoc-display-group
+
+
+** How to highligh symbol at point
+M-s h . - highlight
+M-s h u - un-highlight
