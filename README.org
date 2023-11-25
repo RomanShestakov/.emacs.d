@@ -217,6 +217,12 @@ http://xahlee.info/emacs/emacs/emacs_string-rectangle_ascii-art.html
 3. move cursor to end
 4. kill-rectangle : C-x r k
 
+*** copy rectangle
+1. put cursor at start
+2. set mark: C-Space
+3. move cursor to end
+4. kill-rectangle : C-x r M-w
+
 *** replace text in column
 1. put cursor at start
 2. set mark: C-Space
