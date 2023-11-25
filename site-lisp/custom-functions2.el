@@ -19,7 +19,7 @@
 
 (add-hook 'find-file-hook 'read-only-if-symlink)
 
-
+;;
 ;; 
 (defun ros-trigger-advice()
   "*A func to trigger advice to test."
@@ -35,6 +35,104 @@
 
 ;; M-x ros-trigger-advice to trigger debug
 
-;; trigger debug on message
-(setq debug-on-message "TEST")
-(message "TEST")
+;; ;; trigger debug on message
+;; (setq debug-on-message "TEST")
+;; (message "TEST")
+m
+;; (defvar ros-x 5)
+;; (symbol-value 'ros-x)
+;; (symbol-name 'ro
+
+
+(defvar unscroll-to nil
+  "Text position for next call to unscroll.")
+  
+(defvar unscroll-point nil
+  "Cursor position for next call to unscroll.")
+
+(defvar unscroll-window-start nil
+  "Window start for next call to unscroll.")
+
+(defvar unscroll-hscroll nil
+  "Hscroll for next call to unscroll.")
+
+
+(defadvice scroll-up (before remember-for-unscroll activate compile)
+  "Remember where we started from for unscroll."
+  (if (not (eq last-command `scroll-up))
+      (progn
+        (setq unscroll-to (point)
+              unscroll-window-start (window-start)
+              unscroll-hscroll (window-start)))))
+
+(defun unscroll ()
+  "Jump to location specified by unscroll-to."
+  (interactive)
+
+  (if (not unscroll-point)
+      (error "Can not unscroll yet"))
+    (goto-char unscroll-to)
+  (set-window-start nil unscroll-window-start)
+  (set-window-hscroll nil unscroll-hscroll))
+
+
+(defun insert-current-time ()
+  "Insert current time."
+  (interactive "*")
+  (insert (current-time-string)))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

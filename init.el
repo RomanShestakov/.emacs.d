@@ -230,7 +230,7 @@
  ;; If there is more than one, they won't work right.
  '(ignored-local-variable-values '((eval when (fboundp 'rainbow-mode) (rainbow-mode 1))))
  '(package-selected-packages
-   '(elisp-slime-nav rainbow-mode yaml-mode yasnippet company helm flycheck winum magit org-repo-todo exec-path-from-shell gnu-elpa-keyring-update))
+   '(multiple-cursors elisp-slime-nav rainbow-mode yaml-mode yasnippet company helm flycheck winum magit org-repo-todo exec-path-from-shell gnu-elpa-keyring-update))
  '(warning-suppress-types '((comp) (use-package) (use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
