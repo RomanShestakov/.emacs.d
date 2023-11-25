@@ -239,8 +239,7 @@ select region
 C-x TAB
 and then move region with arrows
 
-
-*** how to use debug and edebug
+** how to use debug and edebug
 M-x toggle-debug-on-error
 v - see local vars
 
@@ -250,6 +249,11 @@ v - see local vars
 ;; to instrument edebugger
 C-u C-M x
 
-*** How to enable lexical binding in buffer
+** How to enable lexical binding in buffer
 add line:
 -*- lexical-binding: t; -*-
+
+
+
+** elisp cheat-sheet
+M-x shortdoc-display-group
