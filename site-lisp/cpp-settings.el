@@ -37,32 +37,12 @@
 
 ;;; Code:
 
-;; set 4 space indent
-(setq-default c-basic-offset 4)
 (defvar clangd-exe (executable-find "clangd")
   "Clangd executable path.")
 
-;; ;; not really neede to use this re-mapping as
-;; ;; in tree-sitter-settings
-;; (use-package c-ts-mode
-;;   :ensure t
-;;   :init
-;;   ;; Remap the standard C/C++ modes
-;;   (add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
-;;   (add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode))
-;;   (add-to-list 'major-mode-remap-alist '(c-or-c++-mode . c-or-c++-ts-mode)))
-
-
-
-(add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
-(add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode))
-(add-to-list 'major-mode-remap-alist
-             '(c-or-c++-mode . c-or-c++-ts-mode))
-
-
 ;; https://edoput.it/2022/07/19/use-package.html
 (use-package eglot
-  ;; use nil to use builtin package
+  ;; use nil to use builtin eglot package
   :ensure nil
   :defines company-backends
   :config
@@ -80,10 +60,34 @@
   (add-hook 'eglot-managed-mode-hook (lambda () (flycheck-mode -1)))
   (add-hook 'eglot-managed-mode-hook (lambda () (add-to-list 'company-backends '(company-capf :with company-yasnippet)))))
 
-;; start eglot
-(add-hook 'c-mode-hook 'eglot-ensure)
-(add-hook 'c++-ts-mode-hook 'eglot-ensure)
-(add-hook 'c++-ts-mode-hook (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
+;; declare c-ts-mode--indent-styles o avoid warning from byte-compiler in my-indent-style
+(declare-function c-ts-mode--indent-styles c-ts-mode)
+
+;; https://emacs.stackexchange.com/questions/77232/c-c-with-tree-sitter-how-to-change-indent
+(defun my-indent-style()
+  "Override the built-in BSD indentation style with some additional rules."
+  `(;; Here are your custom rules
+    ((node-is ")") parent-bol 0)
+    ((match nil "argument_list" nil 1 1) parent-bol c-ts-mode-indent-offset)
+    ((parent-is "argument_list") prev-sibling 0)
+    ((match nil "parameter_list" nil 1 1) parent-bol c-ts-mode-indent-offset)
+    ((parent-is "parameter_list") prev-sibling 0)
+    ;; Append here the indent style you want as base
+   ,@(alist-get 'bsd (c-ts-mode--indent-styles 'cpp))))
+
+(use-package c-ts-mode
+  :if (treesit-language-available-p 'c)
+  :custom
+  (c-ts-mode-indent-offset 4)
+  (c-ts-mode-indent-style #'my-indent-style)
+  :init
+  ;; Remap the standard C/C++ modes
+  (add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
+  (add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode))
+  (add-to-list 'major-mode-remap-alist '(c-or-c++-mode . c-or-c++-ts-mode))
+  (add-hook 'c-mode-hook 'eglot-ensure)
+  (add-hook 'c++-ts-mode-hook 'eglot-ensure)
+  (add-hook 'c++-ts-mode-hook (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace))))
 
 ;;(with-eval-after-load "eglot" (add-to-list 'eglot-stay-out-of 'eldoc))
 
