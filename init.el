@@ -169,7 +169,7 @@
 ;(use-package tree-sitter-settings)
 
 ;; requires setting "ERLANG_HOME"
-;;(use-package erlang-settings)
+(use-package erlang-settings)
 ;;(use-package elixir-settings)
 ;(use-package ocaml-settings)
 ;;(use-package python-settings)
@@ -230,7 +230,7 @@
  ;; If there is more than one, they won't work right.
  '(ignored-local-variable-values '((eval when (fboundp 'rainbow-mode) (rainbow-mode 1))))
  '(package-selected-packages
-   '(multiple-cursors elisp-slime-nav rainbow-mode yaml-mode yasnippet company helm flycheck winum magit org-repo-todo exec-path-from-shell gnu-elpa-keyring-update))
+   '(ivy-erlang-complete multiple-cursors elisp-slime-nav rainbow-mode yaml-mode yasnippet company helm flycheck winum magit org-repo-todo exec-path-from-shell gnu-elpa-keyring-update))
  '(safe-local-variable-values
    '((cmake-ide-build-dir . "/Users/romanshestakov/development/cpp/temp-conversion")))
  '(warning-suppress-types '((comp) (use-package) (use-package))))
