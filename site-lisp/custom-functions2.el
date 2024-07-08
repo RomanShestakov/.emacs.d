@@ -20,7 +20,7 @@
 (add-hook 'find-file-hook 'read-only-if-symlink)
 
 ;;
-;; 
+;;
 (defun ros-trigger-advice()
   "*A func to trigger advice to test."
   (interactive)
@@ -46,7 +46,7 @@ m
 
 (defvar unscroll-to nil
   "Text position for next call to unscroll.")
-  
+
 (defvar unscroll-point nil
   "Cursor position for next call to unscroll.")
 
@@ -82,57 +82,46 @@ m
   (insert (current-time-string)))
 
 
+;; lists
 
+'(a b c)
 
+(car '(a b c) )
+(cdr '(a b c) )
 
+(cdr '(x) )
 
+(car '())
+(cdr '())
 
+(car '(nil))
 
+(list 'a "b" 7)
 
+(list '(x y z) 3)
 
+(cons 'a '( a b c ))
 
+(cons 'hello ())
 
+(cons '(a b) '(c d))
 
+(append '(a b) '(c d))
 
+(append '(a '(e f)  b) '(c d))
 
+(reverse '(1 2 3 4))
 
+(cons 'a 'b)
+(car (cons 'a 'b))
 
+(cons 'a '(c b))
 
+(cons 'a nil)
 
+(consp '(a b))
+(atom 'x)
+(listp '(a b c))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+(listp (cons 'a 'b) )
+(null nil)

@@ -170,13 +170,14 @@
 
 ;; requires setting "ERLANG_HOME"
 (use-package erlang-settings)
-;;(use-package elixir-settings)
+(use-package elixir-settings)
 ;(use-package ocaml-settings)
 ;;(use-package python-settings)
-;;(use-package rust-settings)
+(use-package rust-settings)
 (use-package cpp-settings)
 (use-package typescript-settings)
 ;; (require 'prolog-settings)
+(use-package ponylang-settings)
 
 ;; http://stackoverflow.com/questions/26171265/emacs-keyboard-bindings-on-os-x-iterm2
 ;; hardcode keybinding to make emacs work with iTerm2
@@ -230,7 +231,7 @@
  ;; If there is more than one, they won't work right.
  '(ignored-local-variable-values '((eval when (fboundp 'rainbow-mode) (rainbow-mode 1))))
  '(package-selected-packages
-   '(ivy-erlang-complete multiple-cursors elisp-slime-nav rainbow-mode yaml-mode yasnippet company helm flycheck winum magit org-repo-todo exec-path-from-shell gnu-elpa-keyring-update))
+   '(toml-mode rust-playground lsp-ui lsp-mode rustic hl-todo elixir-ts-mode ivy-erlang-complete multiple-cursors elisp-slime-nav rainbow-mode yaml-mode yasnippet company helm flycheck winum magit org-repo-todo exec-path-from-shell gnu-elpa-keyring-update))
  '(safe-local-variable-values
    '((cmake-ide-build-dir . "/Users/romanshestakov/development/cpp/temp-conversion")))
  '(warning-suppress-types '((comp) (use-package) (use-package))))

@@ -4,7 +4,7 @@
 ;;; elixir-settings.el --- provide settings for elixir mode.
 
 ;;; https://medium.com/@victor.nascimento/elixir-emacs-development-2023-edition-1a6ccc40629
-
+;;; https://medium.com/@victor.nascimento/elixir-emacs-development-2023-edition-1a6ccc40629
 ;;; Code:
 
 

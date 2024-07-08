@@ -134,3 +134,4 @@ To allow installing gramma from local dir."
 (provide 'tree-sitter-settings)
 
 ;;; tree-sitter-settings.el ends here
+
