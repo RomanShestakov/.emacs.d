@@ -16,6 +16,25 @@
                                        :cargo ( :buildScripts (:enable t)
                                                 :features "all"))))))
 
+;; (use-package rustic
+;;   :ensure t
+;;   :config
+;;   (setq rustic-format-on-save t)
+;;   (setq rustic-lsp-client 'eglot))
+
+(use-package corfu
+  :ensure t
+  :bind (:map corfu-map
+         ("C-j" . corfu-next)
+         ("C-k" . corfu-previous)
+         ("TAB" . corfu-insert)
+         ("RET" . nil))
+  :custom
+  (corfu-cycle t)
+  (corfu-auto t)
+  :init
+  (global-corfu-mode)
+  (global-set-key (kbd "M-i") #'completion-at-point))
 
 
 (provide 'rust-settings)

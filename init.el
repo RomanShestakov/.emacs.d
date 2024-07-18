@@ -169,8 +169,8 @@
 ;(use-package tree-sitter-settings)
 
 ;; requires setting "ERLANG_HOME"
-(use-package erlang-settings)
-(use-package elixir-settings)
+;;(use-package erlang-settings)
+;;(use-package elixir-settings)
 ;(use-package ocaml-settings)
 ;;(use-package python-settings)
 (use-package rust-settings)
