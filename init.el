@@ -231,7 +231,7 @@
  ;; If there is more than one, they won't work right.
  '(ignored-local-variable-values '((eval when (fboundp 'rainbow-mode) (rainbow-mode 1))))
  '(package-selected-packages
-   '(toml-mode rust-playground lsp-ui lsp-mode rustic hl-todo elixir-ts-mode ivy-erlang-complete multiple-cursors elisp-slime-nav rainbow-mode yaml-mode yasnippet company helm flycheck winum magit org-repo-todo exec-path-from-shell gnu-elpa-keyring-update))
+   '(clang-format+ toml-mode rust-playground lsp-ui lsp-mode rustic hl-todo elixir-ts-mode ivy-erlang-complete multiple-cursors elisp-slime-nav rainbow-mode yaml-mode yasnippet company helm flycheck winum magit org-repo-todo exec-path-from-shell gnu-elpa-keyring-update))
  '(safe-local-variable-values
    '((cmake-ide-build-dir . "/Users/romanshestakov/development/cpp/temp-conversion")))
  '(warning-suppress-types '((comp) (use-package) (use-package))))

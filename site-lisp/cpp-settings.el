@@ -25,6 +25,9 @@
 ;; rtags + OSX
 ;; https://gist.github.com/floatplane/68f2006186cef4d3e165
 
+;; how to crear=e .clang-format
+;; clang-format -style=llvm -dump-config > .clang-format
+
 ;; https://github.com/philippe-grenet/exordium
 
 ;; Add these to the PATH so that proper executables are found
@@ -60,6 +63,9 @@
   (add-hook 'eglot-managed-mode-hook (lambda () (flycheck-mode -1)))
   (add-hook 'eglot-managed-mode-hook (lambda () (add-to-list 'company-backends '(company-capf :with company-yasnippet)))))
 
+(use-package clang-format+
+  :ensure t)
+
 ;; declare c-ts-mode--indent-styles o avoid warning from byte-compiler in my-indent-style
 ;;(declare-function c-ts-mode--indent-styles c-or-c++-ts-mode)
 
@@ -85,12 +91,11 @@
   (add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
   (add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode))
   (add-to-list 'major-mode-remap-alist '(c-or-c++-mode . c-or-c++-ts-mode))
+  (add-hook 'c++-ts-mode-hook #'clang-format+-mode)
   (add-hook 'c-ts-mode-hook 'eglot-ensure)
   (add-hook 'c++-ts-mode-hook 'eglot-ensure)
   (add-hook 'c-or-c++-ts-mode 'eglot-ensure)
   (add-hook 'c++-ts-mode-hook (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace))))
-
-
 
 
 ;;(with-eval-after-load "eglot" (add-to-list 'eglot-stay-out-of 'eldoc))
