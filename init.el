@@ -166,6 +166,7 @@
 (use-package general-settings)
 (use-package color-theme-settings)
 (use-package elisp-settings)
+;; uncomment to excute treesitter once
 ;(use-package tree-sitter-settings)
 
 ;; requires setting "ERLANG_HOME"
@@ -177,7 +178,7 @@
 (use-package cpp-settings)
 (use-package typescript-settings)
 ;; (require 'prolog-settings)
-(use-package ponylang-settings)
+;;(use-package ponylang-settings)
 
 ;; http://stackoverflow.com/questions/26171265/emacs-keyboard-bindings-on-os-x-iterm2
 ;; hardcode keybinding to make emacs work with iTerm2
