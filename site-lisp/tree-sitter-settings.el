@@ -49,7 +49,7 @@
         ;; use commit "0e7b7a02b6074859b51c1973eb6a8275b3315b1d"
         ;; https://www.reddit.com/r/emacs/comments/158c9ei/error_when_trying_to_use_treesit_and_ctsmode/
         (cpp "https://github.com/tree-sitter/tree-sitter-cpp" "v0.20.3" "src")
-        ;;(cpp "https://github.com/tree-sitter/tree-sitter-cpp" "0e7b7a02b6074859b51c1973eb6a8275b3315b1d" "src")
+        ;;(cpp "https://github.com/tree-sitter/tree-sitter-cpp")
         (yaml "https://github.com/ikatyang/tree-sitter-yaml")
         ))
 ;;(mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
