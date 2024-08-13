@@ -131,8 +131,8 @@
 
 
 ;; (setq treesit-language-source-alist
-;;       '((cpp "/home/romanshestakov/development/tree-sitter-cpp/" "" "src")))
-;; ;      '((typescript "/home/romanshestakov/development/tree-sitter-typescript-master/" "" "typescript/src/")))
+;; ;;   '((cpp "/home/romanshestakov/development/tree-sitter-cpp/"))
+;;       '((typescript "/home/romanshestakov/development/tree-sitter-typescript-master/" "" "typescript/src/")))
 
 (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 
