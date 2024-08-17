@@ -64,7 +64,12 @@
   (add-hook 'eglot-managed-mode-hook (lambda () (add-to-list 'company-backends '(company-capf :with company-yasnippet)))))
 
 (use-package clang-format+
-  :ensure t)
+  :ensure t
+  :config
+  (bind-key "C-c u" 'clang-format-buffer)
+  (bind-key "C-c i" 'clang-format-region)
+  (setq clang-format-style-option "llvm")
+  )
 
 ;; declare c-ts-mode--indent-styles o avoid warning from byte-compiler in my-indent-style
 ;;(declare-function c-ts-mode--indent-styles c-or-c++-ts-mode)
@@ -84,13 +89,14 @@
 (use-package c++-ts-mode
   :if (treesit-language-available-p 'c)
   :custom
-  (c-ts-mode-indent-offset 4)
+  (c-ts-mode-indent-offset 2)
   ;;  (c-ts-mode-indent-style #'my-indent-style)
   :init
   ;; Remap the standard C/C++ modes
   (add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
   (add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode))
   (add-to-list 'major-mode-remap-alist '(c-or-c++-mode . c-or-c++-ts-mode))
+  ;; enale clang-format
   (add-hook 'c++-ts-mode-hook #'clang-format+-mode)
   (add-hook 'c-ts-mode-hook 'eglot-ensure)
   (add-hook 'c++-ts-mode-hook 'eglot-ensure)
