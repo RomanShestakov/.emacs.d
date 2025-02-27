@@ -51,6 +51,9 @@
         (cpp "https://github.com/tree-sitter/tree-sitter-cpp" "v0.20.3" "src")
         ;;(cpp "https://github.com/tree-sitter/tree-sitter-cpp")
         (yaml "https://github.com/ikatyang/tree-sitter-yaml")
+        (heex "https://github.com/phoenixframework/tree-sitter-heex")
+        (elixir "https://github.com/elixir-lang/tree-sitter-elixir")
+        (erlang "https://github.com/WhatsApp/tree-sitter-erlang")
         ))
 ;;(mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 

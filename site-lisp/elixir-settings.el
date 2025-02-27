@@ -22,9 +22,9 @@
  ;; Should use:
 ;(mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
  ;; at least once per installation or while changing this list
- (treesit-language-source-alist
-  '((heex "https://github.com/phoenixframework/tree-sitter-heex")
-    (elixir "https://github.com/elixir-lang/tree-sitter-elixir")))
+ ;; (treesit-language-source-alist
+ ;;  '((heex "https://github.com/phoenixframework/tree-sitter-heex")
+ ;;    (elixir "https://github.com/elixir-lang/tree-sitter-elixir")))
 
  (major-mode-remap-alist
   '((elixir-mode . elixir-ts-mode)))
@@ -36,7 +36,7 @@
  eglot
  :ensure nil
  :config
- (add-to-list 'eglot-server-programs '(elixir-ts-mode "language_server.sh"))
+ (add-to-list 'eglot-server-programs '(elixir-ts-mode "/usr/local/elixir_ls/language_server.sh"))
   (bind-key "M-." 'xref-find-definitions)
   (bind-key "M-," 'pop-tag-mark)
  )
@@ -60,13 +60,13 @@
  (before-save . eglot-format))
 
 
-(use-package inf-elixir
-  :bind (("C-c i i" . 'inf-elixir)
-         ("C-c i p" . 'inf-elixir-project)
-         ("C-c i l" . 'inf-elixir-send-line)
-         ("C-c i r" . 'inf-elixir-send-region)
-         ("C-c i b" . 'inf-elixir-send-buffer)
-         ("C-c i R" . 'inf-elixir-reload-module)))
+;; (use-package inf-elixir
+;;   :bind (("C-c i i" . 'inf-elixir)
+;;          ("C-c i p" . 'inf-elixir-project)
+;;          ("C-c i l" . 'inf-elixir-send-line)
+;;          ("C-c i r" . 'inf-elixir-send-region)
+;;          ("C-c i b" . 'inf-elixir-send-buffer)
+;;          ("C-c i R" . 'inf-elixir-reload-module)))
 
 (provide 'elixir-settings)
 
