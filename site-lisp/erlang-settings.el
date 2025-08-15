@@ -38,6 +38,16 @@
 ;; add path to OTP installation to load-path
 ;(erlang-path-init)
 
+;; 
+;; https://erlangforums.com/t/disable-formatting-on-erlang-ls/2601
+;; erlang_ls auto formats the code on file save
+;; this is not ideal for some files
+;; to disable - edit erlang_ls.config
+;; providers:
+;;   disabled:
+;;     - document-formatting
+
+
 (use-package ivy-erlang-complete
   :ensure t)
 
@@ -94,3 +104,4 @@
 (provide 'erlang-settings)
 
 ;;; erlang-settings.el ends here
+
