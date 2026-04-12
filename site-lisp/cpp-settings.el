@@ -50,14 +50,14 @@
   :defines company-backends
   :config
   (bind-key "M-." 'xref-find-definitions)
-  (bind-key "M-," 'pop-tag-mark)
+  (bind-key "M-," 'xref-go-back)
   ;;(setq company-backends (cons 'company-capf (remove 'company-capf company-backends)))
   ;;(setq company-backends 'company-complete (remove 'company-clang company-backends)))
 
   (add-to-list 'eglot-server-programs `((c++-ts-mode), clangd-exe))
   (add-to-list 'auto-mode-alist '("\\.h\\'" . c-ts-mode))
   ;; stop eldoc from poping up window
-  (add-to-list 'eglot-ignored-server-capabilites :hoverProvider)
+  (add-to-list 'eglot-ignored-server-capabilities :hoverProvider)
   ;; use flymake in favour of flycheck
   (add-hook 'eglot-managed-mode-hook (lambda () (flymake-mode t)))
   (add-hook 'eglot-managed-mode-hook (lambda () (flycheck-mode -1)))
@@ -100,7 +100,7 @@
   (add-hook 'c++-ts-mode-hook #'clang-format+-mode)
   (add-hook 'c-ts-mode-hook 'eglot-ensure)
   (add-hook 'c++-ts-mode-hook 'eglot-ensure)
-  (add-hook 'c-or-c++-ts-mode 'eglot-ensure)
+  (add-hook 'c-or-c++-ts-mode-hook 'eglot-ensure)
   (add-hook 'c++-ts-mode-hook (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace))))
 
 

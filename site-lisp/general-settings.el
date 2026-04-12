@@ -11,7 +11,7 @@
 (setq current-language-environment "English")
 
 ;; don't show startup screen
-(setq inhibit-startup-screen 1)
+(setq inhibit-startup-screen t)
 
 ;; switch off tool bar
 (tool-bar-mode 0)
@@ -33,7 +33,7 @@
 (column-number-mode 1)
 
 ;; disable beep
-(setq visible-bell 1)
+(setq visible-bell t)
 
 ;; make frequently used commands short
 ;; http://ergoemacs.org/emacs/emacs_alias.html
@@ -52,7 +52,7 @@
 ;(autoload 'show-paren-mode "paren" t)
 (show-paren-mode 1)
 (defvar show-paren-delay)
-(eval-when-compile (setq show-paren-delay 0))
+(setq show-paren-delay 0)
 
 ;; use M-return to jump to the matching paren
 ;; https://gist.github.com/donghee/3937661
@@ -82,7 +82,6 @@
 ;; switch off tabs, use spaces instead
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
-(setq indent-line-function 'insert-tab)
 
 ;; use ido for file and dir finding and buffer switching
 ;;(ido-mode 1)
@@ -90,10 +89,10 @@
 ;;(setq ido-enable-flex-matching t)
 
 ;; ignore case while searching
-(setq-default case-fold-search 1)
+(setq-default case-fold-search t)
 
 ;; require final newline in files when they are saved
-(setq require-final-newline 1)
+(setq require-final-newline t)
 
 ;; add a new line when going to the next line
 (setq next-line-add-newlines t)

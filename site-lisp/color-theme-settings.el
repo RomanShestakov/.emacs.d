@@ -26,6 +26,9 @@
                    '(font . "Inconsolata-14"))
       (setq mac-allow-anti-aliasing t)))
 
+(if (system-is-linux)
+    (add-to-list 'default-frame-alist '(font . "Inconsolata-14")))
+
 (provide 'color-theme-settings)
 
 ;;; color-theme-settings.el ends here

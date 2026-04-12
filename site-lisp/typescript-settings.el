@@ -13,15 +13,14 @@
 
 (use-package typescript-ts-mode
   :mode (("\\.ts\\'" . typescript-ts-mode)
-         ("\\.tsx\\'" . tsx-ts-mode))
-         ;;("\\.tsx\\'" . typescript-ts-mode))
-         ("\\.js\\'" . typescript-ts-mode))
+         ("\\.tsx\\'" . tsx-ts-mode)
+         ("\\.js\\'" . typescript-ts-mode)))
 
 (use-package eglot
   :ensure nil
   :config
   (bind-key "M-." 'xref-find-definitions)
-  (bind-key "M-," 'pop-tag-mark)
+  (bind-key "M-," 'xref-go-back)
   (add-to-list 'eglot-server-programs '(tsx-ts-mode . ("typescript-language-server" "--stdio")))
   (add-to-list 'eglot-server-programs '(typescript-ts-mode . ("typescript-language-server" "--stdio"))))
 

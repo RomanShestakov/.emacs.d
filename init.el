@@ -145,12 +145,10 @@
          ("C-x c b" . my/helm-do-grep-book-notes)
          ("C-x c SPC" . helm-all-mark-rings)))
 
-;; get company mode
-;; company is text completion mode
+;; company is used as a backend by some modes (e.g. eglot in cpp-settings)
+;; global-company-mode is disabled to avoid conflict with corfu (enabled in rust-settings)
 (use-package company
-  :ensure t
-  :config
-  (global-company-mode t))
+  :ensure t)
 
 ;;Eglot provides template based completion if the server supports snippet completion
 ;; and yasnippet is enabled before Eglot connects to the server. T
@@ -177,6 +175,9 @@
 (use-package rust-settings)
 (use-package cpp-settings)
 (use-package typescript-settings)
+;; enable claude-ide
+(use-package claude-settings)
+
 ;; (require 'prolog-settings)
 ;;(use-package ponylang-settings)
 
@@ -231,11 +232,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ignored-local-variable-values '((eval when (fboundp 'rainbow-mode) (rainbow-mode 1))))
- '(package-selected-packages
-   '(clang-format+ toml-mode rust-playground lsp-ui lsp-mode rustic hl-todo elixir-ts-mode ivy-erlang-complete multiple-cursors elisp-slime-nav rainbow-mode yaml-mode yasnippet company helm flycheck winum magit org-repo-todo exec-path-from-shell gnu-elpa-keyring-update))
+ '(package-selected-packages nil)
+ '(package-vc-selected-packages
+   '((claude-code-ide :url
+                      "https://github.com/manzaltu/claude-code-ide.el")))
  '(safe-local-variable-values
-   '((cmake-ide-build-dir . "/Users/romanshestakov/development/cpp/temp-conversion")))
- '(warning-suppress-types '((comp) (use-package) (use-package))))
+   '((cmake-ide-build-dir
+      . "/Users/romanshestakov/development/cpp/temp-conversion")))
+ '(warning-suppress-types '((comp) (use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
