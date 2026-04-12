@@ -29,6 +29,10 @@ npm install -g vscode-langservers-extracted
 npm install -g typescript-language-server
 npm install -g typescript-eslint-language-service -D
 
+* for claude-ide-mode
+sudo apt install cmake libvterm-dev                                                                                                                                                                                            
+Then recompile the vterm module with M-x vterm-module-compile if you see any errors.                                                                                                                         
+
 * Useful shortcuts
 
 |-------------------------------------------+---------------------------------------------------------------|
