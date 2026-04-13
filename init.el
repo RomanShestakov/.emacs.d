@@ -160,6 +160,13 @@
   :ensure t
   :defer t)
 
+;; markdown-mode to edit README.md files on github
+(use-package markdown-mode
+  :ensure t
+  :mode ("README\\.md\\'" . gfm-mode)  ; GitHub Flavoured Markdown for README files
+  :init
+  (setq markdown-command "multimarkdown"))
+
 ;; apply general emacs customisation settings
 (use-package general-settings)
 (use-package color-theme-settings)
@@ -232,7 +239,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ignored-local-variable-values '((eval when (fboundp 'rainbow-mode) (rainbow-mode 1))))
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(clang-format+ claude-code-ide company corfu elisp-slime-nav
+                   exec-path-from-shell flycheck
+                   gnu-elpa-keyring-update helm magit markdown-ts-mode
+                   org-repo-todo rainbow-mode vterm winum yaml-mode
+                   yasnippet))
  '(package-vc-selected-packages
    '((claude-code-ide :url
                       "https://github.com/manzaltu/claude-code-ide.el")))
