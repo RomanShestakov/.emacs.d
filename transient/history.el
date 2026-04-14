@@ -1,4 +1,7 @@
-((magit-commit nil)
+((claude-code-ide-menu nil)
+ (magit-commit
+  ("--verbose")
+  nil)
  (magit-log
   ("-n256" "--graph" "--decorate"))
  (magit-push nil)

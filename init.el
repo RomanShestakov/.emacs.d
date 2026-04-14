@@ -167,6 +167,10 @@
   :init
   (setq markdown-command "multimarkdown"))
 
+;; markdown-preview
+(use-package markdown-preview-mode
+  :ensure t)
+
 ;; apply general emacs customisation settings
 (use-package general-settings)
 (use-package color-theme-settings)
@@ -242,7 +246,8 @@
  '(package-selected-packages
    '(clang-format+ claude-code-ide company corfu elisp-slime-nav
                    exec-path-from-shell flycheck
-                   gnu-elpa-keyring-update helm magit markdown-ts-mode
+                   gnu-elpa-keyring-update helm magit
+                   markdown-preview-mode markdown-ts-mode
                    org-repo-todo rainbow-mode vterm winum yaml-mode
                    yasnippet))
  '(package-vc-selected-packages
