@@ -30,6 +30,16 @@
 (setq package-enable-at-startup nil)
 (require 'use-package)
 
+;; install system-packages so can use
+;;     :ensure-system-package
+;; for use-package
+(use-package system-packages
+  :ensure t
+  :config
+  (setq system-packages-use-sudo t)
+  ;; or 'brew, 'dnf, etc.
+  (setq system-packages-package-manager 'apt))
+
 ;; use local melpa mirror
 ;; to create local repo:
 ;; M-x elpamr-create-mirror-for-installed
@@ -68,6 +78,13 @@
   ;; (exec-path-from-shell-copy-env "ERL_TOP")
   ;; (exec-path-from-shell-copy-env "OCAML_TOPLEVEL_PATH")
   (exec-path-from-shell-copy-env "PYTHONPATH"))
+
+;; allow copy/paste
+;; needs: sudo apt install xclip
+;; Now Emacs M-w (copy) and C-w (cut) will sync with the system clipboard directly.
+(use-package xclip
+  :ensure t
+  :config (xclip-mode 1))
 
 ;; org-mode
 (use-package org
@@ -170,6 +187,8 @@
 ;; markdown-preview
 (use-package markdown-preview-mode
   :ensure t)
+;; requires sudo apt install pandoc
+(setq markdown-command "pandoc")
 
 ;; apply general emacs customisation settings
 (use-package general-settings)
@@ -186,8 +205,12 @@
 (use-package rust-settings)
 (use-package cpp-settings)
 (use-package typescript-settings)
+
 ;; enable claude-ide
-(use-package claude-settings)
+;(use-package claude-settings)
+
+;; enable agent-shell for claude-code-agent
+(use-package agent-shell-settings)
 
 ;; (require 'prolog-settings)
 ;;(use-package ponylang-settings)
@@ -244,12 +267,11 @@
  ;; If there is more than one, they won't work right.
  '(ignored-local-variable-values '((eval when (fboundp 'rainbow-mode) (rainbow-mode 1))))
  '(package-selected-packages
-   '(clang-format+ claude-code-ide company corfu elisp-slime-nav
-                   exec-path-from-shell flycheck
-                   gnu-elpa-keyring-update helm magit
-                   markdown-preview-mode markdown-ts-mode
-                   org-repo-todo rainbow-mode vterm winum yaml-mode
-                   yasnippet))
+   '(agent-shell clang-format+ claude-code-ide company corfu
+                 elisp-slime-nav exec-path-from-shell flycheck
+                 gnu-elpa-keyring-update helm magit
+                 markdown-preview-mode markdown-ts-mode org-repo-todo
+                 rainbow-mode vterm winum yaml-mode yasnippet))
  '(package-vc-selected-packages
    '((claude-code-ide :url
                       "https://github.com/manzaltu/claude-code-ide.el")))
