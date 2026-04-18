@@ -23,7 +23,11 @@
     :config
     ;; Add agent installation configs here
  ;;   ((claude . "apt install claude-code")
- ;;   (claude-agent-acp . "npm install -g @agentclientprotocol/claude-agent-acp"))
+    ;;   (claude-agent-acp . "npm install -g @agentclientprotocol/claude-agent-acp"))
+    ;; use claude-code for all shells
+    (setq agent-shell-preferred-agent-config (agent-shell-anthropic-make-claude-code-config))
+    ;; use viewport compose promp instead of the standard one
+    (setq agent-shell-prefer-viewport-interaction t)
     (setq agent-shell-anthropic-authentication
           (agent-shell-anthropic-make-authentication :login t)))
 
