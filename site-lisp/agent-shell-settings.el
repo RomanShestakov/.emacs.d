@@ -24,6 +24,8 @@
     ;; Add agent installation configs here
  ;;   ((claude . "apt install claude-code")
     ;;   (claude-agent-acp . "npm install -g @agentclientprotocol/claude-agent-acp"))
+    ;; invoke agent shell shortcut
+    (bind-key "C-c s" 'agent-shell)
     ;; use claude-code for all shells
     (setq agent-shell-preferred-agent-config (agent-shell-anthropic-make-claude-code-config))
     ;; use viewport compose promp instead of the standard one
