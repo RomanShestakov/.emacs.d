@@ -3,6 +3,7 @@
 ;;; typescript-settings.el --- provide settings for typescript.
 
 ;;; npm install -g typescript-language-server
+;; npm install -g vscode-langservers-extracted
 ;;; npm install typescript-eslint-language-service -D
 ;;; https://notes.alexkehayias.com/setting-up-typescript-and-eslint-with-eglot/
 ;;; https://vxlabs.com/2022/06/12/typescript-development-with-emacs-tree-sitter-and-lsp-in-2022/
