@@ -1,42 +1,7 @@
 ;;; cpp-settings.el --- customization for cpp-mode
 
 ;;; Commentary:
-;;; http://nilsdeppe.com/posts/emacs-c++-ide
-
-;;; depends on :
-;;; install rust ;
-;;; curl https://sh.rustup.rs -sSf | sh
-;;; 1. rustfmt - to intall
-;;; cargo intall rustfmt
-;;; 2. racer - for code completion
-;;; cargo install racer
-;;; add source code for rust:
-;;; git clone git@github.com:rust-lang/rust.git
-;;; _build/default/lib/erlrexec/
-;;; http://parbo.github.io/blog/2016/05/10/configuring-emacs-for-cpp/
-;;; http://syamajala.github.io/c-ide.html
-;;; http://irreal.org/blog/?p=6028
-;;; http://syamajala.github.io/c-ide.html (EMACS as C++ IDE based on rtags)
-
-;; install clang/llvm
-;; brew install llvm --with-libcxx --with-clang --without-assertions --with-rtti
-;; brew link llvm
-;; git clone git@github.com:Andersbakken/rtags.git; cd rtags; git submodule init; git submodule update
-;; rtags + OSX
-;; https://gist.github.com/floatplane/68f2006186cef4d3e165
-
-;; how to crear=e .clang-format
-;; clang-format -style=llvm -dump-config > .clang-format
-
-;; https://github.com/philippe-grenet/exordium
-
-;; Add these to the PATH so that proper executables are found
-;; (setenv "PATH" (concat (getenv "PATH") ":/usr/texbin"))
-;; (setenv "PATH" (concat (getenv "PATH") ":/usr/bin"))
-;; (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-;; (setq exec-path (append exec-path '("/usr/texbin")))
-;; (setq exec-path (append exec-path '("/usr/bin")))
-;; (setq exec-path (append exec-path '("/usr/local/bin")))
+;; this configuration is inspired by the following blog post : https://ddavis.io/blog/eglot-cpp-ide/
 
 ;;; Code:
 
@@ -86,8 +51,9 @@
 ;;     ;; Append here the indent style you want as base
 ;;    ,@(alist-get 'bsd (c-ts-mode--indent-styles 'cpp))))
 
-(use-package c++-ts-mode
-  :if (treesit-language-available-p 'c)
+(use-package c-ts-mode
+  :ensure nil
+  :if (and (treesit-language-available-p 'c) (treesit-language-available-p 'cpp))
   :custom
   (c-ts-mode-indent-offset 2)
   ;;  (c-ts-mode-indent-style #'my-indent-style)

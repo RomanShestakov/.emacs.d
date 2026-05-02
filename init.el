@@ -55,7 +55,9 @@
         (if use-local-package-archive
 	          `(("myelpa" . ,elpamr-default-output-directory))
           '(("melpa" . "https://melpa.org/packages/")
-        ("gnu" . "https://elpa.gnu.org/packages/")))))
+            ;;("gnu" . "https://elpa.gnu.org/packages/")
+             ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+            ))))
 
 ;; allow to remove minor modes from status line
 ;;(require 'diminish)
@@ -198,10 +200,10 @@
 ;(use-package tree-sitter-settings)
 
 ;; requires setting "ERLANG_HOME"
-;;(use-package erlang-settings)
+(use-package erlang-settings)
 ;;(use-package elixir-settings)
 ;(use-package ocaml-settings)
-;;(use-package python-settings)
+(use-package python-settings)
 (use-package rust-settings)
 (use-package cpp-settings)
 (use-package typescript-settings)
@@ -267,11 +269,13 @@
  ;; If there is more than one, they won't work right.
  '(ignored-local-variable-values '((eval when (fboundp 'rainbow-mode) (rainbow-mode 1))))
  '(package-selected-packages
-   '(agent-shell clang-format+ claude-code-ide company corfu
-                 elisp-slime-nav exec-path-from-shell flycheck
-                 gnu-elpa-keyring-update helm magit
-                 markdown-preview-mode markdown-ts-mode org-repo-todo
-                 rainbow-mode vterm winum yaml-mode yasnippet))
+   '(agent-shell clang-format+ company corfu-terminal delight
+                 elisp-slime-nav erlang-ts exec-path-from-shell
+                 flycheck gnu-elpa-keyring-update helm
+                 ivy-erlang-complete magit markdown-preview-mode
+                 markdown-ts-mode org-repo-todo pyvenv rainbow-mode
+                 reformatter system-packages vterm winum xclip
+                 yaml-mode yasnippet))
  '(package-vc-selected-packages
    '((claude-code-ide :url
                       "https://github.com/manzaltu/claude-code-ide.el")))

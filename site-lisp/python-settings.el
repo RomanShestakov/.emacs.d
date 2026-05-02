@@ -1,62 +1,93 @@
 ;;; python-settings.el --- customization for python-mode
 
 ;;; Commentary:
-;; http://damcb.com/setting-up-a-scientific-python-working-environment.html
-;; http://pedrokroger.net/configuring-emacs-python-ide/
-;; https://github.com/jhamrick/emacs/blob/macs-and-emacs-post/.emacs.d/settings/python-settings.el
-;; https://github.com/jhamrick/emacs/blob/master/.emacs.d/settings/python-settings.el
-;; http://stackoverflow.com/questions/17255940/clear-steps-to-install-pymacs-with-emacs-24
-;; http://www.idryman.org/blog/2013/03/13/python-setup-on-mac-osx/
-;; http://stackoverflow.com/questions/1259873/how-can-i-use-emacs-flymake-mode-for-python-with-pyflakes-and-pylint-checking-co
-
-;; to add flycheck - need to install flake8 and pylint
-;; http://stackoverflow.com/questions/19803033/emacs-flycheck-configured-syntax-checker-python-flake8-cannot-be-used
-
-;; https://github.com/flycheck/flycheck
-;; sudo pip install flake8
-;; sudo pip install pylint
-
-;; for first run Jedi need to setup virtualenv
-;; http://tkf.github.io/emacs-jedi/latest/
-;; run : M-x jedi:install-server for first time to setup virtualenv
-
+;; inspired by : https://ddavis.io/blog/python-emacs-4/
+;; npm install -g basedpyright
 ;;; Code:
 
 (require 'python)
 
-;; how to fix ipython broken output
-;; http://emacs.stackexchange.com/questions/24453/weird-shell-output-when-using-ipython-5?newreg=7e15e274404d40d3bf722e1e310ee278
-;;(setq python-shell-interpreter "ipython")
 (setq python-shell-interpreter "python3")
 
+(add-to-list 'exec-path "/home/romanshestakov/anaconda3/bin")
+
+;; corfu for in-buffer completion popup (works with eglot via completion-at-point)
+(use-package corfu
+  :ensure t
+  :custom
+  (corfu-auto t)
+  (corfu-auto-delay 0)
+  (corfu-auto-prefix 1)
+  :init
+  (global-corfu-mode 1))
+
+;; corfu uses child frames which don't work in terminal mode (-nw)
+;(require 'quelpa-use-package)
+(use-package corfu-terminal
+  ;; :quelpa (corfu-terminal
+  ;;          :fetcher git
+  ;;          :url "https://codeberg.org/akib/emacs-corfu-terminal.git")
+  :after corfu
+  :demand t
+  :config
+  (unless (display-graphic-p)
+    (corfu-terminal-mode 1)))
+
+;; eglot is built-in since Emacs 29; no :ensure needed.
 (use-package eglot
   :ensure nil
   :config
   (bind-key "M-." 'xref-find-definitions)
-  (bind-key "M-," 'pop-tag-mark)
-  ;;(setq company-backends (cons 'company-capf (remove 'company-capf company-backends)))
-  ;;(add-hook 'python-mode-hook 'eglot-ensure)
-  )
+  (bind-key "M-," 'xref-go-back)
+  (add-to-list 'eglot-server-programs
+               `(python-base-mode
+                 . ,(eglot-alternatives '(("basedpyright-langserver" "--stdio")
+                                          ("pyright-langserver" "--stdio"))))))
 
-(add-hook 'python-mode-hook 'eglot-ensure)
+;; ruff for formatting and import sorting on save
+(use-package reformatter
+  :ensure t
+  :config
+  (reformatter-define python-ruff-format
+    :program "uvx"
+    :args `("ruff" "format" "--stdin-filename" ,buffer-file-name "-"))
+  (reformatter-define python-ruff-sort
+    :program "uvx"
+    :args `("ruff" "check" "--select" "I" "--fix"
+            "--stdin-filename" ,buffer-file-name "-")))
 
-;; add F9 and S-F9 binding to eval a buffer or selected expr
+;; auto-activate .venv in project root
+(use-package pyvenv
+  :ensure t)
+
+(defun my-python-init ()
+  (let* ((project (project-current))
+         (project-root (when project (project-root project)))
+         (venv-path (when project-root
+                      (expand-file-name ".venv" project-root))))
+    (when (and venv-path (file-directory-p venv-path))
+      (pyvenv-activate venv-path)))
+  (python-ruff-format-on-save-mode +1)
+  (python-ruff-sort-on-save-mode +1))
+
 (defun my-python-mode-hook ()
-  (define-key python-mode-map [f9] 'python-shell-send-buffer)
+  (define-key python-mode-map [f9]   'python-shell-send-buffer)
   (define-key python-mode-map [S-f9] 'python-shell-send-region)
   (define-key python-mode-map [S-f1] 'python-insert-breakpoint)
-  (setq indent-tabs-mode nil)
-  (setq python-indent-offset 4)
-  (setq tab-width 4)
-  (setq python-indent 4)
-  (setq flycheck-checker 'python-pylint
-        flycheck-pylintc "~/.pylintrc"))
+  (setq-local indent-tabs-mode nil)
+  (setq-local python-indent-offset 4)
+  (setq-local tab-width 4))
 
-;; add hooks to python-mode
-(add-hook 'python-mode-hook 'flycheck-mode)
-;;(add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-base-mode-hook 'eglot-ensure)
+(add-hook 'python-base-mode-hook 'my-python-init)
 (add-hook 'python-mode-hook 'my-python-mode-hook)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'python-mode-hook
+          (lambda () (add-hook 'before-save-hook 'delete-trailing-whitespace nil t)))
+
+;; helm-mode overrides completion-in-region-function globally; restore corfu's in python buffers
+(add-hook 'python-base-mode-hook
+          (lambda ()
+            (setq-local completion-in-region-function #'corfu--complete-in-region)))
 
 (provide 'python-settings)
 
