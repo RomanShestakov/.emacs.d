@@ -77,7 +77,10 @@
   :config
   (bind-key "M-." 'xref-find-definitions)
   (bind-key "M-," 'pop-tag-mark)
-;;  (add-hook 'erlang-ts-mode-hook 'eglot-ensure))
+  ;; eglot's built-in default only maps `erlang-mode' to erlang_ls, not the
+  ;; tree-sitter `erlang-ts-mode' used below for .erl files.
+  (add-to-list 'eglot-server-programs
+               '(erlang-ts-mode . ("erlang_ls" "--transport" "stdio")))
 ;;  (setq eglot-ignored-server-capabilities '(:willSaveWaitUntil :textDocumentSync)))
   )
 
