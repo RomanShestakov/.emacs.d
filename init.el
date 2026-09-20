@@ -128,6 +128,24 @@
   (defalias 'flycheck-show-error-at-point-soon 'flycheck-show-error-at-point))
 
 ;; helm
+(defun my/helm-grep-repo ()
+  "Grep for a pattern in the current git repo, remembering the session.
+
+Uses `helm-grep-do-git-grep', which shells out to \"git grep\" — no
+ag/ripgrep dependency needed.  Falls back to `rgrep' (built-in,
+plain `grep') outside a git repo.
+
+After opening a match with RET, run `helm-resume' (bound to
+\"C-x c r\") to reopen this exact result list and jump to another
+match — no need to re-type the search.  Inside the helm results
+list, `C-z' (`helm-execute-persistent-action') previews the match
+at point without leaving the session at all, so you can walk
+through several with C-n/C-p + C-z before committing with RET."
+  (interactive)
+  (if (locate-dominating-file default-directory ".git")
+      (helm-grep-do-git-grep nil)
+    (call-interactively #'rgrep)))
+
 (use-package helm
   :ensure t
   :diminish helm-mode
@@ -162,6 +180,8 @@
          ;; ("C-x c y" . helm-yas-complete)
          ;; ("C-x c Y" . helm-yas-create-snippet-on-region)
          ("C-x c b" . my/helm-do-grep-book-notes)
+         ("C-x c g" . my/helm-grep-repo)
+         ("C-x c r" . helm-resume)
          ("C-x c SPC" . helm-all-mark-rings)))
 
 ;; company is used as a backend by some modes (e.g. eglot in cpp-settings)

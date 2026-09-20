@@ -41,6 +41,8 @@ Then recompile the vterm module with M-x vterm-module-compile if you see any err
 | emacs                                     |                                                               |
 |-------------------------------------------+---------------------------------------------------------------|
 | C-x C-f                                   | find files (helm-for-files)                                   |
+| C-x c g                                   | helm-grep-repo - run grep                                     |
+| C-x c r                                   | helm-resume - show found results                              |
 | M-q                                       | wrap line if it is too long (fill-paragraph func)             |
 | C-u, M-q                                  | wrap line and align text                                      |
 | emacs -nw                                 | open emacs in no window mode                                  |
@@ -77,6 +79,7 @@ Then recompile the vterm module with M-x vterm-module-compile if you see any err
 | M-1 / M-2                                 | change window                                                 |
 | C-M-n/p                                   | more to matching parenthesis                                  |
 | C-x `                                     | move to next error                                            |
+|                                           |                                                               |
 |-------------------------------------------+---------------------------------------------------------------|
 |                                           |                                                               |
 | slime-nav-mode                            |                                                               |
@@ -92,7 +95,7 @@ Then recompile the vterm module with M-x vterm-module-compile if you see any err
 | C-C C-t                                   | put task into DONE                                            |
 | C-C C-o                                   | go to the link origin                                         |
 | M-up/down                                 | move line                                                     |
-| C-M - down                                | insert line into org table                                    |
+| M-S - down                                | insert line into org table                                    |
 | '*'                                       | start a new header                                            |
 | '-'                                       | start a bullet list.                                          |
 | C-c                                       | cycle thru different bullet styles,                           |
