@@ -79,8 +79,13 @@
   (bind-key "M-," 'pop-tag-mark)
   ;; eglot's built-in default only maps `erlang-mode' to erlang_ls, not the
   ;; tree-sitter `erlang-ts-mode' used below for .erl files.
+  ;; Switched from erlang_ls to ELP (WhatsApp's Erlang Language Platform):
+  ;; erlang_ls is archived/unmaintained and has a longstanding, unfixed bug
+  ;; resolving -include_lib against rebar3 deps under _build/default/lib/*
+  ;; (erlang-ls/erlang_ls#1256, #777). ELP auto-discovers the rebar3 project
+  ;; from rebar.config, no elp.toml needed here.
   (add-to-list 'eglot-server-programs
-               '(erlang-ts-mode . ("erlang_ls" "--transport" "stdio")))
+               '(erlang-ts-mode . ("elp" "server")))
 ;;  (setq eglot-ignored-server-capabilities '(:willSaveWaitUntil :textDocumentSync)))
   )
 
