@@ -221,7 +221,7 @@ through several with C-n/C-p + C-z before committing with RET."
 
 ;; requires setting "ERLANG_HOME"
 (use-package erlang-settings)
-;;(use-package elixir-settings)
+(use-package elixir-settings)
 ;(use-package ocaml-settings)
 (use-package python-settings)
 (use-package rust-settings)
